@@ -1,1 +1,10 @@
 这是一个b2c项目，ui参考demoui里面的代码,service参考demoservice里面的代码
+
+catagoryservice 分类服务
+commentservice 评论服务
+customerservice 买家服务
+merchantservice 商家服务
+searchservice 搜索服务
+userservice 用户服务
+orderservice 订单服务
+register 注册中心
