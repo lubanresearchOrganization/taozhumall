@@ -22,6 +22,9 @@
         <module>searchservice</module>
         <module>demoui</module>
         <module>demoservice</module>
+        <module>demoserviceapi</module>
+        <module>common</module>
+        <module>register</module>
     </modules>
 
     <properties>
@@ -33,6 +36,9 @@
         <maven-jar-plugin.version>2.3.1</maven-jar-plugin.version>
         <maven-install-plugin.version>2.3.1</maven-install-plugin.version>
         <springboot.version>1.3.8.RELEASE</springboot.version>
+        <mybatis.springboot.version>1.1.1</mybatis.springboot.version>
+        <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
+        <mybatisplus.version>2.1.4</mybatisplus.version>
     </properties>
     <dependencyManagement>
         <dependencies>
