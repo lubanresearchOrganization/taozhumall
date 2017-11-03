@@ -4,7 +4,7 @@ import com.lubanresearch.lubanmall.demoservice.domain.repository.DemoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by hilbert on 2017/10/24.
+ * @author hilbert.cao
  */
 @Repository
 public class DemoRepositoryImpl implements DemoRepository {

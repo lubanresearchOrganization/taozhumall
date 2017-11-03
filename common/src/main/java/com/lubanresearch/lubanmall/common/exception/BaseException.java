@@ -2,6 +2,7 @@ package com.lubanresearch.lubanmall.common.exception;
 
 
 /**
+ * @author hilbert.cao
  * 异常基类
  */
 public abstract class BaseException extends RuntimeException {

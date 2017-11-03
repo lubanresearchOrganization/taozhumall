@@ -4,7 +4,7 @@ import com.lubanresearch.lubanmall.demoservice.service.DemoService;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by hilbert on 2017/10/24.
+ * @author hilbert.cao
  */
 @Service
 public class DemoServiceImpl implements DemoService {

@@ -37,8 +37,10 @@
         <maven-install-plugin.version>2.3.1</maven-install-plugin.version>
         <springboot.version>1.3.8.RELEASE</springboot.version>
         <mybatis.springboot.version>1.1.1</mybatis.springboot.version>
-        <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
-        <mybatisplus.version>2.1.4</mybatisplus.version>
+        <mysql.driver.version>5.1.18</mysql.driver.version>
+        <mybatis.generator.plugin.version>1.0.19</mybatis.generator.plugin.version>
+        <jackson.version>2.9.2</jackson.version>
+        <springfox-swagger2.version>2.7.0</springfox-swagger2.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -53,6 +55,21 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -72,4 +89,23 @@
     </build>
     <dependencies>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>nexus-aliyun</id>
+            <name>Nexus aliyun</name>
+            <layout>default</layout>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>jcenter-snapshots</id>
+            <name>jcenter</name>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
 </project>

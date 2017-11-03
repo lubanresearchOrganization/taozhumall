@@ -1,7 +1,7 @@
 package com.lubanresearch.lubanmall.common.exception;
 
 /**
- * Created by hilbert on 2017/10/24.
+ * @author hilbert.cao
  */
 public class UIException extends BaseException {
 
