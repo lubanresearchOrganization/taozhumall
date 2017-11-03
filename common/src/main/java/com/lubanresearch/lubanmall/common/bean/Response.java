@@ -3,7 +3,7 @@ package com.lubanresearch.lubanmall.common.bean;
 import java.io.Serializable;
 
 /**
- * hilbert.cao
+ * @author hilbert.cao
  *
  * @param <T>
  */

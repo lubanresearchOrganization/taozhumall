@@ -6,17 +6,29 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * hilbert.cao
+ * @author hilbert.cao
  * 分页
  * @param <T>
  */
 public class Pagination<T> implements Serializable {
     private static final long serialVersionUID = 127102426434278982L;
     private List<T> items = Collections.emptyList();
-    private long total;//总记录数
-    private int size;//每页大小
-    private int pageIndex;//当前页
-    private int pageCount;//总页数
+    /**
+     * 总记录数
+     */
+    private long total;
+    /**
+     * 每页大小.
+     */
+    private int size;
+    /**
+     * 当前页.
+     */
+    private int pageIndex;
+    /**
+     * 总页数.
+     */
+    private int pageCount;
 
     public Pagination() {
         //提供以反序列化
