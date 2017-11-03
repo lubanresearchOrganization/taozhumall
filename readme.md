@@ -1,4 +1,4 @@
-这是一个b2c项目，ui参考demoui里面的代码,service参考demoservice里面的代码
+这是一个b2c项目，ui参考demoui里面的代码,service参考demoservice里面的代码,基于jdk1.8
 
 catagoryservice 分类服务<br/>
 commentservice 评论服务<br/>

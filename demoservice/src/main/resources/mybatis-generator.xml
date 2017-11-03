@@ -2,45 +2,65 @@
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
 <generatorConfiguration>
-    <!-- 配置文件路径 -->
     <properties resource="application.properties"/>
-    <!--数据库驱动包路径 已经在Maven的pom配置过了，这里就不需要了-->
-    <!--<classPathEntry location="${drive.class.path}"/>-->
-    <context id="MySQLTables" targetRuntime="MyBatis3Simple">
-        <!--关闭注释 -->
+    <context id="mysql" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$" />
+            <property name="replaceString" value="QueryCondition" />
+        </plugin>
+        <!-- MySQL分页插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin"/>
+        <!-- 数据Model链式构建插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelBuilderPlugin"/>
+        <!-- Example Criteria 增强插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ExampleEnhancedPlugin"/>
+        <!-- Example 目标包修改插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ExampleTargetPlugin">
+            <!-- 修改Example类生成到目标包下 -->
+            <property name="targetPackage" value="com.lubanresearch.lubanmall.demoservice.domain.query.condition"/>
+        </plugin>
+        <!-- 数据Model属性对应Column获取插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>
+        <!-- 存在即更新插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.UpsertPlugin">
+            <!--
+            支持upsertByExample，upsertByExampleSelective操作
+            ！需开启allowMultiQueries=true多条sql提交操作，所以不建议使用！
+            -->
+            <property name="allowMultiQueries" value="true"/>
+        </plugin>
+        <!-- Selective选择插入更新增强插件！请配在所有插件末尾以便最后执行 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectiveEnhancedPlugin"/>
+        <!-- 查询结果选择性返回插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectSelectivePlugin" />
         <commentGenerator>
-            <property name="suppressDate" value="true"/>
-            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true"/>
+            <property name="suppressAllComments" value="true" />
         </commentGenerator>
-        <!--数据库连接信息 -->
+
         <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
-                        connectionURL="${jdbc.url}"
+                        connectionURL="${spring.datasource.url}"
                         userId="${spring.datasource.username}"
                         password="${spring.datasource.password}">
         </jdbcConnection>
-        <!--
-        默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
-            true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal
-         -->
-        <javaTypeResolver>
-            <property name="forceBigDecimals" value="false"/>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
-        <!--生成的model 包路径 -->
-        <javaModelGenerator targetPackage="${model.package}" targetProject="${target.project}">
-            <property name="enableSubPackages" value="true"/>
-            <property name="trimStrings" value="true"/>
+
+        <javaModelGenerator targetPackage="com.lubanresearch.lubanmall.demoservice.domain" targetProject="./src/main/java/">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
         </javaModelGenerator>
-        <!--生成xml mapper文件 路径 -->
-        <sqlMapGenerator targetPackage="${xml.mapper.package}" targetProject="${target.project}">
-            <property name="enableSubPackages" value="true"/>
+
+        <sqlMapGenerator targetPackage="mapper"  targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
-        <!-- 生成的Dao接口 的包路径 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="${dao.package}" targetProject="${target.project}">
-            <property name="enableSubPackages" value="true"/>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lubanresearch.lubanmall.demoservice.infrastructure.persistence.db"  targetProject="./src/main/java/">
+            <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
-        <!--对应数据库表名 -->
-        <table schema="fsi" tableName="school"></table>
+        <table tableName="lb_order" domainObjectName="Order" />
     </context>
 </generatorConfiguration>
