@@ -4,23 +4,34 @@ import java.io.Serializable;
 
 /**
  * hilbert.cao
+ *
  * @param <T>
  */
 public class Response<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    protected String code;
+    protected Integer code;
 
     protected String message;
 
     protected T data;
 
-    public String getCode() {
+
+    public Response() {
+    }
+
+    public Response(Integer code, String message, T data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

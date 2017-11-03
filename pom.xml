@@ -40,6 +40,7 @@
         <mysql.driver.version>5.1.18</mysql.driver.version>
         <mybatis.generator.plugin.version>1.0.19</mybatis.generator.plugin.version>
         <jackson.version>2.9.2</jackson.version>
+        <springfox-swagger2.version>2.7.0</springfox-swagger2.version>
     </properties>
     <dependencyManagement>
         <dependencies>

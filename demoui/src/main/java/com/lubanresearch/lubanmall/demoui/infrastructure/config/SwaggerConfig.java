@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.demoservice.infrastructure.config;
+package com.lubanresearch.lubanmall.demoui.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,6 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 
 
 /**
@@ -27,15 +26,15 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
                 .apiInfo(apiInfo())
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.demoservice.application.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.demoui.application.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("demo服务")
-                .contact(new Contact("lubanmall", "http://demo.lubanmall.com", ""))
+                .title("demo UI")
+                .contact(new Contact("lubanmall", "http://demoui.lubanmall.com", ""))
                 .version("0.1")
                 .build();
     }

@@ -11,6 +11,17 @@
 
     <artifactId>demo-ui</artifactId>
     <dependencies>
+        <!--swagger支持,http://springfox.github.io/springfox/docs/current/#getting-started-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
         <dependency>
             <groupId>lubanresearch.com</groupId>
             <artifactId>common</artifactId>
