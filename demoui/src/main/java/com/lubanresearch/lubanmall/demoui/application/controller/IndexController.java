@@ -10,7 +10,7 @@ import springfox.documentation.annotations.ApiIgnore;
  */
 @ApiIgnore
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/")
 public class IndexController {
 
     @RequestMapping(path = {"/go","/"})

@@ -25,6 +25,7 @@
         <module>demoserviceapi</module>
         <module>common</module>
         <module>register</module>
+        <module>ssoclient</module>
     </modules>
 
     <properties>
