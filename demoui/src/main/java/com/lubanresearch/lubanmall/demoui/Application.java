@@ -2,13 +2,15 @@ package com.lubanresearch.lubanmall.demoui;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author hilbert.cao
  */
-/*@EnableDiscoveryClient
-@EnableFeignClients*/
+@EnableDiscoveryClient
+@EnableFeignClients
 @SpringBootApplication
 @ComponentScan(basePackages={"com.lubanresearch.lubanmall.demoui"})
 public class Application {
