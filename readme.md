@@ -9,3 +9,6 @@ userservice 用户服务<br/>
 orderservice 订单服务<br/>
 register 注册中心<br/>
 common 公共包异常，bean
+
+
+文档地址:https://lubanresearchorganization.github.io/lubanmall/
