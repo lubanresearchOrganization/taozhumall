@@ -16,6 +16,6 @@ public class IndexController {
     @RequestMapping(path = {"/go","/"})
     @ResponseBody
     public String go() {
-        return "success";
+        return "success!";
     }
 }
