@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.demoui.infrastructure.config;
+package com.lubanresearch.lubanmall.platformui.infrastructure.config;
 import org.springframework.context.annotation.Configuration;
 /**
  * Created by hilbertcao on 2017/12/2.

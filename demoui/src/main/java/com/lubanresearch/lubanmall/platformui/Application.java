@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.demoui;
+package com.lubanresearch.lubanmall.platformui;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
