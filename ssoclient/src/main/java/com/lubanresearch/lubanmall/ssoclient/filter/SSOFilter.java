@@ -1,15 +1,15 @@
-package com.lubanresearch.lubanmall.shopui.application.filter;
+package com.lubanresearch.lubanmall.ssoclient.filter;
+
+
+import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,15 +17,18 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-@Component
-@ServletComponentScan
-@WebFilter(urlPatterns = "/*",filterName = "ssoFilter")
+
 public class SSOFilter implements Filter {
     public static final String AUTHENTICATION_SESSION_KEY = "authentication";
     public static final String SERVICE_TICKET_PARAM_KEY = "st";
-    public String ssoServerLoginUrl = "http://localhost:4002/loginPage";
-    public String checkTicketUrl = "http://localhost:4002/checkServiceTicket";
+    public String ssoServerLoginUrl;
+    public String checkTicketUrl;
 
+    public SSOFilter(){}
+    public SSOFilter(String ssoServerLoginUrl,String checkTicketUrl){
+        this.ssoServerLoginUrl = ssoServerLoginUrl;
+        this.checkTicketUrl = checkTicketUrl;
+    }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 

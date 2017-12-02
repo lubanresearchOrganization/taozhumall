@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>user-center</artifactId>
+    <artifactId>base-ui</artifactId>
+    <version>0.1</version>
+    <packaging>pom</packaging>
     <dependencies>
         <dependency>
             <groupId>lubanresearch.com</groupId>
@@ -148,20 +150,8 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <version>${springboot.version}</version>
-        </dependency>
-        <!--用于themeleaf的非严格模式-->
-        <dependency>
-            <groupId>net.sourceforge.nekohtml</groupId>
-            <artifactId>nekohtml</artifactId>
-            <version>1.9.22</version><!-- 版本自己调整，也可不动 -->
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <version>${springboot.version}</version>
         </dependency>
     </dependencies>
-
 </project>

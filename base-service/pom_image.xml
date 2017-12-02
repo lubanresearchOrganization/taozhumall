@@ -8,9 +8,63 @@
         <version>0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>user-center</artifactId>
+    <version>0.1</version>
+    <artifactId>base-service</artifactId>
+    <packaging>pom</packaging>
+    <build>
+        <plugins>
+            <!-- mybatis-generator 自动代码插件 -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.5</version>
+                <configuration>
+                    <!-- 配置文件 -->
+                    <configurationFile>src/main/resources/mybatis-generator.xml</configurationFile>
+                    <!-- 允许移动和修改 -->
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+                <dependencies>
+                    <!-- jdbc 依赖 -->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.driver.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.itfsw</groupId>
+                        <artifactId>mybatis-generator-plugin</artifactId>
+                        <version>${mybatis.generator.plugin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
+        <!--用于代码生成https://github.com/itfsw/mybatis-generator-plugin-->
+        <dependency>
+            <groupId>com.itfsw</groupId>
+            <artifactId>mybatis-generator-plugin</artifactId>
+            <version>${mybatis.generator.plugin.version}</version>
+        </dependency>
         <dependency>
             <groupId>lubanresearch.com</groupId>
             <artifactId>demo-service-api</artifactId>
@@ -18,15 +72,14 @@
         </dependency>
         <dependency>
             <groupId>lubanresearch.com</groupId>
-            <artifactId>sso-client</artifactId>
-            <version>0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>lubanresearch.com</groupId>
             <artifactId>common</artifactId>
             <version>0.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.driver.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
@@ -48,7 +101,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
-
             <exclusions>
                 <exclusion>
                     <artifactId>jackson-annotations</artifactId>
@@ -148,19 +200,13 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <version>${springboot.version}</version>
-        </dependency>
-        <!--用于themeleaf的非严格模式-->
-        <dependency>
-            <groupId>net.sourceforge.nekohtml</groupId>
-            <artifactId>nekohtml</artifactId>
-            <version>1.9.22</version><!-- 版本自己调整，也可不动 -->
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.springboot.version}</version>
         </dependency>
     </dependencies>
 
