@@ -1,4 +1,4 @@
 /**
  * 访问远程的服务
  */
-package com.lubanresearch.lubanmall.demoservice.infrastructure.remote;
+package com.lubanresearch.lubanmall.searchservice.infrastructure.remote;

@@ -1,4 +1,4 @@
 /**
  * 将domain里面的对象转成请求需要的对象
  */
-package com.lubanresearch.lubanmall.demoservice.application.converters;
+package com.lubanresearch.lubanmall.searchservice.application.converters;
