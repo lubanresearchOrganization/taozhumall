@@ -1,5 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM registry.lubanresearch.com:5000/baseui
 VOLUME /tmp
 ADD ./target/register.jar app.jar
-COPY ./target/lib/*.jar /lib/
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
