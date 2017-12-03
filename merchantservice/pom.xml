@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>lubanmall</artifactId>
+        <artifactId>base-service</artifactId>
         <groupId>lubanresearch.com</groupId>
         <version>0.1</version>
     </parent>
@@ -12,4 +12,9 @@
     <artifactId>merchant-service</artifactId>
 
 
+    <build>
+        <finalName>
+            merchantservice
+        </finalName>
+    </build>
 </project>
