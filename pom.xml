@@ -11,7 +11,7 @@
     <modules>
         <module>common</module>
         <module>baseui</module>
-        <module>base-service</module>
+        <module>baseservice</module>
         <module>usercenter</module>
         <module>customerui</module>
         <module>shopui</module>
