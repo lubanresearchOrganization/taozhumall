@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.demoservice.infrastructure.config;
+package com.lubanresearch.lubanmall.catagoryservice.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,15 +27,15 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
                 .apiInfo(apiInfo())
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.demoservice.application.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.catagoryservice.application.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("demo服务")
-                .contact(new Contact("lubanmall", "http://demo.lubanmall.com", ""))
+                .title("类目服务")
+                .contact(new Contact("lubanmall", "http://catagoryservice.lubanmall.com", ""))
                 .version("0.1")
                 .build();
     }
