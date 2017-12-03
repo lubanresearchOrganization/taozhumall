@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.catagoryservice;
+package com.lubanresearch.lubanmall.customerservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @EnableFeignClients
 @SpringBootApplication
-@ComponentScan(basePackages={"com.lubanresearch.lubanmall.catagoryservice"})
+@ComponentScan(basePackages={"com.lubanresearch.lubanmall.customerservice"})
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

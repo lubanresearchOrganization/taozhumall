@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.demoservice.infrastructure.config;
+package com.lubanresearch.lubanmall.customerservice.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,8 +34,8 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("demo服务")
-                .contact(new Contact("lubanmall", "http://demo.lubanmall.com", ""))
+                .title("会员服务")
+                .contact(new Contact("lubanmall", "http://customerservice.lubanmall.com", ""))
                 .version("0.1")
                 .build();
     }
