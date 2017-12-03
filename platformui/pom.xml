@@ -11,5 +11,7 @@
 
     <artifactId>platform-ui</artifactId>
 
-    <build><finalName>platformui</finalName></build>
+    <build>
+        <finalName>platformui</finalName>
+    </build>
 </project>

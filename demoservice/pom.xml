@@ -11,5 +11,7 @@
 
     <artifactId>demo-service</artifactId>
 
-
+    <build>
+        <finalName>demoservice</finalName>
+    </build>
 </project>

@@ -12,4 +12,7 @@
     <artifactId>user-service</artifactId>
 
 
+    <build>
+        <finalName>userservice</finalName>
+    </build>
 </project>

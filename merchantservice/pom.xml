@@ -14,7 +14,7 @@
 
     <build>
         <finalName>
-         baseservice
+            merchantservice
         </finalName>
     </build>
 </project>
