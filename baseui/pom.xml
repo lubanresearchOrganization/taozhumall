@@ -15,11 +15,6 @@
     <dependencies>
         <dependency>
             <groupId>lubanresearch.com</groupId>
-            <artifactId>demo-service-api</artifactId>
-            <version>0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>lubanresearch.com</groupId>
             <artifactId>sso-client</artifactId>
             <version>0.1</version>
         </dependency>

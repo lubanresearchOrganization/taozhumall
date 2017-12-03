@@ -12,13 +12,22 @@
     <artifactId>shop-ui</artifactId>
     <build>
         <finalName>shopui</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.lubanresearch.lubanmall.shopui.application</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
-    <dependencies>
-        <dependency>
-            <groupId>lubanresearch.com</groupId>
-            <artifactId>sso-client</artifactId>
-            <version>0.1</version>
-        </dependency>
-    </dependencies>
 
 </project>

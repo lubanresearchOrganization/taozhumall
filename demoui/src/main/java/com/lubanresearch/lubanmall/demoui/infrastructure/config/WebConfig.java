@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.customerui.infrastructure.config;
+package com.lubanresearch.lubanmall.demoui.infrastructure.config;
 import com.lubanresearch.lubanmall.ssoclient.filter.SSOFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;

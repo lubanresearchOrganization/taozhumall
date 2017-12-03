@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.customerui.application.controller;
+package com.lubanresearch.lubanmall.demoui.application.controller;
 
 import com.lubanresearch.lubanmall.common.bean.Response;
 import io.swagger.annotations.Api;
