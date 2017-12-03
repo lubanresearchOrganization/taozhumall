@@ -22,7 +22,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.lubanresearch.lubanmall.shopui.application</mainClass>
+                            <mainClass>com.lubanresearch.lubanmall.shopui.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

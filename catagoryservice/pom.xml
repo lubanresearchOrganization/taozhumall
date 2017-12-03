@@ -23,7 +23,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.lubanresearch.lubanmall.catagoryservice.application</mainClass>
+                            <mainClass>com.lubanresearch.lubanmall.catagoryservice.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
