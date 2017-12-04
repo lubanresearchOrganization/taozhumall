@@ -1,4 +1,4 @@
-FROM jfisbein/alpine-oracle-jdk9
+FROM frolvlad/alpine-oraclejdk8
 VOLUME /tmp
 ADD ./target/register.jar app.jar
 COPY ./target/lib/*.jar /lib/
