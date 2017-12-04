@@ -52,8 +52,8 @@
             <artifactId>spring-cloud-starter-eureka-server</artifactId>
             <exclusions>
                 <exclusion>
-                    <artifactId>jsr311-api</artifactId>
-                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>validation-api</artifactId>
+                    <groupId>javax.validation</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
