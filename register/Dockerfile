@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8
+FROM frolvlad/alpine-oraclejdk8:slim
 VOLUME /tmp
 ADD ./target/register.jar app.jar
 COPY ./target/lib/*.jar /lib/
