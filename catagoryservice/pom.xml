@@ -12,7 +12,7 @@
     <artifactId>catagory-service</artifactId>
 
     <build>
-        <finalName>commentservice</finalName>
+        <finalName>catagoryservice</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
