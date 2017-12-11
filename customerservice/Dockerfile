@@ -1,7 +1,9 @@
 FROM registry.lubanresearch.com:5000/baseservice:0.1
 VOLUME /tmp
 ADD ./target/customerservice.jar app.jar
-ENTRYPOINT ["java","
+
+ENV JAVA_OPTS="\
+ -server \
  -Djava.security.egd=file:/dev/./urandom\
  -Xms16m\
  -Xmx48m\
@@ -11,5 +13,5 @@ ENTRYPOINT ["java","
  -Xmn8m\
  -XX:InitialCodeCacheSize=4m\
  -XX:ReservedCodeCacheSize=8m\
- -XX:MaxDirectMemorySize=16m\
-","-jar","/app.jar"]
+ -XX:MaxDirectMemorySize=16m"
+ENTRYPOINT java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /app.jar
