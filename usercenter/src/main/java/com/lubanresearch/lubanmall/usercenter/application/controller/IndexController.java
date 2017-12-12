@@ -81,7 +81,7 @@ public class IndexController {
                 }
             }
         }
-        return "loginPage";
+        return "login";
     }
 
 
