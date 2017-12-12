@@ -4,9 +4,7 @@ import com.lubanresearch.lubanmall.usercenter.infrastructure.cache.Cache;
 import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.Cookie;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.invoke.MethodType;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,9 +45,8 @@ public class IndexController {
         return Cache.get(tgt);
     }
 
-    @RequestMapping(path = {"/loginPage"})
-    public String loginPage(HttpServletRequest request,
-                            HttpServletResponse response) {
+    @RequestMapping(path = {"/loginPage"},method = RequestMethod.GET)
+    public String loginPage(HttpServletRequest request) {
 
         Cookie[] cookies = request.getCookies();
         if(cookies!=null){
@@ -81,7 +79,7 @@ public class IndexController {
                 }
             }
         }
-        return "login/loginPage";
+        return "loginPage";
     }
 
 
