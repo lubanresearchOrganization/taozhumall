@@ -28,6 +28,7 @@
         <module>demoserviceapi</module>
         <module>register</module>
         <module>ssoclient</module>
+        <module>userserviceapi</module>
 
     </modules>
 
