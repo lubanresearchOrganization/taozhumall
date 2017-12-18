@@ -10,28 +10,23 @@ public abstract class BaseException extends RuntimeException {
     /**
      * 结果代码response body中的code和message字段
      */
-    protected Integer respCode;
+    protected Integer code;
 
     /**
      * 结果代码response body中的data字段
      */
-    private String desc;
+    protected String desc;
 
     public BaseException() {
     }
-
-    public BaseException(Integer respCode, String desc) {
-        super(desc);
-        this.respCode = respCode;
+    public BaseException(Integer code, String desc) {
+        this.code = code;
         this.desc = desc;
     }
 
 
-
-    public BaseException(Integer respCode, String desc, Throwable cause) {
-        super(desc, cause);
-        this.respCode = respCode;
-        this.desc = desc;
+    public BaseException(Integer code) {
+        this.code = code;
     }
 
 
@@ -41,7 +36,7 @@ public abstract class BaseException extends RuntimeException {
      * @return Value of 结果代码response body中的code和message字段.
      */
     public Integer getCode() {
-        return respCode;
+        return code;
     }
 
 
