@@ -58,7 +58,7 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db"  targetProject="./src/main/java/">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.mapper"  targetProject="./src/main/java/">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 

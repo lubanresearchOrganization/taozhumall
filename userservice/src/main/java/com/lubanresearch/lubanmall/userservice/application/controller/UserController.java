@@ -1,6 +1,5 @@
 package com.lubanresearch.lubanmall.userservice.application.controller;
 
-import com.lubanmall.userserviceapi.bean.UserDTO;
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

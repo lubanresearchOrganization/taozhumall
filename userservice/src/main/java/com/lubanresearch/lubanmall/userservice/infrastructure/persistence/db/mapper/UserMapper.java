@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db;
+package com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.mapper;
 
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.domain.query.condition.UserQueryCondition;

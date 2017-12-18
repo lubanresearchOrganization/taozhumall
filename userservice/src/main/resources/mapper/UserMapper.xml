@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.UserMapper">
+<mapper namespace="com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="com.lubanresearch.lubanmall.userservice.domain.User">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, nick_name, password, mobile, create_time, type
+    id, name, password, mobile, create_time, type
   </sql>
   <select id="selectByExample" parameterType="com.lubanresearch.lubanmall.userservice.domain.query.condition.UserQueryCondition" resultMap="BaseResultMap">
     select
@@ -140,10 +140,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lubanresearch.lubanmall.userservice.domain.User">
-    insert into lb_user (id, nick_name, password, 
+    insert into lb_user (id, name, password, 
       mobile, create_time, type
       )
-    values (#{id,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{mobile,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{type,jdbcType=TINYINT}
       )
   </insert>
@@ -155,8 +155,8 @@
           <if test="_parameter.hasSelective('id')">
             id,
           </if>
-          <if test="_parameter.hasSelective('nick_name')">
-            nick_name,
+          <if test="_parameter.hasSelective('name')">
+            name,
           </if>
           <if test="_parameter.hasSelective('password')">
             password,
@@ -175,8 +175,8 @@
           <if test="id != null">
             id,
           </if>
-          <if test="nickName != null">
-            nick_name,
+          <if test="name != null">
+            name,
           </if>
           <if test="password != null">
             password,
@@ -199,8 +199,8 @@
           <if test="_parameter.hasSelective('id')">
             #{id,jdbcType=BIGINT},
           </if>
-          <if test="_parameter.hasSelective('nick_name')">
-            #{nickName,jdbcType=VARCHAR},
+          <if test="_parameter.hasSelective('name')">
+            #{name,jdbcType=VARCHAR},
           </if>
           <if test="_parameter.hasSelective('password')">
             #{password,jdbcType=VARCHAR},
@@ -219,8 +219,8 @@
           <if test="id != null">
             #{id,jdbcType=BIGINT},
           </if>
-          <if test="nickName != null">
-            #{nickName,jdbcType=VARCHAR},
+          <if test="name != null">
+            #{name,jdbcType=VARCHAR},
           </if>
           <if test="password != null">
             #{password,jdbcType=VARCHAR},
@@ -252,8 +252,8 @@
           <if test="record.hasSelective('id')">
             id = #{record.id,jdbcType=BIGINT},
           </if>
-          <if test="record.hasSelective('nick_name')">
-            nick_name = #{record.nickName,jdbcType=VARCHAR},
+          <if test="record.hasSelective('name')">
+            name = #{record.name,jdbcType=VARCHAR},
           </if>
           <if test="record.hasSelective('password')">
             password = #{record.password,jdbcType=VARCHAR},
@@ -272,8 +272,8 @@
           <if test="record.id != null">
             id = #{record.id,jdbcType=BIGINT},
           </if>
-          <if test="record.nickName != null">
-            nick_name = #{record.nickName,jdbcType=VARCHAR},
+          <if test="record.name != null">
+            name = #{record.name,jdbcType=VARCHAR},
           </if>
           <if test="record.password != null">
             password = #{record.password,jdbcType=VARCHAR},
@@ -297,7 +297,7 @@
   <update id="updateByExample" parameterType="map">
     update lb_user
     set id = #{record.id,jdbcType=BIGINT},
-      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       mobile = #{record.mobile,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -311,8 +311,8 @@
     <set>
       <choose>
         <when test="_parameter.hasSelective()">
-          <if test="_parameter.hasSelective('nick_name')">
-            nick_name = #{nickName,jdbcType=VARCHAR},
+          <if test="_parameter.hasSelective('name')">
+            name = #{name,jdbcType=VARCHAR},
           </if>
           <if test="_parameter.hasSelective('password')">
             password = #{password,jdbcType=VARCHAR},
@@ -328,8 +328,8 @@
           </if>
         </when>
         <otherwise>
-          <if test="nickName != null">
-            nick_name = #{nickName,jdbcType=VARCHAR},
+          <if test="name != null">
+            name = #{name,jdbcType=VARCHAR},
           </if>
           <if test="password != null">
             password = #{password,jdbcType=VARCHAR},
@@ -350,7 +350,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lubanresearch.lubanmall.userservice.domain.User">
     update lb_user
-    set nick_name = #{nickName,jdbcType=VARCHAR},
+    set name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -364,14 +364,13 @@
       @project https://github.com/itfsw/mybatis-generator-plugin
     -->
     insert into lb_user
-    (id, nick_name, password, mobile, create_time, type)
+    (id, name, password, mobile, create_time, type)
     values
-    (#{id,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{type,jdbcType=TINYINT}
-      )
+    (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{type,jdbcType=TINYINT})
     on duplicate key update 
     id = #{id,jdbcType=BIGINT}, 
-    nick_name = #{nickName,jdbcType=VARCHAR}, 
+    name = #{name,jdbcType=VARCHAR}, 
     password = #{password,jdbcType=VARCHAR}, 
     mobile = #{mobile,jdbcType=VARCHAR}, 
     create_time = #{createTime,jdbcType=TIMESTAMP}, 
@@ -384,9 +383,9 @@
       @project https://github.com/itfsw/mybatis-generator-plugin
     -->
     insert into lb_user
-    (id, nick_name, password, mobile, create_time, type)
+    (id, name, password, mobile, create_time, type)
     select
-    #{record.id,jdbcType=BIGINT}, #{record.nickName,jdbcType=VARCHAR}, #{record.password,jdbcType=VARCHAR}, 
+    #{record.id,jdbcType=BIGINT}, #{record.name,jdbcType=VARCHAR}, #{record.password,jdbcType=VARCHAR}, 
       #{record.mobile,jdbcType=VARCHAR}, #{record.createTime,jdbcType=TIMESTAMP}, #{record.type,jdbcType=TINYINT}
       
     from dual where not exists
@@ -400,7 +399,7 @@
     update lb_user
     set
     id = #{record.id,jdbcType=BIGINT}, 
-    nick_name = #{record.nickName,jdbcType=VARCHAR}, 
+    name = #{record.name,jdbcType=VARCHAR}, 
     password = #{record.password,jdbcType=VARCHAR}, 
     mobile = #{record.mobile,jdbcType=VARCHAR}, 
     create_time = #{record.createTime,jdbcType=TIMESTAMP}, 
@@ -422,8 +421,8 @@
           <if test="_parameter.hasSelective('id')">
             id,
           </if>
-          <if test="_parameter.hasSelective('nick_name')">
-            nick_name,
+          <if test="_parameter.hasSelective('name')">
+            name,
           </if>
           <if test="_parameter.hasSelective('password')">
             password,
@@ -442,8 +441,8 @@
           <if test="id != null">
             id,
           </if>
-          <if test="nickName != null">
-            nick_name,
+          <if test="name != null">
+            name,
           </if>
           <if test="password != null">
             password,
@@ -467,8 +466,8 @@
           <if test="_parameter.hasSelective('id')">
             #{id,jdbcType=BIGINT},
           </if>
-          <if test="_parameter.hasSelective('nick_name')">
-            #{nickName,jdbcType=VARCHAR},
+          <if test="_parameter.hasSelective('name')">
+            #{name,jdbcType=VARCHAR},
           </if>
           <if test="_parameter.hasSelective('password')">
             #{password,jdbcType=VARCHAR},
@@ -487,8 +486,8 @@
           <if test="id != null">
             #{id,jdbcType=BIGINT},
           </if>
-          <if test="nickName != null">
-            #{nickName,jdbcType=VARCHAR},
+          <if test="name != null">
+            #{name,jdbcType=VARCHAR},
           </if>
           <if test="password != null">
             #{password,jdbcType=VARCHAR},
@@ -512,8 +511,8 @@
           <if test="_parameter.hasSelective('id')">
             id = #{id,jdbcType=BIGINT},
           </if>
-          <if test="_parameter.hasSelective('nick_name')">
-            nick_name = #{nickName,jdbcType=VARCHAR},
+          <if test="_parameter.hasSelective('name')">
+            name = #{name,jdbcType=VARCHAR},
           </if>
           <if test="_parameter.hasSelective('password')">
             password = #{password,jdbcType=VARCHAR},
@@ -532,8 +531,8 @@
           <if test="id != null">
             id = #{id,jdbcType=BIGINT},
           </if>
-          <if test="nickName != null">
-            nick_name = #{nickName,jdbcType=VARCHAR},
+          <if test="name != null">
+            name = #{name,jdbcType=VARCHAR},
           </if>
           <if test="password != null">
             password = #{password,jdbcType=VARCHAR},
@@ -564,8 +563,8 @@
           <if test="record.hasSelective('id')">
             id,
           </if>
-          <if test="record.hasSelective('nick_name')">
-            nick_name,
+          <if test="record.hasSelective('name')">
+            name,
           </if>
           <if test="record.hasSelective('password')">
             password,
@@ -584,8 +583,8 @@
           <if test="record.id != null">
             id,
           </if>
-          <if test="record.nickName != null">
-            nick_name,
+          <if test="record.name != null">
+            name,
           </if>
           <if test="record.password != null">
             password,
@@ -609,8 +608,8 @@
           <if test="record.hasSelective('id')">
             #{record.id,jdbcType=BIGINT},
           </if>
-          <if test="record.hasSelective('nick_name')">
-            #{record.nickName,jdbcType=VARCHAR},
+          <if test="record.hasSelective('name')">
+            #{record.name,jdbcType=VARCHAR},
           </if>
           <if test="record.hasSelective('password')">
             #{record.password,jdbcType=VARCHAR},
@@ -629,8 +628,8 @@
           <if test="record.id != null">
             #{record.id,jdbcType=BIGINT},
           </if>
-          <if test="record.nickName != null">
-            #{record.nickName,jdbcType=VARCHAR},
+          <if test="record.name != null">
+            #{record.name,jdbcType=VARCHAR},
           </if>
           <if test="record.password != null">
             #{record.password,jdbcType=VARCHAR},
@@ -661,8 +660,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.nickName != null">
-        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
