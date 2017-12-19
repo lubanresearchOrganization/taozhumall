@@ -13,10 +13,10 @@ public class UserHandler {
 
 
     @CommandHandler
-    public Long handle(RegisterCommand command) {
+    public Long handle(RegisterCommand command)throws ServiceException {
 
         System.out.println(command.getName());
-        throw  new ServiceException();
+        throw  new ServiceException(600,"样例错误");
     }
 
 
