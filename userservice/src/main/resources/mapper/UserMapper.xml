@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     id, name, password, mobile, create_time, type
   </sql>
-  <select id="selectByExample" parameterType="com.lubanresearch.lubanmall.userservice.domain.query.condition.UserQueryCondition" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.query.condition.UserQueryCondition" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -133,7 +133,7 @@
     delete from lb_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.lubanresearch.lubanmall.userservice.domain.query.condition.UserQueryCondition">
+  <delete id="deleteByExample" parameterType="com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.query.condition.UserQueryCondition">
     delete from lb_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -238,7 +238,7 @@
       </choose>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.lubanresearch.lubanmall.userservice.domain.query.condition.UserQueryCondition" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.query.condition.UserQueryCondition" resultType="java.lang.Long">
     select count(*) from lb_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

@@ -1,13 +1,10 @@
 package com.lubanresearch.lubanmall.userservice.domain;
 
-import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class User extends AbstractAnnotatedAggregateRoot {
-
+public class User {
     private Long id;
 
     private String name;

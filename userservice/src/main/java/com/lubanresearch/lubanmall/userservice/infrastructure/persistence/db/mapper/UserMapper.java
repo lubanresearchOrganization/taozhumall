@@ -1,7 +1,7 @@
 package com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.mapper;
 
 import com.lubanresearch.lubanmall.userservice.domain.User;
-import com.lubanresearch.lubanmall.userservice.domain.query.condition.UserQueryCondition;
+import com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.query.condition.UserQueryCondition;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

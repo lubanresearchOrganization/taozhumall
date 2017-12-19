@@ -10,8 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * @author hilbert.cao
  */
-@EnableDiscoveryClient
-@EnableFeignClients
+//@EnableDiscoveryClient
+//@EnableFeignClients
 @SpringBootApplication
 @ComponentScan(basePackages={"com.lubanresearch.lubanmall.userservice"})
 @MapperScan("com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db")
