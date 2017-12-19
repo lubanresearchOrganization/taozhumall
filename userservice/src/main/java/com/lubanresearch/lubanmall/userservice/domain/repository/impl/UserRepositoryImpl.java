@@ -2,7 +2,7 @@ package com.lubanresearch.lubanmall.userservice.domain.repository.impl;
 
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.domain.repository.UserRepository;
-import com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.UserMapper;
+import com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
