@@ -38,15 +38,16 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     @Override
-    public List<Category> getTopCategory() {
+    public List<Category> getCategoryByParentId(Long parentId) {
         return catagoryMapper.selectByExample(
                 new CatagoryQueryCondition()
                         .createCriteria()
-                        .andParentIdEqualTo(new Long(0))
+                        .andParentIdEqualTo(parentId)
                         .example()
         );
-
     }
+
+
 
     @Override
     public List<Category> getSubCategoryById(Long id) {

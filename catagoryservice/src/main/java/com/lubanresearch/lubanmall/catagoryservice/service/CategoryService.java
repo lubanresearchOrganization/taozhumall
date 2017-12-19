@@ -10,7 +10,7 @@ import java.util.List;
 public interface CategoryService {
 
 
-    List<Category> getTopLevelCatagory();
+    List<Category> getCatagoryByParentId(Long parentId);
 
     List<Category> getSubCatagoryById(Long id);
 

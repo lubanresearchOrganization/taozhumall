@@ -10,7 +10,7 @@ public interface CategoryRepository {
 
     Category getById(Long id);
 
-    List<Category> getTopCategory();
+    List<Category> getCategoryByParentId(Long parentId);
 
     List<Category> getSubCategoryById(Long id);
 

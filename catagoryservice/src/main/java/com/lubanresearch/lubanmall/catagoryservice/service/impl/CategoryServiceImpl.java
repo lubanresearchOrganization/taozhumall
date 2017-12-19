@@ -19,9 +19,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+
     @Override
-    public List<Category> getTopLevelCatagory() {
-        return categoryRepository.getTopCategory();
+    public List<Category> getCatagoryByParentId(Long parentId) {
+        return categoryRepository.getCategoryByParentId(parentId);
     }
 
     @Override
