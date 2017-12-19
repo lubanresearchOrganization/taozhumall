@@ -9,7 +9,7 @@ public class UserDTO {
 
     private Long id;
 
-    private String nickName;
+    private String name;
 
     private String password;
 
@@ -27,12 +27,12 @@ public class UserDTO {
         this.id = id;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getName() {
+        return name;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
