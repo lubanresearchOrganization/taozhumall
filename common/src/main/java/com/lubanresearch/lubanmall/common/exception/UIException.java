@@ -4,24 +4,6 @@ package com.lubanresearch.lubanmall.common.exception;
  * @author hilbert.cao
  */
 public class UIException extends BaseException {
-
-    public UIException() {
-        //提供以反序列化
-    }
-
-    public UIException(Integer respCode) {
-        super(respCode,"应用服务器异常");
-    }
-
-    public UIException(Integer respCode, String desc) {
-        super(respCode, desc);
-    }
-
-    public UIException(Integer respCode, Throwable cause) {
-        super(respCode, "应用服务器异常",cause);
-    }
-
-    public UIException(Integer respCode, String desc, Throwable cause) {
-        super(respCode, desc, cause);
-    }
+    protected String desc = "应用服务器异常";
+    protected Integer code = 100000;
 }
