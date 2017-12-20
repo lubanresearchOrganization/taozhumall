@@ -2,8 +2,9 @@ package com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.ma
 
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.query.condition.UserQueryCondition;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     long countByExample(UserQueryCondition example);

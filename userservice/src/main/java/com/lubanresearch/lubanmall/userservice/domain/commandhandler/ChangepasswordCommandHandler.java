@@ -5,7 +5,6 @@ import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.domain.UserRepository;
 import com.lubanresearch.lubanmall.userservice.domain.command.ChangepasswordCommand;
 import com.lubanresearch.lubanmall.userservice.infrastructure.util.MD5Util;
-import org.apache.commons.lang.StringUtils;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

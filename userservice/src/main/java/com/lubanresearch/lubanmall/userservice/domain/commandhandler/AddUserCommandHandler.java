@@ -1,6 +1,5 @@
 package com.lubanresearch.lubanmall.userservice.domain.commandhandler;
 
-import com.lubanresearch.lubanmall.common.exception.CommandValidateException;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.domain.UserRepository;
