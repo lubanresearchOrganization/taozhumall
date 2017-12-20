@@ -1,6 +1,7 @@
 package com.lubanresearch.lubanmall.userservice.application.controller;
 
 import com.lubanmall.userserviceapi.bean.UserDTO;
+import com.lubanmall.userserviceapi.bean.UserType;
 import com.lubanmall.userserviceapi.command.ChangepasswordCommandDTO;
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.domain.command.AddUserCommand;
@@ -27,11 +28,25 @@ public class CommandController {
         return commandGateway.sendAndWait(new AddUserCommand(user.getName(),user.getPassword(),user.getMobile(),user.getType()));
     }
 
-    @RequestMapping(value = "/users/{id}/commands/changePassword",method = RequestMethod.PATCH)
+    @RequestMapping(value = "/users/{id}/commands/changePassword",method = RequestMethod.POST)
     @ResponseBody
     public User changePassword(@PathVariable("id")Long id,@RequestBody ChangepasswordCommandDTO command){
 
         return commandGateway.sendAndWait(new ChangepasswordCommand(command.getId(),command.getNewPassword(),command.getOldPassword()));
+    }
+
+    @RequestMapping(value = "/a",method = RequestMethod.GET)
+    @ResponseBody
+    public User a(){
+
+        return commandGateway.sendAndWait(new AddUserCommand(null,"c","136789999878", UserType.CUSTOMER.getValue()));
+    }
+
+    @RequestMapping(value = "/b",method = RequestMethod.GET)
+    @ResponseBody
+    public User b(){
+
+        return commandGateway.sendAndWait(new ChangepasswordCommand(1513709082550L,"d","b"));
     }
 
 

@@ -23,9 +23,6 @@ public class ChangepasswordCommandHandler {
     public User handle(ChangepasswordCommand command)throws ServiceException {
 
         User user = userRepository.getById(command.getId());
-        if(StringUtils.isBlank(command.getNewPassword())){
-            throw new ServiceException(500,"新密码不能为空");
-        }
         String encodeOldPassword = MD5Util.encode(command.getOldPassword());
         if(!user.getPassword().equals(encodeOldPassword)){
 

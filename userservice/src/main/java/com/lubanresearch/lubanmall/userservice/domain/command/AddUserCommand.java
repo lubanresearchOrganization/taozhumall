@@ -1,16 +1,23 @@
 package com.lubanresearch.lubanmall.userservice.domain.command;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by hilbertcao on 2017/12/19.
  */
 public class AddUserCommand {
 
+    @NotBlank
     private String name;
 
+    @NotBlank
     private String password;
 
     private String mobile;
 
+    @NotNull
     private Byte type;
 
     public AddUserCommand(String name, String password, String mobile, Byte type) {

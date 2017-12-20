@@ -1,5 +1,6 @@
 package com.lubanresearch.lubanmall.userservice.domain.commandhandler;
 
+import com.lubanresearch.lubanmall.common.exception.CommandValidateException;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.domain.UserRepository;
@@ -22,6 +23,11 @@ public class AddUserCommandHandler {
     public User handle(AddUserCommand command)throws ServiceException {
 
         //// TODO: 2017/12/20 判断名字重复
+        User existUser = userRepository.getByName(command.getName());
+        if(existUser!=null){
+            throw new ServiceException(500,"用户已经存在");
+        }
+
         User user = new User();
         user.setMobile(command.getMobile());
         user.setName(command.getName());
