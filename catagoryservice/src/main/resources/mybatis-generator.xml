@@ -19,7 +19,8 @@
         <!-- Example 目标包修改插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.ExampleTargetPlugin">
             <!-- 修改Example类生成到目标包下 -->
-            <property name="targetPackage" value="com.lubanresearch.lubanmall.catagoryservice.domain.query.condition"/>
+            <property name="targetPackage" value="com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition"/>
+
         </plugin>
         <!-- 数据Model属性对应Column获取插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>

@@ -29,6 +29,7 @@
         <module>register</module>
         <module>ssoclient</module>
         <module>userserviceapi</module>
+        <module>catagoryserviceapi</module>
 
     </modules>
 

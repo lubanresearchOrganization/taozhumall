@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.mapper.CatagoryMapper">
+<mapper namespace="com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.mapper.CategoryMapper">
   <resultMap id="BaseResultMap" type="com.lubanresearch.lubanmall.catagoryservice.domain.Category">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     id, name, parent_id, create_time
   </sql>
-  <select id="selectByExample" parameterType="com.lubanresearch.lubanmall.catagoryservice.domain.query.condition.CatagoryQueryCondition" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -131,7 +131,7 @@
     delete from lb_category
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.lubanresearch.lubanmall.catagoryservice.domain.query.condition.CatagoryQueryCondition">
+  <delete id="deleteByExample" parameterType="com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition">
     delete from lb_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -210,7 +210,7 @@
       </choose>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.lubanresearch.lubanmall.catagoryservice.domain.query.condition.CatagoryQueryCondition" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition" resultType="java.lang.Long">
     select count(*) from lb_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
