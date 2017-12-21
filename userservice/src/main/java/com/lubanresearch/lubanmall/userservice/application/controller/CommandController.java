@@ -34,20 +34,4 @@ public class CommandController {
 
         return commandGateway.sendAndWait(new ChangepasswordCommand(command.getId(),command.getNewPassword(),command.getOldPassword()));
     }
-
-    @RequestMapping(value = "/a",method = RequestMethod.GET)
-    @ResponseBody
-    public User a(){
-
-        return commandGateway.sendAndWait(new AddUserCommand(null,"c","136789999878", UserType.CUSTOMER.getValue()));
-    }
-
-    @RequestMapping(value = "/b",method = RequestMethod.GET)
-    @ResponseBody
-    public User b(){
-
-        return commandGateway.sendAndWait(new ChangepasswordCommand(1513709082550L,"d","b"));
-    }
-
-
 }
