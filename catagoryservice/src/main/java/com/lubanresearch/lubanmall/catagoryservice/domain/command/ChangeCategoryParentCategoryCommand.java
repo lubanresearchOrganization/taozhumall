@@ -4,34 +4,33 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 /**
- * Created by zyf on 2017/12/21
+ * Created by zyf on 2017/12/22
  */
-public class ChangeCategoryNameCommand {
+public class ChangeCategoryParentCategoryCommand {
+
     @NotNull
     private Long id;
-    @NotBlank
-    private String name;
+    @NotNull
+    private Long parentId;
 
-
-    public ChangeCategoryNameCommand(Long id, String name) {
+    public ChangeCategoryParentCategoryCommand(Long id, Long parentId) {
         this.id = id;
-        this.name = name;
+        this.parentId = parentId;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public Long getParentId() {
+        return parentId;
     }
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 }

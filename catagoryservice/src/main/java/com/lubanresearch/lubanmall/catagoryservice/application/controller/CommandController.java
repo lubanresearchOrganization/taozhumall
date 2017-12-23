@@ -3,9 +3,11 @@ package com.lubanresearch.lubanmall.catagoryservice.application.controller;
 
 import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
 import com.lubanmall.catagoryserviceapi.command.ChangeCategoryNameDTO;
+import com.lubanmall.catagoryserviceapi.command.ChangeCategoryParentCategoryDTO;
 import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
 import com.lubanresearch.lubanmall.catagoryservice.domain.command.AddCategoryCommand;
 import com.lubanresearch.lubanmall.catagoryservice.domain.command.ChangeCategoryNameCommand;
+import com.lubanresearch.lubanmall.catagoryservice.domain.command.ChangeCategoryParentCategoryCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,5 +39,13 @@ public class CommandController {
     public Category changeName(@PathVariable("id")Long id, @RequestBody ChangeCategoryNameDTO command){
 
         return commandGateway.sendAndWait(new ChangeCategoryNameCommand(command.getId(),command.getName()));
+    }
+
+
+    @RequestMapping(value = "/{id}/commands/changeParentCategory",method = RequestMethod.POST)
+    @ResponseBody
+    public Category changeParentCategory(@PathVariable("id")Long id, @RequestBody ChangeCategoryParentCategoryDTO command){
+
+        return commandGateway.sendAndWait(new ChangeCategoryParentCategoryCommand(command.getId(),command.getParentId()));
     }
 }

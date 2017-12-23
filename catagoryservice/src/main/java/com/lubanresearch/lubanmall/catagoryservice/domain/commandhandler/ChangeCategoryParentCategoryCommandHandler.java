@@ -2,25 +2,26 @@ package com.lubanresearch.lubanmall.catagoryservice.domain.commandhandler;
 
 import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
 import com.lubanresearch.lubanmall.catagoryservice.domain.CategoryRepository;
-import com.lubanresearch.lubanmall.catagoryservice.domain.command.AddCategoryCommand;
 import com.lubanresearch.lubanmall.catagoryservice.domain.command.ChangeCategoryNameCommand;
+import com.lubanresearch.lubanmall.catagoryservice.domain.command.ChangeCategoryParentCategoryCommand;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by zyf on 2017/12/21
+ * Created by zyf on 2017/12/22
  */
 @Component
-public class ChangeCategoryCommandHandler {
+public class ChangeCategoryParentCategoryCommandHandler {
+
 
 
     @Autowired
     private CategoryRepository categoryRepository;
 
     @CommandHandler
-    public Category handle(ChangeCategoryNameCommand command)throws ServiceException {
+    public Category handle(ChangeCategoryParentCategoryCommand command)throws ServiceException {
 
         Category existCategory = categoryRepository.getById(command.getId());
         if(existCategory==null){
@@ -28,7 +29,7 @@ public class ChangeCategoryCommandHandler {
         }
 
 
-        existCategory.setName(command.getName());
+        existCategory.setParentId(command.getParentId());
 
         categoryRepository.update(existCategory);
 

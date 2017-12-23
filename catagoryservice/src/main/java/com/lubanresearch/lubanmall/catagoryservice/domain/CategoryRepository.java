@@ -46,31 +46,6 @@ public class CategoryRepository {
         return categoryMapper.selectByPrimaryKey(id);
     }
 
-
-    public List<Category> getCategoryByParentId(Long parentId) {
-        return categoryMapper.selectByExample(
-                new CategoryQueryCondition()
-                        .createCriteria()
-                        .andParentIdEqualTo(parentId)
-                        .example()
-        );
-    }
-
-
-
-
-    public List<Category> getSubCategoryById(Long id) {
-
-        return categoryMapper.selectByExample(
-                new CategoryQueryCondition()
-                        .createCriteria()
-                        .andParentIdEqualTo(id)
-                        .example()
-        );
-
-    }
-
-
     public void update(Category category) {
 
         categoryMapper.updateByPrimaryKey(category);
