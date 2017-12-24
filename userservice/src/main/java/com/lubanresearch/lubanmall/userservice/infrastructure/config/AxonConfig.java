@@ -27,13 +27,7 @@ import org.axonframework.eventhandling.SimpleEventBus;
 import org.axonframework.eventhandling.annotation.AnnotationEventListenerBeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.Arrays;
-
-/**
- * Axon Java Configuration with reasonable defaults like SimpleCommandBus, SimpleEventBus and GenericJpaRepository.
- * @author Thomas Yuan
- */
 
 @Configuration
 public class AxonConfig {
@@ -71,17 +65,4 @@ public class AxonConfig {
 		return factory;
 	}
 
-/*	@Bean
-	public EventSourcingRepository userRepository() {
-		FileSystemEventStore eventStore = new FileSystemEventStore(new SimpleEventFileResolver(new File("data/evenstore")));
-		EventSourcingRepository repository = new EventSourcingRepository(User.class, eventStore);
-		repository.setEventBus(eventBus());
-		return repository;
-	}
-	
-	@Bean
-	public AggregateAnnotationCommandHandler<User> taskCommandHandler() {
-		AggregateAnnotationCommandHandler<User> commandHandler = AggregateAnnotationCommandHandler.subscribe(User.class, userRepository(), commandBus());
-		return commandHandler;
-	}*/
 }

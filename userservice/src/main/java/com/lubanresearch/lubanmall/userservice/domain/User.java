@@ -1,5 +1,7 @@
 package com.lubanresearch.lubanmall.userservice.domain;
 
+import org.axonframework.domain.AggregateRoot;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
