@@ -2,6 +2,7 @@ package com.lubanresearch.lubanmall.merchantservice.domain.commandhandler;
 
 import com.lubanresearch.lubanmall.merchantservice.domain.ShopRepository;
 import com.lubanresearch.lubanmall.merchantservice.domain.command.RemoveShopCommand;
+import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ public class RemoveShopCommandHandler {
 
     @Autowired
     private ShopRepository shopRepository;
-
+    @CommandHandler
     public void handler(RemoveShopCommand command){
 
         shopRepository.remove(command.getId());

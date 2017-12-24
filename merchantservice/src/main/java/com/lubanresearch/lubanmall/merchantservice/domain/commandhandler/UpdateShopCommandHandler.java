@@ -3,6 +3,7 @@ package com.lubanresearch.lubanmall.merchantservice.domain.commandhandler;
 import com.lubanresearch.lubanmall.merchantservice.domain.Shop;
 import com.lubanresearch.lubanmall.merchantservice.domain.ShopRepository;
 import com.lubanresearch.lubanmall.merchantservice.domain.command.UpdateShopCommand;
+import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,7 @@ public class UpdateShopCommandHandler {
 
     @Autowired
     private ShopRepository shopRepository;
-
+    @CommandHandler
     public Shop handler(UpdateShopCommand command){
 
         Shop shop = new Shop();
