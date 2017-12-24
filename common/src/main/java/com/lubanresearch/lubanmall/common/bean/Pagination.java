@@ -16,7 +16,7 @@ public class Pagination<T> implements Serializable {
     /**
      * 总记录数
      */
-    private long total;
+    private int total;
     /**
      * 每页大小.
      */
@@ -34,7 +34,7 @@ public class Pagination<T> implements Serializable {
         //提供以反序列化
     }
 
-    public Pagination(List<T> items, long total, int size, int number) {
+    public Pagination(List<T> items, int total, int size, int number) {
         this.items = items;
         this.total = total;
         this.size = size;
@@ -50,11 +50,11 @@ public class Pagination<T> implements Serializable {
         this.items = items;
     }
 
-    public long getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 

@@ -30,6 +30,7 @@
         <module>ssoclient</module>
         <module>userserviceapi</module>
         <module>catagoryserviceapi</module>
+        <module>merchantserviceapi</module>
 
     </modules>
 
