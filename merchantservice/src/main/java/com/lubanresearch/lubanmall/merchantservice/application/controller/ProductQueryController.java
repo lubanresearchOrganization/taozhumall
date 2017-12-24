@@ -20,7 +20,7 @@ public class ProductQueryController {
     private ProductMapper productMapper;
 
 
-    @RequestMapping(value = "products/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Response<Product> getProduct(@PathVariable("id") Long id) {
 
@@ -29,7 +29,7 @@ public class ProductQueryController {
     }
 
 
-    @RequestMapping(value = "products", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public Response<Pagination<Product>> findProducts(
             @RequestParam("shopId") Long shopId,

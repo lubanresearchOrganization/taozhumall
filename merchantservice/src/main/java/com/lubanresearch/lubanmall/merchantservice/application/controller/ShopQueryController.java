@@ -19,7 +19,7 @@ public class ShopQueryController {
     @Autowired
     private ShopMapper shopMapper;
 
-    @RequestMapping(value = "shops/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Response<Shop> getShop(@PathVariable("id") Long id) {
 
@@ -27,7 +27,7 @@ public class ShopQueryController {
         return new Response<>(0, "success", shopMapper.selectByPrimaryKey(id));
     }
 
-    @RequestMapping(value = "shops", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public Response<Pagination<Shop>> findShops(
             @RequestParam(value = "page", defaultValue = "0") Integer page,

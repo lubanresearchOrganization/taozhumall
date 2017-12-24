@@ -19,7 +19,7 @@
         <!-- Example 目标包修改插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.ExampleTargetPlugin">
             <!-- 修改Example类生成到目标包下 -->
-            <property name="targetPackage" value="com.lubanresearch.lubanmall.demoservice.domain.query.condition"/>
+            <property name="targetPackage" value="com.lubanresearch.lubanmall.commentservice.infrastructure.persistence.db.query.condition"/>
         </plugin>
         <!-- 数据Model属性对应Column获取插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>
@@ -49,7 +49,7 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.lubanresearch.lubanmall.demoservice.domain" targetProject="./src/main/java/">
+        <javaModelGenerator targetPackage="com.lubanresearch.lubanmall.commentservice.domain" targetProject="./src/main/java/">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
@@ -58,10 +58,10 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lubanresearch.lubanmall.demoservice.infrastructure.persistence.db"  targetProject="./src/main/java/">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lubanresearch.lubanmall.commentservice.infrastructure.persistence.db.mapper"  targetProject="./src/main/java/">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="lb_demo" domainObjectName="Demo" />
+        <table tableName="lb_comment" domainObjectName="Comment" />
     </context>
 </generatorConfiguration>

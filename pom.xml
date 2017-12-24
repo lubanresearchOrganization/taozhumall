@@ -31,6 +31,7 @@
         <module>userserviceapi</module>
         <module>catagoryserviceapi</module>
         <module>merchantserviceapi</module>
+        <module>commentserviceapi</module>
 
     </modules>
 

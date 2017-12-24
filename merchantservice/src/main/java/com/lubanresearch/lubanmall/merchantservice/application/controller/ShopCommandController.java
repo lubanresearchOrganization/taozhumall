@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.*;
  * Created by hilbertcao on 2017/12/19.
  */
 @Controller
-@RequestMapping("/v/0.1")
+@RequestMapping("/v/0.1/shops")
 public class ShopCommandController {
 
     @Autowired
     private CommandGateway commandGateway;
 
-    @RequestMapping(value = "/shops",method = RequestMethod.POST)
+    @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public Response<Shop> addShop(@RequestBody ShopDTO dto){
 
@@ -30,7 +30,7 @@ public class ShopCommandController {
     }
 
 
-    @RequestMapping(value = "/shops/id",method = RequestMethod.PATCH)
+    @RequestMapping(value = "/{id}",method = RequestMethod.PATCH)
     @ResponseBody
     public Response<Shop> updateShop(@PathVariable("id") Long id,@RequestBody ShopDTO dto){
 
@@ -38,7 +38,7 @@ public class ShopCommandController {
         return new Response<>(0,"success",shop);
     }
 
-    @RequestMapping(value = "/shops/id",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
     public Response removeShop(@PathVariable("id") Long id){
 
