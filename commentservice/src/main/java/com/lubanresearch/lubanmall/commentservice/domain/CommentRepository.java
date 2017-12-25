@@ -4,6 +4,8 @@ import com.lubanresearch.lubanmall.commentservice.infrastructure.persistence.db.
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
+
 /**
  * Created by hilbertcao on 2017/12/25.
  */
@@ -13,6 +15,14 @@ public class CommentRepository {
     @Autowired
     private CommentMapper commentMapper;
 
+
+
+
+    public void addComment(Comment comment) {
+
+        commentMapper.insertSelective(comment);
+
+    }
     public Comment get(Long id){
 
         return commentMapper.selectByPrimaryKey(id);

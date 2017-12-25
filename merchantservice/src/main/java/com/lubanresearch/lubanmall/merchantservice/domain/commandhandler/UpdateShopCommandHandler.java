@@ -21,7 +21,7 @@ public class UpdateShopCommandHandler {
     public Shop handler(UpdateShopCommand command){
 
         Shop shop = new Shop();
-        shop.setId(System.currentTimeMillis());
+        shop.setId(command.getId());
         shop.setName(command.getName());
         shop.setImgUrl(command.getImgUrl());
         shop.setDiscription(command.getDiscription());

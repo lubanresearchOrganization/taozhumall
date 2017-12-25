@@ -2,12 +2,10 @@ package com.lubanresearch.lubanmall.catagoryservice.application.controller;
 
 
 import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
-import com.lubanmall.catagoryserviceapi.command.ChangeCategoryNameDTO;
-import com.lubanmall.catagoryserviceapi.command.ChangeCategoryParentCategoryDTO;
 import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
 import com.lubanresearch.lubanmall.catagoryservice.domain.command.AddCategoryCommand;
-import com.lubanresearch.lubanmall.catagoryservice.domain.command.ChangeCategoryNameCommand;
-import com.lubanresearch.lubanmall.catagoryservice.domain.command.ChangeCategoryParentCategoryCommand;
+import com.lubanresearch.lubanmall.catagoryservice.domain.command.UpdateCategoryCommand;
+import com.lubanresearch.lubanmall.common.bean.Response;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,32 +18,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v/0.1/categorys")
 public class CommandController {
 
-
-
     @Autowired
     private CommandGateway commandGateway;
 
-    @RequestMapping(value = "/commands/addCategory",method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseBody
-    public Category addCategory(@RequestBody CategoryDTO category){
+    public Response<Category> addCategory(@RequestBody CategoryDTO category) {
 
-        return commandGateway.sendAndWait(new AddCategoryCommand(category.getName(),category.getParentId()));
+        return new Response<>(0, "success", commandGateway.sendAndWait(new AddCategoryCommand(category.getName(), category.getParentId())));
+
     }
 
 
-
-    @RequestMapping(value = "/{id}/commands/changeName",method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
     @ResponseBody
-    public Category changeName(@PathVariable("id")Long id, @RequestBody ChangeCategoryNameDTO command){
+    public Response<Category> updateCategory(@PathVariable("id") Long id, @RequestBody CategoryDTO command) {
 
-        return commandGateway.sendAndWait(new ChangeCategoryNameCommand(command.getId(),command.getName()));
+        return new Response<>(0, "success", commandGateway.sendAndWait(new UpdateCategoryCommand(id, command.getParentId(), command.getName())));
+
     }
 
 
-    @RequestMapping(value = "/{id}/commands/changeParentCategory",method = RequestMethod.POST)
-    @ResponseBody
-    public Category changeParentCategory(@PathVariable("id")Long id, @RequestBody ChangeCategoryParentCategoryDTO command){
-
-        return commandGateway.sendAndWait(new ChangeCategoryParentCategoryCommand(command.getId(),command.getParentId()));
-    }
 }

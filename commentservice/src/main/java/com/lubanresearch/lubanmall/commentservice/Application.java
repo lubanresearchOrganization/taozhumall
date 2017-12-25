@@ -1,5 +1,6 @@
 package com.lubanresearch.lubanmall.commentservice;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableFeignClients
 @SpringBootApplication
 @ComponentScan(basePackages={"com.lubanresearch.lubanmall.commentservice"})
+@MapperScan("com.lubanresearch.lubanmall.commentservice.infrastructure.persistence.db")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

@@ -4,13 +4,11 @@ package com.lubanresearch.lubanmall.catagoryservice.application.controller;
 import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
 import com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.mapper.CategoryMapper;
 import com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition;
+import com.lubanresearch.lubanmall.common.bean.Response;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,41 +26,28 @@ public class QueryController {
     private CategoryMapper categoryMapper;
 
 
-    @RequestMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Category getCategoryById(@PathVariable("id") Long id) {
+    public Response<Category> getCategoryById(@PathVariable("id") Long id) {
 
 
-        return categoryMapper.selectByPrimaryKey(id);
+        return new Response<>(0, "success", categoryMapper.selectByPrimaryKey(id));
     }
 
 
-    @RequestMapping("/topLevel")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public List<Category> getTopLevel() {
+    public Response<List<Category>> getCategorysByParentId(@RequestParam(value = "parentId") Long parentId) {
 
 
-        return categoryMapper.selectByExample(
+        return new Response<>(0, "success", categoryMapper.selectByExample(
                 new CategoryQueryCondition()
                         .createCriteria()
-                        .andParentIdEqualTo(new Long(0))
-                        .example()
+                        .andParentIdEqualTo(parentId)
+                        .example())
         );
 
     }
 
-
-    @RequestMapping("/{id}/subCategory")
-    @ResponseBody
-    public List<Category> getSubCategoryById(@PathVariable("id") Long id) {
-
-
-        return categoryMapper.selectByExample(
-                new CategoryQueryCondition()
-                        .createCriteria()
-                        .andParentIdEqualTo(id)
-                        .example()
-        );
-    }
 
 }

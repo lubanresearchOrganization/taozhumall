@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @Controller
-@RequestMapping("/v/0.1/comments")
+    @RequestMapping("/v/0.1/comments")
 public class CommandController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class CommandController {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public Response<Comment> addShop(@RequestBody CommentDTO dto){
+    public Response<Comment> addComment(@RequestBody CommentDTO dto){
 
         Comment shop = commandGateway.sendAndWait(new AddCommentCommand(dto.getOrderId(),dto.getContent(),dto.getScore()));
         return new Response<>(0,"success",shop);
@@ -31,7 +31,7 @@ public class CommandController {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
-    public Response removeShop(@PathVariable("id") Long id){
+    public Response removeComment(@PathVariable("id") Long id){
 
         commandGateway.sendAndWait(new RemoveCommentCommand(id));
         return new Response<>(0,"success",null);

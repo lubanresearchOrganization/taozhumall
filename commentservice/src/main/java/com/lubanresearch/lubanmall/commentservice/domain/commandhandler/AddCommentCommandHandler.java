@@ -26,6 +26,9 @@ public class AddCommentCommandHandler {
         comment.setContent(command.getContent());
         comment.setScore(command.getScore());
         comment.setOrderId(command.getOrderId());
+
+        commentRepository.addComment(comment);
+
         return commentRepository.get(comment.getId());
     }
 }
