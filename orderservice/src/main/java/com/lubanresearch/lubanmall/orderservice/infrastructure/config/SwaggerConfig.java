@@ -35,7 +35,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("订单服务")
-                .contact(new Contact("lubanmall", "http://orderservice.lubanmall.com", ""))
+                .contact(new Contact("taozhumall", "http://orderservice.taozhumall.com", ""))
                 .version("0.1")
                 .build();
     }

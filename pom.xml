@@ -24,8 +24,6 @@
         <module>commentservice</module>
         <module>searchservice</module>
         <module>demoui</module>
-        <module>demoservice</module>
-        <module>demoserviceapi</module>
         <module>register</module>
         <module>ssoclient</module>
         <module>userserviceapi</module>
