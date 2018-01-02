@@ -25,7 +25,7 @@ public class CommandController {
     @ResponseBody
     public Response<Deal> addDeal(){
 
-        commandGateway.sendAndWait(
+        Long id = commandGateway.sendAndWait(
                 new CreateDealCommand(BigDecimal.valueOf(11f),1000L));
         return new Response<>(0,"success",null);
     }
