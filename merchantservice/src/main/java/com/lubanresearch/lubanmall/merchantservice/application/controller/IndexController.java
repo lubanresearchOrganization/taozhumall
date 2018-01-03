@@ -13,9 +13,12 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequestMapping("/")
 public class IndexController {
 
+
     @RequestMapping(path = {"/go","/"})
     @ResponseBody
     public String go() {
         return "success";
     }
+
+
 }
