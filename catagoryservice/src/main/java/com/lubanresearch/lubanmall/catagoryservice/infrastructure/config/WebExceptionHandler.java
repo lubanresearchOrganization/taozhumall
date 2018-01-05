@@ -8,9 +8,11 @@ import org.axonframework.commandhandling.CommandExecutionException;
 import org.axonframework.commandhandling.interceptors.JSR303ViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +25,7 @@ public class WebExceptionHandler {
 
 
     @ExceptionHandler(value = ServiceException.class)
+    @ResponseStatus(code= HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public Response serviceExceptionHandler(Exception e) {
 
@@ -32,6 +35,7 @@ public class WebExceptionHandler {
     }
 
     @ExceptionHandler(value = CommandExecutionException.class)
+    @ResponseStatus(code= HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public Response commandExecutionExceptionHandler(HttpServletRequest req, HttpServletResponse resp, Exception e) {
 
@@ -52,6 +56,7 @@ public class WebExceptionHandler {
     }
 
     @ExceptionHandler(value = Exception.class)
+    @ResponseStatus(code= HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public Response nonServiceExceptionHandler(HttpServletRequest req, HttpServletResponse resp, Exception e) {
 

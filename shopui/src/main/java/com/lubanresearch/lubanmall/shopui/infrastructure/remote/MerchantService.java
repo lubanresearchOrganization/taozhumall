@@ -2,6 +2,7 @@ package com.lubanresearch.lubanmall.shopui.infrastructure.remote;
 
 import com.lubanmall.merchantserviceapi.bean.ShopDTO;
 import com.lubanresearch.lubanmall.common.bean.Response;
+import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,5 +16,5 @@ public interface MerchantService {
 
 
     @RequestMapping(value = "/v/0.1/shops/",method = RequestMethod.POST)
-    Response<ShopDTO> addShop(@RequestBody ShopDTO dto);
+    ShopDTO addShop(@RequestBody ShopDTO dto)throws ServiceException;
 }

@@ -23,10 +23,9 @@ public class ShopCommandController {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public Response<Shop> addShop(@RequestBody ShopDTO dto){
+    public Shop addShop(@RequestBody ShopDTO dto){
 
-        Shop shop = commandGateway.sendAndWait(new AddShopCommand(dto.getName(),dto.getAccountId(),dto.getImgUrl(),dto.getDiscription()));
-        return new Response<>(0,"success",shop);
+        return commandGateway.sendAndWait(new AddShopCommand(dto.getName(),dto.getAccountId(),dto.getImgUrl(),dto.getDiscription()));
     }
 
 
@@ -34,15 +33,13 @@ public class ShopCommandController {
     @ResponseBody
     public Response<Shop> updateShop(@PathVariable("id") Long id,@RequestBody ShopDTO dto){
 
-        Shop shop = commandGateway.sendAndWait(new UpdateShopCommand(dto.getId(),dto.getName(),dto.getImgUrl(),dto.getDiscription()));
-        return new Response<>(0,"success",shop);
+        return commandGateway.sendAndWait(new UpdateShopCommand(dto.getId(),dto.getName(),dto.getImgUrl(),dto.getDiscription()));
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
-    public Response removeShop(@PathVariable("id") Long id){
+    public void removeShop(@PathVariable("id") Long id){
 
         commandGateway.sendAndWait(new RemoveShopCommand(id));
-        return new Response<>(0,"success",null);
     }
 }

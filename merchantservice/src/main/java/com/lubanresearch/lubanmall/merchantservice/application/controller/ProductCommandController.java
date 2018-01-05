@@ -23,20 +23,18 @@ public class ProductCommandController {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public Response<Product> addProduct(@RequestBody ProductDTO dto){
+    public Product addProduct(@RequestBody ProductDTO dto){
 
-        Product product = commandGateway.sendAndWait(new AddProductCommand(dto.getName(),dto.getImgUrl(),dto.getUnitPrice(),dto.getShopId(),dto.getCategoryId()));
-      return new Response<>(0,"success",product);
+        return commandGateway.sendAndWait(new AddProductCommand(dto.getName(),dto.getImgUrl(),dto.getUnitPrice(),dto.getShopId(),dto.getCategoryId()));
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
-    public Response removeProduct(@PathVariable("id") Long id){
+    public void removeProduct(@PathVariable("id") Long id){
 
 
 
-        Product product = commandGateway.sendAndWait(new RemoveProductCommand(id));
-        return new Response<>(0,"success",null);
+        commandGateway.sendAndWait(new RemoveProductCommand(id));
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PATCH)
@@ -45,8 +43,7 @@ public class ProductCommandController {
 
 
 
-        Product product = commandGateway.sendAndWait(new UpdateProductCommand(id,dto.getName(),dto.getImgUrl(),dto.getUnitPrice(),dto.getCategoryId()));
-        return new Response<>(0,"success",product);
+        return commandGateway.sendAndWait(new UpdateProductCommand(id,dto.getName(),dto.getImgUrl(),dto.getUnitPrice(),dto.getCategoryId()));
     }
 
 }

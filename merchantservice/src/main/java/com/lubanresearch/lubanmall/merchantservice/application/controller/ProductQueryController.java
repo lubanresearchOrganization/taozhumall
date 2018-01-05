@@ -2,6 +2,7 @@ package com.lubanresearch.lubanmall.merchantservice.application.controller;
 
 import com.lubanresearch.lubanmall.common.bean.Pagination;
 import com.lubanresearch.lubanmall.common.bean.Response;
+import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import com.lubanresearch.lubanmall.merchantservice.domain.Product;
 import com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db.mapper.ProductMapper;
 import com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db.query.condition.ProductQueryCondition;
@@ -22,16 +23,17 @@ public class ProductQueryController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Response<Product> getProduct(@PathVariable("id") Long id) {
+    public Product getProduct(@PathVariable("id") Long id) {
 
 
-        return new Response<>(0, "success", productMapper.selectByPrimaryKey(id));
+//        return productMapper.selectByPrimaryKey(id);
+        throw new ServiceException(600,"ssss");
     }
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public Response<Pagination<Product>> findProducts(
+    public Pagination<Product> findProducts(
             @RequestParam("shopId") Long shopId,
             @RequestParam("categoryId") Long categoryId,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -57,6 +59,6 @@ public class ProductQueryController {
         productPagination.setTotal((int) productMapper.countByExample(condition));
         productPagination.setPageCount((productPagination.getTotal() % size == 0) ? (productPagination.getTotal() / size) : (productPagination.getTotal() / size + 1));
         productPagination.setPageIndex(page);
-        return new Response<>(0, "success", productPagination);
+        return productPagination;
     }
 }
