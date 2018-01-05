@@ -1,6 +1,5 @@
 package com.lubanresearch.lubanmall.userservice.application.controller;
 
-import com.lubanresearch.lubanmall.common.bean.Response;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.mapper.UserMapper;
@@ -28,15 +27,15 @@ public class QueryController {
 
     @RequestMapping("/{id}")
     @ResponseBody
-    public Response<User> getUserById(@PathVariable("id") Long id){
+    public User getUserById(@PathVariable("id") Long id){
 
 
-        return new Response<>(0,"success",userMapper.selectByPrimaryKey(id));
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @RequestMapping("/authentication")
     @ResponseBody
-    public Response<User> getAuthentication(@RequestParam("name") String name, @RequestParam("password")String password){
+    public User getAuthentication(@RequestParam("name") String name, @RequestParam("password")String password){
 
 
         UserQueryCondition userQueryCondition = new UserQueryCondition();
@@ -52,7 +51,7 @@ public class QueryController {
         if(!user.getPassword().equals(MD5Util.encode(password))){
             throw new ServiceException(500,"用户名或密码不正确");
         }
-        return new Response<>(0,"success",user);
+        return user;
     }
 
 }

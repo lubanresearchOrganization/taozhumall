@@ -28,23 +28,23 @@ public class QueryController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Response<Category> getCategoryById(@PathVariable("id") Long id) {
+    public Category getCategoryById(@PathVariable("id") Long id) {
 
 
-        return new Response<>(0, "success", categoryMapper.selectByPrimaryKey(id));
+        return categoryMapper.selectByPrimaryKey(id);
     }
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public Response<List<Category>> getCategorysByParentId(@RequestParam(value = "parentId") Long parentId) {
+    public List<Category> getCategorysByParentId(@RequestParam(value = "parentId") Long parentId) {
 
 
-        return new Response<>(0, "success", categoryMapper.selectByExample(
+        return categoryMapper.selectByExample(
                 new CategoryQueryCondition()
                         .createCriteria()
                         .andParentIdEqualTo(parentId)
-                        .example())
+                        .example()
         );
 
     }

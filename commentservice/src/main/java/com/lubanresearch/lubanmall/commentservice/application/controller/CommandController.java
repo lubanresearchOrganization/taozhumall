@@ -23,17 +23,15 @@ public class CommandController {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public Response<Comment> addComment(@RequestBody CommentDTO dto){
+    public Comment addComment(@RequestBody CommentDTO dto){
 
-        Comment shop = commandGateway.sendAndWait(new AddCommentCommand(dto.getOrderId(),dto.getContent(),dto.getScore()));
-        return new Response<>(0,"success",shop);
+        return commandGateway.sendAndWait(new AddCommentCommand(dto.getOrderId(),dto.getContent(),dto.getScore()));
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
-    public Response removeComment(@PathVariable("id") Long id){
+    public void removeComment(@PathVariable("id") Long id){
 
         commandGateway.sendAndWait(new RemoveCommentCommand(id));
-        return new Response<>(0,"success",null);
     }
 }

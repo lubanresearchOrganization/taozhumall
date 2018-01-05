@@ -22,7 +22,7 @@ public class ProductQueryController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public Response<Pagination<Product>> findProducts(
+    public Pagination<Product> findProducts(
             @RequestParam("key") String  key,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size
@@ -42,6 +42,6 @@ public class ProductQueryController {
         productPagination.setTotal((int) productMapper.countByExample(condition));
         productPagination.setPageCount((productPagination.getTotal() % size == 0) ? (productPagination.getTotal() / size) : (productPagination.getTotal() / size + 1));
         productPagination.setPageIndex(page);
-        return new Response<>(0, "success", productPagination);
+        return productPagination;
     }
 }

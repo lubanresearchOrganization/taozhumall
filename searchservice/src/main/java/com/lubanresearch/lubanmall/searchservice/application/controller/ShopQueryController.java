@@ -22,7 +22,7 @@ public class ShopQueryController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public Response<Pagination<Shop>> findShops(
+    public Pagination<Shop> findShops(
             @RequestParam("key") String  key,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size
@@ -42,6 +42,6 @@ public class ShopQueryController {
         pagination.setTotal((int) shopMapper.countByExample(condition));
         pagination.setPageCount((pagination.getTotal() % size == 0) ? (pagination.getTotal() / size) : (pagination.getTotal() / size + 1));
         pagination.setPageIndex(page);
-        return new Response<>(0, "success", pagination);
+        return pagination;
     }
 }

@@ -23,7 +23,7 @@ public class QueryContorller {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public Response<Pagination<Comment>> findComments(
+    public Pagination<Comment> findComments(
             @RequestParam("orderId") Long orderId,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size
@@ -38,6 +38,6 @@ public class QueryContorller {
         pagination.setTotal((int) commentMapper.countByExample(condition));
         pagination.setPageCount((pagination.getTotal() % size == 0) ? (pagination.getTotal() / size) : (pagination.getTotal() / size + 1));
         pagination.setPageIndex(page);
-        return new Response<>(0, "success", pagination);
+        return pagination;
     }
 }

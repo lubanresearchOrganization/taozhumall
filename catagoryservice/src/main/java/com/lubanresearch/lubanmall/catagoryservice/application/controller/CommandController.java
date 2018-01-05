@@ -5,7 +5,6 @@ import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
 import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
 import com.lubanresearch.lubanmall.catagoryservice.domain.command.AddCategoryCommand;
 import com.lubanresearch.lubanmall.catagoryservice.domain.command.UpdateCategoryCommand;
-import com.lubanresearch.lubanmall.common.bean.Response;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,18 +22,18 @@ public class CommandController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseBody
-    public Response<Category> addCategory(@RequestBody CategoryDTO category) {
+    public Category addCategory(@RequestBody CategoryDTO category) {
 
-        return new Response<>(0, "success", commandGateway.sendAndWait(new AddCategoryCommand(category.getName(), category.getParentId())));
+        return commandGateway.sendAndWait(new AddCategoryCommand(category.getName(), category.getParentId()));
 
     }
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
     @ResponseBody
-    public Response<Category> updateCategory(@PathVariable("id") Long id, @RequestBody CategoryDTO command) {
+    public Category updateCategory(@PathVariable("id") Long id, @RequestBody CategoryDTO command) {
 
-        return new Response<>(0, "success", commandGateway.sendAndWait(new UpdateCategoryCommand(id, command.getParentId(), command.getName())));
+        return commandGateway.sendAndWait(new UpdateCategoryCommand(id, command.getParentId(), command.getName()));
 
     }
 

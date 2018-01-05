@@ -23,15 +23,15 @@ public class CommandController {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public Response<User> addUser(@RequestBody UserDTO user){
+    public User addUser(@RequestBody UserDTO user){
 
-        return new Response<>(0,"success",commandGateway.sendAndWait(new AddUserCommand(user.getName(),user.getPassword(),user.getMobile(),user.getType())));
+        return commandGateway.sendAndWait(new AddUserCommand(user.getName(),user.getPassword(),user.getMobile(),user.getType()));
     }
 
     @RequestMapping(value = "/{id}/commands/changePassword",method = RequestMethod.POST)
     @ResponseBody
-    public Response<User> changePassword(@PathVariable("id")Long id,@RequestBody ChangepasswordCommandDTO command){
+    public User changePassword(@PathVariable("id")Long id,@RequestBody ChangepasswordCommandDTO command){
 
-        return new Response<>(0,"success",commandGateway.sendAndWait(new ChangepasswordCommand(id,command.getNewPassword(),command.getOldPassword())));
+        return commandGateway.sendAndWait(new ChangepasswordCommand(id,command.getNewPassword(),command.getOldPassword()));
     }
 }
