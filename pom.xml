@@ -18,12 +18,10 @@
         <module>platformui</module>
         <module>merchantservice</module>
         <module>userservice</module>
-        <module>customerservice</module>
         <module>catagoryservice</module>
         <module>orderservice</module>
         <module>commentservice</module>
         <module>searchservice</module>
-        <module>demoui</module>
         <module>register</module>
         <module>ssoclient</module>
         <module>userserviceapi</module>
