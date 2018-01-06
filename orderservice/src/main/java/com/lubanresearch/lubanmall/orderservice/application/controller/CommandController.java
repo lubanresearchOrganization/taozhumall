@@ -37,7 +37,7 @@ public class CommandController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseBody
-    public Response<Product> addDeal(@RequestBody DealDTO deal) {
+    public Long addDeal(@RequestBody DealDTO deal) {
 
         List<OrderDTO> orderDTOList = deal.getOrderList();
 
@@ -71,7 +71,7 @@ public class CommandController {
         Long id = commandGateway.sendAndWait(
                 new CreateDealCommand(deal.getCustomerId(), orderList));
 
-        return new Response<Product>(0, "success", null);
+        return id;
     }
 
 

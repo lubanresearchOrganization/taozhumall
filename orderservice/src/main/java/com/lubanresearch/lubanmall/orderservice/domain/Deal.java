@@ -1,8 +1,10 @@
 package com.lubanresearch.lubanmall.orderservice.domain;
 
+import com.lubanresearch.lubanmall.orderservice.infrastructure.remote.MerchantService;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -30,8 +32,10 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
     private List<Order> orderList;
 
 
+    public Deal(){}
+
     @CommandHandler
-    public  Deal(CreateDealCommand command) {
+    public  Deal(CreateDealCommand command,MerchantService merchantService) {
         this.id = System.nanoTime();
         this.customerId = command.getCustomerId();
         this.createTime = new Date();
@@ -44,14 +48,15 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
 
         for(Order order : orderList){
 
-
+            order.setCreateTime(this.createTime);
+            order.setCustomerId(this.customerId);
             BigDecimal orderTotalAmount = new BigDecimal(0);
 
             List<OrderItem> orderItemList = order.getOrderItemList();
 
             for(OrderItem orderItem : orderItemList){
 
-
+                orderItem.setCreateTime(this.createTime);
                 orderTotalAmount = orderTotalAmount.add(getOrderItemTotalPrice(orderItem));
 
             }

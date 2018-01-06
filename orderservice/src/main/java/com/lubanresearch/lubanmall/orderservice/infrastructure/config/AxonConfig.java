@@ -22,6 +22,7 @@ import com.lubanresearch.lubanmall.orderservice.domain.OrderItem;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;
 import org.axonframework.commandhandling.annotation.AggregateAnnotationCommandHandler;
+import org.axonframework.commandhandling.annotation.AggregateAnnotationCommandHandlerFactoryBean;
 import org.axonframework.commandhandling.annotation.AnnotationCommandHandlerBeanPostProcessor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean;
@@ -41,6 +42,7 @@ import org.axonframework.repository.Repository;
 import org.axonframework.unitofwork.SpringTransactionManager;
 import org.axonframework.unitofwork.TransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -124,9 +126,24 @@ public class AxonConfig {
 	}
 
 
-	@Bean
+/*	@Bean
 	public AggregateAnnotationCommandHandler taskCommandHandler() {
 		return AggregateAnnotationCommandHandler.subscribe(Deal.class, dealRepository(), commandBus());
+	}*/
+
+	@Bean
+	public AggregateAnnotationCommandHandlerFactoryBean aggregateAnnotationCommandHandlerFactoryBean(ApplicationContext applicationContext){
+		AggregateAnnotationCommandHandlerFactoryBean factoryBean = new AggregateAnnotationCommandHandlerFactoryBean();
+		factoryBean.setAggregateType(Deal.class);
+		factoryBean.setApplicationContext(applicationContext);
+		factoryBean.setCommandBus(commandBus());
+		factoryBean.setRepository(dealRepository());
+		try {
+			factoryBean.afterPropertiesSet();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return factoryBean;
 	}
 	@Bean
 	public RestTemplate restTemplate(){

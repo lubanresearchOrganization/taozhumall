@@ -5,9 +5,6 @@ import java.util.List;
 
 public class OrderDTO {
 
-
-
-
     private Long customerId;
     private String remark;
     private Long shopId;

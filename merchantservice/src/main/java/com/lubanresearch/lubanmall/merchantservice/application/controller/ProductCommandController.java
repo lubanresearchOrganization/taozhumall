@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by hilbertcao on 2017/12/19.
  */
 @Controller
-@RequestMapping("/v/0.1/prodcuts")
+@RequestMapping("/v/0.1/products")
 public class ProductCommandController {
 
     @Autowired
