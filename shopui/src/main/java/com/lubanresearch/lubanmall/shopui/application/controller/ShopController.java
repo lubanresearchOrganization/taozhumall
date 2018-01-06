@@ -1,5 +1,6 @@
 package com.lubanresearch.lubanmall.shopui.application.controller;
 
+import com.lubanmall.merchantserviceapi.bean.ShopDTO;
 import com.lubanresearch.lubanmall.common.bean.Response;
 import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
@@ -11,14 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * @author hilber.cao
  */
-@Api(tags = "shop" , description = "【示例】")
+@Api(tags = "shop" , description = "店铺")
 @Controller
-@RequestMapping("/shops")
+@RequestMapping("/v/0.1/shops")
 public class ShopController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Response<String> get(@PathVariable("id") String id) {
+    public ShopDTO get(@PathVariable("id") String id) {
 
-        return new Response(0,"成功",id);
+        return null;
     }
 }
