@@ -1,3 +1,3 @@
 FROM nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY static /static
+ADD nginx.conf /etc/nginx/nginx.conf
+ADD static /static
