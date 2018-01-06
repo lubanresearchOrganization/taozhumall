@@ -17,6 +17,8 @@
 package com.lubanresearch.lubanmall.orderservice.infrastructure.config;
 
 import com.lubanresearch.lubanmall.orderservice.domain.Deal;
+import com.lubanresearch.lubanmall.orderservice.domain.Order;
+import com.lubanresearch.lubanmall.orderservice.domain.OrderItem;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;
 import org.axonframework.commandhandling.annotation.AggregateAnnotationCommandHandler;
@@ -42,6 +44,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -99,6 +102,20 @@ public class AxonConfig {
 		return repository;
 	}
 
+
+	@Bean
+	public Repository<Order> orderRepository(){
+		GenericJpaRepository<Order> repository =  new GenericJpaRepository<Order>(entityManagerProvider(),Order.class);
+		return repository;
+	}
+
+
+	@Bean
+	public Repository<OrderItem> orderItemRepository(){
+		GenericJpaRepository<OrderItem> repository =  new GenericJpaRepository<OrderItem>(entityManagerProvider(),OrderItem.class);
+		return repository;
+	}
+
 	@Bean
 	public EventStore eventStore(){
 
@@ -111,4 +128,9 @@ public class AxonConfig {
 	public AggregateAnnotationCommandHandler taskCommandHandler() {
 		return AggregateAnnotationCommandHandler.subscribe(Deal.class, dealRepository(), commandBus());
 	}
+	@Bean
+	public RestTemplate restTemplate(){
+		return new RestTemplate();
+	}
+
 }

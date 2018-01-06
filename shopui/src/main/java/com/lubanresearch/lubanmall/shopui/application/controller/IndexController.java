@@ -1,8 +1,6 @@
 package com.lubanresearch.lubanmall.shopui.application.controller;
 
 import com.lubanmall.merchantserviceapi.bean.ShopDTO;
-import com.lubanresearch.lubanmall.common.bean.Response;
-import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import com.lubanresearch.lubanmall.shopui.infrastructure.remote.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +32,7 @@ public class IndexController {
 
         ShopDTO shopDTO = new ShopDTO();
         shopDTO.setName("a");
+        shopDTO.setAccountId(12L);
         ShopDTO result= null;
         return merchantService.addShop(shopDTO);
     }

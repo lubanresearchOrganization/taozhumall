@@ -1,9 +1,6 @@
 package com.lubanresearch.lubanmall.orderservice.domain;
 
-import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
-import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
-
-import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by hilbertcao on 2018/1/2.
@@ -11,20 +8,24 @@ import java.math.BigDecimal;
 public class CreateDealCommand {
 
 
-    private BigDecimal totalAmount;
     private Long customerId;
 
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
-    }
+
+    private List<Order> orderList;
+
 
     public Long getCustomerId() {
         return customerId;
     }
 
-    public CreateDealCommand(BigDecimal totalAmount, Long customerId) {
-        this.totalAmount = totalAmount;
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public CreateDealCommand(Long customerId, List<Order> orderList) {
+
         this.customerId = customerId;
+        this.orderList = orderList;
     }
 
 }

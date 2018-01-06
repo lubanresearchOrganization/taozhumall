@@ -28,6 +28,7 @@
         <module>catagoryserviceapi</module>
         <module>merchantserviceapi</module>
         <module>commentserviceapi</module>
+        <module>orderserviceapi</module>
 
     </modules>
 

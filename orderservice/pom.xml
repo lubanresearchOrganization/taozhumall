@@ -33,4 +33,13 @@
         </plugins>
     </build>
 
+
+    <dependencies>
+    <dependency>
+        <groupId>lubanresearch.com</groupId>
+        <artifactId>order-service-api</artifactId>
+        <version>0.1</version>
+    </dependency>
+    </dependencies>
+
 </project>

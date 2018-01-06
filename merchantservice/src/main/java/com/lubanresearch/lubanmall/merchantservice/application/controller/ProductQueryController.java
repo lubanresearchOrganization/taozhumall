@@ -26,8 +26,8 @@ public class ProductQueryController {
     public Product getProduct(@PathVariable("id") Long id) {
 
 
-//        return productMapper.selectByPrimaryKey(id);
-        throw new ServiceException(600,"ssss");
+        return productMapper.selectByPrimaryKey(id);
+//        throw new ServiceException(600,"ssss");
     }
 
 
