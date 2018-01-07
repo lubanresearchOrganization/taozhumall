@@ -17,6 +17,16 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- TODC Bootstrap theme -->
+    <link href="./js/todc-bootstrap/css/todc-bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <title>店铺详情</title>
 </head>
 <body>
@@ -31,8 +41,8 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-3">
-            <ul class="list-group">
+        <div class="col-md-2">
+            <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
                     <a href="./ordermanager.html" class="nav-link">订单管理</a>
                 </li>
@@ -44,7 +54,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <div class="panel panel-info">
 
                 <div class="panel-heading">
@@ -144,19 +154,19 @@
                 <div class="panel panel-primary">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label for="oldPassword" class="col-sm-3 control-label">旧密码:</label>
+                            <label for="oldPassword" class="col-sm-3 control-label">旧密码</label>
                             <div class="col-sm-9">
                                 <input type="password" class="form-control" id="oldPassword"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="newPassWord" class="col-sm-3 control-label">新密码:</label>
+                            <label for="newPassWord" class="col-sm-3 control-label">新密码</label>
                             <div class="col-sm-9">
                                 <input type="password" class="form-control" id="newPassWord">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="reNewPassWord" class="col-sm-3 control-label">确认新密码:</label>
+                            <label for="reNewPassWord" class="col-sm-3 control-label">确认新密码</label>
                             <div class="col-sm-9">
                                 <input type="password" class="form-control" id="reNewPassWord">
                             </div>
