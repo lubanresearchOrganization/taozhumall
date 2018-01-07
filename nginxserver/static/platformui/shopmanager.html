@@ -21,22 +21,87 @@
 </head>
 <body>
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-                <p>平台用户,你好</p><p>退出</p>
-        </div>
+<nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">用户你好</a>
+        <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <ul class="list-group">
-                <li class="list-group-item"><a href="./shopmanager.html">店铺管理</a></li>
-                <li class="list-group-item"><a href="./catagorymanager.html">类目管理</a></li>
-            </ul>
-        </div>
-        <div class="col-md-7">
-
+</nav>
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a href="./catagorymanager.html" class="nav-link" >类目管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./shopmanager.html" class="nav-link">店铺管理</a></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="shopName" class="col-sm-2 control-label">店铺名称</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="shopName" placeholder="请输入店铺名称">
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-default">搜索</button>
+                                <a class="btn btn-default" href="./addShop.html">添加店铺</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>商家名称</th>
+                                <th>时间</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><img src="http://pic.nipic.com/2007-08-09/200789222531293_2.jpg" class="img-thumbnail" width="100" height="100"/></td>
+                                <td>小明杂货店</td>
+                                <td>2016-12-01 12:01:20</td>
+                                <td><a href="./shopdetail.html" class="btn btn-info">明细</a><a class="btn btn-danger">删除</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">«</span> <span class="sr-only">Previous</span> </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">4</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">»</span> <span class="sr-only">Next</span> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

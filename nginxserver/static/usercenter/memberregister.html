@@ -7,48 +7,31 @@
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
             crossorigin="anonymous"></script>
 
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <title>用户注册</title>
 </head>
 <body>
-
-
-<div class="container">
-    <div class="row">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">名字</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" placeholder="请输入名字">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-2 control-label">密码</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" placeholder="请输入密码">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="repassword" class="col-sm-2 control-label">确认密码</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="repassword" placeholder="确认密码">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">注册</button>
-                    </div>
-                </div>
-            </form>
+<div class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img class="d-block img-fluid my-3" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDW8nO9JhT_pEjebobq9pgUF2cEp0EUb1I&amp;markers=Alexander+platz&amp;center=Berlin&amp;zoom=13&amp;size=640x500&amp;sensor=false"> </div>
+            <div class="col-md-6">
+                <h1>注册</h1>
+                <p>我们将为你提供很好的商品服务</p>
+                <form>
+                    <div class="form-group"> <label for="InputName">昵称</label>
+                        <input type="text" class="form-control" id="InputName" placeholder="请输入昵称"> </div>
+                    <div class="form-group"> <label for="password">密码</label>
+                        <input type="password" class="form-control" id="password" placeholder="请输入密码"> </div>
+                    <div class="form-group"> <label for="repassword">确认密码</label>
+                        <input type="password" class="form-control" id="repassword" placeholder="请确认密码"> </div>
+                   <button type="submit" class="btn btn-secondary">提交</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </body>

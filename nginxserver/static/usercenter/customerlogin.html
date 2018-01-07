@@ -7,38 +7,39 @@
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
             crossorigin="anonymous"></script>
 
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <title>登录</title>
 </head>
 <body>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-offset-5 col-md-3">
-            <div>
-                <h4>登录</h4>
-                <input type="text" id="用户名" class="form-control input-sm chat-input" placeholder="用户名" />
-                </br>
-                <input type="password" id="密码" class="form-control input-sm chat-input" placeholder="密码" />
-                </br>
-                <div class="wrapper">
-            <span class="group-btn">
-                <a href="#" class="btn btn-primary btn-md">登录<i class="fa fa-sign-in"></i></a>
-                <a href="#" class="btn btn-primary btn-md">注册<i class="fa fa-sign-in"></i></a>
-            </span>
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"> </div>
+        </div>
+    </div>
+</div>
+<div class="py-5" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/form_red.jpg&quot;);">
+    <div class="container">
+        <div class="row">
+            <div class="align-self-center col-md-6 text-white">
+            </div>
+            <div class="col-md-6" id="book">
+                <div class="card">
+                    <div class="card-body p-5">
+                        <h3 class="pb-3">登录</h3>
+                        <form action="#">
+                            <div class="form-group"> <label>用户名</label>
+                                <input class="form-control" placeholder="输入用户名"> </div>
+                            <div class="form-group" placeholder="输入密码"> <label>密码</label>
+                                <input type="password" class="form-control"> </div>
+                            <button type="submit" class="btn mt-2 btn-outline-dark">登录</button>
+                            <a class="btn mt-2 btn-outline-dark" href="./memberregister.html">注册</a>
+                        </form>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

@@ -17,9 +17,197 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>店铺修改</title>
+    <title>店铺详情</title>
 </head>
 <body>
 
+
+<nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">用户你好</a>
+        <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"></div>
+    </div>
+</nav>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="nav-item">
+                    <a href="./ordermanager.html" class="nav-link">订单管理</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./productmanager.html" class="nav-link">商品管理</a></a>
+                </li>
+                <li class="nav-item">
+                    <a href="./shopedit.html" class="nav-link">店铺信息修改</a></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-info">
+
+                <div class="panel-heading">
+                    <h3>店铺信息</h3>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#shopInfoEditPanel">修改店铺信息</a>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">店铺名称:</label>
+                        <div class="col-sm-10">
+                            <label class="control-label">店铺名称</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">店铺图片:</label>
+                        <div class="thumbnail col-sm-10">
+                            <img src="http://pic1.win4000.com/wallpaper/d/571726096189d.jpg"/>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">店铺描述:</label>
+                        <div class="col-sm-10">
+                            <p>店铺描述</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3>账户信息</h3>
+                    <a class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
+                       data-target="#accountInfoEditPanel">修改账户信息</a>
+                    <a class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
+                       data-target="#changePasswordPanel">修改密码</a>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">账户名:</label>
+                        <div class="col-sm-10">
+                            <label>账户名</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label"> 手机号:</label>
+                        <div class="col-sm-10">
+                            <label>手机号</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" tabindex="-2" role="dialog" id="accountInfoEditPanel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">账户信息编辑</h3>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="accountName" class="col-sm-3 control-label">账户名</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="accountName" placeholder="商家1"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-sm-3 control-label">手机号</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="phone" placeholder="手机"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-3" role="dialog" id="changePasswordPanel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">修改密码</h3>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="oldPassword" class="col-sm-3 control-label">旧密码:</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="oldPassword"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassWord" class="col-sm-3 control-label">新密码:</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="newPassWord">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reNewPassWord" class="col-sm-3 control-label">确认新密码:</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="reNewPassWord">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="shopInfoEditPanel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">店铺信息编辑</h3>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="shopName" class="col-sm-3 control-label">店铺名称</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="shopName" placeholder="店铺名"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageUrl" class="col-sm-3 control-label">店铺图片</label>
+                            <div class="col-sm-9">
+                                <input type="file" class="form-control" id="imageUrl"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="discription" class="col-sm-3 control-label">店铺描述</label>
+                            <div class="col-sm-9" id="discription">
+                                <textarea>店铺描述</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
