@@ -8,11 +8,9 @@ import com.lubanresearch.lubanmall.orderservice.domain.*;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +56,20 @@ public class CommandController {
 
         Long id = commandGateway.sendAndWait(
                 new CreateDealCommand(deal.getCustomerId(), orderList));
+
+        return id;
+    }
+
+
+
+    @RequestMapping(value = "/{dealId}/b", method = RequestMethod.GET)
+    @ResponseBody
+    public Object b(@PathVariable("dealId")Long dealId,@RequestParam("total")BigDecimal total) {
+
+
+
+        Object id = commandGateway.sendAndWait(
+                new UpdateDealTotalCommand(dealId,total));
 
         return id;
     }

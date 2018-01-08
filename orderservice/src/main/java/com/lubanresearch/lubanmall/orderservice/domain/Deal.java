@@ -75,7 +75,11 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
     }
 
 
+    @CommandHandler
+    public  void updateTotal(UpdateDealTotalCommand command) {
 
+        this.totalAmount = command.getTotal();
+    }
 
     private BigDecimal getOrderItemTotalPrice(OrderItem orderItem){
 
