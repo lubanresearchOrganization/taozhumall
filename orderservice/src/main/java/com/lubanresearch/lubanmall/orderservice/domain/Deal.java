@@ -1,10 +1,10 @@
 package com.lubanresearch.lubanmall.orderservice.domain;
 
+import com.lubanresearch.lubanmall.orderservice.infrastructure.constants.Constants;
 import com.lubanresearch.lubanmall.orderservice.infrastructure.remote.MerchantService;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -39,7 +39,7 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
         this.id = System.nanoTime();
         this.customerId = command.getCustomerId();
         this.createTime = new Date();
-        this.status = (byte)1;
+        this.status = Constants.WAIT_FOR_DELIVERY;
         this.orderList = command.getOrderList();
 
         List<Order> orderList = command.getOrderList();
@@ -55,7 +55,8 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
             List<OrderItem> orderItemList = order.getOrderItemList();
 
             for(OrderItem orderItem : orderItemList){
-
+                Product product = merchantService.getProduct(orderItem.getProductId());
+                orderItem.setUnitPrice(product.getUnitPrice());
                 orderItem.setCreateTime(this.createTime);
                 orderTotalAmount = orderTotalAmount.add(getOrderItemTotalPrice(orderItem));
 
@@ -72,6 +73,8 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
         this.totalAmount = mTotalAmount;
 
     }
+
+
 
 
     private BigDecimal getOrderItemTotalPrice(OrderItem orderItem){

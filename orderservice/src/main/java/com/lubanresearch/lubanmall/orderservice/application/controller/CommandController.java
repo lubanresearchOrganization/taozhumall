@@ -4,12 +4,7 @@ package com.lubanresearch.lubanmall.orderservice.application.controller;
 import com.lubanmall.orderserviceapi.bean.DealDTO;
 import com.lubanmall.orderserviceapi.bean.OrderDTO;
 import com.lubanmall.orderserviceapi.bean.OrderItemDTO;
-import com.lubanresearch.lubanmall.common.bean.Response;
-import com.lubanresearch.lubanmall.orderservice.domain.CreateDealCommand;
-import com.lubanresearch.lubanmall.orderservice.domain.Order;
-import com.lubanresearch.lubanmall.orderservice.domain.OrderItem;
-import com.lubanresearch.lubanmall.orderservice.domain.Product;
-import com.lubanresearch.lubanmall.orderservice.infrastructure.remote.MerchantService;
+import com.lubanresearch.lubanmall.orderservice.domain.*;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +22,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/v/0.1/deals")
 public class CommandController {
-
-
-    @Autowired
-    private MerchantService merchantService;
 
     @Autowired
     private CommandGateway commandGateway;
@@ -53,11 +44,8 @@ public class CommandController {
 
             for (OrderItemDTO orderItemDTO : orderItemDTOList) {
 
-                Product product = merchantService.getProduct(orderItemDTO.getProductId());
 
-
-
-                OrderItem orderItem = new OrderItem(orderItemDTO.getProductId(), product.getUnitPrice(), orderItemDTO.getProductNum());
+                OrderItem orderItem = new OrderItem(orderItemDTO.getProductId(), orderItemDTO.getProductNum());
 
                 orderItemList.add(orderItem);
 

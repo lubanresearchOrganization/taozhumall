@@ -1,6 +1,7 @@
 package com.lubanresearch.lubanmall.orderservice.domain;
 
 
+import com.lubanresearch.lubanmall.orderservice.infrastructure.constants.Constants;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 
 import javax.persistence.*;
@@ -35,7 +36,7 @@ public class Order extends AbstractAnnotatedAggregateRoot<Long> {
         this.customerId = customerId;
         this.remark = remark;
         this.shopId = shopId;
-        this.status = (byte) 1;
+        this.status = Constants.WAIT_FOR_DELIVERY;
         this.orderItemList = orderItemList;
     }
 

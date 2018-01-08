@@ -28,7 +28,7 @@ public class OrderItem extends AbstractAnnotatedAggregateRoot<Long> {
     private Date createTime;
 
 
-    public OrderItem( Long productId, BigDecimal unitPrice, Integer productNum) {
+    public OrderItem( Long productId, Integer productNum) {
         this.id = System.nanoTime();
         this.createTime = new Date();
         this.orderId = orderId;
