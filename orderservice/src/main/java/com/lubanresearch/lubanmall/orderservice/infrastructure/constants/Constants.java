@@ -9,9 +9,23 @@ public class Constants {
     //已发货
     public static final Byte DELIVERED = (byte) 2;
 
-    //取消
-    public static final Byte CANCEL = (byte) 3;
+    //待确认
+    public static final Byte WAIT_FOR_CONFIRM = (byte) 3;
+
+    //已完成
+    public static final Byte FINISH = (byte) 4;
 
 
+    //待付款
+    public static final Byte OBLIGATION = (byte) 1;
+
+    //已付款
+    public static final Byte PAID = (byte) 2;
+
+    //交易成功
+    public static final Byte TRADE_SUCCESS = (byte) 3;
+
+    //交易失败
+    public static final Byte TRADE_FAIL = (byte) 4;
 
 }

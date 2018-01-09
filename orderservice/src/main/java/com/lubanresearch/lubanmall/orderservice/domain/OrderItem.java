@@ -28,6 +28,10 @@ public class OrderItem extends AbstractAnnotatedAggregateRoot<Long> {
     private Date createTime;
 
 
+    public OrderItem(){
+
+    }
+
     public OrderItem( Long productId, Integer productNum) {
         this.id = System.nanoTime();
         this.createTime = new Date();

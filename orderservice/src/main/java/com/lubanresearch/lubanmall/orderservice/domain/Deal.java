@@ -15,7 +15,7 @@ import java.util.List;
  * Created by hilbertcao on 2018/1/2.
  */
 @Entity
-@Table(name="lb_deal")
+@Table(name = "lb_deal")
 public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
 
 
@@ -32,21 +32,22 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
     private List<Order> orderList;
 
 
-    public Deal(){}
+    public Deal() {
+    }
 
     @CommandHandler
-    public  Deal(CreateDealCommand command,MerchantService merchantService) {
+    public Deal(CreateDealCommand command, MerchantService merchantService) {
         this.id = System.nanoTime();
         this.customerId = command.getCustomerId();
         this.createTime = new Date();
-        this.status = Constants.WAIT_FOR_DELIVERY;
+        this.status = Constants.OBLIGATION;
         this.orderList = command.getOrderList();
 
         List<Order> orderList = command.getOrderList();
 
         BigDecimal mTotalAmount = new BigDecimal(0);
 
-        for(Order order : orderList){
+        for (Order order : orderList) {
 
             order.setCreateTime(this.createTime);
             order.setCustomerId(this.customerId);
@@ -54,7 +55,7 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
 
             List<OrderItem> orderItemList = order.getOrderItemList();
 
-            for(OrderItem orderItem : orderItemList){
+            for (OrderItem orderItem : orderItemList) {
                 Product product = merchantService.getProduct(orderItem.getProductId());
                 orderItem.setUnitPrice(product.getUnitPrice());
                 orderItem.setCreateTime(this.createTime);
@@ -66,7 +67,7 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
             order.setTotalAmount(orderTotalAmount);
 
 
-            mTotalAmount =  mTotalAmount.add(orderTotalAmount);
+            mTotalAmount = mTotalAmount.add(orderTotalAmount);
 
         }
 
@@ -76,12 +77,64 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
 
 
     @CommandHandler
-    public  void updateTotal(UpdateDealTotalCommand command) {
+    public void updateTotal(UpdateDealTotalCommand command) {
 
         this.totalAmount = command.getTotal();
     }
 
-    private BigDecimal getOrderItemTotalPrice(OrderItem orderItem){
+
+    @CommandHandler
+    public void updateDealStatus(UpdateDealStatusCommand command) {
+
+        this.status = command.getStatus();
+    }
+
+
+    @CommandHandler
+    public void updateOrderStatus(UpdateOrderStatusCommand command) {
+
+        Long orderId = command.getOrderId();
+
+        for (Order order : this.orderList) {
+
+            if (order.getId().equals(orderId)) {
+
+                order.setStatus(command.getStatus());
+
+            }
+
+        }
+    }
+
+
+    @CommandHandler
+    public void deteleDeal(DeteleDealCommand command) {
+
+        markDeleted();
+
+    }
+
+
+//    @CommandHandler
+//    public void deteleOrder(DeleteOrderCommand command) {
+//
+//        Long orderId = command.getOrderId();
+//
+//        for (Order order : this.orderList) {
+//
+//            if (order.getId().equals(orderId)) {
+//
+//                order.deleteOrder();
+//                return;
+//
+//            }
+//
+//        }
+//
+//    }
+
+
+    private BigDecimal getOrderItemTotalPrice(OrderItem orderItem) {
 
         return orderItem.getUnitPrice().multiply(new BigDecimal(orderItem.getProductNum()));
 

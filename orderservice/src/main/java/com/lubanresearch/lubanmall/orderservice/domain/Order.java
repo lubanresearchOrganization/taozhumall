@@ -30,7 +30,10 @@ public class Order extends AbstractAnnotatedAggregateRoot<Long> {
     @JoinColumn(name = "orderId")
     private List<OrderItem> orderItemList;
 
+    public Order(){
 
+
+    }
     public Order(Long customerId, String remark, Long shopId, List<OrderItem> orderItemList) {
         this.id = System.nanoTime();
         this.customerId = customerId;
@@ -40,6 +43,12 @@ public class Order extends AbstractAnnotatedAggregateRoot<Long> {
         this.orderItemList = orderItemList;
     }
 
+
+    public void deleteOrder(){
+
+        markDeleted();
+
+    }
     public List<OrderItem> getOrderItemList() {
         return orderItemList;
     }
