@@ -1,13 +1,10 @@
 package com.lubanmall.orderserviceapi.bean;
 
-import com.sun.istack.internal.NotNull;
 
 public class UpdateDealStatusDTO {
 
-    @NotNull
     public Long id;
 
-    @NotNull
     public Byte status;
 
     public Long getId() {
