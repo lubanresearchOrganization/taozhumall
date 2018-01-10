@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableFeignClients
 @SpringBootApplication
 @ComponentScan(basePackages={"com.lubanresearch.lubanmall.merchantservice"})
-@MapperScan("com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db")
+@MapperScan(basePackages="com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
