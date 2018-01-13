@@ -27,15 +27,15 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
                 .apiInfo(apiInfo())
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.demoservice.application.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.userservice.application.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("demo服务")
-                .contact(new Contact("lubanmall", "http://demo.lubanmall.com", ""))
+                .title("用户服务")
+                .contact(new Contact("lubanmall", "http://userservice.taozhumall.com", ""))
                 .version("0.1")
                 .build();
     }
