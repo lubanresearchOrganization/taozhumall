@@ -10,6 +10,11 @@
     <version>0.1</version>
     <modules>
         <module>common</module>
+        <module>userserviceapi</module>
+        <module>catagoryserviceapi</module>
+        <module>merchantserviceapi</module>
+        <module>commentserviceapi</module>
+        <module>orderserviceapi</module>
         <module>baseui</module>
         <module>baseservice</module>
         <module>usercenter</module>
@@ -24,16 +29,12 @@
         <module>searchservice</module>
         <module>register</module>
         <module>ssoclient</module>
-        <module>userserviceapi</module>
-        <module>catagoryserviceapi</module>
-        <module>merchantserviceapi</module>
-        <module>commentserviceapi</module>
-        <module>orderserviceapi</module>
+
 
     </modules>
 
     <properties>
-        <springcloud.dependencies.version>Brixton.RELEASE</springcloud.dependencies.version>
+        <springcloud.dependencies.version>Brixton.SR5</springcloud.dependencies.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
