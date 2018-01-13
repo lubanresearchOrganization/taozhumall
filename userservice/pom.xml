@@ -31,12 +31,4 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-        <dependency>
-            <groupId>lubanresearch.com</groupId>
-            <artifactId>user-service-api</artifactId>
-            <version>0.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.axonframework/axon-core -->
-    </dependencies>
 </project>

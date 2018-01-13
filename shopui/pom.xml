@@ -29,12 +29,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>lubanresearch.com</groupId>
-            <artifactId>merchantservice-api</artifactId>
-            <version>0.1</version>
-        </dependency>
-    </dependencies>
 </project>

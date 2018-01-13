@@ -193,5 +193,30 @@
             <artifactId>nekohtml</artifactId>
             <version>1.9.22</version><!-- 版本自己调整，也可不动 -->
         </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>merchantservice-api</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>catagory-service-api</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>commentsetvice-api</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>order-service-api</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>user-service-api</artifactId>
+            <version>0.1</version>
+        </dependency>
     </dependencies>
 </project>

@@ -268,6 +268,31 @@
             <artifactId>validation-api</artifactId>
             <version>1.1.0.Final</version>
         </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>merchantservice-api</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>catagory-service-api</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>commentsetvice-api</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>order-service-api</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>lubanresearch.com</groupId>
+            <artifactId>user-service-api</artifactId>
+            <version>0.1</version>
+        </dependency>
     </dependencies>
 
 </project>
