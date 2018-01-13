@@ -212,18 +212,6 @@
                     <groupId>org.mybatis</groupId>
                     <artifactId>mybatis-spring</artifactId>
                 </exclusion>
-                <exclusion>
-                    <artifactId>spring-boot-starter-jdbc</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-boot-autoconfigure</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-boot</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
