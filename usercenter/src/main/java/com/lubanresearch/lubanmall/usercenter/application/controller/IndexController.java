@@ -29,7 +29,7 @@ public class IndexController {
     private int tgtExpiry;
     private Map stTGTMapping = new HashMap();
 
-    @RequestMapping(path = {"/go","/"})
+    @RequestMapping(path = {"info","/go","/"})
     @ResponseBody
     public String go() {
         return "success";
