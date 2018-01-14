@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/bootstrap-treeview/css/default.css">
+    <link rel="stylesheet" href="js/bootstrap-treeview/css/normalize.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <title>个人信息修改</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+        <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+            <a class="btn" href="#">登录</a>
+            <a class="btn" href="#">注册</a>
+            <a class="btn" href="#">首页</a>
+            <a class="btn" href="#">我的订单</a>
+            <a class="btn" href="#">购物车</a>
+        </div>
+    </div>
+</nav>
+<div class="py-5">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="nav nav-pills flex-column">
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3>账户信息</h3>
+                        <a class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
+                           data-target="#accountInfoEditPanel">修改账户信息</a>
+                        <a class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
+                           data-target="#changePasswordPanel">修改密码</a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <label class="col-sm-3 control-label">账户名:</label>
+                            <div class="col-sm-9">
+                                <label>账户名</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-sm-3 control-label"> 手机号:</label>
+                            <div class="col-sm-9">
+                                <label>手机号</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-2" role="dialog" id="accountInfoEditPanel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">账户信息编辑</h3>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="accountName" class="col-sm-3 control-label">账户名</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="accountName" placeholder="商家1"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-sm-3 control-label">手机号</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="phone" placeholder="手机"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-3" role="dialog" id="changePasswordPanel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">修改密码</h3>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="oldPassword" class="col-sm-3 control-label">旧密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="oldPassword"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassWord" class="col-sm-3 control-label">新密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="newPassWord">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reNewPassWord" class="col-sm-3 control-label">确认新密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="reNewPassWord">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
