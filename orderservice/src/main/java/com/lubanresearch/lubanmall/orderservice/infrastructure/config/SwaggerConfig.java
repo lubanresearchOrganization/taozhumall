@@ -27,7 +27,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
                 .apiInfo(apiInfo())
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.orderservice.application.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.taozhumall.orderservice.application.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

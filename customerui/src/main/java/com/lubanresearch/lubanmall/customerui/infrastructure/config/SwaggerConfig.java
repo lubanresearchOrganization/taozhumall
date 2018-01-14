@@ -26,7 +26,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
                 .apiInfo(apiInfo())
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.customerui.application.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.taozhumall.customerui.application.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -34,7 +34,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("customer UI")
-                .contact(new Contact("lubanmall", "http://customer.lubanmall.com", ""))
+                .contact(new Contact("taozhumall", "http://customer.taozhumall.com", ""))
                 .version("0.1")
                 .build();
     }

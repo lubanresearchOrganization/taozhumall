@@ -26,7 +26,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
                 .apiInfo(apiInfo())
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.usercenter.application.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.taozhumall.usercenter.application.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -34,7 +34,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("sso")
-                .contact(new Contact("lubanmall", "http://usercenter.lubanmall.com", ""))
+                .contact(new Contact("taozhumall", "http://usercenter.taozhumall.com", ""))
                 .version("0.1")
                 .build();
     }
