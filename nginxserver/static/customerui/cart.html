@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/bootstrap-treeview/css/bootstrap-treeview.min.css">
+    <link rel="stylesheet" href="js/bootstrap-treeview/css/default.css">
+    <link rel="stylesheet" href="js/bootstrap-treeview/css/normalize.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <![endif]-->
+    <title>购物车</title>
+</head>
+
+<body class="">
+<nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+        <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+            <a class="btn" href="#">登录</a>
+            <a class="btn" href="#">注册</a>
+            <a class="btn" href="#">首页</a>
+            <a class="btn" href="#">我的订单</a>
+            <a class="btn" href="#">购物车</a>
+        </div>
+    </div>
+</nav>
+<div class="py-5">
+    <div class="container">
+
+        <div class="col-md-12">
+            <form class="form-inline ">
+                <img src="" width="80px" height="80px" />
+                <label>购物车</label>
+                <select class="form-control">
+                    <option value="1">商品</option>
+                    <option value="2">店铺</option>
+                </select>
+                <div class="input-group my-1">
+                    <input type="text" class="form-control mr-3 my-1" placeholder="搜索"
+                           id="inlineFormInputGroup"></div>
+                <a class="btn btn-secondary" href='./productlist.html'>搜索</a>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <label >全选</label>
+                        <input type="checkbox"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><span><input type="checkbox"/></span><a>店铺1</a></div>
+                <div class="card-body">
+                    <div class="row">
+                        <a href="./productdetail.html"><img
+                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
+                                class="img-thumbnail" width="80" height="80"/></a>
+                        <span style="width:150px;" class="contentpadding">商品1</span>
+                        <span style="width:80px;" class="contentpadding">50.00</span>
+                        <span style="width:50px;" class="contentpadding"><input type="number" value="2" min="0"  style="width:40px;" /></span>
+                        <span style="width:100px;" class="contentpadding">100.00</span>
+                        <span style="width:100px;" class="contentpadding"><a class="btn" href="#">删除</a></span>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <a href="./productdetail.html"><img
+                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
+                                class="img-thumbnail" width="80" height="80"/></a>
+                        <span style="width:150px;" class="contentpadding">商品2</span>
+                        <span style="width:80px;" class="contentpadding">60.00</span>
+                        <span style="width:50px;" class="contentpadding"><input type="number" value="3" min="0"   style="width:40px;" /></span>
+                        <span style="width:100px;" class="contentpadding">180.00</span>
+                        <span style="width:100px;" class="contentpadding"><a class="btn" href="#">删除</a></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><span><input type="checkbox"/></span><a>店铺2</a></div>
+                <div class="card-body">
+                    <div class="row">
+                        <a href="./productdetail.html"><img
+                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
+                                class="img-thumbnail" width="80" height="80"/></a>
+                        <span style="width:150px;" class="contentpadding">商品3</span>
+                        <span style="width:80px;" class="contentpadding">50.00</span>
+                        <span style="width:50px;" class="contentpadding"><input type="number" value="2" min="0" style="width:40px;" /></span>
+                        <span style="width:100px;" class="contentpadding">100.00</span>
+                        <span style="width:100px;" class="contentpadding"><a class="btn" href="#">删除</a></span>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <a href="./productdetail.html"><img
+                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
+                                class="img-thumbnail" width="80" height="80"/></a>
+                        <span style="width:150px;" class="contentpadding">商品4</span>
+                        <span style="width:80px;" class="contentpadding">60.00</span>
+                        <span style="width:50px;" class="contentpadding"><input type="number" value="3" min="0"   style="width:40px;" /></span>
+                        <span style="width:100px;" class="contentpadding">180.00</span>
+                        <span style="width:100px;" class="contentpadding"><a class="btn" href="#">删除</a></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-footer">
+
+                    <label >全选</label>
+                    <input type="checkbox"/>
+                    <a class="btn" href="#">删除</a>
+                    <span>已经选择了4个商品</span>
+                    <span>合计:560.00</span>
+                    <a class="btn" href="#">结算</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
