@@ -19,9 +19,9 @@ public class IndexController {
     @Autowired
     private MerchantService merchantService;
     @RequestMapping(path = {"info","/go","/"})
-    @ResponseBody
     public String go() {
-        return "success!";
+
+        return "redirect:index.html";
     }
 
 
