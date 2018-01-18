@@ -1,5 +1,6 @@
 package com.lubanresearch.lubanmall.usercenter.application.controller;
 
+import com.lubanmall.userserviceapi.bean.UserType;
 import com.lubanresearch.lubanmall.usercenter.infrastructure.cache.Cache;
 import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,7 +47,7 @@ public class IndexController {
     }
 
     @RequestMapping(path = {"/loginPage"},method = RequestMethod.GET)
-    public String loginPage(HttpServletRequest request) {
+    public String loginPage(HttpServletRequest request,@RequestParam(value = "type",defaultValue = "1")Byte type) {
 
         Cookie[] cookies = request.getCookies();
         if(cookies!=null){
@@ -79,7 +80,14 @@ public class IndexController {
                 }
             }
         }
-        return "loginPage";
+
+        if(type == UserType.SHOP.getValue()){
+            return "shoplogin.html";
+        }else if(type == UserType.PLATFORM.getValue()){
+            return "platformlogin.html";
+        }
+        return "customerlogin.html";
+
     }
 
 
