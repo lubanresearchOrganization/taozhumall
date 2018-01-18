@@ -14,8 +14,8 @@ import springfox.documentation.annotations.ApiIgnore;
 public class IndexController {
 
     @RequestMapping(path = {"info","/go","/"})
-    @ResponseBody
     public String go() {
-        return "success";
+
+        return "redirect:index.html";
     }
 }
