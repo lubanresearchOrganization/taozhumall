@@ -82,11 +82,11 @@ public class IndexController {
         }
 
         if(type == UserType.SHOP.getValue()){
-            return "shoplogin.html";
+            return "redirect:shoplogin.html";
         }else if(type == UserType.PLATFORM.getValue()){
-            return "platformlogin.html";
+            return "redirect:platformlogin.html";
         }
-        return "customerlogin.html";
+        return "redirect:customerlogin.html";
 
     }
 
