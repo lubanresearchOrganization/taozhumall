@@ -39,11 +39,11 @@
                 <div class="card">
                     <div class="card-body p-5">
                         <h3 class="pb-3">登录</h3>
-                        <form action="#">
+                        <form action="/login" id="loginForm">
                             <div class="form-group"> <label>用户名</label>
-                                <input class="form-control" placeholder="输入用户名" id="nameInput"> </div>
-                            <div class="form-group" placeholder="输入密码" id="passwordInput"> <label>密码</label>
-                                <input type="password" class="form-control"> </div>
+                                <input class="form-control" placeholder="输入用户名" id="nameInput" name="name"> </div>
+                            <div class="form-group" placeholder="输入密码" > <label>密码</label>
+                                <input type="password" class="form-control" id="passwordInput" name="password"> </div>
                             <a class="btn mt-2 btn-outline-dark" id="submitBtn" href="javascript:void(0);">登录</a>
                             <a class="btn mt-2 btn-outline-dark" href="./memberregister.html">注册</a>
                         </form>

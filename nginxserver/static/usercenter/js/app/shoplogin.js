@@ -1,4 +1,4 @@
-var customerlogin = (function ($){
+var shoplogin = (function ($){
 
        var mod = {};
 　　　　mod.init = function () {
@@ -13,5 +13,5 @@ var customerlogin = (function ($){
 　　})(jQuery);
 
 $(document).ready(function(){
-  customerlogin.init();
+  shoplogin.init();
 });

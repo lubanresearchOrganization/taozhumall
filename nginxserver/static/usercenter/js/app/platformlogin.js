@@ -1,9 +1,11 @@
-var process = (function (processUnitList){
+var platformlogin = (function ($){
 
        var mod = {};
 　　　　mod.init = function () {
 　　　　　　
-
+         $("#submitBtn").on("click",function(){
+              $('#loginForm').submit();
+         });
 　　　　};
 
 　　　　return mod;
@@ -11,5 +13,5 @@ var process = (function (processUnitList){
 　　})(jQuery);
 
 $(document).ready(function(){
-  process.init();
+  platformlogin.init();
 });
