@@ -3,6 +3,7 @@ package com.lubanresearch.lubanmall.usercenter.application.controller;
 import com.lubanmall.userserviceapi.bean.UserType;
 import com.lubanresearch.lubanmall.usercenter.infrastructure.cache.Cache;
 import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -81,6 +82,21 @@ public class IndexController {
             }
         }
 
+        String callback = request.getParameter("callback");
+        String callbackAfterDecode = null;
+        try {
+            callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        if(StringUtils.isNotBlank(callbackAfterDecode)){
+            if(type == UserType.SHOP.getValue()){
+                return "redirect:shoplogin.html?callback="+callbackAfterDecode;
+            }else if(type == UserType.PLATFORM.getValue()){
+                return "redirect:platformlogin.html?callback="+callbackAfterDecode;
+            }
+            return "redirect:customerlogin.html?callback="+callbackAfterDecode;
+        }
         if(type == UserType.SHOP.getValue()){
             return "redirect:shoplogin.html";
         }else if(type == UserType.PLATFORM.getValue()){
