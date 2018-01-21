@@ -93,7 +93,7 @@ public class IndexController {
 
     @RequestMapping(path = {"/login"})
     public String login(
-            @RequestParam("user")String user,
+            @RequestParam("name")String name,
             @RequestParam("password")String password,
             HttpServletRequest request,
             HttpServletResponse response
@@ -102,7 +102,7 @@ public class IndexController {
         Authentication authentication = new Authentication();
         authentication.setEmail("111@11.com");
         authentication.setUserId(1L);
-        authentication.setUserName(user);
+        authentication.setUserName(name);
         authentication.setPhone("17700000000");
         String ticketGrantingTicket = System.currentTimeMillis()+"";
         String serviceTicket = System.currentTimeMillis()+"";
