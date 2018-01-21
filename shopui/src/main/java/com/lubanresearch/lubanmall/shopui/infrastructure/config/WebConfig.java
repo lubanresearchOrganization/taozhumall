@@ -21,7 +21,7 @@ import java.lang.reflect.Type;
 /**
  * Created by hilbertcao on 2017/12/2.
  */
-//@Configuration
+@Configuration
 public class WebConfig {
     @Value("${sso.ssoServerLoginUrl}")
     private String ssoServerLoginUrl;
