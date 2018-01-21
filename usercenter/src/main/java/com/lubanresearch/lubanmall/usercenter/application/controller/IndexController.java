@@ -47,8 +47,8 @@ public class IndexController {
         return Cache.get(tgt);
     }
 
-    @RequestMapping(path = {"/loginPage"},method = RequestMethod.GET)
-    public String loginPage(HttpServletRequest request,@RequestParam(value = "type",defaultValue = "1")Byte type) {
+    @RequestMapping(path = {"/customerLoginPage"},method = RequestMethod.GET)
+    public String customerLoginPage(HttpServletRequest request) {
 
         Cookie[] cookies = request.getCookies();
         if(cookies!=null){
@@ -90,19 +90,110 @@ public class IndexController {
             e.printStackTrace();
         }
         if(StringUtils.isNotBlank(callbackAfterDecode)){
-            if(type == UserType.SHOP.getValue()){
-                return "redirect:shoplogin.html?callback="+callbackAfterDecode;
-            }else if(type == UserType.PLATFORM.getValue()){
-                return "redirect:platformlogin.html?callback="+callbackAfterDecode;
-            }
+
             return "redirect:customerlogin.html?callback="+callbackAfterDecode;
         }
-        if(type == UserType.SHOP.getValue()){
-            return "redirect:shoplogin.html";
-        }else if(type == UserType.PLATFORM.getValue()){
-            return "redirect:platformlogin.html";
-        }
         return "redirect:customerlogin.html";
+
+    }
+
+    @RequestMapping(path = {"/shopLoginPage"},method = RequestMethod.GET)
+    public String shopLoginPage(HttpServletRequest request) {
+
+        Cookie[] cookies = request.getCookies();
+        if(cookies!=null){
+
+            for (Cookie cookie:cookies){
+                if("TGT".equals(cookie.getName())){
+                    String tgt = cookie.getValue();
+                    Authentication authentication = Cache.get(tgt);
+                    if(authentication!=null){
+
+                        String callback = request.getParameter("callback");
+                        if(callback!=null){
+
+                            String serviceTicket = System.currentTimeMillis()+"";
+                            stTGTMapping.put(serviceTicket,tgt);
+                            try {
+                                String callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
+                                if(callbackAfterDecode.contains("?")){
+                                    callbackAfterDecode = callbackAfterDecode+"&st="+serviceTicket;
+                                }else{
+                                    callbackAfterDecode = callbackAfterDecode+"?st="+serviceTicket;
+                                }
+                                return "redirect:"+callbackAfterDecode;
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        String callback = request.getParameter("callback");
+        String callbackAfterDecode = null;
+        try {
+            callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        if(StringUtils.isNotBlank(callbackAfterDecode)){
+
+            return "redirect:shoplogin.html?callback="+callbackAfterDecode;
+        }
+        return "redirect:shoplogin.html";
+
+    }
+
+    @RequestMapping(path = {"/platformLoginPage"},method = RequestMethod.GET)
+    public String platformLoginPage(HttpServletRequest request) {
+
+        Cookie[] cookies = request.getCookies();
+        if(cookies!=null){
+
+            for (Cookie cookie:cookies){
+                if("TGT".equals(cookie.getName())){
+                    String tgt = cookie.getValue();
+                    Authentication authentication = Cache.get(tgt);
+                    if(authentication!=null){
+
+                        String callback = request.getParameter("callback");
+                        if(callback!=null){
+
+                            String serviceTicket = System.currentTimeMillis()+"";
+                            stTGTMapping.put(serviceTicket,tgt);
+                            try {
+                                String callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
+                                if(callbackAfterDecode.contains("?")){
+                                    callbackAfterDecode = callbackAfterDecode+"&st="+serviceTicket;
+                                }else{
+                                    callbackAfterDecode = callbackAfterDecode+"?st="+serviceTicket;
+                                }
+                                return "redirect:"+callbackAfterDecode;
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        String callback = request.getParameter("callback");
+        String callbackAfterDecode = null;
+        try {
+            callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        if(StringUtils.isNotBlank(callbackAfterDecode)){
+
+            return "redirect:platformlogin.html?callback="+callbackAfterDecode;
+        }
+        return "redirect:platformlogin.html";
 
     }
 
