@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/1/22.
  */
-@FeignClient(name = "categoryService")
+@FeignClient(name = "catagoryservice")
 public interface CategoryService {
 
 
