@@ -247,6 +247,11 @@ public class IndexController {
                 e.printStackTrace();
             }
         }
+
+        //默认跳转到refer
+        if(StringUtils.isNotBlank(referer)){
+            return "redirect:"+referer;
+        }
         return "afterLogin";
     }
 
