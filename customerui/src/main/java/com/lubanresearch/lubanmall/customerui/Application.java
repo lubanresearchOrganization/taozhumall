@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * @author hilbert.cao
  */
-//@EnableDiscoveryClient
-//@EnableFeignClients
+@EnableDiscoveryClient
+@EnableFeignClients
 @SpringBootApplication
 @ComponentScan(basePackages={"com.lubanresearch.lubanmall.customerui"})
 public class Application {

@@ -37,14 +37,15 @@ public class QueryController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public List<Category> getCategorysByParentId(@RequestParam(value = "parentId") Long parentId) {
+    public List<Category> getCategorys(@RequestParam(value = "parentId",required = false) Long parentId) {
 
 
+        CategoryQueryCondition.Criteria criteria = new CategoryQueryCondition().createCriteria();
+        if(parentId!=null){
+            criteria.andParentIdEqualTo(parentId);
+        }
         return categoryMapper.selectByExample(
-                new CategoryQueryCondition()
-                        .createCriteria()
-                        .andParentIdEqualTo(parentId)
-                        .example()
+                criteria.example()
         );
 
     }

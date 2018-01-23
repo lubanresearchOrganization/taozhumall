@@ -17,6 +17,9 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <script src="js/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
+    <script src="js/app/config.js"></script>
+    <script src="js/app/converter.js"></script>
+    <script src="js/app/index.js"></script>
     <![endif]-->
     <title>首页</title>
 </head>
@@ -106,49 +109,6 @@
         </div>
     </div>
 </div>
-<script>
-    var tree = [
-  {
-    text: "<a href='./productlist.html'>手机／数码／电脑办公</a>",
-    nodes: [
-      {
-        text: "<a href='./productlist.html'>热门手机</a>",
-        nodes: [
-          {
-            text: "<a href='./productlist.html'>iphone</a>",
-
-          },
-          {
-            text: "<a href='./productlist.html'>华为</a>"
-          }
-        ]
-      },
-      {
-        text: "<a href='./productlist.html'>电脑整机</a>"
-      }
-    ]
-  },
-  {
-    text: "<a href='./productlist.html'>男装</a>"
-  },
-  {
-    text: "<a href='./productlist.html'>女装</a>"
-  },
-  {
-    text: "<a href='./productlist.html'>医药保健</a>"
-  },
-  {
-    text: "<a href='./productlist.html'>图书音像</a>"
-  }
-];
-
-$('#catagoryTree').treeview(
-{
-data:tree,
-levels:3
-});
-
-</script>
 </body>
 
 </html>
