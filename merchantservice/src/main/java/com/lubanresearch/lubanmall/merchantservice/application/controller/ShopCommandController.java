@@ -24,7 +24,6 @@ public class ShopCommandController {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public Shop addShop(@RequestBody ShopDTO dto){
-
         return commandGateway.sendAndWait(new AddShopCommand(dto.getName(),dto.getAccountId(),dto.getImgUrl(),dto.getDiscription()));
     }
 

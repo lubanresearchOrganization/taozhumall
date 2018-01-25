@@ -2,7 +2,6 @@ package com.lubanresearch.lubanmall.userservice.application.controller;
 
 import com.lubanmall.userserviceapi.bean.UserDTO;
 import com.lubanmall.userserviceapi.command.ChangepasswordCommandDTO;
-import com.lubanresearch.lubanmall.common.bean.Response;
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.domain.command.AddUserCommand;
 import com.lubanresearch.lubanmall.userservice.domain.command.ChangepasswordCommand;
@@ -25,6 +24,7 @@ public class CommandController {
     @ResponseBody
     public User addUser(@RequestBody UserDTO user){
 
+        String name = user.getName();
         return commandGateway.sendAndWait(new AddUserCommand(user.getName(),user.getPassword(),user.getMobile(),user.getType()));
     }
 

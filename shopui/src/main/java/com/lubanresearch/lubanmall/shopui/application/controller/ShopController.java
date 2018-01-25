@@ -1,13 +1,9 @@
 package com.lubanresearch.lubanmall.shopui.application.controller;
 
 import com.lubanmall.merchantserviceapi.bean.ShopDTO;
-import com.lubanresearch.lubanmall.common.bean.Response;
 import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author hilber.cao
@@ -22,4 +18,15 @@ public class ShopController {
 
         return null;
     }
+
+    @RequestMapping(value = "/",method = RequestMethod.POST)
+    @ResponseBody
+    public String addShop(@RequestBody ShopDTO dto){
+        dto.getName();
+
+
+        return "success";
+
+    }
+
 }

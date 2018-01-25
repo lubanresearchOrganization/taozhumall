@@ -1,8 +1,6 @@
 package com.lubanmall.merchantserviceapi.bean;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ShopDTO {
     private Long id;
@@ -16,6 +14,26 @@ public class ShopDTO {
     private Date createTime;
 
     private String discription;
+
+    private String accountName;
+    private String mobile;
+
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
 
     public Long getId() {
         return id;
