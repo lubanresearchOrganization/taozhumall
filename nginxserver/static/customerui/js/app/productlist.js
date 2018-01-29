@@ -6,13 +6,28 @@ var productlist = (function ($,urlutil,lajaxComponent){
 
            var category = urlutil.getParameter("category");
            var key = urlutil.getParameter("key");
+           var page = urlutil.getParameter("page");
+                      var size = urlutil.getParameter("size");
+                      if(!page){
+                      page = 0;
+                      }else{
+                      page = page-1;
+                      }
+                      if(!size){
+                      size = 12;
+                      }
             //初始化类目
-                                lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/products/?size=12&page=0",function(result){
+                                lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/products/?page="+page+"&size="+size,function(result){
 
                                 $("#rows").html($("#resultTemplate").tmpl(result.items));
                                   var options = {
                                   currentPage: result.pageIndex+1,
-                                  totalPages: result.pageCount
+                                  totalPages: result.pageCount,
+                                  pageUrl: function(type, page, current){
+
+                                                                 return "./productList.html?page="+page+"&size="+size;
+
+                                                         }
                                 }
 
                               $('#pageBar').bootstrapPaginator(options);
