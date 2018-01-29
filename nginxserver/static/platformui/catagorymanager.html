@@ -53,26 +53,25 @@
                         </ul>
                     </div>
                     <div class="col-md-10">
+                        <div class="row">
+                            <fieldset>
+                                <div class="form-group">
+
+                                    <div class="col-sm-4">
+                                        <a class="btn btn-default" href="./addshop.html">添加类目</a>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+
                         <div>
-                            <ul id="treeDemo" class="ztree"></ul>
+                            <ul id="tree" class="ztree"></ul>
                         </div>
                     </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-   var zTreeObj;
-   var setting = {};
-   var zNodes = [
-   {name:"电器", open:true, children:[
-      {name:"电脑"}, {name:"手机"}]},
-   {name:"衣服", open:true, children:[
-      {name:"男装"}, {name:"女装"}]}
-   ];
-   $(document).ready(function(){
-      zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-   });
 
-</script>
 </body>
 </html>
