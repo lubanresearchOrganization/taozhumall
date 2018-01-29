@@ -1,7 +1,6 @@
 package com.lubanresearch.lubanmall.merchantservice.application.controller;
 
 import com.lubanresearch.lubanmall.common.bean.Pagination;
-import com.lubanresearch.lubanmall.common.bean.Response;
 import com.lubanresearch.lubanmall.merchantservice.domain.Shop;
 import com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db.mapper.ShopMapper;
 import com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db.query.condition.ShopQueryCondition;
