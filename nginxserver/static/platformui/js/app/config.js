@@ -1,4 +1,4 @@
 var config = {
-    shopUrl:"http://localhost:4003",
-    categoryUrl:"http://localhost:5001"
+    shopUrl:"http://platformui.taozhumall.com",
+    categoryUrl:"http://catagoryservice.taozhumall.com"
 }
