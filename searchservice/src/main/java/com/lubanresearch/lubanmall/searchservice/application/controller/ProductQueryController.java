@@ -23,6 +23,7 @@ public class ProductQueryController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public Pagination<Product> findProducts(
+            @RequestParam("categoryId")Long categoryId,
             @RequestParam("key") String  key,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size
