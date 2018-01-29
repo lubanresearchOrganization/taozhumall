@@ -1,6 +1,6 @@
 
 
-var lmap = (function (){
+var lbmap = (function (){
 
        var current = {};
        //键集

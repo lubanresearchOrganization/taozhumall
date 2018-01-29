@@ -46,7 +46,7 @@ var index = (function ($,converter,config,lajaxComponent){
 
 　　　　return index;
 
-　　})(jQuery,converter,config,lajax);
+　　})(jQuery,converter,config,lbajax);
 
 $(document).ready(function(){
   index.init();

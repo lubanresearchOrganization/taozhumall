@@ -1,5 +1,5 @@
 
-var lajax = (function ($){
+var lbajax = (function ($){
 
        var lajax = {};
 　　　　lajax.disableNode = function(node) {
