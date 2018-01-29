@@ -25,7 +25,7 @@ public class CategoryController {
     @ResponseBody
     public List<CategoryDTO> getCategorys(@RequestParam(value = "parentId",required = false) Long parentId) {
 
-        return categoryService.getCategorys(parentId);
+        return categoryService.getCategorys(parentId,false);
 
     }
 

@@ -23,9 +23,9 @@ public class ShopQueryController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public Pagination<Shop> findShops(
-            @RequestParam("key") String  key,
-            @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "size", defaultValue = "10") Integer size
+            @RequestParam(value = "key",required = false) String  key,
+            @RequestParam(value = "page", defaultValue = "0",required = false) Integer page,
+            @RequestParam(value = "size", defaultValue = "10",required = false) Integer size
     ) {
 
         ShopQueryCondition condition = new ShopQueryCondition();

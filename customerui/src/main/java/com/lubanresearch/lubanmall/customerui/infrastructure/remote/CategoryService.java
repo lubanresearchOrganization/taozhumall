@@ -16,5 +16,6 @@ public interface CategoryService {
 
     @RequestMapping(value = "/v/0.1/categorys/", method = RequestMethod.GET)
     @ResponseBody
-    public List<CategoryDTO> getCategorys(@RequestParam(value = "parentId",required = false) Long parentId)throws ServiceException;
+    List<CategoryDTO> getCategorys(@RequestParam(value = "parentId", required = false) Long parentId,
+                                   @RequestParam(value = "recursive", defaultValue = "false") boolean recursive) throws ServiceException;
 }
