@@ -36,7 +36,7 @@ public class ShopQueryController {
             }
         });
         condition.orderBy("create_time desc");
-
+        condition.limit(page*size,size);
         Pagination<Shop> pagination = new Pagination<>();
         pagination.setItems(shopMapper.selectByExample(condition));
         pagination.setTotal((int) shopMapper.countByExample(condition));

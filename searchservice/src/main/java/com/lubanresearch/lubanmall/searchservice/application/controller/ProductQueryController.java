@@ -61,6 +61,7 @@ public class ProductQueryController {
                 }
             });
         }
+        condition.limit(page*size,size);
         condition.orderBy("create_time desc");
 
         Pagination<Product> productPagination = new Pagination<>();
