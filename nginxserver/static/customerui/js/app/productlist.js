@@ -25,7 +25,7 @@ var productlist = (function ($,urlutil,lajaxComponent){
                                   totalPages: result.pageCount,
                                   pageUrl: function(type, page, current){
 
-                                                                 return "./productList.html?page="+page+"&size="+size;
+                                                                 return "./productlist.html?page="+page+"&size="+size;
 
                                                          }
                                 }
