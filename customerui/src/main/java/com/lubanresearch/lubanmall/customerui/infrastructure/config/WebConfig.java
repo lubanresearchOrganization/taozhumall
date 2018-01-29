@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by hilbertcao on 2017/12/2.
  */
-@Configuration
+//@Configuration
 public class WebConfig {
     @Value("${sso.ssoServerLoginUrl}")
     private String ssoServerLoginUrl;
