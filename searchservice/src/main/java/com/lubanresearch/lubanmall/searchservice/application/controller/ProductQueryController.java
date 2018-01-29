@@ -66,6 +66,7 @@ public class ProductQueryController {
         Pagination<Product> productPagination = new Pagination<>();
         productPagination.setItems(productMapper.selectByExample(condition));
         productPagination.setTotal((int) productMapper.countByExample(condition));
+        productPagination.setSize(size);
         productPagination.setPageCount((productPagination.getTotal() % size == 0) ? (productPagination.getTotal() / size) : (productPagination.getTotal() / size + 1));
         productPagination.setPageIndex(page);
         return productPagination;

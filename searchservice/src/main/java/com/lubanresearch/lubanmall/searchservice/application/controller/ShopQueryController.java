@@ -40,6 +40,7 @@ public class ShopQueryController {
         Pagination<Shop> pagination = new Pagination<>();
         pagination.setItems(shopMapper.selectByExample(condition));
         pagination.setTotal((int) shopMapper.countByExample(condition));
+        pagination.setSize(size);
         pagination.setPageCount((pagination.getTotal() % size == 0) ? (pagination.getTotal() / size) : (pagination.getTotal() / size + 1));
         pagination.setPageIndex(page);
         return pagination;
