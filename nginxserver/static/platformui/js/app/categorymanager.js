@@ -30,7 +30,7 @@ var categorymanager = (function ($, converter) {
 
 
         $.get({
-            url: config.categoryUrl + "/v/0.1/categorys/",
+            url: config.baseUrl + "/v/0.1/categorys/",
             type: 'GET',
             dataType: 'JSON',
             success: function (result) {

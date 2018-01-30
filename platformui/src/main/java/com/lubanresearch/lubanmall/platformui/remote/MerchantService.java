@@ -6,9 +6,7 @@ import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Created by hilbertcao on 2018/1/4.
- */
+
 @FeignClient(name = "merchantservice")
 public interface MerchantService {
 
