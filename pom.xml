@@ -15,6 +15,7 @@
         <module>merchantserviceapi</module>
         <module>commentserviceapi</module>
         <module>orderserviceapi</module>
+        <module>cartapi</module>
         <module>baseui</module>
         <module>baseservice</module>
         <module>usercenter</module>
@@ -29,8 +30,7 @@
         <module>searchservice</module>
         <module>register</module>
         <module>ssoclient</module>
-
-
+        <module>cart</module>
     </modules>
 
     <properties>
