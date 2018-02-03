@@ -50,7 +50,7 @@ var shopmanager = (function ($) {
     index.init = function () {
 
         $.get({
-            url: config.shopUrl + "/v/0.1/shops/",
+            url: config.baseUrl + "/v/0.1/shops/",
             type: 'GET',
             dataType: 'JSON',
             success: function (data) {

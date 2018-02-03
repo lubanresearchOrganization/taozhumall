@@ -62,7 +62,7 @@ var addshop = (function ($) {
 
 
             $.ajax({
-                url: config.shopUrl + "/v/0.1/shops/",
+                url: config.baseUrl + "/v/0.1/shops/",
                 type: 'POST',
                 contentType: "application/json",
                 data: addshop.arrayToJson(formArray),
