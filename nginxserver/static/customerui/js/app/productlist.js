@@ -23,6 +23,11 @@ var productlist = (function ($,urlutil,lajaxComponent){
                                   var options = {
                                   currentPage: result.pageIndex+1,
                                   totalPages: result.pageCount,
+                                  bootstrapMajorVersion: 3,
+                                  itemContainerClass: function (type, page, current) {
+                                                  return (page === current) ? "page-item active" : "page-item";
+                                              },
+                                  itemContentClass:"page-link",
                                   pageUrl: function(type, page, current){
 
                                                                  return "./productlist.html?page="+page+"&size="+size;
