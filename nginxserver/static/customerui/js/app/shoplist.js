@@ -1,9 +1,10 @@
 
-var shoplist = (function ($,urlutil,lajaxComponent){
+var shoplist = (function ($,urlutil,lajaxComponent,searchbar){
 
        var shoplist = {};
 　　　　shoplist.init = function () {
 
+           searchbar.init();
            var key = urlutil.getParameter("key");
            var page = urlutil.getParameter("page");
            var size = urlutil.getParameter("size");
@@ -42,7 +43,7 @@ var shoplist = (function ($,urlutil,lajaxComponent){
 
 　　　　return shoplist;
 
-　　})(jQuery,urlutil,lbajax);
+　　})(jQuery,urlutil,lbajax,searchbar);
 
 $(document).ready(function(){
   shoplist.init();

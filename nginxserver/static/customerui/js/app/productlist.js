@@ -1,9 +1,10 @@
 
-var productlist = (function ($,urlutil,lajaxComponent){
+var productlist = (function ($,urlutil,lajaxComponent,searchbar){
 
        var productlist = {};
 　　　　productlist.init = function () {
 
+           searchbar.init();
            var category = urlutil.getParameter("category");
            var key = urlutil.getParameter("key");
            var page = urlutil.getParameter("page");
@@ -41,7 +42,7 @@ var productlist = (function ($,urlutil,lajaxComponent){
 
 　　　　return productlist;
 
-　　})(jQuery,urlutil,lbajax);
+　　})(jQuery,urlutil,lbajax,searchbar);
 
 $(document).ready(function(){
   productlist.init();

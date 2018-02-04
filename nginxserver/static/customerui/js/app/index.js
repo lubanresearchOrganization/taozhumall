@@ -1,25 +1,9 @@
-var index = (function ($,converter,config,lajaxComponent){
+var index = (function ($,converter,config,lajaxComponent,searchbar){
        var index = {};
 　　　　index.init = function () {
 　　　　　　
 
-          //选择店铺和商品跳到不同的页面
-          $("#searchBtn").click(function(){
-
-              var type = $("#typeInput").val();
-              var key = $("#keyInput").val();
-              if(key==''){
-              $("#keyInput").focus();
-              }else{
-               if(1==type){
-                            window.location.href = "./productlist.html?key="+key;
-                            }else if(2==type){
-                            window.location.href = "./shoplist.html?key="+key;
-                            }
-              }
-
-
-          });
+          searchbar.init();
           //初始化类目
           lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/categorys/",function(result){
             var tree = converter.listToTree(result,{
@@ -46,7 +30,7 @@ var index = (function ($,converter,config,lajaxComponent){
 
 　　　　return index;
 
-　　})(jQuery,converter,config,lbajax);
+　　})(jQuery,converter,config,lbajax,searchbar);
 
 $(document).ready(function(){
   index.init();
