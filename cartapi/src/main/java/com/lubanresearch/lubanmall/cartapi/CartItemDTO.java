@@ -1,20 +1,13 @@
-package com.lubanresearch.lubanmall.cart.domain;
+package com.lubanresearch.lubanmall.cartapi;
 
-import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-@Entity
-@Table(name = "lb_cart_item")
-public class CartItem  extends AbstractAnnotatedAggregateRoot<Long> {
+/**
+ * Created by hilbertcao on 2018/2/4.
+ */
+public class CartItemDTO {
 
-    @Id
     private Long id;
 
     private Long customerId;
@@ -66,7 +59,6 @@ public class CartItem  extends AbstractAnnotatedAggregateRoot<Long> {
     public void setProductNum(Integer productNum) {
         this.productNum = productNum;
     }
-
 
     public Long getCustomerId() {
         return customerId;

@@ -1,6 +1,5 @@
-package com.lubanresearch.lubanmall.shopui.application.controller;
+package com.lubanresearch.lubanmall.customerui.application.controller;
 
-import com.lubanmall.orderserviceapi.bean.ChangeOrderTotalDTO;
 import com.lubanmall.orderserviceapi.bean.OrderDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
 import org.springframework.stereotype.Controller;
@@ -10,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
  * Created by hilbertcao on 2018/2/4.
  */
 @Controller
-@RequestMapping("/v/0.1/orders")
+@RequestMapping("/v/0.1")
 public class OrderController {
 
 
-    @RequestMapping("/")
+    @RequestMapping("/orders/")
     public @ResponseBody
     Pagination<OrderDTO> getOrders(
             @RequestParam("shopId") Long shopId,
@@ -34,7 +33,7 @@ public class OrderController {
         return null;
     }
 
-    @RequestMapping(value = "/{orderId}/commands/deliver", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders/{orderId}/commands/confirmReceive", method = RequestMethod.POST)
     @ResponseBody
     public void confirmReceive() {
 
@@ -43,9 +42,25 @@ public class OrderController {
     }
 
 
-    @RequestMapping(value = "/{orderId}/commands/changeTotal", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders/{orderId}/commands/pay", method = RequestMethod.POST)
     @ResponseBody
-    public void changeTotal(@RequestBody ChangeOrderTotalDTO changeOrderTotalDTO) {
+    public void pay() {
+
+
+
+    }
+
+    @RequestMapping(value = "/orders/{orderId}/commands/cancel", method = RequestMethod.POST)
+    @ResponseBody
+    public void cancel() {
+
+
+
+    }
+
+    @RequestMapping(value = "/orders/{orderId}/commands/deliver", method = RequestMethod.POST)
+    @ResponseBody
+    public void deliver() {
 
 
 

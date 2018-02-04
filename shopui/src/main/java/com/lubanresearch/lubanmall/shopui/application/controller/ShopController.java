@@ -29,4 +29,17 @@ public class ShopController {
 
     }
 
+    @RequestMapping(value = "/{id}",method = RequestMethod.PATCH)
+    @ResponseBody
+    public ShopDTO updateShop(@PathVariable("id") Long id,@RequestBody ShopDTO dto){
+
+        return null;
+    }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @ResponseBody
+    public void removeShop(@PathVariable("id") Long id){
+
+
+    }
 }

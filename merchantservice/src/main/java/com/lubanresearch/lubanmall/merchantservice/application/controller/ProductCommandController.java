@@ -39,7 +39,7 @@ public class ProductCommandController {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PATCH)
     @ResponseBody
-    public Response<Product> updateProduct(@PathVariable("id") Long id,@RequestBody ProductDTO dto){
+    public Product updateProduct(@PathVariable("id") Long id,@RequestBody ProductDTO dto){
 
 
 

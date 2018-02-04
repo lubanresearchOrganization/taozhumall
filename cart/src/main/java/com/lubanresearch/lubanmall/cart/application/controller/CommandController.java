@@ -1,28 +1,18 @@
-package com.lubanresearch.lubanmall.customerui.application.controller;
+package com.lubanresearch.lubanmall.cart.application.controller;
 
 import com.lubanresearch.lubanmall.cartapi.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by hilbertcao on 2018/2/3.
+ * Created by hilbertcao on 2018/2/4.
  */
 @Controller
-@RequestMapping("/v/0.1/carts/{customerId}")
-public class CartController {
+@RequestMapping("/v/0.1/carts／{customerId}")
+public class CommandController {
 
-    @RequestMapping("/")
-    public @ResponseBody
-    CartDTO getCustomerCart(@PathVariable("customerId") Long customerId){
-
-        return null;
-    }
-
-    @RequestMapping("／toBeConfirmed")
-    public @ResponseBody CartDTO getToBeConfirmedCustomerCart(@PathVariable("customerId") Long customerId){
-
-        return null;
-    }
 
     @RequestMapping(value="/commands/addCartItem",method = RequestMethod.POST)
     public void addCartItem(@RequestBody AddCartItemDTO addCartItemDTO){

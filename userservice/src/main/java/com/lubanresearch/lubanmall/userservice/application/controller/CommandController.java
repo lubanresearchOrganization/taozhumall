@@ -28,6 +28,12 @@ public class CommandController {
         return commandGateway.sendAndWait(new AddUserCommand(user.getName(),user.getPassword(),user.getMobile(),user.getType()));
     }
 
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    @ResponseBody
+    public void updateUser(@RequestBody UserDTO user){
+
+    }
+
     @RequestMapping(value = "/{id}/commands/changePassword",method = RequestMethod.POST)
     @ResponseBody
     public User changePassword(@PathVariable("id")Long id,@RequestBody ChangepasswordCommandDTO command){

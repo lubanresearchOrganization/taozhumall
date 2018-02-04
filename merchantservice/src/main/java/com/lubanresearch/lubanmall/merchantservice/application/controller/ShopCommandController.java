@@ -30,7 +30,7 @@ public class ShopCommandController {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PATCH)
     @ResponseBody
-    public Response<Shop> updateShop(@PathVariable("id") Long id,@RequestBody ShopDTO dto){
+    public Shop updateShop(@PathVariable("id") Long id,@RequestBody ShopDTO dto){
 
         return commandGateway.sendAndWait(new UpdateShopCommand(dto.getId(),dto.getName(),dto.getImgUrl(),dto.getDiscription()));
     }

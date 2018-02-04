@@ -16,7 +16,6 @@
 
 package com.lubanresearch.lubanmall.cart.infrastructure.config;
 
-import com.lubanresearch.lubanmall.cart.domain.Cart;
 import com.lubanresearch.lubanmall.cart.domain.CartItem;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;
@@ -95,14 +94,7 @@ public class AxonConfig {
 
 
 	@Bean
-	public Repository<Cart> cartRepository(){
-		GenericJpaRepository<Cart> repository =  new GenericJpaRepository<Cart>(entityManagerProvider(),Cart.class);
-		return repository;
-	}
-
-
-	@Bean
-	public Repository<CartItem> orderItemRepository(){
+	public Repository<CartItem> cartItemRepository(){
 		GenericJpaRepository<CartItem> repository =  new GenericJpaRepository<CartItem>(entityManagerProvider(),CartItem.class);
 		return repository;
 	}
@@ -123,10 +115,10 @@ public class AxonConfig {
 	@Bean
 	public AggregateAnnotationCommandHandlerFactoryBean aggregateAnnotationCommandHandlerFactoryBean(ApplicationContext applicationContext){
 		AggregateAnnotationCommandHandlerFactoryBean factoryBean = new AggregateAnnotationCommandHandlerFactoryBean();
-		factoryBean.setAggregateType(Cart.class);
+		factoryBean.setAggregateType(CartItem.class);
 		factoryBean.setApplicationContext(applicationContext);
 		factoryBean.setCommandBus(commandBus());
-		factoryBean.setRepository(cartRepository());
+		factoryBean.setRepository(cartItemRepository());
 		try {
 			factoryBean.afterPropertiesSet();
 		} catch (Exception e) {

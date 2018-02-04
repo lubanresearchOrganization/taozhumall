@@ -64,6 +64,5 @@
         </javaClientGenerator>
 
         <table tableName="lb_cart_item" domainObjectName="CartItemEntity" />
-        <table tableName="lb_cart" domainObjectName="CartEntity" />
     </context>
 </generatorConfiguration>
