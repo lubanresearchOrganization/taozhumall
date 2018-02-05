@@ -1,19 +1,14 @@
-var categorymanager = (function ($) {
+var categorymanager = (function ($, lajaxComponent,formComponent) {
 
     var categorymanager = {};
     categorymanager.init = function () {
 
-
-        $.get({
-            url: config.baseUrl + "/v/0.1/categorys/?parentId=0",
-            type: 'GET',
-            dataType: 'JSON',
-            success: function (result) {
+        lajaxComponent.getNoParamReturnJson(config.baseUrl + "/v/0.1/categorys/?parentId=0", function (result) {
 
 
-                categorymanager.addCategoryList(result);
+            console.log(result);
 
-            }
+            categorymanager.addCategoryList(result);
         });
 
 
@@ -31,17 +26,14 @@ var categorymanager = (function ($) {
             var formArray = $("#shopform").serializeArray();
 
 
-            $.ajax({
-                url: config.baseUrl + "/v/0.1/categorys/",
-                type: 'POST',
-                contentType: "application/json",
-                data: categorymanager.arrayToJson(formArray),
-                success: function (jsonResult) {
-                    $(window).attr('location', 'catagorymanager.html');
-                }
+
+            lajaxComponent.postJsonReturnJson(config.baseUrl + "/v/0.1/categorys/", formComponent.formtoarray(formArray),function (result) {
+
+                $(window).attr('location', 'catagorymanager.html');
 
 
             });
+
         });
 
     };
@@ -68,27 +60,10 @@ var categorymanager = (function ($) {
     }
 
 
-    categorymanager.arrayToJson = function (formArray) {
-
-        var dataArray = {};
-        $.each(formArray, function () {
-            if (dataArray[this.name]) {
-                if (!dataArray[this.name].push) {
-                    dataArray[this.name] = [dataArray[this.name]];
-                }
-                dataArray[this.name].push(this.value || '');
-            } else {
-                dataArray[this.name] = this.value || '';
-            }
-        });
-        return JSON.stringify(dataArray);
-
-    }
-
 
     return categorymanager;
 
-})(jQuery, config);
+})(jQuery, lbajax,formutil);
 
 
 $(document).ready(function () {

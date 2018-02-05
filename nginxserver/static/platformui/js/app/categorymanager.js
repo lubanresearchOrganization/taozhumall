@@ -1,4 +1,4 @@
-var categorymanager = (function ($, converter) {
+var categorymanager = (function ($, lajaxComponent) {
 
     var categorymanager = {};
     categorymanager.init = function () {
@@ -29,19 +29,14 @@ var categorymanager = (function ($, converter) {
         var zNodes;
 
 
-        $.get({
-            url: config.baseUrl + "/v/0.1/categorys/",
-            type: 'GET',
-            dataType: 'JSON',
-            success: function (result) {
 
+        lajaxComponent.getNoParamReturnJson(config.baseUrl + "/v/0.1/categorys/",function (result) {
 
+            zNodes = categorymanager.addParentFlagToTreeData(result);
 
-                zNodes = categorymanager.addParentFlagToTreeData(result);
-
-                zTreeObj = $.fn.zTree.init($("#tree"), setting, zNodes);
-            }
+            zTreeObj = $.fn.zTree.init($("#tree"), setting, zNodes);
         });
+
 
     };
 
@@ -73,7 +68,7 @@ var categorymanager = (function ($, converter) {
 
     return categorymanager;
 
-})(jQuery, converter, config);
+})(jQuery, lbajax, config);
 
 
 $(document).ready(function () {
