@@ -1,23 +1,6 @@
-var addshop = (function ($) {
+var addshop = (function ($, lajaxComponent, formComponent) {
 
     var mod = {};
-
-    mod.arrayToJson = function (formArray) {
-
-        var dataArray = {};
-        $.each(formArray, function () {
-            if (dataArray[this.name]) {
-                if (!dataArray[this.name].push) {
-                    dataArray[this.name] = [dataArray[this.name]];
-                }
-                dataArray[this.name].push(this.value || '');
-            } else {
-                dataArray[this.name] = this.value || '';
-            }
-        });
-        return JSON.stringify(dataArray);
-
-    }
 
 
     mod.init = function () {
@@ -40,7 +23,7 @@ var addshop = (function ($) {
             }
 
 
-            if($("#accountName").val() == ''){
+            if ($("#accountName").val() == '') {
 
                 alert("请输入账号名称");
 
@@ -48,7 +31,7 @@ var addshop = (function ($) {
 
             }
 
-            if($("#accountPhone").val() == ''){
+            if ($("#accountPhone").val() == '') {
 
                 alert("请输入手机号码");
 
@@ -57,34 +40,22 @@ var addshop = (function ($) {
             }
 
 
-
             var formArray = $("#shopform").serializeArray();
 
 
-            $.ajax({
-                url: config.baseUrl + "/v/0.1/shops/",
-                type: 'POST',
-                contentType: "application/json",
-                data: addshop.arrayToJson(formArray),
-                success: function (jsonResult) {
-                    $(window).attr('location','shopmanager.html');
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert(XMLHttpRequest.status);
-                    alert(XMLHttpRequest.readyState);
-                    alert(textStatus);
-                }
+            lajaxComponent.postJsonReturnJson(config.baseUrl + "/v/0.1/shops/", formComponent.formtoarray(formArray), function (result) {
+
+                $(window).attr('location', 'shopmanager.html');
 
 
             });
+
         });
     };
 
     return mod;
 
-})(jQuery, config);
-
-
+})(jQuery, lbajax, formutil);
 
 
 $(document).ready(function () {

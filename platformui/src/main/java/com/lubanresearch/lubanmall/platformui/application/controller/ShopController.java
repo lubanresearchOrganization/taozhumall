@@ -39,7 +39,7 @@ public class ShopController {
         dto.setAccountId(user.getId());
         merchantService.addShop(dto);
 
-        return "redirect:index.html";
+        return "{}";
 
     }
 
