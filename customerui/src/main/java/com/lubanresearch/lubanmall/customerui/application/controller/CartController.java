@@ -1,6 +1,8 @@
 package com.lubanresearch.lubanmall.customerui.application.controller;
 
 import com.lubanresearch.lubanmall.cartapi.*;
+import com.lubanresearch.lubanmall.customerui.infrastructure.remote.CartService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,27 +13,32 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v/0.1/carts/{customerId}")
 public class CartController {
 
+    @Autowired
+    private CartService cartService;
+
     @RequestMapping("/")
     public @ResponseBody
     CartDTO getCustomerCart(@PathVariable("customerId") Long customerId){
 
-        return null;
+        return cartService.getCustomerCart(customerId);
     }
 
     @RequestMapping("／toBeConfirmed")
     public @ResponseBody CartDTO getToBeConfirmedCustomerCart(@PathVariable("customerId") Long customerId){
 
-        return null;
+        return cartService.getToBeConfirmedCustomerCart(customerId);
     }
 
     @RequestMapping(value="/commands/addCartItem",method = RequestMethod.POST)
     public void addCartItem(@RequestBody AddCartItemDTO addCartItemDTO){
 
+        cartService.addCartItem(addCartItemDTO);
     }
 
     @RequestMapping(value="/commands/removeCartItem",method = RequestMethod.POST)
     public void removeCartItem(@RequestBody CartItemDTO cartItemDTO){
 
+        cartService.removeCartItem(cartItemDTO);
     }
 
     /**
@@ -42,6 +49,7 @@ public class CartController {
     @RequestMapping(value="/commands/settle",method = RequestMethod.POST)
     public void settle(@RequestBody SettleDTO settleDTO){
 
+        cartService.settle(settleDTO);
     }
 
     /**
@@ -51,6 +59,7 @@ public class CartController {
     @RequestMapping(value="/commands/changeNum",method = RequestMethod.POST)
     public void changeNum(@RequestBody ChangeNumDTO changeNumDTO){
 
+        cartService.changeNum(changeNumDTO);
     }
 
     /**
@@ -59,5 +68,6 @@ public class CartController {
     @RequestMapping(value="/commands/confirm",method = RequestMethod.POST)
     public void confirm(@RequestBody ConfirmDTO confirmDTO){
 
+        cartService.confirm(confirmDTO);
     }
 }

@@ -2,6 +2,8 @@ package com.lubanresearch.lubanmall.customerui.application.controller;
 
 import com.lubanmall.orderserviceapi.bean.OrderDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
+import com.lubanresearch.lubanmall.customerui.infrastructure.remote.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
 
+    @Autowired
+    private OrderService orderService;
+
     @RequestMapping("/orders/")
     public @ResponseBody
     Pagination<OrderDTO> getOrders(
@@ -21,7 +26,7 @@ public class OrderController {
             @RequestParam("status") Long status
     ){
 
-        return null;
+        return orderService.getOrders(shopId, customerId, status);
     }
 
     @RequestMapping("/{orderId}")
@@ -30,14 +35,14 @@ public class OrderController {
             @PathVariable("orderId")Long orderId
     ){
 
-        return null;
+        return orderService.getOrder(orderId);
     }
 
     @RequestMapping(value = "/orders/{orderId}/commands/confirmReceive", method = RequestMethod.POST)
     @ResponseBody
     public void confirmReceive() {
 
-
+        orderService.confirmReceive();
 
     }
 
@@ -46,7 +51,7 @@ public class OrderController {
     @ResponseBody
     public void pay() {
 
-
+        orderService.pay();
 
     }
 
@@ -54,7 +59,7 @@ public class OrderController {
     @ResponseBody
     public void cancel() {
 
-
+        orderService.cancel();
 
     }
 
@@ -62,7 +67,7 @@ public class OrderController {
     @ResponseBody
     public void deliver() {
 
-
+        orderService.deliver();
 
     }
 

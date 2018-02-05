@@ -2,6 +2,7 @@ package com.lubanresearch.lubanmall.customerui.application.controller;
 
 import com.lubanmall.merchantserviceapi.bean.ProductDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
+import com.lubanresearch.lubanmall.customerui.infrastructure.remote.ProductService;
 import com.lubanresearch.lubanmall.customerui.infrastructure.remote.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class ProductController {
     @Autowired
     private SearchService searchService;
 
+    @Autowired
+    private ProductService productService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     Pagination<ProductDTO> findProducts(
@@ -30,13 +34,12 @@ public class ProductController {
         return searchService.findProducts(categoryId,key,recursive,page,size);
     }
 
-    //TO-DO
     @RequestMapping(value = "/{productId}", method = RequestMethod.GET)
     @ResponseBody
     ProductDTO getProduct(
             @PathVariable(value = "productId")Long productId
     ){
 
-        return null;
+        return productService.getProduct(productId);
     }
 }

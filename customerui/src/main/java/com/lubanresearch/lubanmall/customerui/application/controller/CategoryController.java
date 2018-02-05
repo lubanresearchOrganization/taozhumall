@@ -2,6 +2,7 @@ package com.lubanresearch.lubanmall.customerui.application.controller;
 
 import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
 import com.lubanresearch.lubanmall.customerui.infrastructure.remote.CategoryService;
+import com.lubanresearch.lubanmall.customerui.infrastructure.remote.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +22,17 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private MerchantService merchantService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public List<CategoryDTO> getCategorys(@RequestParam(value = "parentId",required = false) Long parentId,
                                           @RequestParam(value = "shopId",required = false) Long shopId) {
 
+        if(shopId!=null){
+            return merchantService.getCategorys(parentId,shopId,false);
+        }
         return categoryService.getCategorys(parentId,false);
 
     }

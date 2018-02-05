@@ -3,6 +3,8 @@ package com.lubanresearch.lubanmall.shopui.application.controller;
 import com.lubanmall.orderserviceapi.bean.ChangeOrderTotalDTO;
 import com.lubanmall.orderserviceapi.bean.OrderDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
+import com.lubanresearch.lubanmall.shopui.infrastructure.remote.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
 
+    @Autowired
+    private OrderService orderService;
+
     @RequestMapping("/")
     public @ResponseBody
     Pagination<OrderDTO> getOrders(
@@ -22,7 +27,7 @@ public class OrderController {
             @RequestParam("status") Long status
     ){
 
-        return null;
+        return orderService.getOrders(shopId, customerId, status);
     }
 
     @RequestMapping("/{orderId}")
@@ -31,14 +36,14 @@ public class OrderController {
             @PathVariable("orderId")Long orderId
     ){
 
-        return null;
+        return orderService.getOrder(orderId);
     }
 
     @RequestMapping(value = "/{orderId}/commands/deliver", method = RequestMethod.POST)
     @ResponseBody
     public void confirmReceive() {
 
-
+        orderService.confirmReceive();
 
     }
 
@@ -48,7 +53,7 @@ public class OrderController {
     public void changeTotal(@RequestBody ChangeOrderTotalDTO changeOrderTotalDTO) {
 
 
-
+        orderService.changeTotal(changeOrderTotalDTO);
     }
 
 }

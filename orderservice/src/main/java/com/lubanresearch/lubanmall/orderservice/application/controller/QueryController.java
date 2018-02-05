@@ -23,4 +23,13 @@ public class QueryController {
 
         return null;
     }
+
+
+    @RequestMapping("/orders/{orderId}")
+    public @ResponseBody OrderDTO getOrder(
+            @RequestParam("orderId") Long orderId
+    ){
+
+        return null;
+    }
 }

@@ -18,8 +18,9 @@ public class CategoryQueryController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public List<CategoryDTO> getCategorys(@RequestParam(value = "parentId",required = false) Long parentId,
-                                          @RequestParam(value = "shopId",required = false) Long shopId
-    ) {
+                                          @RequestParam(value = "shopId")Long shopId,
+                                          @RequestParam(value = "recursive", defaultValue = "false") boolean recursive)
+    {
 
         return null;
 
