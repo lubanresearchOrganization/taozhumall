@@ -1,10 +1,11 @@
 package com.lubanresearch.lubanmall.cart.application.controller;
 
+import com.lubanresearch.lubanmall.cart.domain.command.AddCartItemCommand;
 import com.lubanresearch.lubanmall.cartapi.*;
+import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by hilbertcao on 2018/2/4.
@@ -13,14 +14,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/v/0.1/carts／{customerId}")
 public class CommandController {
 
+    @Autowired
+    private CommandGateway commandGateway;
 
     @RequestMapping(value="/commands/addCartItem",method = RequestMethod.POST)
     public void addCartItem(@RequestBody AddCartItemDTO addCartItemDTO){
 
+        AddCartItemCommand cartItemCommand = new AddCartItemCommand();
+        commandGateway.sendAndWait(cartItemCommand);
+
     }
 
-    @RequestMapping(value="/commands/removeCartItem",method = RequestMethod.POST)
-    public void removeCartItem(@RequestBody CartItemDTO cartItemDTO){
+    @RequestMapping(value="/commands/removeCartItem",method = RequestMethod.DELETE)
+    public void removeCartItem(@PathVariable("customerId")Long customerId, @RequestParam("productId")Long productId){
 
     }
 
