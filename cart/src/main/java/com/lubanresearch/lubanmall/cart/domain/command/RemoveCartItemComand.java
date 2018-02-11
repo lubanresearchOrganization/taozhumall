@@ -12,6 +12,11 @@ public class RemoveCartItemComand {
     @NotNull
     private Long productId;
 
+    public RemoveCartItemComand(Long customerId, Long productId) {
+        this.customerId = customerId;
+        this.productId = productId;
+    }
+
     public Long getProductId() {
         return productId;
     }

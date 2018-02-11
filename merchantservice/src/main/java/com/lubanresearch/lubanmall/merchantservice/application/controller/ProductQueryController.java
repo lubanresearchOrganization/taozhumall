@@ -1,14 +1,15 @@
 package com.lubanresearch.lubanmall.merchantservice.application.controller;
 
 import com.lubanresearch.lubanmall.common.bean.Pagination;
-import com.lubanresearch.lubanmall.common.bean.Response;
-import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import com.lubanresearch.lubanmall.merchantservice.domain.Product;
 import com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db.mapper.ProductMapper;
 import com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db.query.condition.ProductQueryCondition;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by hilbertcao on 2017/12/16.
@@ -27,15 +28,15 @@ public class ProductQueryController {
 
 
         return productMapper.selectByPrimaryKey(id);
-//        throw new ServiceException(600,"ssss");
     }
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public Pagination<Product> findProducts(
-            @RequestParam("shopId") Long shopId,
-            @RequestParam("categoryId") Long categoryId,
+            @RequestParam(value = "shopId",required = false) Long shopId,
+            @RequestParam(value = "categoryId",required = false) Long categoryId,
+            @RequestParam(value = "productIds",required = false) List<Long> productIds,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size
     ) {
@@ -51,7 +52,15 @@ public class ProductQueryController {
             public ProductQueryCondition.Criteria add(ProductQueryCondition.Criteria add) {
                 return add.andShopIdEqualTo(shopId);
             }
+        }).andIf(CollectionUtils.isNotEmpty(productIds) , new ProductQueryCondition.Criteria.ICriteriaAdd() {
+            @Override
+            public ProductQueryCondition.Criteria add(ProductQueryCondition.Criteria add) {
+                return add.andIdIn(productIds);
+            }
         });
+        if(page!=0&&size>1){
+            condition.limit(page*size,size);
+        }
         condition.orderBy("create_time desc");
 
         Pagination<Product> productPagination = new Pagination<>();

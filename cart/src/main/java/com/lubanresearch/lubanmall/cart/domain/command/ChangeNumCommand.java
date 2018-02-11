@@ -14,6 +14,12 @@ public class ChangeNumCommand {
     @NotNull
     private Integer num;
 
+    public ChangeNumCommand(Long customerId, Long productId, Integer num) {
+        this.customerId = customerId;
+        this.productId = productId;
+        this.num = num;
+    }
+
     public Long getProductId() {
         return productId;
     }

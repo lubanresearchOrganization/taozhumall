@@ -1,8 +1,10 @@
 package com.lubanresearch.lubanmall.orderservice.application.controller;
 
 
+import com.lubanmall.merchantserviceapi.bean.ProductDTO;
 import com.lubanmall.orderserviceapi.bean.*;
 import com.lubanresearch.lubanmall.orderservice.domain.*;
+import com.lubanresearch.lubanmall.orderservice.infrastructure.remote.MerchantService;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by hilbertcao on 2017/12/19.
@@ -22,40 +27,44 @@ public class CommandController {
     @Autowired
     private CommandGateway commandGateway;
 
+    @Autowired
+    MerchantService merchantService;
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseBody
-    public Long addDeal(@RequestBody DealDTO deal) {
+    public void addDeal(@RequestBody CreateDealDTO createDealDTO) {
 
-        List<OrderDTO> orderDTOList = deal.getOrderList();
 
+        List<ProductDTO> productDTOs = createDealDTO.getItems().stream().map(item->{
+            return merchantService.getProduct(item.getProductId());
+        }).collect(Collectors.toList());
+        Map<Long,OrderItemDTO> orderItemMap= createDealDTO.getItems().stream().collect(Collectors.toMap(OrderItemDTO::getProductId, Function.identity()));
+        Map<Long,List<ProductDTO>> shopProductMap = productDTOs.stream().collect(Collectors.groupingBy(ProductDTO::getShopId));
 
         List<Order> orderList = new ArrayList<>();
+        for(Long shopId:shopProductMap.keySet()){
 
-        for (OrderDTO orderDTO : orderDTOList) {
+            Order order = new Order(
+                    createDealDTO.getCustomerId(),
+                    createDealDTO.getRemarkMap().get(shopId), shopId,
+                    shopProductMap.get(shopId).stream().map(
+                            productDTO ->{
 
-
-            List<OrderItemDTO> orderItemDTOList = orderDTO.getOrderItemList();
-
-            List<OrderItem> orderItemList = new ArrayList<>();
-
-            for (OrderItemDTO orderItemDTO : orderItemDTOList) {
-
-
-                OrderItem orderItem = new OrderItem(orderItemDTO.getProductId(), orderItemDTO.getProductNum());
-
-                orderItemList.add(orderItem);
-
-            }
-
-            Order order = new Order(orderDTO.getCustomerId(), orderDTO.getRemark(), orderDTO.getShopId(), orderItemList);
+                                OrderItem orderItem = new OrderItem();
+                                orderItem.setProductId(productDTO.getId());
+                                orderItem.setUnitPrice(productDTO.getUnitPrice());
+                                orderItem.setProductNum(orderItemMap.get(productDTO.getId()).getProductNum());
+                                return orderItem;
+                            }
+                    ).collect(Collectors.toList())
+            );
             orderList.add(order);
-
         }
 
-        Long id = commandGateway.sendAndWait(
-                new CreateDealCommand(deal.getCustomerId(), orderList));
 
-        return id;
+        commandGateway.sendAndWait(
+                new CreateDealCommand(createDealDTO.getCustomerId(), orderList));
+
     }
 
 
@@ -90,29 +99,6 @@ public class CommandController {
 
         Object id = commandGateway.sendAndWait(new DeteleDealCommand(dealId));
         return "success";
-    }
-
-
-//    @RequestMapping(value = "/order", method = RequestMethod.DELETE)
-//    @ResponseBody
-//    public String deleteOrder(@RequestBody DeleteOrderDTO deleteOrderDTO) {
-//
-//
-//        Object id = commandGateway.sendAndWait(new DeleteOrderCommand(deleteOrderDTO.getId(), deleteOrderDTO.getOrderId()));
-//
-//        return "success";
-//    }
-
-
-    @RequestMapping(value = "/{dealId}/b", method = RequestMethod.GET)
-    @ResponseBody
-    public Object b(@PathVariable("dealId") Long dealId, @RequestParam("total") BigDecimal total) {
-
-
-        Object id = commandGateway.sendAndWait(
-                new UpdateDealTotalCommand(dealId, total));
-
-        return id;
     }
 
 

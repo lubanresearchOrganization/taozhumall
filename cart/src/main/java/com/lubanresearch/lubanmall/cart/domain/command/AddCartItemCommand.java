@@ -16,6 +16,13 @@ public class AddCartItemCommand {
     @NotNull
     private BigDecimal productPrice;
 
+    public AddCartItemCommand(Long customerId, Long productId, Integer num, BigDecimal productPrice) {
+        this.customerId = customerId;
+        this.productId = productId;
+        this.num = num;
+        this.productPrice = productPrice;
+    }
+
     public Long getProductId() {
         return productId;
     }

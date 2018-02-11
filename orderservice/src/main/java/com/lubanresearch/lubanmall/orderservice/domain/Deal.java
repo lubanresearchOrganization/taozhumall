@@ -1,5 +1,6 @@
 package com.lubanresearch.lubanmall.orderservice.domain;
 
+import com.lubanmall.merchantserviceapi.bean.ProductDTO;
 import com.lubanresearch.lubanmall.orderservice.infrastructure.constants.Constants;
 import com.lubanresearch.lubanmall.orderservice.infrastructure.remote.MerchantService;
 import org.axonframework.commandhandling.annotation.CommandHandler;
@@ -56,7 +57,7 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
             List<OrderItem> orderItemList = order.getOrderItemList();
 
             for (OrderItem orderItem : orderItemList) {
-                Product product = merchantService.getProduct(orderItem.getProductId());
+                ProductDTO product = merchantService.getProduct(orderItem.getProductId());
                 orderItem.setUnitPrice(product.getUnitPrice());
                 orderItem.setCreateTime(this.createTime);
                 orderTotalAmount = orderTotalAmount.add(getOrderItemTotalPrice(orderItem));
