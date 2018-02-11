@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by hilbertcao on 2018/2/3.
  */
@@ -18,16 +20,12 @@ public class CartController {
 
     @RequestMapping("/")
     public @ResponseBody
-    CartDTO getCustomerCart(@PathVariable("customerId") Long customerId){
+    CartDTO getCustomerCart(@PathVariable("customerId") Long customerId,
+                            @RequestParam(value = "productIds",required = false) List<Long> productIds){
 
-        return cartService.getCustomerCart(customerId);
+        return cartService.getCustomerCart(customerId,productIds);
     }
 
-    @RequestMapping("／toBeConfirmed")
-    public @ResponseBody CartDTO getToBeConfirmedCustomerCart(@PathVariable("customerId") Long customerId){
-
-        return cartService.getToBeConfirmedCustomerCart(customerId);
-    }
 
     @RequestMapping(value="/commands/addCartItem",method = RequestMethod.POST)
     public void addCartItem(@RequestBody AddCartItemDTO addCartItemDTO){

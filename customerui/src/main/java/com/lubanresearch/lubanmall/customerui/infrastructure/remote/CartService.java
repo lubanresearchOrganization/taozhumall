@@ -5,6 +5,8 @@ import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by hilbertcao on 2018/2/5.
  */
@@ -14,11 +16,9 @@ public interface CartService {
 
     @RequestMapping("/v/0.1/carts/{customerId}/")
     @ResponseBody
-    CartDTO getCustomerCart(@PathVariable("customerId") Long customerId)throws ServiceException;
+    CartDTO getCustomerCart(@PathVariable("customerId") Long customerId,
+                            @RequestParam(value = "productIds",required = false) List<Long> productIds)throws ServiceException;
 
-    @RequestMapping("/v/0.1/carts/{customerId}／toBeConfirmed")
-    @ResponseBody
-    CartDTO getToBeConfirmedCustomerCart(@PathVariable("customerId") Long customerId)throws ServiceException;
 
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/addCartItem",method = RequestMethod.POST)
     void addCartItem(@RequestBody AddCartItemDTO addCartItemDTO)throws ServiceException;
