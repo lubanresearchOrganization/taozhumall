@@ -1,4 +1,6 @@
-package com.lubanresearch.lubanmall.orderservice.domain;
+package com.lubanresearch.lubanmall.orderservice.domain.command;
+
+import com.lubanresearch.lubanmall.orderservice.domain.Order;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package com.lubanresearch.lubanmall.orderservice.domain;
 
 import com.lubanmall.merchantserviceapi.bean.ProductDTO;
+import com.lubanresearch.lubanmall.orderservice.domain.command.*;
 import com.lubanresearch.lubanmall.orderservice.infrastructure.constants.Constants;
 import com.lubanresearch.lubanmall.orderservice.infrastructure.remote.MerchantService;
 import org.axonframework.commandhandling.annotation.CommandHandler;
@@ -67,7 +68,7 @@ public class Deal extends AbstractAnnotatedAggregateRoot<Long> {
 
             order.setTotalAmount(orderTotalAmount);
 
-
+            order.setStatus(OrderStatus.CREATED.getValue());
             mTotalAmount = mTotalAmount.add(orderTotalAmount);
 
         }

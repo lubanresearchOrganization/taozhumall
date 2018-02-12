@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.orderservice.domain;
+package com.lubanresearch.lubanmall.orderservice.domain.command;
 
 import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 

@@ -18,26 +18,26 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
                       size = 12;
                       }
             //初始化类目
-                                lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/products/?page="+page+"&size="+size,function(result){
+                  lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/products/?page="+page+"&size="+size,function(result){
 
-                                $("#rows").html($("#resultTemplate").tmpl(result.items));
-                                  var options = {
+                  $("#rows").html($("#resultTemplate").tmpl(result.items));
+                  var options = {
                                   currentPage: result.pageIndex+1,
                                   totalPages: result.pageCount,
                                   bootstrapMajorVersion: 3,
                                   itemContainerClass: function (type, page, current) {
-                                                  return (page === current) ? "page-item active" : "page-item";
+                                         return (page === current) ? "page-item active" : "page-item";
                                               },
                                   itemContentClass:"page-link",
                                   pageUrl: function(type, page, current){
 
-                                                                 return "./productlist.html?page="+page+"&size="+size;
+                                         return "./productlist.html?page="+page+"&size="+size;
 
-                                                         }
+                                  }
                                 }
 
-                              $('#pageBar').bootstrapPaginator(options);
-                                  });
+                  $('#pageBar').bootstrapPaginator(options);
+                  });
 　　　　};
 
 　　　　return productlist;
