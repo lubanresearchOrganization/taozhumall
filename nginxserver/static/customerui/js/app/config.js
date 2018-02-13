@@ -1,3 +1,3 @@
 var config = {
-baseUrl:""
+baseUrl:"http://localhost:4001"
 }

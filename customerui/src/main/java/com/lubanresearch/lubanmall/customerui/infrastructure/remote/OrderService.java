@@ -9,18 +9,14 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "orderService")
+@FeignClient(name = "orderservice")
 public interface OrderService {
 
 
     @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/confirmReceive", method = RequestMethod.POST)
-    @ResponseBody
-    void confirmReceive() ;
-
+    @ResponseBody void confirmReceive() ;
     @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/pay", method = RequestMethod.POST)
-    @ResponseBody
-    void pay() ;
-
+    @ResponseBody void pay() ;
     @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/cancel", method = RequestMethod.POST)
     @ResponseBody
     void cancel() ;

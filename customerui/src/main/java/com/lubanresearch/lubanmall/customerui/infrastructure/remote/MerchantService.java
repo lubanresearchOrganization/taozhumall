@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "merchantService")
+@FeignClient(name = "merchantservice")
 public interface MerchantService {
 
     @RequestMapping(value = "/v/0.1/categorys/", method = RequestMethod.GET)

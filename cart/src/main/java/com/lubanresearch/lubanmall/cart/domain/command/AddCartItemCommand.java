@@ -13,14 +13,11 @@ public class AddCartItemCommand {
     private Long productId;
     @NotNull
     private Integer num;
-    @NotNull
-    private BigDecimal productPrice;
 
-    public AddCartItemCommand(Long customerId, Long productId, Integer num, BigDecimal productPrice) {
+    public AddCartItemCommand(Long customerId, Long productId, Integer num) {
         this.customerId = customerId;
         this.productId = productId;
         this.num = num;
-        this.productPrice = productPrice;
     }
 
     public Long getProductId() {
@@ -45,13 +42,5 @@ public class AddCartItemCommand {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
-    }
-
-    public BigDecimal getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(BigDecimal productPrice) {
-        this.productPrice = productPrice;
     }
 }

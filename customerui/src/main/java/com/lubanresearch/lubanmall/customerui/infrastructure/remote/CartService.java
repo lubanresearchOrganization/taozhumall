@@ -21,10 +21,10 @@ public interface CartService {
 
 
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/addCartItem",method = RequestMethod.POST)
-    void addCartItem(@RequestBody AddCartItemDTO addCartItemDTO)throws ServiceException;
+    void addCartItem(@PathVariable("customerId") Long customerId,@RequestBody AddCartItemDTO addCartItemDTO)throws ServiceException;
 
-    @RequestMapping(value="/v/0.1/carts/{customerId}/commands/removeCartItem",method = RequestMethod.POST)
-    void removeCartItem(@RequestBody CartItemDTO cartItemDTO)throws ServiceException;
+    @RequestMapping(value="/v/0.1/carts/{customerId}/commands/removeCartItem",method = RequestMethod.DELETE)
+    void removeCartItem(@PathVariable("customerId") Long customerId,@RequestBody CartItemDTO cartItemDTO)throws ServiceException;
 
     /**
      * 结算
@@ -32,17 +32,17 @@ public interface CartService {
      * @param settleDTO
      */
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/settle",method = RequestMethod.POST)
-    void settle(@RequestBody SettleDTO settleDTO)throws ServiceException;
+    void settle(@PathVariable("customerId") Long customerId,@RequestBody SettleDTO settleDTO)throws ServiceException;
 
     /**
      * 修改购物车项的数量
      * @param changeNumDTO
      */
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/changeNum",method = RequestMethod.POST)
-    void changeNum(@RequestBody ChangeNumDTO changeNumDTO)throws ServiceException;
+    void changeNum(@PathVariable("customerId") Long customerId,@RequestBody ChangeNumDTO changeNumDTO)throws ServiceException;
     /**
      * 确认购物车，创建订单，将相关的购物车项状态设置为已确认
      */
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/confirm",method = RequestMethod.POST)
-    void confirm(@RequestBody ConfirmDTO confirmDTO)throws ServiceException;
+    void confirm(@PathVariable("customerId") Long customerId,@RequestBody ConfirmDTO confirmDTO)throws ServiceException;
 }

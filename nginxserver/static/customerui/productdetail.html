@@ -18,6 +18,13 @@
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <script src="js/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
     <![endif]-->
+
+    <script src="js/app/config.js"></script>
+    <script src="js/libs/urlutil.js"></script>
+    <script src="js/jqueryTmpl/jquery.tmpl.js"></script>
+    <script src="js/libs/lbajax.js"></script>
+    <script src="js/app/searchbar.js"></script>
+    <script src="js/app/productdetail.js?v=1"></script>
     <title>商品列表</title>
 </head>
 
@@ -67,26 +74,16 @@
             </ul>
         </nav></div>
         <div class="row">
-            <div class="col-md-6">
-                <img src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp" class="img-thumbnail" width="400" height="400"/>
+            <div class="col-md-6" id="productImage">
             </div>
             <div class="col-md-6">
                 <div class="card p-5 m-1">
-                    <div class="card-body my-3">
-                        <h1><b>商品名</b></h1>
-                        <hr>
-                        <p>累计评价<b>10</b>次</p>
-                        <hr>
-                        <p><b>19.00</b>元</p>
-                        <hr>
-                        <div class="form-group">
-                            <label for="productNumInput">数量:</label>
-                            <input type="number" value="1" min="1" step="1" class="form-control" id="productNumInput">
-                        </div>
+                    <div class="card-body my-3" id="productDetail">
+
                     </div>
                     <div class="card-body">
                         <a href="./confirmdeal.html" class="btn ">直接购买</a>
-                        <a href="#" class="btn ">加入购物车</a>
+                        <a href='javascript:void(0);' id="addCartItemBtn" class="btn">加入购物车</a>
                     </div>
 
                 </div>
@@ -171,6 +168,23 @@
         </div>
     </div>
 </div>
+
+<script id="productImageTemplate" type="text/x-jquery-tmpl">
+    <img src="${imgUrl}" class="img-thumbnail" width="400" height="400"/>
+</script>
+
+<script id="productDetailTemplate" type="text/x-jquery-tmpl">
+                        <h1><b>${name}</b></h1>
+                        <hr>
+                        <p>累计评价<b>1</b>次</p>
+                        <hr>
+                        <p><b>${unitPrice}</b>元</p>
+                        <hr>
+                        <div class="form-group">
+                            <label for="productNumInput">数量:</label>
+                            <input type="number" value="1" min="1" step="1" class="form-control" id="productNumInput">
+                        </div>
+</script>
 </body>
 
 </html>

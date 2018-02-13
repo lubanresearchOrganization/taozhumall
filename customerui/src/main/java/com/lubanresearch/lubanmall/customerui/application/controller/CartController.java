@@ -12,7 +12,7 @@ import java.util.List;
  * Created by hilbertcao on 2018/2/3.
  */
 @Controller
-@RequestMapping("/v/0.1/carts/{customerId}")
+@RequestMapping("/v/0.1/carts")
 public class CartController {
 
     @Autowired
@@ -20,23 +20,22 @@ public class CartController {
 
     @RequestMapping("/")
     public @ResponseBody
-    CartDTO getCustomerCart(@PathVariable("customerId") Long customerId,
-                            @RequestParam(value = "productIds",required = false) List<Long> productIds){
+    CartDTO getCustomerCart(@RequestParam(value = "productIds",required = false) List<Long> productIds){
 
-        return cartService.getCustomerCart(customerId,productIds);
+        return cartService.getCustomerCart(1513709082550L,productIds);
     }
 
 
     @RequestMapping(value="/commands/addCartItem",method = RequestMethod.POST)
     public void addCartItem(@RequestBody AddCartItemDTO addCartItemDTO){
 
-        cartService.addCartItem(addCartItemDTO);
+        cartService.addCartItem(1513709082550L,addCartItemDTO);
     }
 
     @RequestMapping(value="/commands/removeCartItem",method = RequestMethod.POST)
     public void removeCartItem(@RequestBody CartItemDTO cartItemDTO){
 
-        cartService.removeCartItem(cartItemDTO);
+        cartService.removeCartItem(1513709082550L,cartItemDTO);
     }
 
     /**
@@ -47,7 +46,7 @@ public class CartController {
     @RequestMapping(value="/commands/settle",method = RequestMethod.POST)
     public void settle(@RequestBody SettleDTO settleDTO){
 
-        cartService.settle(settleDTO);
+        cartService.settle(1513709082550L,settleDTO);
     }
 
     /**
@@ -57,7 +56,7 @@ public class CartController {
     @RequestMapping(value="/commands/changeNum",method = RequestMethod.POST)
     public void changeNum(@RequestBody ChangeNumDTO changeNumDTO){
 
-        cartService.changeNum(changeNumDTO);
+        cartService.changeNum(1513709082550L,changeNumDTO);
     }
 
     /**
@@ -66,6 +65,6 @@ public class CartController {
     @RequestMapping(value="/commands/confirm",method = RequestMethod.POST)
     public void confirm(@RequestBody ConfirmDTO confirmDTO){
 
-        cartService.confirm(confirmDTO);
+        cartService.confirm(1513709082550L,confirmDTO);
     }
 }

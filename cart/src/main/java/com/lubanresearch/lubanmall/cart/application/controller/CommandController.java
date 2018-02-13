@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * Created by hilbertcao on 2018/2/4.
  */
 @Controller
-@RequestMapping("/v/0.1/carts／{customerId}")
+@RequestMapping("/v/0.1/carts/{customerId}")
 public class CommandController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class CommandController {
 
         commandGateway.sendAndWait(
                 new AddCartItemCommand(customerId, addCartItemDTO.getProductId()
-                        , addCartItemDTO.getNum(), addCartItemDTO.getProductUnitPrice()));
+                        , addCartItemDTO.getNum()));
 
     }
 

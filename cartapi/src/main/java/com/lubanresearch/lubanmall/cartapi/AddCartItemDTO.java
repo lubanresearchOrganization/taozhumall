@@ -9,7 +9,7 @@ public class AddCartItemDTO {
 
     private Long productId;
     private Integer num;
-    private BigDecimal productUnitPrice;
+
 
     public Long getProductId() {
         return productId;
@@ -25,13 +25,5 @@ public class AddCartItemDTO {
 
     public void setNum(Integer num) {
         this.num = num;
-    }
-
-    public BigDecimal getProductUnitPrice() {
-        return productUnitPrice;
-    }
-
-    public void setProductUnitPrice(BigDecimal productUnitPrice) {
-        this.productUnitPrice = productUnitPrice;
     }
 }
