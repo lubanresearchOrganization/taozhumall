@@ -21,7 +21,7 @@ public interface CartService {
 
 
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/addCartItem",method = RequestMethod.POST)
-    void addCartItem(@PathVariable("customerId") Long customerId,@RequestBody AddCartItemDTO addCartItemDTO)throws ServiceException;
+    Long addCartItem(@PathVariable("customerId") Long customerId,@RequestBody AddCartItemDTO addCartItemDTO)throws ServiceException;
 
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/removeCartItem",method = RequestMethod.DELETE)
     void removeCartItem(@PathVariable("customerId") Long customerId,@RequestBody CartItemDTO cartItemDTO)throws ServiceException;

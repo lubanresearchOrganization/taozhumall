@@ -23,12 +23,13 @@ public class CommandController {
     private CommandGateway commandGateway;
 
     @RequestMapping(value = "/commands/addCartItem", method = RequestMethod.POST)
-    public void addCartItem(@PathVariable("customerId") Long customerId, @RequestBody AddCartItemDTO addCartItemDTO) {
+    public @ResponseBody Long addCartItem(@PathVariable("customerId") Long customerId, @RequestBody AddCartItemDTO addCartItemDTO) {
 
 
         commandGateway.sendAndWait(
                 new AddCartItemCommand(customerId, addCartItemDTO.getProductId()
                         , addCartItemDTO.getNum()));
+        return 1L;
 
     }
 

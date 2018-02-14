@@ -18,7 +18,6 @@ public class RemoteErrorDecoder implements feign.codec.ErrorDecoder {
     @Override
     public Exception decode(String methodKey, Response response) {
         try {
-            String result = response.body().toString();
             com.lubanresearch.lubanmall.common.bean.Response respo = new ObjectMapper().readValue(response.body().asReader(), com.lubanresearch.lubanmall.common.bean.Response.class);
             return new ServiceException(respo.getCode(), respo.getMessage());
         } catch (IOException e) {

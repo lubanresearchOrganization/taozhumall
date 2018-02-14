@@ -27,9 +27,9 @@ public class CartController {
 
 
     @RequestMapping(value="/commands/addCartItem",method = RequestMethod.POST)
-    public void addCartItem(@RequestBody AddCartItemDTO addCartItemDTO){
+    public @ResponseBody Long addCartItem(@RequestBody AddCartItemDTO addCartItemDTO){
 
-        cartService.addCartItem(1513709082550L,addCartItemDTO);
+        return cartService.addCartItem(1513709082550L,addCartItemDTO);
     }
 
     @RequestMapping(value="/commands/removeCartItem",method = RequestMethod.POST)

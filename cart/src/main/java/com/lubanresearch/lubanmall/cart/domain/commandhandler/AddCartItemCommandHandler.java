@@ -43,6 +43,7 @@ public class AddCartItemCommandHandler {
             cartItemEntity.setProductPrice(merchantService.getProduct(command.getProductId()).getUnitPrice());
             cartItemEntity.setId(System.nanoTime());
             cartItemEntityMapper.insert(cartItemEntity);
+
         }else{
             CartItemEntity cartItemEntit = cartItemEntityList.get(0);
             cartItemEntit.setProductNum(cartItemEntit.getProductNum()+command.getNum());
