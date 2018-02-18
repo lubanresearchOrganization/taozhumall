@@ -16,7 +16,7 @@ public interface CartService {
 
     @RequestMapping("/v/0.1/carts/{customerId}/")
     @ResponseBody
-    CartDTO getCustomerCart(@PathVariable("customerId") Long customerId,
+    List<CartItemDTO> getCustomerCart(@PathVariable("customerId") Long customerId,
                             @RequestParam(value = "productIds",required = false) List<Long> productIds)throws ServiceException;
 
 

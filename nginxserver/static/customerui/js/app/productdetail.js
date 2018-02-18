@@ -23,6 +23,15 @@ var productdetail = (function (jQuery,urlutil,lajaxComponent){
            }
            );
         });
+        $("#directBuyBtn").click(function(){
+         var items = new Array();
+         items[0] = {
+         "productId":productId,
+         "num":$("#productNumInput").val()
+         };
+         window.location.href = "./confirmdeal.html?items="+JSON.stringify(items)+"&type=directbuy";
+        });
+
      };
 
      return productdetail;

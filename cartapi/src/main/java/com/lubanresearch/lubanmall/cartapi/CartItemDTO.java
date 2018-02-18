@@ -16,7 +16,7 @@ public class CartItemDTO {
 
     private Date createTime;
 
-    private Integer productId;
+    private Long productId;
 
     private Integer productNum;
 
@@ -44,11 +44,11 @@ public class CartItemDTO {
         this.createTime = createTime;
     }
 
-    public Integer getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

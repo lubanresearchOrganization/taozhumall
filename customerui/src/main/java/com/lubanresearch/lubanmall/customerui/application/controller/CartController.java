@@ -20,7 +20,7 @@ public class CartController {
 
     @RequestMapping("/")
     public @ResponseBody
-    CartDTO getCustomerCart(@RequestParam(value = "productIds",required = false) List<Long> productIds){
+    List<CartItemDTO> getCustomerCart(@RequestParam(value = "productIds",required = false) List<Long> productIds){
 
         return cartService.getCustomerCart(1513709082550L,productIds);
     }

@@ -17,6 +17,13 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <![endif]-->
+    <script src="js/app/config.js"></script>
+    <script src="js/libs/urlutil.js"></script>
+    <script src="js/jqueryTmpl/jquery.tmpl.js"></script>
+    <script src="js/libs/lbajax.js"></script>
+    <script src="js/libs/math.js"></script>
+    <script src="js/libs/lbmap.js"></script>
+    <script src="js/app/confirmdeal.js?v=5"></script>
     <title>提交订单</title>
 </head>
 
@@ -35,102 +42,72 @@
 <div class="py-5">
     <div class="container">
 
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <span class="badge badge-info">确认订单信息</span>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header"><a href="./shopproductsearch.html">店铺1</a></div>
-                <div class="card-body">
-                    <div class="row">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品1</span>
-                        <span style="width:80px;" class="contentpadding">50.00</span>
-                        <span style="width:50px;" class="contentpadding">2</span>
-                        <span style="width:100px;" class="contentpadding">100.00</span>
-                    </div>
-                    <div class="row">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品2</span>
-                        <span style="width:80px;" class="contentpadding">60.00</span>
-                        <span style="width:50px;" class="contentpadding">3</span>
-                        <span style="width:100px;" class="contentpadding">180.00</span>
-
-                    </div>
-                    <div class="row">
-                        <label>给商家建议</label>
-                        <textarea></textarea>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="badge badge-info">确认订单信息</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <span style="float:right;">合计:280.00</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header"><a href="./shopproductsearch.html">店铺2</a></div>
-                <div class="card-body">
-                    <div class="row">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品3</span>
-                        <span style="width:80px;" class="contentpadding">50.00</span>
-                        <span style="width:50px;" class="contentpadding">2</span>
-                        <span style="width:100px;" class="contentpadding">100.00</span>
 
-                    </div>
-                    <div class="row">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品4</span>
-                        <span style="width:80px;" class="contentpadding">60.00</span>
-                        <span style="width:50px;" class="contentpadding">3</span>
-                        <span style="width:100px;" class="contentpadding">180.00</span>
+        <div class="row" id="formContent">
 
-                    </div>
-                    <div class="row">
-                        <label>给商家建议</label>
-                        <textarea></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <span style="float:right;">合计:280.00</span>
-                </div>
-            </div>
         </div>
 
-        <div class="col-md-12">
-            <div class="card">
+        <div class="row" id="formCommit">
+
+        </div>
+
+    </div>
+</div>
+
+<script id="formCommitTemplate" type="text/x-jquery-tmpl">
+      <div class="card">
                 <div class="card-footer">
-                    <span>实付款:560.00</span>
+                    <span>实付款:${$data}</span>
                     <a class="btn" href="./cart.html">返回购物车</a>
                     <a class="btn" href="#">提交订单</a>
                 </div>
             </div>
+</script>
+
+
+<script id="shopProductsTemplate" type="text/x-jquery-tmpl">
+       <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><a href="./shopproductsearch.html?id=${shop.id}">${shop.name}</a></div>
+                <div class="card-body">
+                {{each products}}
+                    <div class="row">
+                        <a href="./productdetail.html?id=${$value.id}"><img
+                                src="${$value.imgUrl}"
+                                class="img-thumbnail" width="80" height="80"/></a>
+                        <span style="width:150px;" class="contentpadding">${$value.name}</span>
+                        <span style="width:80px;" class="contentpadding">${$value.unitPrice}</span>
+                        <span style="width:50px;" class="contentpadding">${$value.num}</span>
+                        <span style="width:100px;" class="contentpadding">${$value.total}</span>
+                    </div>
+                {{/each}}
+                    <div class="row">
+                        <label>给商家建议</label>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <span style="float:right;">合计:${shop.total}</span>
+                </div>
+            </div>
+        </div>
+</script>
+
+
 </body>
 
 </html>

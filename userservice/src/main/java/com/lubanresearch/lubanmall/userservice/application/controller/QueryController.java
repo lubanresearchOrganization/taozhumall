@@ -5,6 +5,7 @@ import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.mapper.UserMapper;
 import com.lubanresearch.lubanmall.userservice.infrastructure.persistence.db.query.condition.UserQueryCondition;
 import com.lubanresearch.lubanmall.userservice.infrastructure.util.MD5Util;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,20 @@ public class QueryController {
 
 
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @RequestMapping("/")
+    @ResponseBody
+    public List<User> getUsers(@RequestParam(value = "ids",required = false) List<Long> ids){
+
+        UserQueryCondition condition = new UserQueryCondition();
+        condition.createCriteria().andIf(CollectionUtils.isNotEmpty(ids), new UserQueryCondition.Criteria.ICriteriaAdd() {
+            @Override
+            public UserQueryCondition.Criteria add(UserQueryCondition.Criteria add) {
+                return add.andIdIn(ids);
+            }
+        });
+        return userMapper.selectByExample(condition);
     }
 
     @RequestMapping("/authentication")

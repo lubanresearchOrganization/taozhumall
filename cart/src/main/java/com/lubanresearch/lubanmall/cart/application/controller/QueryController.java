@@ -37,6 +37,35 @@ public class QueryController {
     private MerchantService merchantService;
 
     @RequestMapping("/")
+    public @ResponseBody List<CartItemDTO> getCustomerCart(@PathVariable("customerId") Long customerId,
+                                                 @RequestParam(value = "productIds",required = false) List<Long> productIds
+    ){
+
+        CartItemEntityQueryCondition queryCondition = new CartItemEntityQueryCondition();
+        queryCondition.createCriteria().andCustomerIdEqualTo(customerId).andIf(CollectionUtils.isNotEmpty(productIds),
+                new CartItemEntityQueryCondition.Criteria.ICriteriaAdd() {
+                    @Override
+                    public CartItemEntityQueryCondition.Criteria add(CartItemEntityQueryCondition.Criteria add) {
+                        return add.andProductIdIn(productIds);
+                    }
+                });
+        List<CartItemEntity> cartItems = cartItemEntityMapper.selectByExample(queryCondition);
+        Map<Long,CartItemEntity> cartItemEntityMap = cartItems.stream().collect(Collectors.toMap(
+                CartItemEntity::getProductId, Function.identity()
+        ));
+        return cartItems.stream().map(item -> {
+            CartItemDTO cartItem = new CartItemDTO();
+            CartItemEntity cartItemEntity =  cartItemEntityMap.get(item.getProductId());
+            cartItem.setId(cartItemEntity.getId());
+            cartItem.setProductId(cartItemEntity.getProductId());
+            cartItem.setCustomerId(cartItemEntity.getCustomerId());
+            cartItem.setProductNum(cartItemEntity.getProductNum());
+            cartItem.setCreateTime(cartItemEntity.getCreateTime());
+            cartItem.setProductPrice(cartItemEntity.getProductPrice());
+            return cartItem;
+        }).collect(Collectors.toList());
+    }
+    /*@RequestMapping("/")
     public @ResponseBody CartDTO getCustomerCart(@PathVariable("customerId") Long customerId,
                                                  @RequestParam(value = "productIds",required = false) List<Long> productIds
                                                  ){
@@ -84,7 +113,7 @@ public class QueryController {
 
         cartDTO.setAmount(cartDTO.getGroups().stream().map(GroupDTO::getAmount).reduce((sum,itemTotal)->{return sum.add(itemTotal);}).get());
         return cartDTO;
-    }
+    }*/
 
 
 }
