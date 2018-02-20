@@ -31,6 +31,7 @@ public class QueryContorller {
 
         CommentQueryCondition condition = new CommentQueryCondition();
         condition.createCriteria().andProductIdEqualTo(productId);
+        condition.limit(page*size,size);
         condition.orderBy("create_time desc");
 
         Pagination<Comment> pagination = new Pagination<>();

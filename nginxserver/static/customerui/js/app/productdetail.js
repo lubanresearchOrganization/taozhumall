@@ -30,14 +30,13 @@ var productdetail = (function (jQuery,urlutil,lajaxComponent){
            "size":size,
            "productId":productId
            };
-            var condition = {};
             lajaxComponent.getTextReturnJson(
                               config.baseUrl+"/v/0.1/comments/",condition,function(result){
                               productDetail.commentsTotal = result.total;
                               $("#productDetail").html($("#productDetailTemplate").tmpl(productDetail));
                               $("#rows").html($("#rowTemplate").tmpl(result.items));
                               var options = {
-                                              currentPage: result.pageIndex+1,
+                                              currentPage:(result.pageCount==0)?0:(result.pageIndex+1),
                                               totalPages: result.pageCount,
                                               bootstrapMajorVersion: 3,
                                               itemContainerClass: function (type, page, current) {
@@ -46,7 +45,7 @@ var productdetail = (function (jQuery,urlutil,lajaxComponent){
                                               itemContentClass:"page-link",
                                               pageUrl: function(type, page, current){
 
-                                                     return "./productlist.html?page="+page+"&size="+size;
+                                                     return "./productdetail.html?id="+productId+"&page="+page+"&size="+size;
 
                                               }
                                             }

@@ -35,7 +35,7 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
 
                   $("#rows").html($("#resultTemplate").tmpl(result.items));
                   var options = {
-                                  currentPage: result.pageIndex+1,
+                                  currentPage:(result.pageCount==0)?0:(result.pageIndex+1),
                                   totalPages: result.pageCount,
                                   bootstrapMajorVersion: 3,
                                   itemContainerClass: function (type, page, current) {
