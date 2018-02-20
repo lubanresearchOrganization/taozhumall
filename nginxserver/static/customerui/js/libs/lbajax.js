@@ -93,7 +93,7 @@ var lbajax = (function ($){
                                                    complete : lajax.complete(node)
                                                });
                                            };
-         lajax.getTextReturnJson = function(url, sf, node) {
+         lajax.getTextReturnJson = function(url,data, sf, node) {
                                                         lajax.disableNode(node);
                                                         $.ajax({
                                                             type : "get",

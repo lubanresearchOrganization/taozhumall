@@ -3,10 +3,12 @@ var productdetail = (function (jQuery,urlutil,lajaxComponent){
      var productdetail = {};
      productdetail.init = function () {
        var productId = urlutil.getParameter("id");
+       var productDetail = {};
         lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/products/"+productId,
         function(result){
 
-
+            result.commentsTotal = productDetail.commentsTotal;
+            productDetail = result;
             $("#productImage").html($("#productImageTemplate").tmpl(result));
             $("#productDetail").html($("#productDetailTemplate").tmpl(result));
         });

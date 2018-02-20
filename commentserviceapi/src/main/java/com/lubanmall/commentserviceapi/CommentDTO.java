@@ -6,7 +6,7 @@ public class CommentDTO {
 
     private Long id;
 
-    private Long orderId;
+    private Long productId;
 
     private String content;
 
@@ -22,12 +22,13 @@ public class CommentDTO {
         this.id = id;
     }
 
-    public Long getOrderId() {
-        return orderId;
+
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getContent() {

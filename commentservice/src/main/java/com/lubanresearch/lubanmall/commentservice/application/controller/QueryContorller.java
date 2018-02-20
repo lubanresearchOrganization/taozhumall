@@ -24,13 +24,13 @@ public class QueryContorller {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public Pagination<Comment> findComments(
-            @RequestParam("orderId") Long orderId,
+            @RequestParam("productId") Long productId,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size
     ) {
 
         CommentQueryCondition condition = new CommentQueryCondition();
-        condition.createCriteria().andOrderIdEqualTo(orderId);
+        condition.createCriteria().andProductIdEqualTo(productId);
         condition.orderBy("create_time desc");
 
         Pagination<Comment> pagination = new Pagination<>();

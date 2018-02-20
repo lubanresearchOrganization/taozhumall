@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class AddCommentCommand {
 
     @NotNull
-    private Long orderId;
+    private Long productId;
 
     @NotBlank
     private String content;
@@ -18,14 +18,14 @@ public class AddCommentCommand {
     @NotNull
     private Byte score;
 
-    public AddCommentCommand(Long orderId, String content, Byte score) {
-        this.orderId = orderId;
+    public AddCommentCommand(Long productId, String content, Byte score) {
+        this.productId = productId;
         this.content = content;
         this.score = score;
     }
 
-    public Long getOrderId() {
-        return orderId;
+    public Long getProductId() {
+        return productId;
     }
 
     public String getContent() {

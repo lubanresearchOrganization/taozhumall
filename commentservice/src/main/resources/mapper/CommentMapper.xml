@@ -3,7 +3,7 @@
 <mapper namespace="com.lubanresearch.lubanmall.commentservice.infrastructure.persistence.db.mapper.CommentMapper">
   <resultMap id="BaseResultMap" type="com.lubanresearch.lubanmall.commentservice.domain.Comment">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="score" jdbcType="TINYINT" property="score" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, order_id, content, score, create_time
+    id, product_id, content, score, create_time
   </sql>
   <select id="selectByExample" parameterType="com.lubanresearch.lubanmall.commentservice.infrastructure.persistence.db.query.condition.CommentQueryCondition" resultMap="BaseResultMap">
     select
@@ -139,9 +139,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lubanresearch.lubanmall.commentservice.domain.Comment">
-    insert into lb_comment (id, order_id, content, 
+    insert into lb_comment (id, product_id, content, 
       score, create_time)
-    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
       #{score,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.lubanresearch.lubanmall.commentservice.domain.Comment">
@@ -152,8 +152,8 @@
           <if test="_parameter.hasSelective('id')">
             id,
           </if>
-          <if test="_parameter.hasSelective('order_id')">
-            order_id,
+          <if test="_parameter.hasSelective('product_id')">
+            product_id,
           </if>
           <if test="_parameter.hasSelective('content')">
             content,
@@ -169,8 +169,8 @@
           <if test="id != null">
             id,
           </if>
-          <if test="orderId != null">
-            order_id,
+          <if test="productId != null">
+            product_id,
           </if>
           <if test="content != null">
             content,
@@ -190,8 +190,8 @@
           <if test="_parameter.hasSelective('id')">
             #{id,jdbcType=BIGINT},
           </if>
-          <if test="_parameter.hasSelective('order_id')">
-            #{orderId,jdbcType=BIGINT},
+          <if test="_parameter.hasSelective('product_id')">
+            #{productId,jdbcType=BIGINT},
           </if>
           <if test="_parameter.hasSelective('content')">
             #{content,jdbcType=VARCHAR},
@@ -207,8 +207,8 @@
           <if test="id != null">
             #{id,jdbcType=BIGINT},
           </if>
-          <if test="orderId != null">
-            #{orderId,jdbcType=BIGINT},
+          <if test="productId != null">
+            #{productId,jdbcType=BIGINT},
           </if>
           <if test="content != null">
             #{content,jdbcType=VARCHAR},
@@ -237,8 +237,8 @@
           <if test="record.hasSelective('id')">
             id = #{record.id,jdbcType=BIGINT},
           </if>
-          <if test="record.hasSelective('order_id')">
-            order_id = #{record.orderId,jdbcType=BIGINT},
+          <if test="record.hasSelective('product_id')">
+            product_id = #{record.productId,jdbcType=BIGINT},
           </if>
           <if test="record.hasSelective('content')">
             content = #{record.content,jdbcType=VARCHAR},
@@ -254,8 +254,8 @@
           <if test="record.id != null">
             id = #{record.id,jdbcType=BIGINT},
           </if>
-          <if test="record.orderId != null">
-            order_id = #{record.orderId,jdbcType=BIGINT},
+          <if test="record.productId != null">
+            product_id = #{record.productId,jdbcType=BIGINT},
           </if>
           <if test="record.content != null">
             content = #{record.content,jdbcType=VARCHAR},
@@ -276,7 +276,7 @@
   <update id="updateByExample" parameterType="map">
     update lb_comment
     set id = #{record.id,jdbcType=BIGINT},
-      order_id = #{record.orderId,jdbcType=BIGINT},
+      product_id = #{record.productId,jdbcType=BIGINT},
       content = #{record.content,jdbcType=VARCHAR},
       score = #{record.score,jdbcType=TINYINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
@@ -289,8 +289,8 @@
     <set>
       <choose>
         <when test="_parameter.hasSelective()">
-          <if test="_parameter.hasSelective('order_id')">
-            order_id = #{orderId,jdbcType=BIGINT},
+          <if test="_parameter.hasSelective('product_id')">
+            product_id = #{productId,jdbcType=BIGINT},
           </if>
           <if test="_parameter.hasSelective('content')">
             content = #{content,jdbcType=VARCHAR},
@@ -303,8 +303,8 @@
           </if>
         </when>
         <otherwise>
-          <if test="orderId != null">
-            order_id = #{orderId,jdbcType=BIGINT},
+          <if test="productId != null">
+            product_id = #{productId,jdbcType=BIGINT},
           </if>
           <if test="content != null">
             content = #{content,jdbcType=VARCHAR},
@@ -322,7 +322,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lubanresearch.lubanmall.commentservice.domain.Comment">
     update lb_comment
-    set order_id = #{orderId,jdbcType=BIGINT},
+    set product_id = #{productId,jdbcType=BIGINT},
       content = #{content,jdbcType=VARCHAR},
       score = #{score,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
@@ -335,13 +335,13 @@
       @project https://github.com/itfsw/mybatis-generator-plugin
     -->
     insert into lb_comment
-    (id, order_id, content, score, create_time)
+    (id, product_id, content, score, create_time)
     values
-    (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+    (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
       #{score,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
     on duplicate key update 
     id = #{id,jdbcType=BIGINT}, 
-    order_id = #{orderId,jdbcType=BIGINT}, 
+    product_id = #{productId,jdbcType=BIGINT}, 
     content = #{content,jdbcType=VARCHAR}, 
     score = #{score,jdbcType=TINYINT}, 
     create_time = #{createTime,jdbcType=TIMESTAMP}
@@ -353,9 +353,9 @@
       @project https://github.com/itfsw/mybatis-generator-plugin
     -->
     insert into lb_comment
-    (id, order_id, content, score, create_time)
+    (id, product_id, content, score, create_time)
     select
-    #{record.id,jdbcType=BIGINT}, #{record.orderId,jdbcType=BIGINT}, #{record.content,jdbcType=VARCHAR}, 
+    #{record.id,jdbcType=BIGINT}, #{record.productId,jdbcType=BIGINT}, #{record.content,jdbcType=VARCHAR}, 
       #{record.score,jdbcType=TINYINT}, #{record.createTime,jdbcType=TIMESTAMP}
     from dual where not exists
     (
@@ -368,7 +368,7 @@
     update lb_comment
     set
     id = #{record.id,jdbcType=BIGINT}, 
-    order_id = #{record.orderId,jdbcType=BIGINT}, 
+    product_id = #{record.productId,jdbcType=BIGINT}, 
     content = #{record.content,jdbcType=VARCHAR}, 
     score = #{record.score,jdbcType=TINYINT}, 
     create_time = #{record.createTime,jdbcType=TIMESTAMP}
@@ -389,8 +389,8 @@
           <if test="_parameter.hasSelective('id')">
             id,
           </if>
-          <if test="_parameter.hasSelective('order_id')">
-            order_id,
+          <if test="_parameter.hasSelective('product_id')">
+            product_id,
           </if>
           <if test="_parameter.hasSelective('content')">
             content,
@@ -406,8 +406,8 @@
           <if test="id != null">
             id,
           </if>
-          <if test="orderId != null">
-            order_id,
+          <if test="productId != null">
+            product_id,
           </if>
           <if test="content != null">
             content,
@@ -428,8 +428,8 @@
           <if test="_parameter.hasSelective('id')">
             #{id,jdbcType=BIGINT},
           </if>
-          <if test="_parameter.hasSelective('order_id')">
-            #{orderId,jdbcType=BIGINT},
+          <if test="_parameter.hasSelective('product_id')">
+            #{productId,jdbcType=BIGINT},
           </if>
           <if test="_parameter.hasSelective('content')">
             #{content,jdbcType=VARCHAR},
@@ -445,8 +445,8 @@
           <if test="id != null">
             #{id,jdbcType=BIGINT},
           </if>
-          <if test="orderId != null">
-            #{orderId,jdbcType=BIGINT},
+          <if test="productId != null">
+            #{productId,jdbcType=BIGINT},
           </if>
           <if test="content != null">
             #{content,jdbcType=VARCHAR},
@@ -467,8 +467,8 @@
           <if test="_parameter.hasSelective('id')">
             id = #{id,jdbcType=BIGINT},
           </if>
-          <if test="_parameter.hasSelective('order_id')">
-            order_id = #{orderId,jdbcType=BIGINT},
+          <if test="_parameter.hasSelective('product_id')">
+            product_id = #{productId,jdbcType=BIGINT},
           </if>
           <if test="_parameter.hasSelective('content')">
             content = #{content,jdbcType=VARCHAR},
@@ -484,8 +484,8 @@
           <if test="id != null">
             id = #{id,jdbcType=BIGINT},
           </if>
-          <if test="orderId != null">
-            order_id = #{orderId,jdbcType=BIGINT},
+          <if test="productId != null">
+            product_id = #{productId,jdbcType=BIGINT},
           </if>
           <if test="content != null">
             content = #{content,jdbcType=VARCHAR},
@@ -513,8 +513,8 @@
           <if test="record.hasSelective('id')">
             id,
           </if>
-          <if test="record.hasSelective('order_id')">
-            order_id,
+          <if test="record.hasSelective('product_id')">
+            product_id,
           </if>
           <if test="record.hasSelective('content')">
             content,
@@ -530,8 +530,8 @@
           <if test="record.id != null">
             id,
           </if>
-          <if test="record.orderId != null">
-            order_id,
+          <if test="record.productId != null">
+            product_id,
           </if>
           <if test="record.content != null">
             content,
@@ -552,8 +552,8 @@
           <if test="record.hasSelective('id')">
             #{record.id,jdbcType=BIGINT},
           </if>
-          <if test="record.hasSelective('order_id')">
-            #{record.orderId,jdbcType=BIGINT},
+          <if test="record.hasSelective('product_id')">
+            #{record.productId,jdbcType=BIGINT},
           </if>
           <if test="record.hasSelective('content')">
             #{record.content,jdbcType=VARCHAR},
@@ -569,8 +569,8 @@
           <if test="record.id != null">
             #{record.id,jdbcType=BIGINT},
           </if>
-          <if test="record.orderId != null">
-            #{record.orderId,jdbcType=BIGINT},
+          <if test="record.productId != null">
+            #{record.productId,jdbcType=BIGINT},
           </if>
           <if test="record.content != null">
             #{record.content,jdbcType=VARCHAR},
@@ -598,8 +598,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.orderId != null">
-        order_id = #{record.orderId,jdbcType=BIGINT},
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=BIGINT},
       </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=VARCHAR},

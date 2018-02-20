@@ -21,7 +21,7 @@ public interface CommentService {
     @RequestMapping(value = "/v/0.1/comments/", method = RequestMethod.GET)
     @ResponseBody
     Pagination<CommentDTO> findComments(
-            @RequestParam("orderId") Long orderId,
+            @RequestParam("productId") Long productId,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size
     )throws ServiceException;

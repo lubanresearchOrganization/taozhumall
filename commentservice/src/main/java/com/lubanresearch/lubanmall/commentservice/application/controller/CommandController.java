@@ -25,7 +25,7 @@ public class CommandController {
     @ResponseBody
     public Comment addComment(@RequestBody CommentDTO dto){
 
-        return commandGateway.sendAndWait(new AddCommentCommand(dto.getOrderId(),dto.getContent(),dto.getScore()));
+        return commandGateway.sendAndWait(new AddCommentCommand(dto.getProductId(),dto.getContent(),dto.getScore()));
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)

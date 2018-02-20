@@ -17,8 +17,21 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
                       if(!size){
                       size = 12;
                       }
+
+
+
+           var condition = {
+           "page":page,
+           "size":size
+           };
+           if(category){
+            condition.categoryId = category;
+           }
+
+
             //初始化类目
-                  lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/products/?page="+page+"&size="+size,function(result){
+                  lajaxComponent.getTextReturnJson(
+                  config.baseUrl+"/v/0.1/products/",condition,function(result){
 
                   $("#rows").html($("#resultTemplate").tmpl(result.items));
                   var options = {
