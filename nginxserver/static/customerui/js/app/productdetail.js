@@ -51,7 +51,9 @@ var productdetail = (function (jQuery,urlutil,lajaxComponent){
                                             }
 
                               $('#pageBar').bootstrapPaginator(options);
-                              });
+                              }
+
+                             ,null);
         });
         $("#addCartItemBtn").click(function(){
 
