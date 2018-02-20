@@ -27,11 +27,11 @@ public class CommentController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public Pagination<CommentDTO> findComments(
-            @RequestParam("orderId") Long orderId,
+            @RequestParam("productId") Long productId,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size
     ) {
 
-        return commentService.findComments(orderId,page,size);
+        return commentService.findComments(productId,page,size);
     }
 }

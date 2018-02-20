@@ -24,7 +24,7 @@
     <script src="js/jqueryTmpl/jquery.tmpl.js"></script>
     <script src="js/libs/lbajax.js"></script>
     <script src="js/app/searchbar.js"></script>
-    <script src="js/app/productdetail.js?v=1"></script>
+    <script src="js/app/productdetail.js?v=3"></script>
     <title>商品列表</title>
 </head>
 
@@ -95,73 +95,13 @@
                 <div class="card p-5 m-1">
                     <div class="card-body">评论</div>
                     <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-                            <li class="list-group-item">
-                                <p><span>挺好看的，买来送人。就是自己买大了，买17就够了，以后加珠子吧</span><span style="float:right;">用户1</span></p>
-                                <p><span>2018.01.02 12:14:12</span></p>
-                            </li>
-
+                        <ul class="list-group" id="rows">
                         </ul>
                     </div>
                     <div class="card-body">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">«</span> <span
-                                        class="sr-only">Previous</span> </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">4</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">»</span> <span
-                                        class="sr-only">Next</span> </a>
-                            </li>
-                        </ul>
+                        <nav aria-label="Page navigation">
+                            <ul id="pageBar"></ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -176,7 +116,7 @@
 <script id="productDetailTemplate" type="text/x-jquery-tmpl">
                         <h1><b>${name}</b></h1>
                         <hr>
-                        <p>累计评价<b>1</b>次</p>
+                        <p>累计评价<b>${commentsTotal}</b>次</p>
                         <hr>
                         <p><b>${unitPrice}</b>元</p>
                         <hr>
@@ -184,6 +124,13 @@
                             <label for="productNumInput">数量:</label>
                             <input type="number" value="1" min="1" step="1" class="form-control" id="productNumInput">
                         </div>
+</script>
+
+
+<script id="rowTemplate" type="text/x-jquery-tmpl">
+ <li class="list-group-item">
+   ${content}
+ </li>
 </script>
 </body>
 

@@ -11,6 +11,48 @@ var productdetail = (function (jQuery,urlutil,lajaxComponent){
             productDetail = result;
             $("#productImage").html($("#productImageTemplate").tmpl(result));
             $("#productDetail").html($("#productDetailTemplate").tmpl(result));
+
+           var page = urlutil.getParameter("page");
+                      var size = urlutil.getParameter("size");
+                      if(!page){
+                      page = 0;
+                      }else{
+                      page = page-1;
+                      }
+                      if(!size){
+                      size = 12;
+                      }
+
+
+
+           var condition = {
+           "page":page,
+           "size":size,
+           "productId":productId
+           };
+            var condition = {};
+            lajaxComponent.getTextReturnJson(
+                              config.baseUrl+"/v/0.1/comments/",condition,function(result){
+                              productDetail.commentsTotal = result.total;
+                              $("#productDetail").html($("#productDetailTemplate").tmpl(productDetail));
+                              $("#rows").html($("#rowTemplate").tmpl(result.items));
+                              var options = {
+                                              currentPage: result.pageIndex+1,
+                                              totalPages: result.pageCount,
+                                              bootstrapMajorVersion: 3,
+                                              itemContainerClass: function (type, page, current) {
+                                                     return (page === current) ? "page-item active" : "page-item";
+                                                          },
+                                              itemContentClass:"page-link",
+                                              pageUrl: function(type, page, current){
+
+                                                     return "./productlist.html?page="+page+"&size="+size;
+
+                                              }
+                                            }
+
+                              $('#pageBar').bootstrapPaginator(options);
+                              });
         });
         $("#addCartItemBtn").click(function(){
 
