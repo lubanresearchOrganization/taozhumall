@@ -25,7 +25,7 @@ public class AddCommentCommandHandler {
         comment.setCreateTime(new Date());
         comment.setContent(command.getContent());
         comment.setScore(command.getScore());
-        comment.setOrderId(command.getOrderId());
+        comment.setProductId(command.getProductId());
 
         commentRepository.addComment(comment);
 
