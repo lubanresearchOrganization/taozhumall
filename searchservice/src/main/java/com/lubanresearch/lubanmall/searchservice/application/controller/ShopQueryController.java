@@ -32,7 +32,7 @@ public class ShopQueryController {
         condition.createCriteria().andIf(key != null&&!"".equals(key), new ShopQueryCondition.Criteria.ICriteriaAdd() {
             @Override
             public ShopQueryCondition.Criteria add(ShopQueryCondition.Criteria add) {
-                return add.andNameLike(key);
+                return add.andNameLike("%"+key+"%");
             }
         });
         condition.orderBy("create_time desc");

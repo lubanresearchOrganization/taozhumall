@@ -1,11 +1,10 @@
 
-var productlist = (function ($,urlutil,lajaxComponent,searchbar){
+var keysearchproductlist = (function ($,urlutil,lajaxComponent,searchbar){
 
-       var productlist = {};
-　　　　productlist.init = function () {
+       var keysearchproductlist = {};
+　　　　keysearchproductlist.init = function () {
 
            searchbar.init();
-           var category = urlutil.getParameter("category");
            var key = urlutil.getParameter("key");
            var page = urlutil.getParameter("page");
                       var size = urlutil.getParameter("size");
@@ -21,12 +20,12 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
 
 
            var condition = {
-           "type":"query",
+           "type":"keySearch",
            "page":page,
            "size":size
            };
-           if(category){
-            condition.categoryId = category;
+           if(key){
+            condition.key = key;
            }
 
 
@@ -55,10 +54,10 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
                   });
 　　　　};
 
-　　　　return productlist;
+　　　　return keysearchproductlist;
 
 　　})(jQuery,urlutil,lbajax,searchbar);
 
 $(document).ready(function(){
-  productlist.init();
+  keysearchproductlist.init();
 });

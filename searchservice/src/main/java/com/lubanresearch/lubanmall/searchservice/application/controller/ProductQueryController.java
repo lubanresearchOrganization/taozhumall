@@ -31,7 +31,7 @@ public class ProductQueryController {
         ProductQueryCondition.Criteria criteria = condition.createCriteria().andIf(key != null&&!"".equals(key), new ProductQueryCondition.Criteria.ICriteriaAdd() {
             @Override
             public ProductQueryCondition.Criteria add(ProductQueryCondition.Criteria add) {
-                return add.andNameLike(key);
+                return add.andNameLike("%"+key+"%");
             }
         });
         condition.limit(page*size,size);

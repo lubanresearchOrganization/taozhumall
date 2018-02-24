@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "merchantservice")
+@FeignClient(name = "merchantservice",url = "http://merchantservice.taozhumall.com")
 public interface ProductService {
 
     @RequestMapping(value = "/v/0.1/products/{id}", method = RequestMethod.GET)
     @ResponseBody
     ProductDTO getProduct(@PathVariable("id") Long id)throws ServiceException;
 
-    @RequestMapping(value = "/v/0.1/search/products/", method = RequestMethod.GET)
+    @RequestMapping(value = "/v/0.1/products/", method = RequestMethod.GET)
     @ResponseBody
     Pagination<ProductDTO> findProducts(
             @RequestParam("categoryId")Long categoryId,

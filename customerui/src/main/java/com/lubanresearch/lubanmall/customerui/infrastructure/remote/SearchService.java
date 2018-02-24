@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * Created by hilbertcao on 2018/1/30.
  */
-@FeignClient(name = "searchservice")
+@FeignClient(name = "searchservice",url = "http://searchservice.taozhumall.com")
 public interface SearchService {
 
     @RequestMapping(value = "/v/0.1/search/products/", method = RequestMethod.GET)

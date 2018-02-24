@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "orderservice")
+@FeignClient(name = "orderservice",url = "http://orderservice.taozhumall.com")
 public interface OrderService {
 
 
