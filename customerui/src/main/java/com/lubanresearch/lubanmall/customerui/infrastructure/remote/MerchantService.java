@@ -1,6 +1,8 @@
 package com.lubanresearch.lubanmall.customerui.infrastructure.remote;
 
 import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
+import com.lubanmall.merchantserviceapi.bean.ProductDTO;
+import com.lubanresearch.lubanmall.common.bean.Pagination;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;

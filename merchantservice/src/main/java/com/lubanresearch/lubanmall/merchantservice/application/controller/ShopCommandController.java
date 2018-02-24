@@ -1,7 +1,6 @@
 package com.lubanresearch.lubanmall.merchantservice.application.controller;
 
 import com.lubanmall.merchantserviceapi.bean.ShopDTO;
-import com.lubanresearch.lubanmall.common.bean.Response;
 import com.lubanresearch.lubanmall.merchantservice.domain.Shop;
 import com.lubanresearch.lubanmall.merchantservice.domain.command.AddShopCommand;
 import com.lubanresearch.lubanmall.merchantservice.domain.command.RemoveShopCommand;
