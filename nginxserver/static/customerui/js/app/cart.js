@@ -52,7 +52,12 @@ var cart = (function ($,urlutil,lajaxComponent,math,lbmap,arrayutil){
                                                      items.push(itemid);
                                                  });
                                      var productIds = items.join(",");
-                                     window.location.href = "./confirmdeal.html?productIds="+productIds+"&type=settle";
+                                     if(items.length==0){
+                                        alert("你可能没有选好要结算的商品!")
+                                     }else{
+                                      window.location.href = "./confirmdeal.html?productIds="+productIds+"&type=settle";
+                                     }
+
                               });
 
      };
