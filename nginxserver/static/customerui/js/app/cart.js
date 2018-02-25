@@ -14,6 +14,21 @@ var cart = (function ($,urlutil,lajaxComponent,math,lbmap,arrayutil){
                             });
 
                             });
+              $(document).on('change','.itemNumInput',function(){
+                                          var itemId = $(this).attr("itemid");
+                                          var params = {
+                                          "productId":itemId,
+                                          "num":$(this).val()
+                                          };
+
+                                          lajaxComponent.postJsonReturnJson(
+                                          config.baseUrl+"/v/0.1/carts/commands/changeNum",params,function(result){
+                                                                          //window.location.href = "./cart.html";
+                                                cart.init();
+                                          });
+
+                                          });
+
      };
      cart.init = function () {
          var data = {};
