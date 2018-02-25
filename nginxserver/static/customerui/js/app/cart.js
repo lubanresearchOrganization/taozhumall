@@ -51,7 +51,8 @@ var cart = (function ($,urlutil,lajaxComponent,math,lbmap,arrayutil){
                                                      var itemid = $(this).attr("itemid");
                                                      items.push(itemid);
                                                  });
-                                     alert(items);
+                                     var productIds = items.join(",");
+                                     window.location.href = "./confirmdeal.html?productIds="+productIds+"&type=settle";
                               });
 
      };
