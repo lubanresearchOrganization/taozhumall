@@ -13,9 +13,9 @@ var searchbar = (function (){
                               }else{
                                if(1==type){
                                             window.location.href = "./keysearchproductlist.html?key="+key;
-                                            }else if(2==type){
+                                  }else if(2==type){
                                             window.location.href = "./shoplist.html?key="+key;
-                                            }
+                                  }
                               }
 
 

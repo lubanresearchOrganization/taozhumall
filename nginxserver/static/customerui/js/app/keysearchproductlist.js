@@ -34,23 +34,25 @@ var keysearchproductlist = (function ($,urlutil,lajaxComponent,searchbar){
                   config.baseUrl+"/v/0.1/products/",condition,function(result){
 
                   $("#rows").html($("#resultTemplate").tmpl(result.items));
-                  var options = {
-                                  totalPages: result.pageCount,
-                                  bootstrapMajorVersion: 3,
-                                  itemContainerClass: function (type, page, current) {
-                                         return (page === current) ? "page-item active" : "page-item";
-                                              },
-                                  itemContentClass:"page-link",
-                                  pageUrl: function(type, page, current){
 
-                                         return "./productlist.html?page="+page+"&size="+size;
-
-                                  }
-                                }
-                  if(result.pageCount!=0){
+                  if(result.pageCount>0){
                        options.currentPage = result.pageIndex+1;
+                       var options = {
+                               totalPages: result.pageCount,
+                               bootstrapMajorVersion: 3,
+                               itemContainerClass: function (type, page, current) {
+                                            return (page === current) ? "page-item active" : "page-item";
+                               },
+                               itemContentClass:"page-link",
+                               pageUrl: function(type, page, current){
+
+                                             return "./productlist.html?page="+page+"&size="+size;
+
+                               }
+                       };
+                       $('#pageBar').bootstrapPaginator(options);
                   }
-                  $('#pageBar').bootstrapPaginator(options);
+
                   });
 　　　　};
 

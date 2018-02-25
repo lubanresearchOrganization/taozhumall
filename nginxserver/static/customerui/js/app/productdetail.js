@@ -34,23 +34,29 @@ var productdetail = (function (jQuery,urlutil,lajaxComponent){
                               config.baseUrl+"/v/0.1/comments/",condition,function(result){
                               productDetail.commentsTotal = result.total;
                               $("#productDetail").html($("#productDetailTemplate").tmpl(productDetail));
+                              $("#commentTitle").html($("#commentTitleTemplate").tmpl(productDetail));
                               $("#rows").html($("#rowTemplate").tmpl(result.items));
-                              var options = {
-                                              currentPage:(result.pageCount==0)?0:(result.pageIndex+1),
-                                              totalPages: result.pageCount,
-                                              bootstrapMajorVersion: 3,
-                                              itemContainerClass: function (type, page, current) {
-                                                     return (page === current) ? "page-item active" : "page-item";
-                                                          },
-                                              itemContentClass:"page-link",
-                                              pageUrl: function(type, page, current){
 
-                                                     return "./productdetail.html?id="+productId+"&page="+page+"&size="+size;
 
-                                              }
-                                            }
+                              if(result.pageCount>0){
+                                  var options = {
+                                                      totalPages: result.pageCount,
+                                                      bootstrapMajorVersion: 3,
+                                                      itemContainerClass: function (type, page, current) {
+                                                           return (page === current) ? "page-item active" : "page-item";
+                                                      },
+                                                         itemContentClass:"page-link",
+                                                      pageUrl: function(type, page, current){
 
-                              $('#pageBar').bootstrapPaginator(options);
+                                                         return "./productdetail.html?id="+productId+"&page="+page+"&size="+size;
+
+                                                         }
+                                                      }
+                                  options.currentPage = result.pageIndex+1;
+                                  $('#pageBar').bootstrapPaginator(options);
+
+                              }
+
                               });
         });
         $("#addCartItemBtn").click(function(){

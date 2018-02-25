@@ -22,6 +22,7 @@ var shoplist = (function ($,urlutil,lajaxComponent,searchbar){
                      lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/shops/?page="+page+"&size="+size,function(result){
 
                      $("#rows").html($("#resultTemplate").tmpl(result.items));
+                     if(result.pageCount>0){
                        var options = {
                        currentPage: result.pageIndex+1,
                        totalPages: result.pageCount,
@@ -38,7 +39,9 @@ var shoplist = (function ($,urlutil,lajaxComponent,searchbar){
                      }
 
                    $('#pageBar').bootstrapPaginator(options);
-                       });
+                   }
+                   });
+
 　　　　};
 
 　　　　return shoplist;
