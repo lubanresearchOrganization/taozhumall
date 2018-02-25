@@ -18,6 +18,7 @@ public class ShopQueryController {
     @Autowired
     private ShopMapper shopMapper;
 
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Shop getShop(@PathVariable("id") Long id) {
@@ -33,12 +34,13 @@ public class ShopQueryController {
             @RequestParam(value = "size", defaultValue = "10") Integer size
     ) {
 
-        ShopQueryCondition condition = new ShopQueryCondition();
-        condition.orderBy("create_time desc");
+
+        ShopQueryCondition.Criteria shopCriteria = new ShopQueryCondition().createCriteria();
 
         Pagination<Shop> pagination = new Pagination<>();
-        pagination.setItems(shopMapper.selectByExample(condition));
-        pagination.setTotal((int) shopMapper.countByExample(condition));
+
+        pagination.setItems(shopMapper.selectByExample(shopCriteria.example().page(page, size).orderBy("create_time desc")));
+        pagination.setTotal((int) shopMapper.countByExample(shopCriteria.example()));
         pagination.setPageCount((pagination.getTotal() % size == 0) ? (pagination.getTotal() / size) : (pagination.getTotal() / size + 1));
         pagination.setPageIndex(page);
         return pagination;

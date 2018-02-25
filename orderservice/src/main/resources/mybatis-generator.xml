@@ -49,7 +49,7 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.lubanresearch.lubanmall.orderservice.domain" targetProject="./src/main/java/">
+        <javaModelGenerator targetPackage="com.lubanresearch.lubanmall.orderservice.domain.bean" targetProject="./src/main/java/">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
@@ -62,6 +62,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <!--<table tableName="lb_demo" domainObjectName="Demo" />-->
+        <table tableName="lb_order" domainObjectName="Order" />
+        <table tableName="lb_order_item" domainObjectName="OrderItem" />
     </context>
 </generatorConfiguration>

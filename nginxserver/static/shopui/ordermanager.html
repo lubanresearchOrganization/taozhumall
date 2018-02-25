@@ -6,7 +6,7 @@
             src="http://code.jquery.com/jquery-1.12.4.min.js"
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
             crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -26,6 +26,11 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="./js/app/config.js"></script>
+    <script src="./js/libs/lbajax.js"></script>
+    <script src="./js/app/ordermanager.js"></script>
+
+
     <title>订单管理 </title>
 </head>
 <body>
@@ -82,7 +87,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="order">
                             <thead>
                             <tr>
                                 <th>订单号</th>
@@ -94,44 +99,44 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1222233</td>
-                                <td>156.0</td>
-                                <td>客户1</td>
-                                <td>2016-12-01 12:01:20</td>
-                                <td>待发货</td>
-                                <td>
-                                    <a href="./orderdetail.html" class="btn btn-info">明细</a>
-                                    <a href="#"  class="btn btn-primary">发货</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1222290</td>
-                                <td>126.0</td>
-                                <td>客户2</td>
-                                <td>2016-12-01 12:01:20</td>
-                                <td>未付款</td>
-                                <td>
-                                    <a href="./orderdetail.html"  class="btn btn-info">明细</a>
-                                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyTotalPanel">修改订单价格</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1222233</td>
-                                <td>156.0</td>
-                                <td>客户3</td>
-                                <td>2016-12-01 12:01:20</td>
-                                <td>待收货</td>
-                                <td><a href="./orderdetail.html" class="btn btn-info">明细</a></td>
-                            </tr>
-                            <tr>
-                                <td>1222233</td>
-                                <td>156.0</td>
-                                <td>客户4</td>
-                                <td>2016-12-01 12:01:20</td>
-                                <td>交易成功</td>
-                                <td><a href="./orderdetail.html" class="btn btn-info">明细</a></td>
-                            </tr>
+                            <!--<tr>-->
+                                <!--<td>1222233</td>-->
+                                <!--<td>156.0</td>-->
+                                <!--<td>客户1</td>-->
+                                <!--<td>2016-12-01 12:01:20</td>-->
+                                <!--<td>待发货</td>-->
+                                <!--<td>-->
+                                    <!--<a href="./orderdetail.html" class="btn btn-info">明细</a>-->
+                                    <!--<a href="#"  class="btn btn-primary">发货</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>1222290</td>-->
+                                <!--<td>126.0</td>-->
+                                <!--<td>客户2</td>-->
+                                <!--<td>2016-12-01 12:01:20</td>-->
+                                <!--<td>未付款</td>-->
+                                <!--<td>-->
+                                    <!--<a href="./orderdetail.html"  class="btn btn-info">明细</a>-->
+                                    <!--<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyTotalPanel">修改订单价格</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>1222233</td>-->
+                                <!--<td>156.0</td>-->
+                                <!--<td>客户3</td>-->
+                                <!--<td>2016-12-01 12:01:20</td>-->
+                                <!--<td>待收货</td>-->
+                                <!--<td><a href="./orderdetail.html" class="btn btn-info">明细</a></td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>1222233</td>-->
+                                <!--<td>156.0</td>-->
+                                <!--<td>客户4</td>-->
+                                <!--<td>2016-12-01 12:01:20</td>-->
+                                <!--<td>交易成功</td>-->
+                                <!--<td><a href="./orderdetail.html" class="btn btn-info">明细</a></td>-->
+                            <!--</tr>-->
                             </tbody>
                         </table>
                     </div>

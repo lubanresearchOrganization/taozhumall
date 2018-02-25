@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name = "orderService")
 public interface OrderService {
 
-    @RequestMapping("/")
+    @RequestMapping("/v/0.1/orders/")
     @ResponseBody
     Pagination<OrderDTO> getOrders(
             @RequestParam("shopId") Long shopId,
@@ -21,18 +21,18 @@ public interface OrderService {
             @RequestParam("status") Long status
     ) throws ServiceException;
 
-    @RequestMapping("/{orderId}")
+    @RequestMapping("/v/0.1/orders/{orderId}")
     @ResponseBody
     OrderDTO getOrder(
             @PathVariable("orderId") Long orderId
     ) throws ServiceException;
 
-    @RequestMapping(value = "/{orderId}/commands/deliver", method = RequestMethod.POST)
+    @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/deliver", method = RequestMethod.POST)
     @ResponseBody
     void confirmReceive() throws ServiceException;
 
 
-    @RequestMapping(value = "/{orderId}/commands/changeTotal", method = RequestMethod.POST)
+    @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/changeTotal", method = RequestMethod.POST)
     @ResponseBody
     void changeTotal(@RequestBody ChangeOrderTotalDTO changeOrderTotalDTO) throws ServiceException;
 }
