@@ -24,7 +24,7 @@
     <script src="js/libs/math.js"></script>
     <script src="js/libs/lbmap.js"></script>
     <script src="js/libs/arrayutil.js"></script>
-    <script src="js/app/cart.js?v=7"></script>
+    <script src="js/app/cart.js?v=8"></script>
     <title>购物车</title>
 </head>
 
@@ -94,7 +94,9 @@
                         <span style="width:80px;" class="contentpadding">${cartItem.unitPrice}</span>
                         <span style="width:50px;" class="contentpadding"><input type="number" value="${cartItem.num}" min="0"  style="width:40px;" /></span>
                         <span style="width:100px;" class="contentpadding">${cartItem.total}</span>
-                        <span style="width:100px;" class="contentpadding"><a class="btn" href="#">删除</a></span>
+                        <span style="width:100px;" class="contentpadding">
+                        <a class="btn itemDeleteBtn"  href='javascript:void(0);' itemid="${cartItem.id}">删除</a>
+                        </span>
                     </div>
                    {{/each}}
                 </div>

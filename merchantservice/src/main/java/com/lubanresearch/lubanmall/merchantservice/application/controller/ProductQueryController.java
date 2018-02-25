@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,18 +59,16 @@ public class ProductQueryController {
             public ProductQueryCondition.Criteria add(ProductQueryCondition.Criteria add) {
                 return add.andIdIn(productIds);
             }
+        }).andIf(!recursive&&categoryId != null,new ProductQueryCondition.Criteria.ICriteriaAdd() {
+            @Override
+            public ProductQueryCondition.Criteria add(ProductQueryCondition.Criteria add) {
+                return add.andCategoryIdEqualTo(categoryId);
+            }
         });
 
-        if(!recursive){
-            criteria.andIf(categoryId != null, new ProductQueryCondition.Criteria.ICriteriaAdd() {
-                @Override
-                public ProductQueryCondition.Criteria add(ProductQueryCondition.Criteria add) {
-                    return add.andCategoryIdEqualTo(categoryId);
-                }
-            });
-        }else{
-
+        if(recursive){
             List<Long> catagoryIds = catagoryService.getCategorys(categoryId,true).stream().map(CategoryDTO::getId).collect(Collectors.toList());
+            catagoryIds.add(categoryId);
             criteria.andIf(catagoryIds.size()>0, new ProductQueryCondition.Criteria.ICriteriaAdd() {
                 @Override
                 public ProductQueryCondition.Criteria add(ProductQueryCondition.Criteria add) {

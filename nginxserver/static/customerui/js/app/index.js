@@ -21,7 +21,7 @@ var index = (function ($,converter,config,lajaxComponent,searchbar){
             });
 
             $('#catagoryTree').on('nodeSelected', function(event, node) {
-               window.location.href = "./productlist.html?category="+node.id;
+               window.location.href = "./productlist.html?recursive=true&category="+node.id;
             });
 
             });

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/1/30.
  */
-@FeignClient(name = "catagoryservice")
+@FeignClient(name = "catagoryservice",url = "http://catagoryservice.taozhumall.com")
 public interface CatagoryService {
 
     @RequestMapping(value = "/v/0.1/categorys/", method = RequestMethod.GET)

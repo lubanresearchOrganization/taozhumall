@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "cart",url = "http://cart.taozhumall.com")
+@FeignClient(name = "cart")
 public interface CartService {
 
 
@@ -21,10 +21,11 @@ public interface CartService {
 
 
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/addCartItem",method = RequestMethod.POST)
-    Long addCartItem(@PathVariable("customerId") Long customerId,@RequestBody AddCartItemDTO addCartItemDTO)throws ServiceException;
+    boolean addCartItem(@PathVariable("customerId") Long customerId,@RequestBody AddCartItemDTO addCartItemDTO)throws ServiceException;
 
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/removeCartItem",method = RequestMethod.DELETE)
-    void removeCartItem(@PathVariable("customerId") Long customerId,@RequestBody CartItemDTO cartItemDTO)throws ServiceException;
+    boolean removeCartItem(@PathVariable("customerId") Long customerId,
+                        @RequestParam("productId") Long productId)throws ServiceException;
 
     /**
      * 结算
@@ -32,17 +33,17 @@ public interface CartService {
      * @param settleDTO
      */
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/settle",method = RequestMethod.POST)
-    void settle(@PathVariable("customerId") Long customerId,@RequestBody SettleDTO settleDTO)throws ServiceException;
+    boolean settle(@PathVariable("customerId") Long customerId,@RequestBody SettleDTO settleDTO)throws ServiceException;
 
     /**
      * 修改购物车项的数量
      * @param changeNumDTO
      */
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/changeNum",method = RequestMethod.POST)
-    void changeNum(@PathVariable("customerId") Long customerId,@RequestBody ChangeNumDTO changeNumDTO)throws ServiceException;
+    boolean changeNum(@PathVariable("customerId") Long customerId,@RequestBody ChangeNumDTO changeNumDTO)throws ServiceException;
     /**
      * 确认购物车，创建订单，将相关的购物车项状态设置为已确认
      */
     @RequestMapping(value="/v/0.1/carts/{customerId}/commands/confirm",method = RequestMethod.POST)
-    void confirm(@PathVariable("customerId") Long customerId,@RequestBody ConfirmDTO confirmDTO)throws ServiceException;
+    boolean confirm(@PathVariable("customerId") Long customerId,@RequestBody ConfirmDTO confirmDTO)throws ServiceException;
 }

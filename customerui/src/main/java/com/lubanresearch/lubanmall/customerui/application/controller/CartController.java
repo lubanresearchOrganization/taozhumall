@@ -27,15 +27,15 @@ public class CartController {
 
 
     @RequestMapping(value="/commands/addCartItem",method = RequestMethod.POST)
-    public @ResponseBody Long addCartItem(@RequestBody AddCartItemDTO addCartItemDTO){
+    public @ResponseBody boolean addCartItem(@RequestBody AddCartItemDTO addCartItemDTO){
 
         return cartService.addCartItem(1513709082550L,addCartItemDTO);
     }
 
     @RequestMapping(value="/commands/removeCartItem",method = RequestMethod.POST)
-    public void removeCartItem(@RequestBody CartItemDTO cartItemDTO){
+    public @ResponseBody boolean removeCartItem(@RequestParam("productId") Long productId){
 
-        cartService.removeCartItem(1513709082550L,cartItemDTO);
+        return cartService.removeCartItem(1513709082550L,productId);
     }
 
     /**
@@ -44,9 +44,9 @@ public class CartController {
      * @param settleDTO
      */
     @RequestMapping(value="/commands/settle",method = RequestMethod.POST)
-    public void settle(@RequestBody SettleDTO settleDTO){
+    public @ResponseBody boolean settle(@RequestBody SettleDTO settleDTO){
 
-        cartService.settle(1513709082550L,settleDTO);
+        return cartService.settle(1513709082550L,settleDTO);
     }
 
     /**
@@ -54,17 +54,17 @@ public class CartController {
      * @param changeNumDTO
      */
     @RequestMapping(value="/commands/changeNum",method = RequestMethod.POST)
-    public void changeNum(@RequestBody ChangeNumDTO changeNumDTO){
+    public @ResponseBody boolean changeNum(@RequestBody ChangeNumDTO changeNumDTO){
 
-        cartService.changeNum(1513709082550L,changeNumDTO);
+        return cartService.changeNum(1513709082550L,changeNumDTO);
     }
 
     /**
      * 确认购物车，创建订单，将相关的购物车项状态设置为已确认
      */
     @RequestMapping(value="/commands/confirm",method = RequestMethod.POST)
-    public void confirm(@RequestBody ConfirmDTO confirmDTO){
+    public @ResponseBody boolean confirm(@RequestBody ConfirmDTO confirmDTO){
 
-        cartService.confirm(1513709082550L,confirmDTO);
+        return cartService.confirm(1513709082550L,confirmDTO);
     }
 }

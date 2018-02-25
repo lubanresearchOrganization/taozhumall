@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by hilbertcao on 2018/2/11.
  */
-@FeignClient(name = "orderService")
+@FeignClient(name = "orderService",url = "http://orderService.taozhumall.com")
 public interface OrderService {
     @RequestMapping(value = "/v/0.1/categorys/", method = RequestMethod.POST)
     void createDeal(CreateDealDTO createDealDTO);

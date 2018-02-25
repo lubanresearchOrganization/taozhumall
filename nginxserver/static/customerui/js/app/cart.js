@@ -7,6 +7,9 @@ var cart = (function (jQuery,urlutil,lajaxComponent,math,lbmap,arrayutil){
             function(rdata){
 
                 data.productNum = rdata.length;
+                if(data.productNum == 0){
+                   return;
+                }
                 var productIds = arrayutil.itemMapFunction(rdata,function(a){return a.productId;}).join(",");
                  for (x in rdata){
                         var item = rdata[x];
@@ -34,7 +37,18 @@ var cart = (function (jQuery,urlutil,lajaxComponent,math,lbmap,arrayutil){
                                        data.allTotal = allTotal;
                                         $("#shopTemplate").tmpl(result).appendTo("#shopContent")
                                         $("#shopCommit").html($("#shopCommitTemplate").tmpl(data));
+                                       $('.itemDeleteBtn').on('click',function(){
+                                           var itemId = $(this).attr("itemid");
+                                          var params = {"productId":itemId};
 
+                                          lajaxComponent.postTextReturnText(config.baseUrl+"/v/0.1/carts/commands/removeCartItem"
+                                          ,
+                                          params
+                                          ,function(result){
+                                           cart.init();
+                                          });
+
+                                       });
 
                                    });
 

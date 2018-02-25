@@ -7,6 +7,7 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
            searchbar.init();
            var category = urlutil.getParameter("category");
            var key = urlutil.getParameter("key");
+           var recursive = urlutil.getParameter("recursive");
            var page = urlutil.getParameter("page");
                       var size = urlutil.getParameter("size");
                       if(!page){
@@ -28,7 +29,9 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
            if(category){
             condition.categoryId = category;
            }
-
+           if(recursive){
+            condition.recursive = recursive;
+           }
 
             //初始化类目
                   lajaxComponent.getTextReturnJson(
@@ -52,15 +55,20 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
                                          if(category){
                                              params.categoryId = category;
                                          }
+                                         if(recursive){
+                                             params.recursive = recursive;
+                                         }
                                          return "./productlist.html?"+urlutil.concatParam(params);
                                      }
                        };
 
                        $('#pageBar').bootstrapPaginator(options);
+                       }
                                          });
+
                   }
 
-　　　　};
+　　　　
 
 　　　　return productlist;
 

@@ -23,20 +23,21 @@ public class CommandController {
     private CommandGateway commandGateway;
 
     @RequestMapping(value = "/commands/addCartItem", method = RequestMethod.POST)
-    public @ResponseBody Long addCartItem(@PathVariable("customerId") Long customerId, @RequestBody AddCartItemDTO addCartItemDTO) {
+    public @ResponseBody boolean addCartItem(@PathVariable("customerId") Long customerId, @RequestBody AddCartItemDTO addCartItemDTO) {
 
 
         commandGateway.sendAndWait(
                 new AddCartItemCommand(customerId, addCartItemDTO.getProductId()
                         , addCartItemDTO.getNum()));
-        return 1L;
+        return true;
 
     }
 
     @RequestMapping(value = "/commands/removeCartItem", method = RequestMethod.DELETE)
-    public void removeCartItem(@PathVariable("customerId") Long customerId, @RequestParam("productId") Long productId) {
+    public @ResponseBody boolean removeCartItem(@PathVariable("customerId") Long customerId, @RequestParam("productId") Long productId) {
 
         commandGateway.sendAndWait(new RemoveCartItemComand(customerId, productId));
+        return true;
     }
 
     /**
@@ -46,8 +47,9 @@ public class CommandController {
      * @param settleDTO
      */
     @RequestMapping(value = "/commands/settle", method = RequestMethod.POST)
-    public void settle(@RequestBody SettleDTO settleDTO) {
+    public @ResponseBody boolean settle(@RequestBody SettleDTO settleDTO) {
 
+        return true;
     }
 
     /**
@@ -56,16 +58,17 @@ public class CommandController {
      * @param changeNumDTO
      */
     @RequestMapping(value = "/commands/changeNum", method = RequestMethod.POST)
-    public void changeNum(@PathVariable("customerId") Long customerId, @RequestBody ChangeNumDTO changeNumDTO) {
+    public @ResponseBody boolean changeNum(@PathVariable("customerId") Long customerId, @RequestBody ChangeNumDTO changeNumDTO) {
         commandGateway.sendAndWait(new ChangeNumCommand(customerId,
                 changeNumDTO.getProductId(), changeNumDTO.getNum()));
+        return true;
     }
 
     /**
      * 确认购物车，创建订单，将相关的购物车项状态设置为已确认
      */
     @RequestMapping(value = "/commands/confirm", method = RequestMethod.POST)
-    public void confirm(@PathVariable("customerId") Long customerId,@RequestBody ConfirmDTO confirmDTO) {
+    public @ResponseBody boolean confirm(@PathVariable("customerId") Long customerId,@RequestBody ConfirmDTO confirmDTO) {
 
         commandGateway.sendAndWait(
                 new ConfirmCommand(customerId,
@@ -75,5 +78,6 @@ public class CommandController {
                         ))
                         )
         );
+        return true;
     }
 }
