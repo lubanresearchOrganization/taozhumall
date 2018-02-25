@@ -1,12 +1,36 @@
 package com.lubanmall.orderserviceapi.bean;
 
+import java.math.BigDecimal;
+
+import java.util.Date;
 import java.util.List;
 
 public class OrderDTO {
 
+    private Long id;
     private Long customerId;
+    private String customerName;
     private String remark;
     private Long shopId;
+    private BigDecimal totalAmount;
+    private Date createTime;
+    private Byte status;
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
     private List<OrderItemDTO> orderItemList;
 
@@ -41,5 +65,29 @@ public class OrderDTO {
 
     public void setOrderItemList(List<OrderItemDTO> orderItemList) {
         this.orderItemList = orderItemList;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 }

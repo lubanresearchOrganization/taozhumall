@@ -6,6 +6,7 @@
         <artifactId>base-service</artifactId>
         <groupId>lubanresearch.com</groupId>
         <version>0.1</version>
+        <relativePath>../baseservice/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
