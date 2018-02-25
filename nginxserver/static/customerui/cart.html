@@ -87,7 +87,7 @@
                     {{each(j,cartItem) products}}
                     <div class="row">
                         <input type="checkbox"/>
-                        <a href="./productdetail.html"><img
+                        <a href="./productdetail.html?id=${cartItem.id}"><img
                                 src="${cartItem.imgUrl}"
                                 class="img-thumbnail" width="80" height="80"/></a>
                         <span style="width:150px;" class="contentpadding">${cartItem.name}</span>
