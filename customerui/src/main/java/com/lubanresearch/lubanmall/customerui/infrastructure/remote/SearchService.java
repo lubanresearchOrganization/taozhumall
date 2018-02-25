@@ -13,15 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * Created by hilbertcao on 2018/1/30.
  */
-@FeignClient(name = "searchservice")
+@FeignClient(name = "searchservice",url = "http://searchservice.taozhumall.com")
 public interface SearchService {
 
     @RequestMapping(value = "/v/0.1/search/products/", method = RequestMethod.GET)
     @ResponseBody
     Pagination<ProductDTO> findProducts(
-            @RequestParam("categoryId")Long categoryId,
             @RequestParam("key") String  key,
-            @RequestParam(value = "recursive",defaultValue = "false")boolean recursive,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size
     )throws ServiceException;

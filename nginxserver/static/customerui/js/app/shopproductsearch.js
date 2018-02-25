@@ -1,11 +1,13 @@
 
-var productlist = (function ($,urlutil,lajaxComponent,searchbar){
 
-       var productlist = {};
-　　　　productlist.init = function () {
+
+var shopproductsearch = (function ($,urlutil,lajaxComponent,searchbar){
+
+       var shopproductsearch = {};
+　　　　shopproductsearch.init = function () {
 
            searchbar.init();
-           var category = urlutil.getParameter("category");
+           var shopId = urlutil.getParameter("id");
            var key = urlutil.getParameter("key");
            var page = urlutil.getParameter("page");
                       var size = urlutil.getParameter("size");
@@ -25,8 +27,8 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
            "page":page,
            "size":size
            };
-           if(category){
-            condition.categoryId = category;
+           if(shopId){
+            condition.shopId = shopId;
            }
 
 
@@ -52,15 +54,18 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
                        };
 
                        $('#pageBar').bootstrapPaginator(options);
-                                         });
-                  }
+
+                       }
+
+                  });
+
 
 　　　　};
 
-　　　　return productlist;
+　　　　return shopproductsearch;
 
 　　})(jQuery,urlutil,lbajax,searchbar);
 
 $(document).ready(function(){
-  productlist.init();
+  shopproductsearch.init();
 });

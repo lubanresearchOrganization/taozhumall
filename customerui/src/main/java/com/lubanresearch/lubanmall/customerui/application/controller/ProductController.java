@@ -25,13 +25,22 @@ public class ProductController {
     @ResponseBody
     Pagination<ProductDTO> findProducts(
             @RequestParam(value = "categoryId",required = false)Long categoryId,
+            @RequestParam(value = "shopId",required = false)Long shopId,
             @RequestParam(value = "key",required = false) String  key,
             @RequestParam(value = "recursive",defaultValue = "false")boolean recursive,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "size", defaultValue = "10") Integer size
+            @RequestParam(value = "size", defaultValue = "10") Integer size,
+            @RequestParam(value = "type")String type
     ){
 
-        return searchService.findProducts(categoryId,key,recursive,page,size);
+        if("keySearch".equals(type)){
+
+            return searchService.findProducts(key, page, size);
+        }else if("query".equals(type)){
+
+            return productService.findProducts(categoryId, shopId, recursive, page, size);
+        }
+        return null;
     }
 
     @RequestMapping(value = "/{productId}", method = RequestMethod.GET)

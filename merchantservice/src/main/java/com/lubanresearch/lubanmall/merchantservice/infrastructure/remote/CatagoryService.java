@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.searchservice.infrastructure.remote;
+package com.lubanresearch.lubanmall.merchantservice.infrastructure.remote;
 
 import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
@@ -18,6 +18,6 @@ public interface CatagoryService {
 
     @RequestMapping(value = "/v/0.1/categorys/", method = RequestMethod.GET)
     @ResponseBody
-    List<CategoryDTO> getCategorys(@RequestParam(value = "parentId",required = false) Long parentId,
-                                          @RequestParam(value = "recursive",defaultValue = "false")boolean recursive) throws ServiceException;
+    List<CategoryDTO> getCategorys(@RequestParam(value = "parentId", required = false) Long parentId,
+                                   @RequestParam(value = "recursive", defaultValue = "false") boolean recursive) throws ServiceException;
 }

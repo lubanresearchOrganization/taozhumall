@@ -1,11 +1,10 @@
 
-var productlist = (function ($,urlutil,lajaxComponent,searchbar){
+var keysearchproductlist = (function ($,urlutil,lajaxComponent,searchbar){
 
-       var productlist = {};
-　　　　productlist.init = function () {
+       var keysearchproductlist = {};
+　　　　keysearchproductlist.init = function () {
 
            searchbar.init();
-           var category = urlutil.getParameter("category");
            var key = urlutil.getParameter("key");
            var page = urlutil.getParameter("page");
                       var size = urlutil.getParameter("size");
@@ -21,12 +20,12 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
 
 
            var condition = {
-           "type":"query",
+           "type":"keySearch",
            "page":page,
            "size":size
            };
-           if(category){
-            condition.categoryId = category;
+           if(key){
+            condition.key = key;
            }
 
 
@@ -35,32 +34,32 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
                   config.baseUrl+"/v/0.1/products/",condition,function(result){
 
                   $("#rows").html($("#resultTemplate").tmpl(result.items));
+
                   if(result.pageCount>0){
+                       options.currentPage = result.pageIndex+1;
                        var options = {
-                           currentPage:result.pageIndex+1,
-                           totalPages: result.pageCount,
-                           bootstrapMajorVersion: 3,
-                           itemContainerClass: function (type, page, current) {
-                                     return (page === current) ? "page-item active" : "page-item";
-                           },
-                           itemContentClass:"page-link",
-                                     pageUrl: function(type, page, current){
+                               totalPages: result.pageCount,
+                               bootstrapMajorVersion: 3,
+                               itemContainerClass: function (type, page, current) {
+                                            return (page === current) ? "page-item active" : "page-item";
+                               },
+                               itemContentClass:"page-link",
+                               pageUrl: function(type, page, current){
 
-                                     return "./productlist.html?page="+page+"&size="+size;
+                                             return "./productlist.html?page="+page+"&size="+size;
 
-                                     }
+                               }
                        };
-
                        $('#pageBar').bootstrapPaginator(options);
-                                         });
                   }
 
+                  });
 　　　　};
 
-　　　　return productlist;
+　　　　return keysearchproductlist;
 
 　　})(jQuery,urlutil,lbajax,searchbar);
 
 $(document).ready(function(){
-  productlist.init();
+  keysearchproductlist.init();
 });
