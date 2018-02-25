@@ -41,11 +41,11 @@ var cart = (function (jQuery,urlutil,lajaxComponent,math,lbmap,arrayutil){
                                            var itemId = $(this).attr("itemid");
                                           var params = {"productId":itemId};
 
-                                          lajaxComponent.postTextReturnText(config.baseUrl+"/v/0.1/carts/commands/removeCartItem"
+                                          lajaxComponent.postTextReturnJson(config.baseUrl+"/v/0.1/carts/commands/removeCartItem"
                                           ,
                                           params
                                           ,function(result){
-                                           cart.init();
+                                           window.location.href = "./cart.html";
                                           });
 
                                        });
