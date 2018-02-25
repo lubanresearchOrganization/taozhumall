@@ -1,8 +1,24 @@
-var cart = (function (jQuery,urlutil,lajaxComponent,math,lbmap,arrayutil){
+var cart = (function ($,urlutil,lajaxComponent,math,lbmap,arrayutil){
 
      var cart = {};
+     cart.bind = function(){
+
+             $(document).on('click','.itemDeleteBtn',function(){
+                            var itemId = $(this).attr("itemid");
+                            var params = {"productId":itemId};
+
+                            lajaxComponent.postTextReturnJson(
+                            config.baseUrl+"/v/0.1/carts/commands/removeCartItem",params,function(result){
+                                                            //window.location.href = "./cart.html";
+                                  cart.init();
+                            });
+
+                            });
+     };
      cart.init = function () {
          var data = {};
+         $("#shopContent").html("");
+         $("#shopCommit").html("");
          lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/carts/",
             function(rdata){
 
@@ -35,20 +51,9 @@ var cart = (function (jQuery,urlutil,lajaxComponent,math,lbmap,arrayutil){
                                                allTotal = allTotal + shopTotal;
                                        }
                                        data.allTotal = allTotal;
-                                        $("#shopTemplate").tmpl(result).appendTo("#shopContent")
+                                        $("#shopTemplate").tmpl(result).appendTo("#shopContent");
                                         $("#shopCommit").html($("#shopCommitTemplate").tmpl(data));
-                                       $('.itemDeleteBtn').on('click',function(){
-                                           var itemId = $(this).attr("itemid");
-                                          var params = {"productId":itemId};
 
-                                          lajaxComponent.postTextReturnJson(config.baseUrl+"/v/0.1/carts/commands/removeCartItem"
-                                          ,
-                                          params
-                                          ,function(result){
-                                           window.location.href = "./cart.html";
-                                          });
-
-                                       });
 
                                    });
 
@@ -59,5 +64,8 @@ var cart = (function (jQuery,urlutil,lajaxComponent,math,lbmap,arrayutil){
 })(jQuery,urlutil,lbajax,math,lbmap,arrayutil);
 
 $(document).ready(function(){
+
+  cart.bind();
   cart.init();
+
 });
