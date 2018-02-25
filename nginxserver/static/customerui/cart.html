@@ -24,7 +24,7 @@
     <script src="js/libs/math.js"></script>
     <script src="js/libs/lbmap.js"></script>
     <script src="js/libs/arrayutil.js"></script>
-    <script src="js/app/cart.js?v=27"></script>
+    <script src="js/app/cart.js?v=38"></script>
     <title>购物车</title>
 </head>
 
@@ -63,7 +63,7 @@
                     <div class="card-body">
                         <div class="row">
                             <label >全选</label>
-                            <input type="checkbox"/>
+                            <input type="checkbox" class="selectAll"/>
                         </div>
                     </div>
                 </div>
@@ -82,11 +82,12 @@
 
 <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><span><input type="checkbox"/></span><a>${shop.name}</a></div>
+                <div class="card-header"><span><input type="checkbox" class="selectShop" shopid="${shop.id}" /></span><a>${shop.name}</a></div>
                 <div class="card-body">
                     {{each(j,cartItem) products}}
                     <div class="row">
-                        <input type="checkbox"/>
+                        <input type="checkbox" name="selectedItemsInput" shopid="${shop.id}"
+                        itemid="${cartItem.id}" class="selectItem"/>
                         <a href="./productdetail.html?id=${cartItem.id}"><img
                                 src="${cartItem.imgUrl}"
                                 class="img-thumbnail" width="80" height="80"/></a>
@@ -112,11 +113,11 @@
                 <div class="card-footer">
 
                     <label >全选</label>
-                    <input type="checkbox"/>
+                    <input type="checkbox" class="selectAll"/>
                     <a class="btn" href="#">删除</a>
                     <span>已经选择了${productNum}个商品</span>
                     <span>合计:${allTotal}</span>
-                    <a class="btn" href="./confirmdeal.html">结算</a>
+                    <a class="btn" href="javascript:void(0);" id="confirmdealBtn">结算</a>
                 </div>
             </div>
         </div>

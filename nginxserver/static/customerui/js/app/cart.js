@@ -29,6 +29,31 @@ var cart = (function ($,urlutil,lajaxComponent,math,lbmap,arrayutil){
 
                                           });
 
+               $(document).on('click','.selectAll',function(){
+
+                      var value = $(this).prop("checked");
+                      $(".selectAll").prop("checked",value);
+                      $(".selectShop").prop("checked",value);
+                      $(".selectItem").prop("checked",value);
+               });
+
+               $(document).on('click','.selectShop',function(){
+
+                      var value = $(this).prop("checked");
+                      var shopid = $(this).attr("shopid");
+                      $(".selectItem[shopid="+shopid+"]").prop("checked",value);
+               });
+               $(document).on('click','#confirmdealBtn',function(){
+
+                                     var items = [];
+
+                                     $.each($('input[name=selectedItemsInput]:checked'),function(){
+                                                     var itemid = $(this).attr("itemid");
+                                                     items.push(itemid);
+                                                 });
+                                     alert(items);
+                              });
+
      };
      cart.init = function () {
          var data = {};
