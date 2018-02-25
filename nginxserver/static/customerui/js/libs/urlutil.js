@@ -10,7 +10,19 @@ var urlutil = (function (){
                 return value;
 　　　　};
 
-　　　　return urlutil;
+　　　　
+      urlutil.concatParam = function(param){
+                                var paramStr="";
+                                if(param.length==0){
+                                return "";
+                                }
+                                for(var field in param){
 
+                                    paramStr+="&"+field+"="+encodeURIComponent(param[field]);
+
+                                }
+                                return paramStr.substr(1);
+                            };
+      return urlutil;
 　　})();
 

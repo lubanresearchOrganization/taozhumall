@@ -18,8 +18,16 @@ var shoplist = (function ($,urlutil,lajaxComponent,searchbar){
            }
            console.log(key);
 
+           var condition = {
+               "page":page,
+               "size":size
+           };
+           if(key){
+               condition.key = key;
+           }
+
            //初始化类目
-                     lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/shops/?page="+page+"&size="+size,function(result){
+                     lajaxComponent.getTextReturnJson(config.baseUrl+"/v/0.1/shops/",condition,function(result){
 
                      $("#rows").html($("#resultTemplate").tmpl(result.items));
                      if(result.pageCount>0){
@@ -33,7 +41,14 @@ var shoplist = (function ($,urlutil,lajaxComponent,searchbar){
                        itemContentClass:"page-link",
                        pageUrl: function(type, page, current){
 
-                               return "./shoplist.html?page="+page+"&size="+size;
+                                var params = {
+                                     "page":page,
+                                     "size":size
+                                };
+                                if(key){
+                                    params.key = key;
+                                }
+                               return "./shoplist.html?"+urlutil.concatParam(params);
 
                        }
                      }

@@ -48,8 +48,14 @@ var productdetail = (function (jQuery,urlutil,lajaxComponent){
                                                          itemContentClass:"page-link",
                                                       pageUrl: function(type, page, current){
 
-                                                         return "./productdetail.html?id="+productId+"&page="+page+"&size="+size;
-
+                                                         var params = {
+                                                              "page":page,
+                                                              "size":size
+                                                          };
+                                                         if(productId){
+                                                             params.id = productId;
+                                                          }
+                                                         return "./productdetail.html?"+urlutil.concatParam(params);
                                                          }
                                                       }
                                   options.currentPage = result.pageIndex+1;

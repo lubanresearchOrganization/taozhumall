@@ -7,7 +7,8 @@ var shopproductsearch = (function ($,urlutil,lajaxComponent,searchbar){
 　　　　shopproductsearch.init = function () {
 
            searchbar.init();
-           var shopId = urlutil.getParameter("id");
+           var shopId = urlutil.getParameter("shopId");
+           var categoryId = urlutil.getParameter("categoryId");
            var key = urlutil.getParameter("key");
            var page = urlutil.getParameter("page");
                       var size = urlutil.getParameter("size");
@@ -30,7 +31,9 @@ var shopproductsearch = (function ($,urlutil,lajaxComponent,searchbar){
            if(shopId){
             condition.shopId = shopId;
            }
-
+           if(categoryId){
+            condition.categoryId = categoryId;
+           }
 
             //初始化类目
                   lajaxComponent.getTextReturnJson(
@@ -48,8 +51,17 @@ var shopproductsearch = (function ($,urlutil,lajaxComponent,searchbar){
                            itemContentClass:"page-link",
                                      pageUrl: function(type, page, current){
 
-                                     return "./productlist.html?page="+page+"&size="+size;
-
+                                          var params = {
+                                                "page":page,
+                                                "size":size
+                                          };
+                                          if(shopId){
+                                              params.shopId = shopId;
+                                          }
+                                          if(categoryId){
+                                              params.categoryId = categoryId;
+                                          }
+                                         return "./shopproductsearch.html?"+urlutil.concatParam(params);
                                      }
                        };
 

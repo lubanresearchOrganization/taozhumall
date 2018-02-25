@@ -45,9 +45,14 @@ var productlist = (function ($,urlutil,lajaxComponent,searchbar){
                            },
                            itemContentClass:"page-link",
                                      pageUrl: function(type, page, current){
-
-                                     return "./productlist.html?page="+page+"&size="+size;
-
+                                          var params = {
+                                                "page":page,
+                                                "size":size
+                                          };
+                                         if(category){
+                                             params.categoryId = category;
+                                         }
+                                         return "./productlist.html?"+urlutil.concatParam(params);
                                      }
                        };
 

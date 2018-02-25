@@ -20,11 +20,11 @@
     <![endif]-->
     <script src="js/bootstrap-paginator/bootstrap-paginator.min.js"></script>
     <script src="js/app/config.js"></script>
-    <script src="js/libs/urlutil.js"></script>
+    <script src="js/libs/urlutil.js?v=5"></script>
     <script src="js/jqueryTmpl/jquery.tmpl.js"></script>
     <script src="js/libs/lbajax.js"></script>
     <script src="js/app/searchbar.js"></script>
-    <script src="js/app/shoplist.js?v=8"></script>
+    <script src="js/app/shoplist.js?v=11"></script>
     <title>店铺列表</title>
 </head>
 
@@ -73,9 +73,9 @@
 <script id="resultTemplate" type="text/x-jquery-tmpl">
        <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><a href="./shopproductsearch.html?id=${id}">${name}</a></div>
+                    <div class="card-header"><a href="./shopproductsearch.html?shopId=${id}">${name}</a></div>
                     <div class="card-body">
-                        <a href="./shopproductsearch.html?id=${id}"><img
+                        <a href="./shopproductsearch.html?shopId=${id}"><img
                                 src="${imgUrl}"
                                 class="img-thumbnail" width="80" height="80"/></a>
                     </div>
