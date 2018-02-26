@@ -32,6 +32,7 @@ var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap){
                           config.baseUrl+"/v/0.1/carts/commands/confirm",params,function(result){
                                 console.info(result);
                                 alert("成功");
+                                window.location.href = "./cart.html";
                           });
 
                      }
