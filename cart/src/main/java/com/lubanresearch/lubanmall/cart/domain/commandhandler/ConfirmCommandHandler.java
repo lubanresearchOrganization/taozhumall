@@ -44,6 +44,7 @@ public class ConfirmCommandHandler {
                     return  orderItemDTO;
                 }
         ).collect(Collectors.toList()));
+        createDealDTO.setRemarkMap(command.getRemarkMap());
         orderService.createDeal(createDealDTO);
 
         cartItemEntityMapper.deleteByExample(queryCondition);

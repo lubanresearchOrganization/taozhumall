@@ -16,7 +16,7 @@ var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap){
 
                            items.push({
                               "id":$(this).attr("shopid"),
-                              remark:remark
+                              "remark":remark
                            });
                            }
 
