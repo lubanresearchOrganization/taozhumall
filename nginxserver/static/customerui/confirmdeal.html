@@ -17,13 +17,13 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <![endif]-->
-    <script src="js/app/config.js?v=3"></script>
+    <script src="js/app/config.js?v=6"></script>
     <script src="js/libs/urlutil.js"></script>
     <script src="js/jqueryTmpl/jquery.tmpl.js"></script>
     <script src="js/libs/lbajax.js"></script>
     <script src="js/libs/math.js"></script>
     <script src="js/libs/lbmap.js"></script>
-    <script src="js/app/confirmdeal.js?v=5"></script>
+    <script src="js/app/confirmdeal.js?v=11"></script>
     <title>提交订单</title>
 </head>
 
@@ -68,7 +68,7 @@
                 <div class="card-footer">
                     <span>实付款:${$data}</span>
                     <a class="btn" href="./cart.html">返回购物车</a>
-                    <a class="btn" href="#">提交订单</a>
+                    <a class="btn" href="javascript:void(0);" id="confirmdealBtn">提交订单</a>
                 </div>
             </div>
 </script>
@@ -92,7 +92,7 @@
                 {{/each}}
                     <div class="row">
                         <label>给商家建议</label>
-                        <textarea></textarea>
+                        <textarea shopid="${shop.id}"></textarea>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,45 @@
 var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap){
 
      var confirmdeal = {};
-     confirmdeal.init = function () {
-     var type = urlutil.getParameter("type");
+     var type;
+     var productIds;
+     confirmdeal.bind = function (){
 
+             $(document).on('click','#confirmdealBtn',function(){
+                    console.info(type);
+                    console.info(productIds);
+                    var items = [];
+
+                     $.each($('textarea'),function(){
+                           var remark = $(this).val();
+                           if(remark){
+
+                           items.push({
+                              "id":$(this).attr("shopid"),
+                              remark:remark
+                           });
+                           }
+
+                     });
+                     console.info(items);
+
+                     if(type == "settle"){
+
+                         var params = {};
+                         params.productIds = productIds.split(",");
+                         params.extras = items;
+                         lajaxComponent.postJsonReturnJson(
+                          config.baseUrl+"/v/0.1/carts/commands/confirm",params,function(result){
+                                console.info(result);
+                                alert("成功");
+                          });
+
+                     }
+             });
+
+     };
+     confirmdeal.init = function () {
+     type = urlutil.getParameter("type");
 
         if(type=="directbuy"){
            var items = JSON.parse(urlutil.getParameter("items"));
@@ -12,8 +48,8 @@ var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap){
                 lbmap.put(item.productId,item.num);
              }
            var item = items[0];
-
-           lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/shopGroupedProducts/?productIds="+item.productId,
+           productIds = item.productId;
+           lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/shopGroupedProducts/?productIds="+productIds,
                    function(result){
 
 
@@ -39,7 +75,7 @@ var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap){
                    });
         }
         if(type=="settle"){
-           var productIds = urlutil.getParameter("productIds");
+           productIds = urlutil.getParameter("productIds");
                       lajaxComponent.getNoParamReturnJson(config.baseUrl+"/v/0.1/carts/?productIds="+productIds,
                               function(result){
                               for (x in result){
@@ -78,5 +114,6 @@ var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap){
 })(jQuery,urlutil,lbajax,math,lbmap);
 
 $(document).ready(function(){
+  confirmdeal.bind();
   confirmdeal.init();
 });

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/1/4.
  */
-@FeignClient(name = "merchantservice")
+@FeignClient(name = "merchantservice",url = "http://merchantservice.taozhumall.com")
 public interface MerchantService {
 
     @RequestMapping(value = "/v/0.1/products/{id}", method = RequestMethod.GET)

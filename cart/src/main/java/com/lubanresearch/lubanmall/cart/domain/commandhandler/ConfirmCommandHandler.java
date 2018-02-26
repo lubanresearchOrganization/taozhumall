@@ -10,6 +10,7 @@ import com.lubanresearch.lubanmall.cart.infrastructure.remote.OrderService;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 /**
  * Created by hilbertcao on 2018/2/11.
  */
+@Component
 public class ConfirmCommandHandler {
 
     @Autowired
@@ -28,7 +30,7 @@ public class ConfirmCommandHandler {
     public void handle(ConfirmCommand command)throws ServiceException {
 
         CartItemEntityQueryCondition queryCondition = new CartItemEntityQueryCondition();
-        queryCondition.createCriteria().andIdIn(command.getProductIds()).andCustomerIdEqualTo(command.getCustomerId());
+        queryCondition.createCriteria().andProductIdIn(command.getProductIds()).andCustomerIdEqualTo(command.getCustomerId());
         List<CartItemEntity> cartItemEntityList = cartItemEntityMapper.selectByExample(queryCondition);
 
         CreateDealDTO createDealDTO = new CreateDealDTO();

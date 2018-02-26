@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by hilbertcao on 2018/2/11.
  */
-@FeignClient(name = "orderService",url = "http://orderService.taozhumall.com")
+@FeignClient(name = "orderService")
 public interface OrderService {
-    @RequestMapping(value = "/v/0.1/categorys/", method = RequestMethod.POST)
-    void createDeal(CreateDealDTO createDealDTO);
+    @RequestMapping(value = "/v/0.1/deals/", method = RequestMethod.POST)
+    boolean createDeal(CreateDealDTO createDealDTO);
 }
 

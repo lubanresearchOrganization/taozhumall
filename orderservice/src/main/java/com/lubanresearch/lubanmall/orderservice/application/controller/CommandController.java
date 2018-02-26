@@ -9,14 +9,13 @@ import com.lubanresearch.lubanmall.orderservice.domain.command.DeteleDealCommand
 import com.lubanresearch.lubanmall.orderservice.domain.command.UpdateDealStatusCommand;
 import com.lubanresearch.lubanmall.orderservice.domain.command.UpdateOrderStatusCommand;
 import com.lubanresearch.lubanmall.orderservice.infrastructure.remote.MerchantService;
+import org.apache.commons.collections.map.HashedMap;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -35,7 +34,7 @@ public class CommandController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseBody
-    public void addDeal(@RequestBody CreateDealDTO createDealDTO) {
+    public boolean addDeal(@RequestBody CreateDealDTO createDealDTO) {
 
 
         List<ProductDTO> productDTOs = createDealDTO.getItems().stream().map(item->{
@@ -49,11 +48,12 @@ public class CommandController {
 
             Order order = new Order(
                     createDealDTO.getCustomerId(),
-                    createDealDTO.getRemarkMap().get(shopId), shopId,
+                    Optional.ofNullable(createDealDTO.getRemarkMap()).orElse(new HashMap<Long,String>()).get(shopId), shopId,
                     shopProductMap.get(shopId).stream().map(
                             productDTO ->{
 
                                 OrderItem orderItem = new OrderItem();
+                                orderItem.setId(System.nanoTime());
                                 orderItem.setProductId(productDTO.getId());
                                 orderItem.setUnitPrice(productDTO.getUnitPrice());
                                 orderItem.setProductNum(orderItemMap.get(productDTO.getId()).getProductNum());
@@ -67,6 +67,7 @@ public class CommandController {
 
         commandGateway.sendAndWait(
                 new CreateDealCommand(createDealDTO.getCustomerId(), orderList));
+        return true;
 
     }
 
