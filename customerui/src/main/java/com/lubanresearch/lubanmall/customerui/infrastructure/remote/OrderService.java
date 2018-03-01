@@ -1,6 +1,7 @@
 package com.lubanresearch.lubanmall.customerui.infrastructure.remote;
 
 import com.lubanmall.orderserviceapi.bean.ChangeOrderTotalDTO;
+import com.lubanmall.orderserviceapi.bean.CreateDealDTO;
 import com.lubanmall.orderserviceapi.bean.OrderDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -42,4 +43,8 @@ public interface OrderService {
     @ResponseBody OrderDTO getOrder(
             @RequestParam("orderId") Long orderId
     );
+
+    @RequestMapping(value = "/v/0.1/deals/", method = RequestMethod.POST)
+    @ResponseBody
+    boolean createDeal(@RequestBody CreateDealDTO createDealDTO) ;
 }

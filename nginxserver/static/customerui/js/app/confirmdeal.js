@@ -1,4 +1,4 @@
-var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap){
+var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap,arrayutil){
 
      var confirmdeal = {};
      var type;
@@ -34,6 +34,30 @@ var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap){
                                 alert("成功");
                                 window.location.href = "./cart.html";
                           });
+
+                     }
+
+                     if(type == "directbuy"){
+
+                                              var params = {};
+                                              var remarkMap = {};
+                                              for(var i=0;i<items.length;i++){
+                                                 var item = items[i];
+                                                 remarkMap[item.id] = item.remark;
+                                              }
+                                              params.remarkMap = remarkMap;
+                                              params.items = arrayutil.itemMapFunction([productIds],function(productId){
+                                                return {
+                                                "productId":productId,
+                                                "productNum":1
+                                                };
+                                              });
+                                              lajaxComponent.postJsonReturnJson(
+                                               config.baseUrl+"/v/0.1/deals/",params,function(result){
+                                                     console.info(result);
+                                                     alert("成功");
+                                                     window.location.href = "./orderlist.html";
+                                               });
 
                      }
              });
@@ -112,7 +136,7 @@ var confirmdeal = (function (jQuery,urlutil,lajaxComponent,math,lbmap){
       };
      return confirmdeal;
 
-})(jQuery,urlutil,lbajax,math,lbmap);
+})(jQuery,urlutil,lbajax,math,lbmap,arrayutil);
 
 $(document).ready(function(){
   confirmdeal.bind();

@@ -1,5 +1,6 @@
 package com.lubanresearch.lubanmall.customerui.application.controller;
 
+import com.lubanmall.orderserviceapi.bean.CreateDealDTO;
 import com.lubanmall.orderserviceapi.bean.OrderDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
 import com.lubanresearch.lubanmall.customerui.infrastructure.remote.OrderService;
@@ -17,6 +18,14 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @RequestMapping(value = "/deals/", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addDeal(@RequestBody CreateDealDTO createDealDTO) {
+
+        createDealDTO.setCustomerId(2345L);
+        return orderService.createDeal(createDealDTO);
+    }
 
     @RequestMapping("/orders/")
     public @ResponseBody
@@ -70,5 +79,6 @@ public class OrderController {
         orderService.deliver();
 
     }
+
 
 }
