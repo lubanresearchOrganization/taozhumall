@@ -1,7 +1,7 @@
 package com.lubanresearch.lubanmall.cart.domain.commandhandler;
 
 import com.lubanmall.orderserviceapi.bean.CreateDealDTO;
-import com.lubanmall.orderserviceapi.bean.OrderItemDTO;
+import com.lubanmall.orderserviceapi.bean.ProductItemDTO;
 import com.lubanresearch.lubanmall.cart.domain.command.ConfirmCommand;
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.entity.CartItemEntity;
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.mapper.CartItemEntityMapper;
@@ -38,10 +38,10 @@ public class ConfirmCommandHandler {
 
         createDealDTO.setItems(cartItemEntityList.stream().map(
                 cartItemEntity -> {
-                    OrderItemDTO orderItemDTO = new OrderItemDTO();
-                    orderItemDTO.setProductId(cartItemEntity.getProductId());
-                    orderItemDTO.setProductNum((cartItemEntity.getProductNum()));
-                    return  orderItemDTO;
+                    ProductItemDTO productItemDTO = new ProductItemDTO();
+                    productItemDTO.setProductId(cartItemEntity.getProductId());
+                    productItemDTO.setProductNum((cartItemEntity.getProductNum()));
+                    return  productItemDTO;
                 }
         ).collect(Collectors.toList()));
         createDealDTO.setRemarkMap(command.getRemarkMap());

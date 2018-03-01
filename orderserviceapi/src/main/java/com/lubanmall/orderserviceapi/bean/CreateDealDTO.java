@@ -9,17 +9,17 @@ import java.util.Map;
 public class CreateDealDTO {
 
     private Long customerId;
-    private List<OrderItemDTO> items;
+    private List<ProductItemDTO> items;
 
     //key为shopId
     Map<Long,String> remarkMap;
 
 
-    public List<OrderItemDTO> getItems() {
+    public List<ProductItemDTO> getItems() {
         return items;
     }
 
-    public void setItems(List<OrderItemDTO> items) {
+    public void setItems(List<ProductItemDTO> items) {
         this.items = items;
     }
 

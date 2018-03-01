@@ -9,7 +9,6 @@ import com.lubanresearch.lubanmall.orderservice.domain.command.DeteleDealCommand
 import com.lubanresearch.lubanmall.orderservice.domain.command.UpdateDealStatusCommand;
 import com.lubanresearch.lubanmall.orderservice.domain.command.UpdateOrderStatusCommand;
 import com.lubanresearch.lubanmall.orderservice.infrastructure.remote.MerchantService;
-import org.apache.commons.collections.map.HashedMap;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +39,7 @@ public class CommandController {
         List<ProductDTO> productDTOs = createDealDTO.getItems().stream().map(item->{
             return merchantService.getProduct(item.getProductId());
         }).collect(Collectors.toList());
-        Map<Long,OrderItemDTO> orderItemMap= createDealDTO.getItems().stream().collect(Collectors.toMap(OrderItemDTO::getProductId, Function.identity()));
+        Map<Long,ProductItemDTO> longProductItemMap= createDealDTO.getItems().stream().collect(Collectors.toMap(ProductItemDTO::getProductId, Function.identity()));
         Map<Long,List<ProductDTO>> shopProductMap = productDTOs.stream().collect(Collectors.groupingBy(ProductDTO::getShopId));
 
         List<Order> orderList = new ArrayList<>();
@@ -56,7 +55,7 @@ public class CommandController {
                                 orderItem.setId(System.nanoTime());
                                 orderItem.setProductId(productDTO.getId());
                                 orderItem.setUnitPrice(productDTO.getUnitPrice());
-                                orderItem.setProductNum(orderItemMap.get(productDTO.getId()).getProductNum());
+                                orderItem.setProductNum(longProductItemMap.get(productDTO.getId()).getProductNum());
                                 return orderItem;
                             }
                     ).collect(Collectors.toList())
