@@ -40,6 +40,7 @@ public class ProductQueryController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public Pagination<Product> findProducts(
+            @RequestParam(value = "ids",required = false) List<Long> ids,
             @RequestParam(value = "shopId",required = false) Long shopId,
             @RequestParam(value = "categoryId",required = false) Long categoryId,
             @RequestParam(value = "recursive",defaultValue = "false")boolean recursive,
@@ -76,16 +77,19 @@ public class ProductQueryController {
                 }
             });
         }
-        if(page!=0&&size>1){
+        boolean forPage = size>0&&page>0;
+        if(forPage){
             condition.limit(page*size,size);
         }
         condition.orderBy("create_time desc");
 
         Pagination<Product> productPagination = new Pagination<>();
         productPagination.setItems(productMapper.selectByExample(condition));
-        productPagination.setTotal((int) productMapper.countByExample(condition));
-        productPagination.setPageCount((productPagination.getTotal() % size == 0) ? (productPagination.getTotal() / size) : (productPagination.getTotal() / size + 1));
-        productPagination.setPageIndex(page);
+        if(forPage){
+            productPagination.setTotal((int) productMapper.countByExample(condition));
+            productPagination.setPageCount((productPagination.getTotal() % size == 0) ? (productPagination.getTotal() / size) : (productPagination.getTotal() / size + 1));
+            productPagination.setPageIndex(page);
+        }
         return productPagination;
     }
 }

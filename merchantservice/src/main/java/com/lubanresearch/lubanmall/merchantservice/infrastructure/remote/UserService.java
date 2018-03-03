@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/1/30.
  */
-@FeignClient(name = "userservice")
+@FeignClient(name = "userservice",url = "http://userservice.taozhumall.com")
 public interface UserService {
 
     @RequestMapping(value = "/v/0.1/users/", method = RequestMethod.GET)

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "orderservice",url = "http://orderservice.taozhumall.com")
+@FeignClient(name = "orderservice")
 public interface OrderService {
 
 
@@ -34,10 +34,12 @@ public interface OrderService {
     @RequestMapping("/v/0.1/orders/")
     @ResponseBody
     Pagination<OrderDTO> getOrders(
+            @RequestParam("id")Long id,
             @RequestParam("shopId") Long shopId,
             @RequestParam("customerId") Long customerId,
-            @RequestParam("status") Long status
-    );
+            @RequestParam("status") Long status,
+            @RequestParam("page") Integer page,
+            @RequestParam("size") Integer size);
 
     @RequestMapping("/orders/{orderId}")
     @ResponseBody OrderDTO getOrder(

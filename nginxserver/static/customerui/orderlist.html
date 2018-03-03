@@ -24,6 +24,13 @@
         }
     </style>
     <![endif]-->
+    <script src="js/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+    <script src="js/app/config.js?v=4"></script>
+    <script src="js/libs/urlutil.js?v=5"></script>
+    <script src="js/jqueryTmpl/jquery.tmpl.js"></script>
+    <script src="js/libs/lbajax.js"></script>
+    <script src="js/app/orderlist.js?v=4"></script>
+
     <title>订单列表</title>
 </head>
 
@@ -58,221 +65,81 @@
                 </form>
             </div>
         </div>
-        <div class="row">
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品1</span>
-                        <span style="width:80px;" class="contentpadding">68.50</span>
-                        <span style="width:50px;" class="contentpadding">2</span>
-                        <span style="width:100px;" class="contentpadding">137.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">待支付</span>
-                        <span style="width:180px;" class="contentpadding">
-                            <a class=".btn" href="#">支付</a>
-                            <a class=".btn" href="#">取消</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品2</span>
-                        <span style="width:80px;" class="contentpadding">60.00</span>
-                        <span style="width:50px;" class="contentpadding">3</span>
-                        <span style="width:100px;" class="contentpadding">180.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">待发货</span>
-                        <span style="width:180px;" class="contentpadding">
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品3</span>
-                        <span style="width:80px;" class="contentpadding">49.00</span>
-                        <span style="width:50px;" class="contentpadding">1</span>
-                        <span style="width:100px;" class="contentpadding">49.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">待收货</span>
-                        <span style="width:180px;" class="contentpadding">
-                            <a class=".btn" href="#">确认收货</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品4</span>
-                        <span style="width:80px;" class="contentpadding">45.00</span>
-                        <span style="width:50px;" class="contentpadding">2</span>
-                        <span style="width:100px;" class="contentpadding">90.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">交易成功</span>
-                        <span style="width:180px;" class="contentpadding">
-                            <a class=".btn" href="./addcomment.html">去评价</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品5</span>
-                        <span style="width:80px;" class="contentpadding">89.00</span>
-                        <span style="width:50px;" class="contentpadding">1</span>
-                        <span style="width:100px;" class="contentpadding">89.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">交易成功</span>
-                        <span style="width:180px;" class="contentpadding">
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品6</span>
-                        <span style="width:80px;" class="contentpadding">68.50</span>
-                        <span style="width:50px;" class="contentpadding">2</span>
-                        <span style="width:100px;" class="contentpadding">137.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">待支付</span>
-                        <span style="width:180px;" class="contentpadding">
-                            <a class=".btn" href="#">支付</a>
-                            <a class=".btn" href="#">取消</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品7</span>
-                        <span style="width:80px;" class="contentpadding">60.00</span>
-                        <span style="width:50px;" class="contentpadding">3</span>
-                        <span style="width:100px;" class="contentpadding">180.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">待发货</span>
-                        <span style="width:180px;" class="contentpadding">
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品8</span>
-                        <span style="width:80px;" class="contentpadding">49.00</span>
-                        <span style="width:50px;" class="contentpadding">1</span>
-                        <span style="width:100px;" class="contentpadding">49.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">待收货</span>
-                        <span style="width:180px;" class="contentpadding">
-                            <a class=".btn" href="#">确认收货</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品9</span>
-                        <span style="width:80px;" class="contentpadding">45.00</span>
-                        <span style="width:50px;" class="contentpadding">2</span>
-                        <span style="width:100px;" class="contentpadding">90.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">交易成功</span>
-                        <span style="width:180px;" class="contentpadding">
-                            <a class=".btn" href="./addcomment.html">去评价</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品10</span>
-                        <span style="width:80px;" class="contentpadding">89.00</span>
-                        <span style="width:50px;" class="contentpadding">1</span>
-                        <span style="width:100px;" class="contentpadding">89.00</span>
-                        <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
-                        <span style="width:80px;" class="contentpadding">交易成功</span>
-                        <span style="width:180px;" class="contentpadding">
-                        </span>
-                    </div>
-                </div>
-            </div>
+        <div class="row" id="rows">
 
         </div>
         <div class="row">
             <div class="col-md-12">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">«</span> <span
-                                class="sr-only">Previous</span> </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">»</span> <span
-                                class="sr-only">Next</span> </a>
-                    </li>
-                </ul>
+                <nav aria-label="Page navigation">
+                    <ul id="pageBar"></ul>
+                </nav>
             </div>
         </div>
     </div>
 </div>
+
+
+<script id="resultTemplate" type="text/x-jquery-tmpl">
+<div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <p>
+                            <span style="width:210px;" class="contentpadding">${id}</span>
+                            <span style="width:80px;" class="contentpadding">${shopName}</span>
+                            <span style="width:120px;" class="contentpadding">总计:${totalAmount}元</span>
+                            <span style="width:80px;" class="contentpadding">
+                            {{if status==1}}
+                             待支付
+                            {{/if}}
+                             {{if status==2}}
+                             已取消
+                             {{/if}}
+                             {{if status==3}}
+                             待发货
+                             {{/if}}
+                             {{if status==4}}
+                             待收货
+                             {{/if}}
+                             {{if status==5}}
+                             已经完成
+                            {{/if}}
+
+                            </span>
+                            <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
+                            <span>
+
+                             {{if status==1}}
+                             <a class="btn" href="#">支付</a>
+                             <a class="btn" href="#">取消</a>
+                             {{/if}}
+                             {{if status==4}}
+                             <a class="btn" href="#">确认收货</a>
+                             {{/if}}
+                             {{if status==5}}
+                             <a class="btn" href="./addcomment.html">去评价</a>
+                            {{/if}}
+
+                            </span>
+                        </p>
+                    </div>
+                    <div class="card-body">
+
+                        {{each orderItemList}}
+                        <p>
+                            <a href="./productdetail.html?id=${productId}"><img
+                                    src="${productImageUrl}"
+                                    class="img-thumbnail" width="80" height="80"/></a>
+                            <span style="width:150px;" class="contentpadding">${productName}</span>
+                            <span style="width:80px;" class="contentpadding">${unitPrice}</span>
+                            <span style="width:50px;" class="contentpadding">${productNum}</span>
+                        </p>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+</script>
+
 <audio controls="controls" hidden="hidden" autoplay="autoplay" loop="loop">
     <source src="http://www.saturn-global.com/david/Music/Gazebo%20-%20I%20like%20Chopin.mp3" type="audio/mpeg" />
 </audio>

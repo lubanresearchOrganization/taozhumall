@@ -15,6 +15,27 @@ public class OrderDTO {
     private BigDecimal totalAmount;
     private Date createTime;
     private Byte status;
+    private List<OrderItemDTO> orderItemList;
+
+
+    private String shopName;
+    private String shopImgUrl;
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public String getShopImgUrl() {
+        return shopImgUrl;
+    }
+
+    public void setShopImgUrl(String shopImgUrl) {
+        this.shopImgUrl = shopImgUrl;
+    }
 
     public String getCustomerName() {
         return customerName;
@@ -31,8 +52,6 @@ public class OrderDTO {
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
-
-    private List<OrderItemDTO> orderItemList;
 
 
     public Long getCustomerId() {

@@ -23,19 +23,21 @@ public class OrderController {
     @ResponseBody
     public boolean addDeal(@RequestBody CreateDealDTO createDealDTO) {
 
-        createDealDTO.setCustomerId(2345L);
+        createDealDTO.setCustomerId(1513709082550L);
         return orderService.createDeal(createDealDTO);
     }
 
     @RequestMapping("/orders/")
     public @ResponseBody
     Pagination<OrderDTO> getOrders(
-            @RequestParam("shopId") Long shopId,
-            @RequestParam("customerId") Long customerId,
-            @RequestParam("status") Long status
+            @RequestParam(value = "id",required = false) Long id,
+            @RequestParam(value = "shopId",required = false) Long shopId,
+            @RequestParam(value = "status",required = false) Long status,
+            @RequestParam(value = "page", defaultValue = "0",required = false) Integer page,
+            @RequestParam(value = "size", defaultValue = "10",required = false) Integer size
     ){
 
-        return orderService.getOrders(shopId, customerId, status);
+        return orderService.getOrders(id,shopId, 1513709082550L, status,page,size);
     }
 
     @RequestMapping("/{orderId}")

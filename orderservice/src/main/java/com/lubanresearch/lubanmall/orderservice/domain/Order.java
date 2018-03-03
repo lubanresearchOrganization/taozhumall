@@ -48,7 +48,7 @@ public class Order extends AbstractAnnotatedAggregateRoot<Long> {
     @CommandHandler
     public void confirmReceive(ConfirmReceiveCommand command) {
 
-        this.status = OrderStatus.RECEIVED.getValue();
+        this.status = OrderStatus.SUCCESS.getValue();
     }
 
     @CommandHandler

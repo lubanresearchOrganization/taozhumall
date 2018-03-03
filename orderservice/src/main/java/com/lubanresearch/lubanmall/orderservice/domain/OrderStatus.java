@@ -5,7 +5,7 @@ package com.lubanresearch.lubanmall.orderservice.domain;
  */
 public enum OrderStatus {
 
-    CREATED(1),CANCELED(2),PAID(3),DELIVERED(4),RECEIVED(5);
+    CREATED(1),CANCELED(2),PAID(3),DELIVERED(4), SUCCESS(5);
     private byte value;
     OrderStatus(int value){this.value = (byte) value;}
 
