@@ -27,16 +27,6 @@ var orderlist = (function ($,urlutil,lajaxComponent,objectutil){
               objectutil.simplecopy(urlparams,condition);
 
 
-              $.ajax({
-                                                                          type : "get",
-                                                                          url : url,
-                                                                          data : data,
-                                                                          dataType : "json",
-                                                                          success : sf,
-                                                                          error : lajax.errorCallBack,
-                                                                          complete : lajax.complete(node)
-              });
-
                lajaxComponent.getTextReturnJson(config.baseUrl+"/v/0.1/orders/",condition,function(result){
 
 
