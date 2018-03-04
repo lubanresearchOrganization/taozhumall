@@ -30,7 +30,7 @@
     <script src="js/libs/objectutil.js?v=1"></script>
     <script src="js/jqueryTmpl/jquery.tmpl.js"></script>
     <script src="js/libs/lbajax.js"></script>
-    <script src="js/app/orderlist.js?v=12"></script>
+    <script src="js/app/orderlist.js?v=14"></script>
 
     <title>订单列表</title>
 </head>
@@ -112,15 +112,13 @@
                             </span>
                             <span>
                              {{if status==1}}
-                             <a class="btn payBtn" href='javascript:void(0);'>支付</a>
-                             <a class="btn cancelBtn" href='javascript:void(0);'>取消</a>
+                             <a class="btn payBtn" href='javascript:void(0);' orderid=${id} >支付</a>
+                             <a class="btn cancelBtn" href='javascript:void(0);' orderid=${id} >取消</a>
                              {{/if}}
                              {{if status==4}}
-                             <a class="btn" href="#">确认收货</a>
+                             <a class="btn receiveBtn"  href='javascript:void(0);' orderid=${id} >确认收货</a>
                              {{/if}}
-                             {{if status==5}}
-                             <a class="btn" href="./addcomment.html">去评价</a>
-                            {{/if}}
+
 
                             </span>
                         </p>
@@ -137,6 +135,9 @@
                             </span>
                             <span style="width:80px;" class="contentpadding">${unitPrice}</span>
                             <span style="width:50px;" class="contentpadding">${productNum}</span>
+                            {{if ($data.status)==5}}
+                             <a class="btn" href="./addcomment.html?productId=${productId}">去评价</a>
+                            {{/if}}
                         </p>
                         {{/each}}
 

@@ -56,6 +56,30 @@ var orderlist = (function ($,urlutil,lajaxComponent,objectutil){
                                  }
                           });
            });
+           $(document).on('click','.payBtn',function(){
+             var orderid = $(this).attr("orderid");
+             console.info(orderid);
+             lajaxComponent.postNoParamReturnJson(config.baseUrl+"/v/0.1/orders/"+orderid+"/commands/pay",function(result){
+
+                 alert("支付成功!");
+             });
+           });
+           $(document).on('click','.cancelBtn',function(){
+             var orderid = $(this).attr("orderid");
+             console.info(orderid);
+             lajaxComponent.postNoParamReturnJson(config.baseUrl+"/v/0.1/orders/"+orderid+"/commands/cancel",function(result){
+
+                 alert("取消成功!");
+             });
+           });
+           $(document).on('click','.receiveBtn',function(){
+             var orderid = $(this).attr("orderid");
+             console.info(orderid);
+             lajaxComponent.postNoParamReturnJson(config.baseUrl+"/v/0.1/orders/"+orderid+"/commands/confirmReceive",function(result){
+
+                 alert("收货成功!");
+             });
+           });
        }
 　　　　orderlist.init = function () {
 

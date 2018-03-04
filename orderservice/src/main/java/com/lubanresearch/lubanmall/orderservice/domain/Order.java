@@ -1,9 +1,7 @@
 package com.lubanresearch.lubanmall.orderservice.domain;
 
 
-import com.lubanresearch.lubanmall.orderservice.domain.command.*;
 import com.lubanresearch.lubanmall.orderservice.infrastructure.constants.Constants;
-import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 
 import javax.persistence.*;
@@ -44,38 +42,6 @@ public class Order extends AbstractAnnotatedAggregateRoot<Long> {
         this.status = Constants.WAIT_FOR_DELIVERY;
         this.orderItemList = orderItemList;
     }
-
-    @CommandHandler
-    public void confirmReceive(ConfirmReceiveCommand command) {
-
-        this.status = OrderStatus.SUCCESS.getValue();
-    }
-
-    @CommandHandler
-    public void pay(PayCommand command) {
-
-        this.status = OrderStatus.PAID.getValue();
-    }
-
-    @CommandHandler
-    public void cancel(CancelCommand command) {
-
-        this.status = OrderStatus.CANCELED.getValue();
-    }
-
-    @CommandHandler
-    public void deliver(DeliverCommand command) {
-
-        this.status = OrderStatus.DELIVERED.getValue();
-    }
-
-    @CommandHandler
-    public void changeTotal(ChangeTotalCommand command) {
-
-        this.totalAmount = command.getTotal();
-    }
-
-
 
 
     public void deleteOrder(){

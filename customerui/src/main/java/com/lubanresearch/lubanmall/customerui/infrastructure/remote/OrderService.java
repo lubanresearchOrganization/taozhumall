@@ -13,28 +13,31 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name = "orderservice")
 public interface OrderService {
 
-
     @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/confirmReceive", method = RequestMethod.POST)
-    @ResponseBody void confirmReceive() ;
+    @ResponseBody
+    Boolean confirmReceive(@PathVariable(value="orderId") Long orderId);
+
     @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/pay", method = RequestMethod.POST)
-    @ResponseBody void pay() ;
+    @ResponseBody
+    Boolean pay(@PathVariable(value="orderId") Long orderId);
+
     @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/cancel", method = RequestMethod.POST)
     @ResponseBody
-    void cancel() ;
+    Boolean cancel(@PathVariable(value="orderId") Long orderId);
 
     @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/deliver", method = RequestMethod.POST)
     @ResponseBody
-    void deliver() ;
+    Boolean deliver(@PathVariable(value="orderId") Long orderId);
 
     @RequestMapping(value = "/v/0.1/orders/{orderId}/commands/changeTotal", method = RequestMethod.POST)
     @ResponseBody
-    void changeTotal(@RequestBody ChangeOrderTotalDTO changeOrderTotalDTO) ;
+    Boolean changeTotal(@RequestBody ChangeOrderTotalDTO changeOrderTotalDTO);
 
 
     @RequestMapping("/v/0.1/orders/")
     @ResponseBody
     Pagination<OrderDTO> getOrders(
-            @RequestParam("id")Long id,
+            @RequestParam("id") Long id,
             @RequestParam("shopId") Long shopId,
             @RequestParam("customerId") Long customerId,
             @RequestParam("status") Long status,
@@ -42,11 +45,11 @@ public interface OrderService {
             @RequestParam("size") Integer size);
 
     @RequestMapping("/v/0.1/orders/{orderId}")
-    @ResponseBody OrderDTO getOrder(
-            @RequestParam("orderId") Long orderId
+    @ResponseBody
+    OrderDTO getOrder(@PathVariable(value="orderId") Long orderId
     );
 
     @RequestMapping(value = "/v/0.1/deals/", method = RequestMethod.POST)
     @ResponseBody
-    boolean createDeal(@RequestBody CreateDealDTO createDealDTO) ;
+    boolean createDeal(@RequestBody CreateDealDTO createDealDTO);
 }

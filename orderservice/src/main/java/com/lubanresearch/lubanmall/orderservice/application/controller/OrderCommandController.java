@@ -18,43 +18,45 @@ public class OrderCommandController {
 
     @RequestMapping(value = "/confirmReceive", method = RequestMethod.POST)
     @ResponseBody
-    public void confirmReceive(@PathVariable("orderId")Long orderId) {
+    public Boolean confirmReceive(@PathVariable("orderId")Long orderId) {
 
 
         commandGateway.sendAndWait(new ConfirmReceiveCommand(orderId));
-
+        return true;
     }
 
 
     @RequestMapping(value = "/pay", method = RequestMethod.POST)
     @ResponseBody
-    public void pay(@PathVariable("orderId")Long orderId) {
+    public Boolean pay(@PathVariable("orderId")Long orderId) {
 
         commandGateway.sendAndWait(new PayCommand(orderId));
-
+        return true;
     }
 
     @RequestMapping(value = "/cancel", method = RequestMethod.POST)
     @ResponseBody
-    public void cancel(@PathVariable("orderId")Long orderId) {
+    public Boolean cancel(@PathVariable("orderId")Long orderId) {
 
         commandGateway.sendAndWait(new CancelCommand(orderId));
-
+        return true;
     }
 
     @RequestMapping(value = "/deliver", method = RequestMethod.POST)
     @ResponseBody
-    public void deliver(@PathVariable("orderId")Long orderId) {
+    public Boolean deliver(@PathVariable("orderId")Long orderId) {
 
 
         commandGateway.sendAndWait(new DeliverCommand(orderId));
+        return true;
     }
 
     @RequestMapping(value = "/changeTotal", method = RequestMethod.POST)
     @ResponseBody
-    public void changeTotal(@PathVariable("orderId")Long orderId,@RequestBody ChangeOrderTotalDTO changeOrderTotalDTO) {
+    public Boolean changeTotal(@PathVariable("orderId")Long orderId,@RequestBody ChangeOrderTotalDTO changeOrderTotalDTO) {
 
 
         commandGateway.sendAndWait(new ChangeTotalCommand(orderId,changeOrderTotalDTO.getTotal()));
+        return true;
     }
 }

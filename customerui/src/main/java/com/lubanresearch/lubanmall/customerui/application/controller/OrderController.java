@@ -51,34 +51,34 @@ public class OrderController {
 
     @RequestMapping(value = "/orders/{orderId}/commands/confirmReceive", method = RequestMethod.POST)
     @ResponseBody
-    public void confirmReceive() {
+    public Boolean confirmReceive(@PathVariable("orderId")Long orderId) {
 
-        orderService.confirmReceive();
+        return orderService.confirmReceive(orderId);
 
     }
 
 
     @RequestMapping(value = "/orders/{orderId}/commands/pay", method = RequestMethod.POST)
     @ResponseBody
-    public void pay() {
+    public Boolean pay(@PathVariable("orderId")Long orderId) {
 
-        orderService.pay();
+        return orderService.pay(orderId);
 
     }
 
     @RequestMapping(value = "/orders/{orderId}/commands/cancel", method = RequestMethod.POST)
     @ResponseBody
-    public void cancel() {
+    public Boolean cancel(@PathVariable("orderId")Long orderId) {
 
-        orderService.cancel();
+        return orderService.cancel(orderId);
 
     }
 
     @RequestMapping(value = "/orders/{orderId}/commands/deliver", method = RequestMethod.POST)
     @ResponseBody
-    public void deliver() {
+    public Boolean deliver(@PathVariable("orderId")Long orderId) {
 
-        orderService.deliver();
+        return orderService.deliver(orderId);
 
     }
 
