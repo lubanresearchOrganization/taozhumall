@@ -27,9 +27,10 @@
     <script src="js/bootstrap-paginator/bootstrap-paginator.min.js"></script>
     <script src="js/app/config.js?v=4"></script>
     <script src="js/libs/urlutil.js?v=5"></script>
+    <script src="js/libs/objectutil.js?v=1"></script>
     <script src="js/jqueryTmpl/jquery.tmpl.js"></script>
     <script src="js/libs/lbajax.js"></script>
-    <script src="js/app/orderlist.js?v=4"></script>
+    <script src="js/app/orderlist.js?v=12"></script>
 
     <title>订单列表</title>
 </head>
@@ -52,16 +53,17 @@
             <div class="col-md-12">
                 <form class="form-inline ">
                     <label>订单号</label>
-                    <input type="text" placeholder="订单号"/>
+                    <input type="text" placeholder="订单号" id="orderNOInput"/>
                     <label>订单状态</label>
-                    <select class="form-control">
+                    <select class="form-control" id="statusInput">
+                        <option value=""></option>
                         <option value="1">待付款</option>
-                        <option value="2">待发货</option>
-                        <option value="3">待收货</option>
-                        <option value="4">交易成功</option>
-                        <option value="5">订单取消</option>
+                        <option value="2">订单取消</option>
+                        <option value="3">待发货</option>
+                        <option value="4">待收货</option>
+                        <option value="5">交易成功</option>
                     </select>
-                    <button type="submit" class="btn btn-secondary">搜索</button>
+                    <a type="submit" class="btn btn-primary"  href='javascript:void(0);' id="searchOrdersBtn">搜索</a>
                 </form>
             </div>
         </div>
@@ -92,7 +94,7 @@
                              待支付
                             {{/if}}
                              {{if status==2}}
-                             已取消
+                             订单取消
                              {{/if}}
                              {{if status==3}}
                              待发货
@@ -101,16 +103,17 @@
                              待收货
                              {{/if}}
                              {{if status==5}}
-                             已经完成
+                             交易成功
                             {{/if}}
 
                             </span>
-                            <span style="width:100px;" class="contentpadding"><a>订单详情</a></span>
+                            <span style="width:100px;" class="contentpadding">
+                            <a class="btn" href="./orderdetail.html?id=${id}">订单详情</a>
+                            </span>
                             <span>
-
                              {{if status==1}}
-                             <a class="btn" href="#">支付</a>
-                             <a class="btn" href="#">取消</a>
+                             <a class="btn payBtn" href='javascript:void(0);'>支付</a>
+                             <a class="btn cancelBtn" href='javascript:void(0);'>取消</a>
                              {{/if}}
                              {{if status==4}}
                              <a class="btn" href="#">确认收货</a>
@@ -129,7 +132,9 @@
                             <a href="./productdetail.html?id=${productId}"><img
                                     src="${productImageUrl}"
                                     class="img-thumbnail" width="80" height="80"/></a>
-                            <span style="width:150px;" class="contentpadding">${productName}</span>
+                            <span style="width:150px;" class="contentpadding">
+                            <a href="./productdetail.html?id=${productId}" >${productName}</a>
+                            </span>
                             <span style="width:80px;" class="contentpadding">${unitPrice}</span>
                             <span style="width:50px;" class="contentpadding">${productNum}</span>
                         </p>

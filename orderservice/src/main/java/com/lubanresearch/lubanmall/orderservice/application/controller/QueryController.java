@@ -48,42 +48,98 @@ public class QueryController {
     private MerchantService merchantService;
 
 
+    @RequestMapping("/orders/{id}")
+    public
+    @ResponseBody
+    OrderDTO getOrder(
+            @PathVariable(value = "id", required = false) Long id
+    ) {
+
+        Order order = orderMapper.selectByPrimaryKey(id);
+        if (order == null) {
+
+            return null;
+        }
+
+        OrderItemQueryCondition.Criteria criteria = new OrderItemQueryCondition().createCriteria();
+
+        criteria.andOrderIdEqualTo(id);
+
+        List<OrderItem> allItems = orderItemMapper.selectByExample(
+                criteria.example());
+
+        Map<Long, List<OrderItem>> orderOrderItemsMap = allItems.stream().collect(Collectors.groupingBy(OrderItem::getOrderId));
+
+        ShopDTO shop = merchantService.getShop(order.getShopId());
+        Map<Long, ProductDTO> productMap = merchantService.getProducts(allItems.stream().map(OrderItem::getProductId).collect(Collectors.toList()
+        )).getItems().stream().collect(Collectors.toMap(ProductDTO::getId, Function.identity()));
+
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setId(order.getId());
+        orderDTO.setShopId(order.getShopId());
+        orderDTO.setRemark(order.getRemark());
+        orderDTO.setCustomerId(order.getCustomerId());
+        orderDTO.setTotalAmount(order.getTotalAmount());
+        orderDTO.setCreateTime(order.getCreateTime());
+        orderDTO.setStatus(order.getStatus());
+        orderDTO.setShopImgUrl(shop.getImgUrl());
+        orderDTO.setShopName(shop.getName());
+
+        orderDTO.setOrderItemList(
+                Optional.ofNullable(orderOrderItemsMap.get(order.getId())).orElse(new ArrayList<>()).stream()
+                        .map(orderItem -> {
+                            OrderItemDTO orderItemDTO = new OrderItemDTO();
+                            orderItemDTO.setProductNum(orderItem.getProductNum());
+                            orderItemDTO.setProductId(orderItem.getProductId());
+                            orderItemDTO.setUnitPrice(orderItem.getUnitPrice());
+
+                            ProductDTO product = Optional.ofNullable(productMap.get(orderItem.getProductId())).orElse(new ProductDTO());
+                            orderItemDTO.setProductImageUrl(product.getImgUrl());
+                            orderItemDTO.setProductName(product.getName());
+                            return orderItemDTO;
+                        }).collect(Collectors.toList())
+        );
+
+        return orderDTO;
+
+    }
+
     @RequestMapping("/orders/")
     public
     @ResponseBody
     Pagination<OrderDTO> getOrders(
-            @RequestParam(value = "dealId",required = false) Long dealId,
-            @RequestParam(value = "id",required = false) Long id,
-            @RequestParam(value = "shopId",required = false) Long shopId,
-            @RequestParam(value = "customerId",required = false) Long customerId,
-            @RequestParam(value = "status",required = false) Byte status,
-            @RequestParam(value = "page", defaultValue = "0",required = false) Integer page,
-            @RequestParam(value = "size", defaultValue = "10",required = false) Integer size
+            @RequestParam(value = "dealId", required = false) Long dealId,
+            @RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "shopId", required = false) Long shopId,
+            @RequestParam(value = "customerId", required = false) Long customerId,
+            @RequestParam(value = "status", required = false) Byte status,
+            @RequestParam(value = "page", defaultValue = "0", required = false) Integer page,
+            @RequestParam(value = "size", defaultValue = "10", required = false) Integer size
     ) {
 
 
         OrderQueryCondition.Criteria orderCriteria = new OrderQueryCondition().createCriteria();
-        orderCriteria.andIf(shopId!=null, new OrderQueryCondition.Criteria.ICriteriaAdd() {
+        orderCriteria.andIf(shopId != null, new OrderQueryCondition.Criteria.ICriteriaAdd() {
             @Override
             public OrderQueryCondition.Criteria add(OrderQueryCondition.Criteria add) {
                 return add.andShopIdEqualTo(shopId);
             }
-        }).andIf(dealId!=null,new OrderQueryCondition.Criteria.ICriteriaAdd() {
+        }).andIf(dealId != null, new OrderQueryCondition.Criteria.ICriteriaAdd() {
             @Override
             public OrderQueryCondition.Criteria add(OrderQueryCondition.Criteria add) {
                 return add.andDealIdEqualTo(dealId);
             }
-        }).andIf(id!=null,new OrderQueryCondition.Criteria.ICriteriaAdd() {
+        }).andIf(id != null, new OrderQueryCondition.Criteria.ICriteriaAdd() {
             @Override
             public OrderQueryCondition.Criteria add(OrderQueryCondition.Criteria add) {
                 return add.andIdEqualTo(id);
             }
-        }).andIf(customerId!=null,new OrderQueryCondition.Criteria.ICriteriaAdd() {
+        }).andIf(customerId != null, new OrderQueryCondition.Criteria.ICriteriaAdd() {
             @Override
             public OrderQueryCondition.Criteria add(OrderQueryCondition.Criteria add) {
                 return add.andCustomerIdEqualTo(customerId);
             }
-        }).andIf(status!=null,new OrderQueryCondition.Criteria.ICriteriaAdd() {
+        }).andIf(status != null, new OrderQueryCondition.Criteria.ICriteriaAdd() {
             @Override
             public OrderQueryCondition.Criteria add(OrderQueryCondition.Criteria add) {
                 return add.andStatusEqualTo(status);
@@ -103,12 +159,12 @@ public class QueryController {
             return pagination;
         }
 
-        List<OrderItem> allItems =  getOrderItems(orderList.stream().map(Order::getId).collect(Collectors.toList()));
+        List<OrderItem> allItems = getOrderItems(orderList.stream().map(Order::getId).collect(Collectors.toList()));
 
         Map<Long, List<OrderItem>> orderOrderItemsMap = allItems.stream().collect(Collectors.groupingBy(OrderItem::getOrderId));
 
-        Map<Long,ShopDTO> shopMap = getShopMap(orderList.stream().map(Order::getShopId).collect(Collectors.toList()));
-        Map<Long,ProductDTO> productMap = getProductMap(orderList.stream().map(Order::getShopId).collect(Collectors.toList()));
+        Map<Long, ShopDTO> shopMap = getShopMap(orderList.stream().map(Order::getShopId).collect(Collectors.toList()));
+        Map<Long, ProductDTO> productMap = getProductMap(orderList.stream().map(Order::getShopId).collect(Collectors.toList()));
         List<OrderDTO> orderDTOList = orderList.stream().map(order -> {
 
             OrderDTO orderDTO = new OrderDTO();
@@ -156,10 +212,10 @@ public class QueryController {
 
     }
 
-    private Map<Long,ProductDTO> getProductMap(List<Long> ids) {
+    private Map<Long, ProductDTO> getProductMap(List<Long> ids) {
 
         return Optional.ofNullable(merchantService.getProducts(ids).getItems()).orElse(new ArrayList<>()).stream().collect(Collectors
-                .toMap(ProductDTO::getId,Function.identity()));
+                .toMap(ProductDTO::getId, Function.identity()));
     }
 
     private List<OrderItem> getOrderItems(List<Long> orderIds) {
@@ -172,56 +228,9 @@ public class QueryController {
                 criteria.example());
     }
 
-    private Map<Long,ShopDTO> getShopMap(List<Long> ids) {
+    private Map<Long, ShopDTO> getShopMap(List<Long> ids) {
 
         return Optional.ofNullable(merchantService.getShops(ids).getItems()).orElse(new ArrayList<>()).stream().collect(Collectors
-        .toMap(ShopDTO::getId,Function.identity()));
-    }
-
-
-
-    @RequestMapping("/orders/{orderId}")
-    public
-    @ResponseBody
-    OrderDTO getOrder(
-            @PathVariable("orderId") Long orderId
-    ) {
-
-        Order order = orderMapper.selectByPrimaryKey(orderId);
-
-        OrderDTO orderDTO = new OrderDTO();
-
-        orderDTO.setId(order.getId());
-        orderDTO.setCustomerId(order.getCustomerId());
-
-        orderDTO.setRemark(order.getRemark());
-        orderDTO.setShopId(order.getShopId());
-        orderDTO.setTotalAmount(order.getTotalAmount());
-
-
-        OrderItemQueryCondition.Criteria criteria = new OrderItemQueryCondition().createCriteria();
-
-        criteria.andOrderIdEqualTo(order.getId());
-
-        List<OrderItem> orderItemList = orderItemMapper.selectByExample(
-                criteria.example());
-
-
-        List<OrderItemDTO> orderItemDTOList = new ArrayList<>();
-
-        for (OrderItem orderItem : orderItemList) {
-
-
-            OrderItemDTO orderItemDTO = new OrderItemDTO();
-            orderItemDTO.setProductNum(orderItem.getProductNum());
-            orderItemDTO.setProductId(orderItem.getProductId());
-            orderItemDTO.setUnitPrice(orderItem.getUnitPrice());
-
-            orderItemDTOList.add(orderItemDTO);
-
-        }
-        orderDTO.setOrderItemList(orderItemDTOList);
-
-        return orderDTO;
+                .toMap(ShopDTO::getId, Function.identity()));
     }
 }

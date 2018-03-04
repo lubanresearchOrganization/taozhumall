@@ -13,15 +13,15 @@ var productdetail = (function (jQuery,urlutil,lajaxComponent){
             $("#productDetail").html($("#productDetailTemplate").tmpl(result));
 
            var page = urlutil.getParameter("page");
-                      var size = urlutil.getParameter("size");
-                      if(!page){
-                      page = 0;
-                      }else{
-                      page = page-1;
-                      }
-                      if(!size){
-                      size = 12;
-                      }
+           var size = urlutil.getParameter("size");
+           if(!page){
+               page = 0;
+           }else{
+               page = page-1;
+           }
+           if(!size){
+               size = 12;
+           }
 
 
 

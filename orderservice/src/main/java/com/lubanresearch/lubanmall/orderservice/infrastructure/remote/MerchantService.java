@@ -25,4 +25,7 @@ public interface MerchantService {
 
     @RequestMapping(value = "/v/0.1/products/", method = RequestMethod.GET)
     Pagination<ProductDTO> getProducts(@RequestParam(value = "ids") List<Long> ids);
+
+    @RequestMapping(value = "/v/0.1/shops/{id}", method = RequestMethod.GET)
+    ShopDTO getShop(@PathVariable("id") Long id);
 }
