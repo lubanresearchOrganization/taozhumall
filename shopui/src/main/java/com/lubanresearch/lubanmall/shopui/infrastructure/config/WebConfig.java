@@ -3,6 +3,7 @@ package com.lubanresearch.lubanmall.shopui.infrastructure.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -15,6 +16,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/3/4.
  */
+@Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     //解决long类型在前端丢失精度的问题
