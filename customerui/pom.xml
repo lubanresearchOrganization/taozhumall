@@ -12,6 +12,7 @@
     <artifactId>customer-ui</artifactId>
     <build>
         <finalName>customerui</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,5 +1,8 @@
 package com.lubanresearch.lubanmall.customerui.application.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lubanmall.orderserviceapi.bean.CreateDealDTO;
 import com.lubanmall.orderserviceapi.bean.OrderDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
@@ -37,7 +40,18 @@ public class OrderController {
             @RequestParam(value = "size", defaultValue = "10",required = false) Integer size
     ){
 
-        return orderService.getOrders(id,shopId, 1513709082550L, status,page,size);
+        Pagination<OrderDTO> result = orderService.getOrders(id,shopId, 1513709082550L, status,page,size);
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+
+            System.out.println("--------------------------------------");
+            System.out.println(objectMapper.writeValueAsString(result));
+            System.out.println("--------------------------------------");
+            System.out.println(JSON.toJSON(result));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @RequestMapping("/orders/{orderId}")

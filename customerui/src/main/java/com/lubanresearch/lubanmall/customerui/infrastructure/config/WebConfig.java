@@ -1,33 +1,36 @@
 package com.lubanresearch.lubanmall.customerui.infrastructure.config;
-import com.lubanresearch.lubanmall.ssoclient.filter.SSOFilter;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.embedded.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.util.List;
 
 /**
- * Created by hilbertcao on 2017/12/2.
+ * Created by hilbertcao on 2018/3/4.
  */
-//@Configuration
-public class WebConfig {
-    @Value("${sso.ssoServerLoginUrl}")
-    private String ssoServerLoginUrl;
-    @Value("${sso.checktiketUrl}")
-    private String checkTicketUrl;
+public class WebConfig extends WebMvcConfigurerAdapter {
 
-    @Bean
-    public FilterRegistrationBean testFilterRegistration() {
+    //解决long类型在前端丢失精度的问题
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        MappingJackson2HttpMessageConverter jackson2HttpMessageConverter =
+                new MappingJackson2HttpMessageConverter();
 
-        SSOFilter ssoFilter = new SSOFilter(ssoServerLoginUrl,checkTicketUrl);
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(ssoFilter);
-        registration.addUrlPatterns("/*");
-        registration.setName("ssoFilter");
-        registration.setOrder(1);
-        return registration;
+        ObjectMapper objectMapper = new ObjectMapper();
+        SimpleModule simpleModule = new SimpleModule();
+        simpleModule.addSerializer(BigInteger.class, ToStringSerializer.instance);
+        simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
+        simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+        objectMapper.registerModule(simpleModule);
+        jackson2HttpMessageConverter.setObjectMapper(objectMapper);
+        converters.add(jackson2HttpMessageConverter);
+        converters.add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
     }
-
-
-
-
 }
