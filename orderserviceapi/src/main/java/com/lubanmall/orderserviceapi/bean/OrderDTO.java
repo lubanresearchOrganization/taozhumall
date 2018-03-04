@@ -1,12 +1,11 @@
 package com.lubanmall.orderserviceapi.bean;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.Date;
 import java.util.List;
 
-public class OrderDTO implements Serializable{
+public class OrderDTO{
 
     private Long id;
     private Long customerId;

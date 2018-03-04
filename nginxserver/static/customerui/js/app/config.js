@@ -1,3 +1,3 @@
 var config = {
-baseUrl:"http://www.taoczhumall.com"
+baseUrl:"http://www.taozhumall.com"
 }

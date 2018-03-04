@@ -1,9 +1,8 @@
 package com.lubanmall.orderserviceapi.bean;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class OrderItemDTO  implements Serializable {
+public class OrderItemDTO{
 
 
     private Long productId;

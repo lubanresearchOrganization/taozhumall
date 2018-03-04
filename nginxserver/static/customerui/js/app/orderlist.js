@@ -124,71 +124,36 @@ var orderlist = (function ($,urlutil,lajaxComponent,objectutil){
 
            objectutil.simplecopy(urlparams,condition);
 
-           $.ajax({
-                                type : "get",
-                                url : config.baseUrl+"/v/0.1/orders/",
-                                data : condition,
-                                dataType : "json",
-                                success : function(result){
-
-                                                                console.info(result);
-                                                                $("#rows").html($("#resultTemplate").tmpl(result.items));
-                                                                if(result.pageCount>0){
-                                                                  var options = {
-                                                                  currentPage: result.pageIndex+1,
-                                                                  totalPages: result.pageCount,
-                                                                  bootstrapMajorVersion: 3,
-                                                                  itemContainerClass: function (type, page, current) {
-                                                                         return (page === current) ? "page-item active" : "page-item";
-                                                                   },
-                                                                  itemContentClass:"page-link",
-                                                                  pageUrl: function(type, page, current){
-
-                                                                           var params = {
-                                                                                "page":page,
-                                                                                "size":size,
-                                                                                "params":JSON.stringify(urlparams)
-                                                                           };
-                                                                          return "./orderlist.html?"+urlutil.concatParam(params);
-
-                                                                  }
-                                                                }
-
-                                                              $('#pageBar').bootstrapPaginator(options);
-                                                              }
-                                                       }
-
-                         });
 
            //初始化订单
-//           lajaxComponent.getTextReturnJson(config.baseUrl+"/v/0.1/orders/",condition,function(result){
-//
-//                     console.info(result);
-//                     $("#rows").html($("#resultTemplate").tmpl(result.items));
-//                     if(result.pageCount>0){
-//                       var options = {
-//                       currentPage: result.pageIndex+1,
-//                       totalPages: result.pageCount,
-//                       bootstrapMajorVersion: 3,
-//                       itemContainerClass: function (type, page, current) {
-//                              return (page === current) ? "page-item active" : "page-item";
-//                        },
-//                       itemContentClass:"page-link",
-//                       pageUrl: function(type, page, current){
-//
-//                                var params = {
-//                                     "page":page,
-//                                     "size":size,
-//                                     "params":JSON.stringify(urlparams)
-//                                };
-//                               return "./orderlist.html?"+urlutil.concatParam(params);
-//
-//                       }
-//                     }
-//
-//                   $('#pageBar').bootstrapPaginator(options);
-//                   }
-//            });
+           lajaxComponent.getTextReturnJson(config.baseUrl+"/v/0.1/orders/",condition,function(result){
+
+                     console.info(result);
+                     $("#rows").html($("#resultTemplate").tmpl(result.items));
+                     if(result.pageCount>0){
+                       var options = {
+                       currentPage: result.pageIndex+1,
+                       totalPages: result.pageCount,
+                       bootstrapMajorVersion: 3,
+                       itemContainerClass: function (type, page, current) {
+                              return (page === current) ? "page-item active" : "page-item";
+                        },
+                       itemContentClass:"page-link",
+                       pageUrl: function(type, page, current){
+
+                                var params = {
+                                     "page":page,
+                                     "size":size,
+                                     "params":JSON.stringify(urlparams)
+                                };
+                               return "./orderlist.html?"+urlutil.concatParam(params);
+
+                       }
+                     }
+
+                   $('#pageBar').bootstrapPaginator(options);
+                   }
+            });
 
 　　　　};
 
