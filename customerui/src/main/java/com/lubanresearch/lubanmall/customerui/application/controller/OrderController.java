@@ -40,7 +40,7 @@ public class OrderController {
         return orderService.getOrders(id,shopId, 1513709082550L, status,page,size);
     }
 
-    @RequestMapping("/{orderId}")
+    @RequestMapping("/orders/{orderId}")
     public @ResponseBody
     OrderDTO getOrder(
             @PathVariable("orderId")Long orderId

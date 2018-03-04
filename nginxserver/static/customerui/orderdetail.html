@@ -17,6 +17,14 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <![endif]-->
+    <script src="js/app/config.js?v=3"></script>
+    <script src="js/libs/urlutil.js"></script>
+    <script src="js/jqueryTmpl/jquery.tmpl.js"></script>
+    <script src="js/libs/lbajax.js?v=1"></script>
+    <script src="js/libs/dateutil.js?v=1"></script>
+    <script src="js/libs/arrayutil.js?v=1"></script>
+    <script src="js/libs/math.js?v=1"></script>
+    <script src="js/app/orderdetail.js?v=6"></script>
     <title>订单明细</title>
 </head>
 
@@ -33,101 +41,90 @@
     </div>
 </nav>
 <div class="py-5">
-    <div class="container">
-
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">订单信息</div>
-                <div class="card-body">
-                    <div class="row">
-                        <label class="col-sm-2">订单号:</label>
-                        <div class="col-sm-4">
-                            <label>12333333333</label>
-                        </div>
-                        <label class="col-sm-2">创建时间:</label>
-                        <div class="col-sm-4">
-                            <label>2016-12-01 12:01:20</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-2">状态:</label>
-                        <div class="col-sm-4">
-                            <label>待支付</label>
-                        </div>
-                        <div class="col-sm-6">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">店铺1</div>
-                <div class="card-body">
-                    <div class="row">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品1</span>
-                        <span style="width:80px;" class="contentpadding">50.00</span>
-                        <span style="width:50px;" class="contentpadding">2</span>
-                        <span style="width:100px;" class="contentpadding">100.00</span>
-                        </span>
+    <div class="container" id="detail" />
+
+
+
+</div>
+
+
+<script id="detailTemplate" type="text/x-jquery-tmpl">
+
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">订单信息</div>
+            <div class="card-body">
+                <div class="row">
+                    <label class="col-sm-2">订单号:</label>
+                    <div class="col-sm-4">
+                        <label>${id}</label>
                     </div>
-                    <div class="row">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品2</span>
-                        <span style="width:80px;" class="contentpadding">60.00</span>
-                        <span style="width:50px;" class="contentpadding">3</span>
-                        <span style="width:100px;" class="contentpadding">180.00</span>
-                        </span>
+                    <label class="col-sm-2">创建时间:</label>
+                    <div class="col-sm-4">
+                        <label>${createTimeStr}</label>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="row">
+                    <label class="col-sm-2">状态:</label>
+                    <div class="col-sm-4">
+                        <label>
+                        {{if status==1}}
+                             待支付
+                            {{/if}}
+                             {{if status==2}}
+                             订单取消
+                             {{/if}}
+                             {{if status==3}}
+                             待发货
+                             {{/if}}
+                             {{if status==4}}
+                             待收货
+                             {{/if}}
+                             {{if status==5}}
+                             交易成功
+                            {{/if}}
 
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">店铺2</div>
-                <div class="card-body">
-                    <div class="row">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品3</span>
-                        <span style="width:80px;" class="contentpadding">50.00</span>
-                        <span style="width:50px;" class="contentpadding">2</span>
-                        <span style="width:100px;" class="contentpadding">100.00</span>
-                        </span>
+                        </label>
                     </div>
-                    <div class="row">
-                        <a href="./productdetail.html"><img
-                                src="http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg@1280w_1l_2o_100sh.webp"
-                                class="img-thumbnail" width="80" height="80"/></a>
-                        <span style="width:150px;" class="contentpadding">商品4</span>
-                        <span style="width:80px;" class="contentpadding">60.00</span>
-                        <span style="width:50px;" class="contentpadding">3</span>
-                        <span style="width:100px;" class="contentpadding">180.00</span>
-                        </span>
+                    <div class="col-sm-6">
                     </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-footer">
-                    总额:560.00
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">店铺1</div>
+            <div class="card-body">
+            {{each orderItemList}}
+                <div class="row">
+                    <a href="./productdetail.html?id=${productId}"><img
+                            src="${productImageUrl}"
+                            class="img-thumbnail" width="80" height="80"/></a>
+                    <span style="width:150px;" class="contentpadding"><a href="./productdetail.html?id=${productId}">${productName}</a></span>
+                    <span style="width:80px;" class="contentpadding">${unitPrice}</span>
+                    <span style="width:50px;" class="contentpadding">${productNum}</span>
+                    <span style="width:100px;" class="contentpadding">${total}</span>
+                    </span>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+    </div>
+
+   <div class="col-md-12">
+        <div class="card">
+            <div class="card-footer">
+                总额:${totalAmount}
+            </div>
+        </div>
+    </div>
+</script>
+
 <audio controls="controls" hidden="hidden" autoplay="autoplay" loop="loop">
     <source src="http://www.saturn-global.com/david/Music/Gazebo%20-%20I%20like%20Chopin.mp3" type="audio/mpeg" />
 </audio>

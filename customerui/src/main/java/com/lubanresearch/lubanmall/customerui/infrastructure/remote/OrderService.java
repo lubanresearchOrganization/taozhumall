@@ -41,7 +41,7 @@ public interface OrderService {
             @RequestParam("page") Integer page,
             @RequestParam("size") Integer size);
 
-    @RequestMapping("/orders/{orderId}")
+    @RequestMapping("/v/0.1/orders/{orderId}")
     @ResponseBody OrderDTO getOrder(
             @RequestParam("orderId") Long orderId
     );
