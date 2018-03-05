@@ -6,8 +6,8 @@ ENV JAVA_OPTS="\
  -server \
  -Djava.security.egd=file:/dev/./urandom\
  -Xms16m\
- -Xmx48m\
- -XX:MaxMetaspaceSize=256m\
+ -Xmx128m\
+ -XX:MaxMetaspaceSize=64m\
  -XX:CompressedClassSpaceSize=20m\
  -Xss256k\
  -Xmn8m\
