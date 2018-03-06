@@ -136,7 +136,7 @@
                             <span style="width:80px;" class="contentpadding">${unitPrice}</span>
                             <span style="width:50px;" class="contentpadding">${productNum}</span>
                             {{if ($data.status)==5}}
-                             <a class="btn" href="./addcomment.html?productId=${productId}">去评价</a>
+                             <a class="btn" href="./addcomment.html?productId=${productId}&orderId=${$data.id}">去评价</a>
                             {{/if}}
                         </p>
                         {{/each}}
@@ -145,10 +145,6 @@
                 </div>
             </div>
 </script>
-
-<audio controls="controls" hidden="hidden" autoplay="autoplay" loop="loop">
-    <source src="http://www.saturn-global.com/david/Music/Gazebo%20-%20I%20like%20Chopin.mp3" type="audio/mpeg" />
-</audio>
 </body>
 
 </html>

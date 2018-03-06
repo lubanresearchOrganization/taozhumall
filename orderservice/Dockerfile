@@ -5,9 +5,9 @@ ADD ./target/orderservice.jar app.jar
 ENV JAVA_OPTS="\
  -server \
  -Djava.security.egd=file:/dev/./urandom\
- -Xms16m\
+ -Xms128m\
  -Xmx128m\
- -XX:MaxMetaspaceSize=64m\
+ -XX:MaxMetaspaceSize=128m\
  -XX:CompressedClassSpaceSize=20m\
  -Xss256k\
  -Xmn8m\
