@@ -14,14 +14,12 @@ var addcomment = (function ($,urlutil,config,lajaxComponent){
              }
              data.score = score;
              data.productId = productid;
-             console.info(data);
 
 
              lajaxComponent.postJsonReturnJson(config.baseUrl+"/v/0.1/comments/",
                         data,
                         function(result){
 
-                        console.info(result);
                         alert("评论成功");
                         window.location.href = "./orderlist.html";
                         }
