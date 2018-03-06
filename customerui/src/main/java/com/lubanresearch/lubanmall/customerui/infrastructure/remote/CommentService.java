@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public interface CommentService {
 
 
-    @RequestMapping(value = "/v/0.1/comments",method = RequestMethod.POST)
+    @RequestMapping(value = "/v/0.1/comments/",method = RequestMethod.POST)
     @ResponseBody
     CommentDTO addComment(@RequestBody CommentDTO dto)throws ServiceException;
 

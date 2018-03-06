@@ -30,8 +30,9 @@ public class CommandController {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
-    public void removeComment(@PathVariable("id") Long id){
+    public Boolean removeComment(@PathVariable("id") Long id){
 
         commandGateway.sendAndWait(new RemoveCommentCommand(id));
+        return true;
     }
 }

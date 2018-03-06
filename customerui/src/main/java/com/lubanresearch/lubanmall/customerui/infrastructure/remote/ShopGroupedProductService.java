@@ -1,6 +1,7 @@
 package com.lubanresearch.lubanmall.customerui.infrastructure.remote;
 
 import com.lubanmall.merchantserviceapi.bean.ShopGroupedProductDTO;
+import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,6 @@ public interface ShopGroupedProductService {
     @ResponseBody
     List<ShopGroupedProductDTO> findShopGroupProducts(
             @RequestParam(value = "productIds") List<Long> productIds
-    );
+    )throws ServiceException;
 
 }

@@ -3,12 +3,10 @@ package com.lubanresearch.lubanmall.customerui.application.controller;
 import com.lubanmall.merchantserviceapi.bean.ShopDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
 import com.lubanresearch.lubanmall.customerui.infrastructure.remote.SearchService;
+import com.lubanresearch.lubanmall.customerui.infrastructure.remote.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by hilbertcao on 2018/1/30.
@@ -19,6 +17,10 @@ public class ShopController {
 
     @Autowired
     private SearchService searchService;
+
+    @Autowired
+    private ShopService shopService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     Pagination<ShopDTO> findShops(
@@ -28,5 +30,14 @@ public class ShopController {
     ){
 
         return searchService.findShops(key, page, size);
+    }
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ShopDTO getShop(@PathVariable("id") Long id) {
+
+
+        return shopService.getShop(id);
     }
 }
