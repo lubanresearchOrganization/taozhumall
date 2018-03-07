@@ -2,8 +2,9 @@ package com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.d
 
 import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
 import com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CategoryMapper {
     long countByExample(CategoryQueryCondition example);

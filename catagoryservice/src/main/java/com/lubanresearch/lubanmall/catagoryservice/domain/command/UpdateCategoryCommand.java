@@ -1,7 +1,5 @@
 package com.lubanresearch.lubanmall.catagoryservice.domain.command;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.validation.constraints.NotNull;
 /**
  * Created by zyf on 2017/12/22

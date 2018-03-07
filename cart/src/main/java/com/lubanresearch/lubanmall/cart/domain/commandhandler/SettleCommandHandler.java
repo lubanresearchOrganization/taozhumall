@@ -1,8 +1,6 @@
 package com.lubanresearch.lubanmall.cart.domain.commandhandler;
 
-import com.lubanresearch.lubanmall.cart.domain.command.AddCartItemCommand;
 import com.lubanresearch.lubanmall.cart.domain.command.SettleCommand;
-import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.entity.CartItemEntity;
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.mapper.CartItemEntityMapper;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.axonframework.commandhandling.annotation.CommandHandler;

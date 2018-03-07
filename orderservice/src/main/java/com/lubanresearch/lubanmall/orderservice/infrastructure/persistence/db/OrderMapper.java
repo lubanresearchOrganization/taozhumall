@@ -2,8 +2,9 @@ package com.lubanresearch.lubanmall.orderservice.infrastructure.persistence.db;
 
 import com.lubanresearch.lubanmall.orderservice.domain.bean.Order;
 import com.lubanresearch.lubanmall.orderservice.domain.query.condition.OrderQueryCondition;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OrderMapper {
     long countByExample(OrderQueryCondition example);

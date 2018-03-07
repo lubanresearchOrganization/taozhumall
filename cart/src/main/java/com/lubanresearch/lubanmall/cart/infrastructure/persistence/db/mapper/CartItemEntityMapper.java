@@ -2,8 +2,9 @@ package com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.mapper;
 
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.entity.CartItemEntity;
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.query.condition.CartItemEntityQueryCondition;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CartItemEntityMapper {
     long countByExample(CartItemEntityQueryCondition example);

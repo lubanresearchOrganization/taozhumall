@@ -1,7 +1,6 @@
 package com.lubanresearch.lubanmall.cart.domain.command;
 
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
 /**
  * Created by hilbertcao on 2018/2/8.

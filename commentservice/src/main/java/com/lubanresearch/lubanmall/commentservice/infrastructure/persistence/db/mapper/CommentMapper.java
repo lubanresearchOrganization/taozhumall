@@ -2,8 +2,9 @@ package com.lubanresearch.lubanmall.commentservice.infrastructure.persistence.db
 
 import com.lubanresearch.lubanmall.commentservice.domain.Comment;
 import com.lubanresearch.lubanmall.commentservice.infrastructure.persistence.db.query.condition.CommentQueryCondition;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommentMapper {
     long countByExample(CommentQueryCondition example);

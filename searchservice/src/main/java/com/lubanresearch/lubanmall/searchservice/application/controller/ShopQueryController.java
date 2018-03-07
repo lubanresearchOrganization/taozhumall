@@ -1,13 +1,15 @@
 package com.lubanresearch.lubanmall.searchservice.application.controller;
 
 import com.lubanresearch.lubanmall.common.bean.Pagination;
-import com.lubanresearch.lubanmall.common.bean.Response;
 import com.lubanresearch.lubanmall.searchservice.domain.Shop;
 import com.lubanresearch.lubanmall.searchservice.infrastructure.persistence.db.mapper.ShopMapper;
 import com.lubanresearch.lubanmall.searchservice.infrastructure.persistence.db.query.condition.ShopQueryCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by hilbertcao on 2017/12/16.

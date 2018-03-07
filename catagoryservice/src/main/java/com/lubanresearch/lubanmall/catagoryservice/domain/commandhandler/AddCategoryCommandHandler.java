@@ -3,7 +3,6 @@ package com.lubanresearch.lubanmall.catagoryservice.domain.commandhandler;
 import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
 import com.lubanresearch.lubanmall.catagoryservice.domain.CategoryRepository;
 import com.lubanresearch.lubanmall.catagoryservice.domain.command.AddCategoryCommand;
-
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;

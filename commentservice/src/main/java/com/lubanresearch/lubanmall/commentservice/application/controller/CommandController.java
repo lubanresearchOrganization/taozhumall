@@ -4,7 +4,6 @@ import com.lubanmall.commentserviceapi.CommentDTO;
 import com.lubanresearch.lubanmall.commentservice.domain.Comment;
 import com.lubanresearch.lubanmall.commentservice.domain.command.AddCommentCommand;
 import com.lubanresearch.lubanmall.commentservice.domain.command.RemoveCommentCommand;
-import com.lubanresearch.lubanmall.common.bean.Response;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

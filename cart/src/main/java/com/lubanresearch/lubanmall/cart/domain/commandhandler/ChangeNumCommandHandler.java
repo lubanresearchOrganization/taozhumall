@@ -1,6 +1,5 @@
 package com.lubanresearch.lubanmall.cart.domain.commandhandler;
 
-import com.lubanresearch.lubanmall.cart.domain.command.AddCartItemCommand;
 import com.lubanresearch.lubanmall.cart.domain.command.ChangeNumCommand;
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.entity.CartItemEntity;
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.mapper.CartItemEntityMapper;

@@ -1,7 +1,5 @@
 package com.lubanresearch.lubanmall.cartapi;
 
-import java.math.BigDecimal;
-
 /**
  * Created by hilbertcao on 2018/2/4.
  */

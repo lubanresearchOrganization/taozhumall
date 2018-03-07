@@ -1,7 +1,5 @@
 package com.lubanresearch.lubanmall.catagoryservice.domain;
 
-import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
-
 import com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.mapper.CategoryMapper;
 import com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition;
 import org.springframework.beans.factory.annotation.Autowired;

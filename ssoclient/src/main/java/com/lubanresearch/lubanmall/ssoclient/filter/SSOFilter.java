@@ -1,10 +1,8 @@
 package com.lubanresearch.lubanmall.ssoclient.filter;
 
 
-import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
-
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

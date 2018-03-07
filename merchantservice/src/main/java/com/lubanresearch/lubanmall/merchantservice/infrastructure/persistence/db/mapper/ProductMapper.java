@@ -2,8 +2,9 @@ package com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.d
 
 import com.lubanresearch.lubanmall.merchantservice.domain.Product;
 import com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db.query.condition.ProductQueryCondition;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ProductMapper {
     long countByExample(ProductQueryCondition example);

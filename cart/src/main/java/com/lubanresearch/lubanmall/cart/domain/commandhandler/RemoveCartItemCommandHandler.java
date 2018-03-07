@@ -1,7 +1,6 @@
 package com.lubanresearch.lubanmall.cart.domain.commandhandler;
 
 import com.lubanresearch.lubanmall.cart.domain.command.RemoveCartItemComand;
-import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.entity.CartItemEntity;
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.mapper.CartItemEntityMapper;
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.query.condition.CartItemEntityQueryCondition;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;

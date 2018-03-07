@@ -2,8 +2,9 @@ package com.lubanresearch.lubanmall.searchservice.infrastructure.persistence.db.
 
 import com.lubanresearch.lubanmall.searchservice.domain.Shop;
 import com.lubanresearch.lubanmall.searchservice.infrastructure.persistence.db.query.condition.ShopQueryCondition;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ShopMapper {
     long countByExample(ShopQueryCondition example);
