@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "cart",url = "http://cart.taozhumall.com")
+@FeignClient(name = "cart")
 public interface CartService {
 
 
