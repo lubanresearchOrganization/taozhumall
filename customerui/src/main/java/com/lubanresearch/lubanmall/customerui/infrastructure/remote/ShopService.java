@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * Created by hilbertcao on 2018/3/6.
  */
-@FeignClient(name = "merchantservice")
+@FeignClient(name = "merchantservice",url = "http://merchantservice.taozhumall.com")
 public interface ShopService {
 
     @RequestMapping(value = "/v/0.1/shops/{id}", method = RequestMethod.GET)

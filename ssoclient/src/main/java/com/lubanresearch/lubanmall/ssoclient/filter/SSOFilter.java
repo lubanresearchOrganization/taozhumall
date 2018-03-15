@@ -35,7 +35,21 @@ public class SSOFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        String redirectSSOUrl = generateSSOUrl(servletRequest,ssoServerLoginUrl);
+        HttpServletResponse HttpServletResponse = (HttpServletResponse)servletResponse;
+        HttpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+        HttpServletResponse.setHeader("Access-Control-Expose-Headers", "*");
+        HttpServletResponse.setHeader("Access-Control-Allow-Headers", "*");
+        HttpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
+
+        //对options方法不拦截
+        boolean isOptionsMethod = isOptionsMethod(servletRequest);
+        if(isOptionsMethod){
+            filterChain.doFilter(servletRequest,servletResponse);
+            return;
+        }
+
+        Boolean isNonPage = isNonPageRequest(servletRequest);
+        String redirectSSOUrl = generateSSOUrl(servletRequest,ssoServerLoginUrl,isNonPage);
         if(containSSOServiceTicket(servletRequest)){
 
             String serviceTicket = extractTicket(servletRequest);
@@ -46,18 +60,20 @@ public class SSOFilter implements Filter {
                     putIntoSession(authentication,servletRequest);
 
                 }else{
-                    redirectSSOserver(servletResponse,filterChain,redirectSSOUrl);
+                    redirectSSOserver(servletResponse,filterChain,redirectSSOUrl,isNonPage);
                     return;
                 }
             }
         }
         if(!sessionContainsAuthentication(servletRequest)){
 
-            redirectSSOserver(servletResponse,filterChain,redirectSSOUrl);
+            redirectSSOserver(servletResponse,filterChain,redirectSSOUrl,isNonPage);
             return;
         }
         filterChain.doFilter(servletRequest,servletResponse);
     }
+
+
 
     private void putIntoSession(Authentication authentication, ServletRequest servletRequest) {
         HttpSession session  = ((HttpServletRequest)servletRequest).getSession();
@@ -67,9 +83,21 @@ public class SSOFilter implements Filter {
         session.setAttribute(AUTHENTICATION_SESSION_KEY,authentication);
     }
 
-    private void redirectSSOserver(ServletResponse servletResponse, FilterChain filterChain, String redirectSSOUrl) {
+    private void redirectSSOserver(ServletResponse servletResponse, FilterChain filterChain, String redirectSSOUrl, Boolean isNonPage) {
+
+
 
         HttpServletResponse httpServletResponse = (HttpServletResponse)servletResponse;
+
+        if(isNonPage){
+
+            try {
+                httpServletResponse.getWriter().println("{\"redirect\":\""+redirectSSOUrl+"\"}");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
         try {
             httpServletResponse.setHeader("Cache-Control", "no-store");
             httpServletResponse.setDateHeader("Expires", 0);
@@ -80,8 +108,8 @@ public class SSOFilter implements Filter {
         }
     }
 
-    private String generateSSOUrl(ServletRequest servletRequest, String ssoServerUrl) {
-        String callbackUrl = generateCallbackUrl(servletRequest);
+    private String generateSSOUrl(ServletRequest servletRequest, String ssoServerUrl,boolean isNonPage) {
+        String callbackUrl = generateCallbackUrl(servletRequest,isNonPage);
         StringBuilder result = new StringBuilder(ssoServerUrl);
         result.append("?callback=");
         try {
@@ -114,28 +142,50 @@ public class SSOFilter implements Filter {
     private String extractTicket(ServletRequest servletRequest) {
 
         String serviceTicket = servletRequest.getParameter(SERVICE_TICKET_PARAM_KEY);
+        if(serviceTicket!=null&&!"".equals(serviceTicket)){
+
+            return serviceTicket;
+        }
+        serviceTicket = ((HttpServletRequest)servletRequest).getHeader(SERVICE_TICKET_PARAM_KEY);
         return serviceTicket;
     }
 
     private boolean containSSOServiceTicket(ServletRequest servletRequest) {
 
-        String serviceTicket = servletRequest.getParameter(SERVICE_TICKET_PARAM_KEY);
-        return serviceTicket!=null;
+        String requestServiceTicket = servletRequest.getParameter(SERVICE_TICKET_PARAM_KEY);
+        String headServiceTicket = ((HttpServletRequest)servletRequest).getHeader(SERVICE_TICKET_PARAM_KEY);
+        return requestServiceTicket!=null||headServiceTicket!=null;
     }
 
 
-    private String generateCallbackUrl(ServletRequest servletRequest) {
+    /**
+     * 判断是否为Ajax请求
+     * @param request   HttpServletRequest
+     * @return
+     */
+    public static boolean isNonPageRequest(ServletRequest request) {
+        HttpServletRequest httpServletRequest = (HttpServletRequest)request;
+        String requestType = httpServletRequest.getHeader("request-client");
+        return requestType != null && requestType.equals("non-page");
+    }
 
+    private boolean isOptionsMethod(ServletRequest request) {
+        HttpServletRequest httpServletRequest = (HttpServletRequest)request;
+        return "options".equalsIgnoreCase(httpServletRequest.getMethod());
+    }
+    private String generateCallbackUrl(ServletRequest servletRequest,boolean isNonPage) {
         HttpServletRequest httpServletRequest = ((HttpServletRequest)servletRequest);
-        String callBackUrl =
-
-                httpServletRequest.getScheme()+
-                        "://"+
-                httpServletRequest.getServerName()
-                        +((httpServletRequest.getServerPort()==80)?"":":"
-                        +httpServletRequest.getServerPort())
-                +httpServletRequest.getRequestURI()+
-                ((httpServletRequest.getQueryString()==null)?"":httpServletRequest.getQueryString());
+        String callBackUrl;
+        if(isNonPage){
+            callBackUrl = "";
+        }else{
+            callBackUrl = httpServletRequest.getScheme()+
+                    "://"+
+                    httpServletRequest.getServerName()
+                    +((httpServletRequest.getServerPort()==80)?"":":"
+                    +httpServletRequest.getServerPort())+httpServletRequest.getRequestURI()+
+                    ((httpServletRequest.getQueryString()==null)?"":httpServletRequest.getQueryString());
+        }
         return callBackUrl;
     }
 

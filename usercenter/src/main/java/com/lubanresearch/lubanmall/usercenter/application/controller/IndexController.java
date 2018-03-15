@@ -43,7 +43,7 @@ public class IndexController {
     public Authentication checkServiceTicket(@RequestParam("st")String st) {
 
         String tgt = (String) stTGTMapping.get(st);
-        stTGTMapping.remove(st);
+        //stTGTMapping.remove(st);
         return Cache.get(tgt);
     }
 

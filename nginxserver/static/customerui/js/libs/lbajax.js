@@ -7,8 +7,19 @@ var lbajax = (function ($){
                                     node.attr('disabled', "disabled");
                                 }
                             };
-       lajax.errorCallBack = function(XMLHttpRequest, textStatus, errorThrown) {
-                                     var statusCode = XMLHttpRequest.status;
+       lajax.beforeSend = function(request) {
+
+                              var url = new URL(window.location.href);
+                              var st = url.searchParams.get("st");
+                              if(st){
+                              request.setRequestHeader("st",st);
+                              }
+                              request.setRequestHeader("request-client","non-page");
+                            };
+
+       lajax.errorCallBack = function(xhr, textStatus, errorThrown) {
+                                     console.log(xhr.getAllResponseHeaders());
+                                     var statusCode = xhr.status;
                                      if (statusCode == 901) {
                                          alert("服务已超时，需重新加载页面。");
                                          window.location.reload();
@@ -21,8 +32,19 @@ var lbajax = (function ($){
                                      }
                                      console.log("状态编码：" + statusCode);
                                  };
+       lajax.wrapperSuccess = function(sf){
+
+              var result =  function(data, textStatus, jqXHR){
+                              if(data.redirect){
+                                 window.location.href = data.redirect+window.location.href;
+                              }
+                             (sf)(data,textStatus,jqXHR);
+              };
+              return result;
+       }
        lajax.complete = function(node) {
                                 var callback = function(XMLHttpRequest, textStatus) {
+
                                     if (node) {
                                         node.removeAttr('disabled');
                                     }
@@ -33,6 +55,7 @@ var lbajax = (function ($){
                             lajax.disableNode(node);
                             $.ajax({
                                 type : "post",
+                                beforeSend: lajax.beforeSend,
                                 url : url,
                                 data : data,
                                 dataType : type,
@@ -47,6 +70,7 @@ var lbajax = (function ($){
                                                 lajax.disableNode(node);
                                                 $.ajax({
                                                     type : "post",
+                                                    beforeSend: lajax.beforeSend,
                                                     url : url,
                                                     data : data,
                                                     dataType : "json",
@@ -60,10 +84,11 @@ var lbajax = (function ($){
                                              lajax.disableNode(node);
                                              $.ajax({
                                                  type : "post",
+                                                 beforeSend: lajax.beforeSend,
                                                  url : url,
                                                  data : data,
                                                  dataType : "text/plain",
-                                                 success : sf,
+                                                 success : lajax.wrapperSuccess(sf),
                                                  error : lajax.errorCallBack,
                                                  complete : lajax.complete(node)
                                              });
@@ -72,11 +97,12 @@ var lbajax = (function ($){
                                             lajax.disableNode(node);
                                             $.ajax({
                                                 type : "post",
+                                                beforeSend: lajax.beforeSend,
                                                 url : url,
                                                 data : JSON.stringify(ldata),
                                                 contentType : "application/json; charset=utf-8",
                                                 dataType : "json",
-                                                success : sf,
+                                                success : lajax.wrapperSuccess(sf),
                                                 error : lajax.errorCallBack,
                                                 complete : lajax.complete(node)
                                             });
@@ -85,22 +111,36 @@ var lbajax = (function ($){
                                                lajax.disableNode(node);
                                                $.ajax({
                                                    type : "post",
+                                                   beforeSend: lajax.beforeSend,
                                                    url : url,
                                                    contentType : "application/json; charset=utf-8",
                                                    dataType : "json",
-                                                   success : sf,
+                                                   success : lajax.wrapperSuccess(sf),
                                                    error : lajax.errorCallBack,
                                                    complete : lajax.complete(node)
                                                });
                                            };
+         lajax.getNoParamReturnText = function(url, sf, node) {
+                                                        lajax.disableNode(node);
+                                                        $.ajax({
+                                                            type : "get",
+                                                            beforeSend: lajax.beforeSend,
+                                                            url : url,
+                                                            dataType : "text/plain",
+                                                            success : lajax.wrapperSuccess(sf),
+                                                            error : lajax.errorCallBack,
+                                                            complete : lajax.complete(node)
+                                                        });
+                                                    };
          lajax.getTextReturnJson = function(url,data, sf, node) {
                                                         lajax.disableNode(node);
                                                         $.ajax({
                                                             type : "get",
+                                                            beforeSend: lajax.beforeSend,
                                                             url : url,
                                                             data : data,
                                                             dataType : "json",
-                                                            success : sf,
+                                                            success : lajax.wrapperSuccess(sf),
                                                             error : lajax.errorCallBack,
                                                             complete : lajax.complete(node)
                                                         });
@@ -110,9 +150,10 @@ var lbajax = (function ($){
                                                                  lajax.disableNode(node);
                                                                  $.ajax({
                                                                      type : "get",
+                                                                     beforeSend: lajax.beforeSend,
                                                                      url : url,
                                                                      dataType : "json",
-                                                                     success : sf,
+                                                                     success : lajax.wrapperSuccess(sf),
                                                                      error : lajax.errorCallBack,
                                                                      complete : lajax.complete(node)
                                                                  });

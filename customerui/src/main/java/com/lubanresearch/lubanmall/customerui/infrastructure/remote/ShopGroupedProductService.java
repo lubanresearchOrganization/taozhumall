@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/2/18.
  */
-@FeignClient(name = "merchantservice")
+@FeignClient(name = "merchantservice",url = "http://merchantservice.taozhumall.com")
 public interface ShopGroupedProductService {
 
     @RequestMapping(value = "/v/0.1/shopGroupedProducts/", method = RequestMethod.GET)
