@@ -1,3 +1,4 @@
 var config = {
-baseUrl:"http://localhost:4001"
+baseUrl:"http://www.taozhumall.com"
+indexUrl:"http://www.taozhumall.com/index.html"
 }

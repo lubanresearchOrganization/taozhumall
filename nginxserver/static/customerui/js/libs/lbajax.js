@@ -36,7 +36,7 @@ var lbajax = (function ($){
 
               var result =  function(data, textStatus, jqXHR){
                               if(data.redirect){
-                                 window.location.href = data.redirect+window.location.href;
+                                 window.location.href = data.redirect+config.indexUrl;
                               }
                              (sf)(data,textStatus,jqXHR);
               };
