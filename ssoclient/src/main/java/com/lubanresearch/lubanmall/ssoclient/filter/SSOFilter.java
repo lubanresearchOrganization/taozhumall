@@ -36,10 +36,10 @@ public class SSOFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletResponse HttpServletResponse = (HttpServletResponse)servletResponse;
-        HttpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
-        HttpServletResponse.setHeader("Access-Control-Expose-Headers", "*");
-        HttpServletResponse.setHeader("Access-Control-Allow-Headers", "*");
-        HttpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
+//        HttpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+//        HttpServletResponse.setHeader("Access-Control-Expose-Headers", "*");
+//        HttpServletResponse.setHeader("Access-Control-Allow-Headers", "*");
+//        HttpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
 
         //对options方法不拦截
         boolean isOptionsMethod = isOptionsMethod(servletRequest);
