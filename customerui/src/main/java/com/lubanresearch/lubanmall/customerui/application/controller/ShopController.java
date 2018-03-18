@@ -21,7 +21,8 @@ public class ShopController {
     @Autowired
     private ShopService shopService;
 
-    Pagination<ShopDTO> findShops(
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ResponseBody Pagination<ShopDTO> findShops(
             @RequestParam(value = "key",required = false) String  key,
             @RequestParam(value = "page", defaultValue = "0",required = false) Integer page,
             @RequestParam(value = "size", defaultValue = "10",required = false) Integer size

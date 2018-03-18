@@ -33,4 +33,10 @@ public class UserController {
 
 
     }
+    @RequestMapping(path = {"/logout"})
+    @ResponseBody public Boolean logout(HttpSession session) {
+
+        session.invalidate();
+        return true;
+    }
 }
