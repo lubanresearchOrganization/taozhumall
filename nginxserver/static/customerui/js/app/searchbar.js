@@ -1,4 +1,4 @@
-var searchbar = (function (){
+var searchbar = (function ($){
 
        var searchbar = {};
 　　　　searchbar.init = function () {
@@ -24,5 +24,10 @@ var searchbar = (function (){
 
 　　　　return searchbar;
 
-　　})();
+　　})(jQuery);
+
+
+$(document).ready(function(){
+  searchbar.init();
+});
 

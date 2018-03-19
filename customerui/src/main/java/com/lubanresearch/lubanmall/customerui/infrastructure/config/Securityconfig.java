@@ -9,7 +9,7 @@ import org.springframework.web.filter.CorsFilter;
 /**
  * Created by hilbertcao on 2018/1/21.
  */
-@Configuration
+//@Configuration
 public class Securityconfig {
 
     /**
