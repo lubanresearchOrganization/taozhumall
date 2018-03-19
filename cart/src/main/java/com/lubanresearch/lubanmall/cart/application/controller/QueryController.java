@@ -46,7 +46,7 @@ public class QueryController {
                 });
         List<CartItemEntity> cartItems = cartItemEntityMapper.selectByExample(queryCondition);
         Map<Long,CartItemEntity> cartItemEntityMap = cartItems.stream().collect(Collectors.toMap(
-                CartItemEntity::getProductId, Function.identity()
+                CartItemEntity::getProductId, Function.identity(),(p1,p2)->p1
         ));
         return cartItems.stream().map(item -> {
             CartItemDTO cartItem = new CartItemDTO();
@@ -75,7 +75,7 @@ public class QueryController {
                 });
         List<CartItemEntity> cartItems = cartItemEntityMapper.selectByExample(queryCondition);
         Map<Long,CartItemEntity> cartItemEntityMap = cartItems.stream().collect(Collectors.toMap(
-                CartItemEntity::getProductId, Function.identity()
+                CartItemEntity::getProductId, Function.identity(),(p1,p2)->p1
         ));
 
         List<ProductDTO> products = cartItems.stream().map(cartItemEntity -> {return merchantService.getProduct(cartItemEntity.getProductId());})

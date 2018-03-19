@@ -37,13 +37,13 @@ public class CommandController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseBody
-    public synchronized boolean addDeal(@RequestBody CreateDealDTO createDealDTO) {
+    public boolean addDeal(@RequestBody CreateDealDTO createDealDTO) {
 
 
         List<ProductDTO> productDTOs = createDealDTO.getItems().stream().map(item->{
             return merchantService.getProduct(item.getProductId());
         }).collect(Collectors.toList());
-        Map<Long,ProductItemDTO> longProductItemMap= createDealDTO.getItems().stream().collect(Collectors.toMap(ProductItemDTO::getProductId, Function.identity()));
+        Map<Long,ProductItemDTO> longProductItemMap= createDealDTO.getItems().stream().collect(Collectors.toMap(ProductItemDTO::getProductId, Function.identity(),(p1, p2) -> p1));
         Map<Long,List<ProductDTO>> shopProductMap = productDTOs.stream().collect(Collectors.groupingBy(ProductDTO::getShopId));
 
         List<Order> orderList = new ArrayList<>();

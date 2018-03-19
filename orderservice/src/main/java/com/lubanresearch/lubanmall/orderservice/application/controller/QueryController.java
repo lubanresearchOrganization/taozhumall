@@ -69,7 +69,7 @@ public class QueryController {
 
         ShopDTO shop = merchantService.getShop(order.getShopId());
         Map<Long, ProductDTO> productMap = merchantService.getProducts(allItems.stream().map(OrderItem::getProductId).collect(Collectors.toList()
-        )).getItems().stream().collect(Collectors.toMap(ProductDTO::getId, Function.identity()));
+        )).getItems().stream().collect(Collectors.toMap(ProductDTO::getId, Function.identity(),(p1,p2)->p1));
 
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setId(order.getId());

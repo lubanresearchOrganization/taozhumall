@@ -80,7 +80,7 @@ public class CommandController {
                 new ConfirmCommand(customerId,
                         confirmDTO.getProductIds(),
                         confirmDTO.getExtras().stream().collect(Collectors.toMap(
-                                GroupExtraDTO::getId,GroupExtraDTO::getRemark
+                                GroupExtraDTO::getId,GroupExtraDTO::getRemark,(p1,p2)->p1
                         ))
                         )
         );

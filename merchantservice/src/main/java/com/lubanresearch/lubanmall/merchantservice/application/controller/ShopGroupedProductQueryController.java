@@ -65,7 +65,7 @@ public class ShopGroupedProductQueryController {
 
         List<Shop> shops = getShops(products.stream().map(Product::getShopId).distinct().collect(Collectors.toList()));
         Map<Long,UserDTO> accountMap = userService.getUsers(shops.stream().map(Shop::getAccountId).distinct().collect(Collectors.toList())).stream().collect(
-                Collectors.toMap(UserDTO::getId,Function.identity())
+                Collectors.toMap(UserDTO::getId,Function.identity(),(p1,p2)->p1)
         );
         Map<Long,ShopDTO> shopDTOMap = shops.stream()
                 .map(shop -> {
@@ -83,7 +83,7 @@ public class ShopGroupedProductQueryController {
                         shopDTO.setAccountName(userDTO.getName());
                     }
                     return shopDTO;
-                }).collect(Collectors.toMap(ShopDTO::getId, Function.identity()));
+                }).collect(Collectors.toMap(ShopDTO::getId, Function.identity(),(p1,p2)->p1));
         return shopProductsMap.keySet().stream().map(shopId->{
             ShopGroupedProductDTO shopGroupedProductDTO = new ShopGroupedProductDTO();
             shopGroupedProductDTO.setShop(shopDTOMap.get(shopId));
