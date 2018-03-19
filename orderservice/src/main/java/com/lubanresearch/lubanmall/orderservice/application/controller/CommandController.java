@@ -37,7 +37,7 @@ public class CommandController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseBody
-    public boolean addDeal(@RequestBody CreateDealDTO createDealDTO) {
+    public synchronized boolean addDeal(@RequestBody CreateDealDTO createDealDTO) {
 
 
         List<ProductDTO> productDTOs = createDealDTO.getItems().stream().map(item->{
