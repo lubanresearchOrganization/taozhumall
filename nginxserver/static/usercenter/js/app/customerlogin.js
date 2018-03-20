@@ -4,7 +4,6 @@ var customerlogin = (function ($){
 　　　　mod.init = function () {
 　　　　　　
          $("#submitBtn").on("click",function(){
-              $('#loginForm').submit();
               var formData = {
                   "name":$("#nameInput").val(),
                   "password":$("#passwordInput").val()
