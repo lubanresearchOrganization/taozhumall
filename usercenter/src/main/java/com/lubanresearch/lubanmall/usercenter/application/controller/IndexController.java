@@ -1,8 +1,13 @@
 package com.lubanresearch.lubanmall.usercenter.application.controller;
 
+import com.lubanmall.userserviceapi.bean.UserDTO;
+import com.lubanresearch.lubanmall.common.bean.Response;
+import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
 import com.lubanresearch.lubanmall.usercenter.infrastructure.cache.Cache;
+import com.lubanresearch.lubanmall.usercenter.infrastructure.remote.UserService;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +34,10 @@ public class IndexController {
 
     @Value("${tgt.expiry}")
     private int tgtExpiry;
+
+    @Autowired
+    private UserService userService;
+
     private Map stTGTMapping = new HashMap();
 
     @RequestMapping(path = {"info","/go","/"})
@@ -197,6 +206,79 @@ public class IndexController {
 
     }
 
+    @RequestMapping(path = {"/ajaxLogin"})
+    public Response<String> ajaxLogin(
+            @RequestParam("name")String name,
+            @RequestParam("password")String password,
+            HttpServletRequest request,
+            HttpServletResponse response
+    )
+    {
+        UserDTO userDTO = null;
+        try {
+            userDTO = userService.getAuthentication(name,password);
+        } catch (ServiceException e) {
+            //TO-DO本页
+            Response<String> result = new Response<>();
+            result.setCode(500);
+            result.setMessage("用户或密码错误");
+            return result;
+        }
+
+        Response<String> result = new Response<>();
+        result.setCode(200);
+        Authentication authentication = new Authentication();
+        authentication.setEmail(null);
+        authentication.setUserId(userDTO.getId());
+        authentication.setUserName(userDTO.getName());
+        authentication.setPhone(userDTO.getMobile());
+        String ticketGrantingTicket = System.currentTimeMillis()+"";
+        String serviceTicket = System.currentTimeMillis()+"";
+        Cache.put(ticketGrantingTicket,authentication);
+        stTGTMapping.put(serviceTicket,ticketGrantingTicket);
+        String callback = null;
+        String referer = request.getHeader("Referer");
+        if(referer!=null){
+            if(referer.contains("?")){
+                String paramPairs =  referer.substring(referer.indexOf("?")+1);
+                String[] paramPairList = paramPairs.split("&");
+                for(String paramPair:paramPairList){
+                    if(paramPair.contains("callback=")){
+                        callback = paramPair.substring("callback=".length());
+                        break;
+                    }
+                }
+            }
+
+
+        }
+        if(callback!=null){
+            try {
+                String callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
+                if(callbackAfterDecode.contains("?")){
+                    callbackAfterDecode = callbackAfterDecode+"&st="+serviceTicket;
+                }else{
+                    callbackAfterDecode = callbackAfterDecode+"?st="+serviceTicket;
+                }
+                Cookie cookie = new Cookie("TGT",ticketGrantingTicket);
+                cookie.setMaxAge(tgtExpiry);
+                response.addCookie(cookie);
+                result.setData(callbackAfterDecode);
+                return result;
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //默认跳转到refer
+        if(StringUtils.isNotBlank(referer)){
+            result.setData(referer);
+            return result;
+        }
+
+        result.setData("afterLogin");
+        return result;
+    }
 
     @RequestMapping(path = {"/login"})
     public String login(
@@ -206,11 +288,18 @@ public class IndexController {
             HttpServletResponse response
     ) {
 
+        UserDTO userDTO = null;
+        try {
+            userDTO = userService.getAuthentication(name,password);
+        } catch (ServiceException e) {
+            //TO-DO本页
+        }
+
         Authentication authentication = new Authentication();
-        authentication.setEmail("111@11.com");
-        authentication.setUserId(1L);
-        authentication.setUserName(name);
-        authentication.setPhone("17700000000");
+        authentication.setEmail(null);
+        authentication.setUserId(userDTO.getId());
+        authentication.setUserName(userDTO.getName());
+        authentication.setPhone(userDTO.getMobile());
         String ticketGrantingTicket = System.currentTimeMillis()+"";
         String serviceTicket = System.currentTimeMillis()+"";
         Cache.put(ticketGrantingTicket,authentication);
