@@ -4,7 +4,19 @@ var shoplogin = (function ($){
 　　　　mod.init = function () {
 　　　　　　
          $("#submitBtn").on("click",function(){
-              $('#loginForm').submit();
+              var formData = {
+                  "name":$("#nameInput").val(),
+                  "password":$("#passwordInput").val()
+              };
+              $.post("/ajaxLogin", formData,
+                 function(result){
+                   if(result.code==200){
+                   alert("登录成功!");
+                   window.location.href = result.data;
+                   }else{
+                     alert(result.message);
+                   }
+                 }, "json");
          });
 　　　　};
 
