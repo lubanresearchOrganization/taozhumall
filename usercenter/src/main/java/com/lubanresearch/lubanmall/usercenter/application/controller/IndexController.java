@@ -207,7 +207,7 @@ public class IndexController {
     }
 
     @RequestMapping(path = {"/ajaxLogin"})
-    public Response<String> ajaxLogin(
+    public @ResponseBody Response<String> ajaxLogin(
             @RequestParam("name")String name,
             @RequestParam("password")String password,
             HttpServletRequest request,
