@@ -8,7 +8,7 @@ var customerlogin = (function ($){
                   "name":$("#nameInput").val(),
                   "password":$("#passwordInput").val()
               };
-              $.post("usercente.taozhumall.com/ajaxLogin", formData,
+              $.post("/ajaxLogin", formData,
                  function(result){
                    if(result.code==200){
                    alert("登录成功!");
