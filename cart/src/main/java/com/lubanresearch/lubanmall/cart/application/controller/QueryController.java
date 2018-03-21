@@ -32,7 +32,7 @@ public class QueryController {
     private MerchantService merchantService;
 
     @RequestMapping("/")
-    public @ResponseBody List<CartItemDTO> getCustomerCart(@PathVariable("customerId") Long customerId,
+    public @ResponseBody List<CartItemEntity> getCustomerCart(@PathVariable("customerId") Long customerId,
                                                  @RequestParam(value = "productIds",required = false) List<Long> productIds
     ){
 
@@ -44,21 +44,7 @@ public class QueryController {
                         return add.andProductIdIn(productIds);
                     }
                 });
-        List<CartItemEntity> cartItems = cartItemEntityMapper.selectByExample(queryCondition);
-        Map<Long,CartItemEntity> cartItemEntityMap = cartItems.stream().collect(Collectors.toMap(
-                CartItemEntity::getProductId, Function.identity(),(p1,p2)->p1
-        ));
-        return cartItems.stream().map(item -> {
-            CartItemDTO cartItem = new CartItemDTO();
-            CartItemEntity cartItemEntity =  cartItemEntityMap.get(item.getProductId());
-            cartItem.setId(cartItemEntity.getId());
-            cartItem.setProductId(cartItemEntity.getProductId());
-            cartItem.setCustomerId(cartItemEntity.getCustomerId());
-            cartItem.setProductNum(cartItemEntity.getProductNum());
-            cartItem.setCreateTime(cartItemEntity.getCreateTime());
-            cartItem.setProductPrice(cartItemEntity.getProductPrice());
-            return cartItem;
-        }).collect(Collectors.toList());
+        return cartItemEntityMapper.selectByExample(queryCondition);
     }
     /*@RequestMapping("/")
     public @ResponseBody CartDTO getCustomerCart(@PathVariable("customerId") Long customerId,
