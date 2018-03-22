@@ -17,4 +17,8 @@ public interface UserService {
     @RequestMapping(value = "/v/0.1/users/authentication", method = RequestMethod.GET)
     @ResponseBody
     UserDTO getAuthentication(@RequestParam("name") String name, @RequestParam("password")String password) throws ServiceException;
+
+    @RequestMapping(value = "/v/0.1/users/", method = RequestMethod.POST)
+    @ResponseBody
+    UserDTO createUser(UserDTO userDTO);
 }

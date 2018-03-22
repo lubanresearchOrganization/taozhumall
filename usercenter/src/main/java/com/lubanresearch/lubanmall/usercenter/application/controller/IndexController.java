@@ -1,19 +1,18 @@
 package com.lubanresearch.lubanmall.usercenter.application.controller;
 
 import com.lubanmall.userserviceapi.bean.UserDTO;
+import com.lubanmall.userserviceapi.bean.UserType;
 import com.lubanresearch.lubanmall.common.bean.Response;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
+import com.lubanresearch.lubanmall.usercenter.application.controller.request.RegisterRequest;
 import com.lubanresearch.lubanmall.usercenter.infrastructure.cache.Cache;
 import com.lubanresearch.lubanmall.usercenter.infrastructure.remote.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.Cookie;
@@ -40,7 +39,7 @@ public class IndexController {
 
     private Map stTGTMapping = new HashMap();
 
-    @RequestMapping(path = {"info","/go","/"})
+    @RequestMapping(path = {"info", "/go", "/"})
     @ResponseBody
     public String go() {
         return "success";
@@ -49,38 +48,38 @@ public class IndexController {
 
     @RequestMapping(path = {"/checkServiceTicket"})
     @ResponseBody
-    public Authentication checkServiceTicket(@RequestParam("st")String st) {
+    public Authentication checkServiceTicket(@RequestParam("st") String st) {
 
         String tgt = (String) stTGTMapping.get(st);
         //stTGTMapping.remove(st);
         return Cache.get(tgt);
     }
 
-    @RequestMapping(path = {"/customerLoginPage"},method = RequestMethod.GET)
+    @RequestMapping(path = {"/customerLoginPage"}, method = RequestMethod.GET)
     public String customerLoginPage(HttpServletRequest request) {
 
         Cookie[] cookies = request.getCookies();
-        if(cookies!=null){
+        if (cookies != null) {
 
-            for (Cookie cookie:cookies){
-                if("TGT".equals(cookie.getName())){
+            for (Cookie cookie : cookies) {
+                if ("TGT".equals(cookie.getName())) {
                     String tgt = cookie.getValue();
                     Authentication authentication = Cache.get(tgt);
-                    if(authentication!=null){
+                    if (authentication != null) {
 
                         String callback = request.getParameter("callback");
-                        if(callback!=null){
+                        if (callback != null) {
 
-                            String serviceTicket = System.currentTimeMillis()+"";
-                            stTGTMapping.put(serviceTicket,tgt);
+                            String serviceTicket = System.currentTimeMillis() + "";
+                            stTGTMapping.put(serviceTicket, tgt);
                             try {
-                                String callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
-                                if(callbackAfterDecode.contains("?")){
-                                    callbackAfterDecode = callbackAfterDecode+"&st="+serviceTicket;
-                                }else{
-                                    callbackAfterDecode = callbackAfterDecode+"?st="+serviceTicket;
+                                String callbackAfterDecode = URLDecoder.decode(callback, "UTF-8");
+                                if (callbackAfterDecode.contains("?")) {
+                                    callbackAfterDecode = callbackAfterDecode + "&st=" + serviceTicket;
+                                } else {
+                                    callbackAfterDecode = callbackAfterDecode + "?st=" + serviceTicket;
                                 }
-                                return "redirect:"+callbackAfterDecode;
+                                return "redirect:" + callbackAfterDecode;
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
@@ -94,43 +93,43 @@ public class IndexController {
         String callback = request.getParameter("callback");
         String callbackAfterDecode = null;
         try {
-            callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
+            callbackAfterDecode = URLDecoder.decode(callback, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        if(StringUtils.isNotBlank(callbackAfterDecode)){
+        if (StringUtils.isNotBlank(callbackAfterDecode)) {
 
-            return "redirect:customerlogin.html?callback="+callbackAfterDecode;
+            return "redirect:customerlogin.html?callback=" + callbackAfterDecode;
         }
         return "redirect:customerlogin.html";
 
     }
 
-    @RequestMapping(path = {"/shopLoginPage"},method = RequestMethod.GET)
+    @RequestMapping(path = {"/shopLoginPage"}, method = RequestMethod.GET)
     public String shopLoginPage(HttpServletRequest request) {
 
         Cookie[] cookies = request.getCookies();
-        if(cookies!=null){
+        if (cookies != null) {
 
-            for (Cookie cookie:cookies){
-                if("TGT".equals(cookie.getName())){
+            for (Cookie cookie : cookies) {
+                if ("TGT".equals(cookie.getName())) {
                     String tgt = cookie.getValue();
                     Authentication authentication = Cache.get(tgt);
-                    if(authentication!=null){
+                    if (authentication != null) {
 
                         String callback = request.getParameter("callback");
-                        if(callback!=null){
+                        if (callback != null) {
 
-                            String serviceTicket = System.currentTimeMillis()+"";
-                            stTGTMapping.put(serviceTicket,tgt);
+                            String serviceTicket = System.currentTimeMillis() + "";
+                            stTGTMapping.put(serviceTicket, tgt);
                             try {
-                                String callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
-                                if(callbackAfterDecode.contains("?")){
-                                    callbackAfterDecode = callbackAfterDecode+"&st="+serviceTicket;
-                                }else{
-                                    callbackAfterDecode = callbackAfterDecode+"?st="+serviceTicket;
+                                String callbackAfterDecode = URLDecoder.decode(callback, "UTF-8");
+                                if (callbackAfterDecode.contains("?")) {
+                                    callbackAfterDecode = callbackAfterDecode + "&st=" + serviceTicket;
+                                } else {
+                                    callbackAfterDecode = callbackAfterDecode + "?st=" + serviceTicket;
                                 }
-                                return "redirect:"+callbackAfterDecode;
+                                return "redirect:" + callbackAfterDecode;
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
@@ -144,43 +143,43 @@ public class IndexController {
         String callback = request.getParameter("callback");
         String callbackAfterDecode = null;
         try {
-            callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
+            callbackAfterDecode = URLDecoder.decode(callback, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        if(StringUtils.isNotBlank(callbackAfterDecode)){
+        if (StringUtils.isNotBlank(callbackAfterDecode)) {
 
-            return "redirect:shoplogin.html?callback="+callbackAfterDecode;
+            return "redirect:shoplogin.html?callback=" + callbackAfterDecode;
         }
         return "redirect:shoplogin.html";
 
     }
 
-    @RequestMapping(path = {"/platformLoginPage"},method = RequestMethod.GET)
+    @RequestMapping(path = {"/platformLoginPage"}, method = RequestMethod.GET)
     public String platformLoginPage(HttpServletRequest request) {
 
         Cookie[] cookies = request.getCookies();
-        if(cookies!=null){
+        if (cookies != null) {
 
-            for (Cookie cookie:cookies){
-                if("TGT".equals(cookie.getName())){
+            for (Cookie cookie : cookies) {
+                if ("TGT".equals(cookie.getName())) {
                     String tgt = cookie.getValue();
                     Authentication authentication = Cache.get(tgt);
-                    if(authentication!=null){
+                    if (authentication != null) {
 
                         String callback = request.getParameter("callback");
-                        if(callback!=null){
+                        if (callback != null) {
 
-                            String serviceTicket = System.currentTimeMillis()+"";
-                            stTGTMapping.put(serviceTicket,tgt);
+                            String serviceTicket = System.currentTimeMillis() + "";
+                            stTGTMapping.put(serviceTicket, tgt);
                             try {
-                                String callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
-                                if(callbackAfterDecode.contains("?")){
-                                    callbackAfterDecode = callbackAfterDecode+"&st="+serviceTicket;
-                                }else{
-                                    callbackAfterDecode = callbackAfterDecode+"?st="+serviceTicket;
+                                String callbackAfterDecode = URLDecoder.decode(callback, "UTF-8");
+                                if (callbackAfterDecode.contains("?")) {
+                                    callbackAfterDecode = callbackAfterDecode + "&st=" + serviceTicket;
+                                } else {
+                                    callbackAfterDecode = callbackAfterDecode + "?st=" + serviceTicket;
                                 }
-                                return "redirect:"+callbackAfterDecode;
+                                return "redirect:" + callbackAfterDecode;
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
@@ -194,29 +193,47 @@ public class IndexController {
         String callback = request.getParameter("callback");
         String callbackAfterDecode = null;
         try {
-            callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
+            callbackAfterDecode = URLDecoder.decode(callback, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        if(StringUtils.isNotBlank(callbackAfterDecode)){
+        if (StringUtils.isNotBlank(callbackAfterDecode)) {
 
-            return "redirect:platformlogin.html?callback="+callbackAfterDecode;
+            return "redirect:platformlogin.html?callback=" + callbackAfterDecode;
         }
         return "redirect:platformlogin.html";
 
     }
 
+
+    @RequestMapping(path = {"/regitster"})
+    public
+    @ResponseBody
+    UserDTO regitster(
+            @RequestBody RegisterRequest registerRequest
+    ) {
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName(registerRequest.getName());
+        userDTO.setPassword(registerRequest.getPassword());
+        userDTO.setType(UserType.CUSTOMER.getValue());
+        UserDTO result = userService.createUser(userDTO);
+        result.setPassword(null);
+        return result;
+    }
+
     @RequestMapping(path = {"/ajaxLogin"})
-    public @ResponseBody Response<String> ajaxLogin(
-            @RequestParam("name")String name,
-            @RequestParam("password")String password,
+    public
+    @ResponseBody
+    Response<String> ajaxLogin(
+            @RequestParam("name") String name,
+            @RequestParam("password") String password,
             HttpServletRequest request,
             HttpServletResponse response
-    )
-    {
+    ) {
         UserDTO userDTO = null;
         try {
-            userDTO = userService.getAuthentication(name,password);
+            userDTO = userService.getAuthentication(name, password);
         } catch (ServiceException e) {
             //TO-DO本页
             Response<String> result = new Response<>();
@@ -232,18 +249,18 @@ public class IndexController {
         authentication.setUserId(userDTO.getId());
         authentication.setUserName(userDTO.getName());
         authentication.setPhone(userDTO.getMobile());
-        String ticketGrantingTicket = System.currentTimeMillis()+"";
-        String serviceTicket = System.currentTimeMillis()+"";
-        Cache.put(ticketGrantingTicket,authentication);
-        stTGTMapping.put(serviceTicket,ticketGrantingTicket);
+        String ticketGrantingTicket = System.currentTimeMillis() + "";
+        String serviceTicket = System.currentTimeMillis() + "";
+        Cache.put(ticketGrantingTicket, authentication);
+        stTGTMapping.put(serviceTicket, ticketGrantingTicket);
         String callback = null;
         String referer = request.getHeader("Referer");
-        if(referer!=null){
-            if(referer.contains("?")){
-                String paramPairs =  referer.substring(referer.indexOf("?")+1);
+        if (referer != null) {
+            if (referer.contains("?")) {
+                String paramPairs = referer.substring(referer.indexOf("?") + 1);
                 String[] paramPairList = paramPairs.split("&");
-                for(String paramPair:paramPairList){
-                    if(paramPair.contains("callback=")){
+                for (String paramPair : paramPairList) {
+                    if (paramPair.contains("callback=")) {
                         callback = paramPair.substring("callback=".length());
                         break;
                     }
@@ -252,15 +269,15 @@ public class IndexController {
 
 
         }
-        if(callback!=null){
+        if (callback != null) {
             try {
-                String callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
-                if(callbackAfterDecode.contains("?")){
-                    callbackAfterDecode = callbackAfterDecode+"&st="+serviceTicket;
-                }else{
-                    callbackAfterDecode = callbackAfterDecode+"?st="+serviceTicket;
+                String callbackAfterDecode = URLDecoder.decode(callback, "UTF-8");
+                if (callbackAfterDecode.contains("?")) {
+                    callbackAfterDecode = callbackAfterDecode + "&st=" + serviceTicket;
+                } else {
+                    callbackAfterDecode = callbackAfterDecode + "?st=" + serviceTicket;
                 }
-                Cookie cookie = new Cookie("TGT",ticketGrantingTicket);
+                Cookie cookie = new Cookie("TGT", ticketGrantingTicket);
                 cookie.setMaxAge(tgtExpiry);
                 response.addCookie(cookie);
                 result.setData(callbackAfterDecode);
@@ -271,7 +288,7 @@ public class IndexController {
         }
 
         //默认跳转到refer
-        if(StringUtils.isNotBlank(referer)){
+        if (StringUtils.isNotBlank(referer)) {
             result.setData(referer);
             return result;
         }
@@ -282,15 +299,15 @@ public class IndexController {
 
     @RequestMapping(path = {"/login"})
     public String login(
-            @RequestParam("name")String name,
-            @RequestParam("password")String password,
+            @RequestParam("name") String name,
+            @RequestParam("password") String password,
             HttpServletRequest request,
             HttpServletResponse response
     ) {
 
         UserDTO userDTO = null;
         try {
-            userDTO = userService.getAuthentication(name,password);
+            userDTO = userService.getAuthentication(name, password);
         } catch (ServiceException e) {
             //TO-DO本页
         }
@@ -300,46 +317,46 @@ public class IndexController {
         authentication.setUserId(userDTO.getId());
         authentication.setUserName(userDTO.getName());
         authentication.setPhone(userDTO.getMobile());
-        String ticketGrantingTicket = System.currentTimeMillis()+"";
-        String serviceTicket = System.currentTimeMillis()+"";
-        Cache.put(ticketGrantingTicket,authentication);
-        stTGTMapping.put(serviceTicket,ticketGrantingTicket);
+        String ticketGrantingTicket = System.currentTimeMillis() + "";
+        String serviceTicket = System.currentTimeMillis() + "";
+        Cache.put(ticketGrantingTicket, authentication);
+        stTGTMapping.put(serviceTicket, ticketGrantingTicket);
         String callback = null;
         String referer = request.getHeader("Referer");
-       if(referer!=null){
-           if(referer.contains("?")){
-               String paramPairs =  referer.substring(referer.indexOf("?")+1);
-               String[] paramPairList = paramPairs.split("&");
-               for(String paramPair:paramPairList){
-                   if(paramPair.contains("callback=")){
-                       callback = paramPair.substring("callback=".length());
-                       break;
-                   }
-               }
-           }
-
-
-       }
-        if(callback!=null){
-            try {
-                String callbackAfterDecode = URLDecoder.decode(callback,"UTF-8");
-                if(callbackAfterDecode.contains("?")){
-                    callbackAfterDecode = callbackAfterDecode+"&st="+serviceTicket;
-                }else{
-                    callbackAfterDecode = callbackAfterDecode+"?st="+serviceTicket;
+        if (referer != null) {
+            if (referer.contains("?")) {
+                String paramPairs = referer.substring(referer.indexOf("?") + 1);
+                String[] paramPairList = paramPairs.split("&");
+                for (String paramPair : paramPairList) {
+                    if (paramPair.contains("callback=")) {
+                        callback = paramPair.substring("callback=".length());
+                        break;
+                    }
                 }
-                Cookie cookie = new Cookie("TGT",ticketGrantingTicket);
+            }
+
+
+        }
+        if (callback != null) {
+            try {
+                String callbackAfterDecode = URLDecoder.decode(callback, "UTF-8");
+                if (callbackAfterDecode.contains("?")) {
+                    callbackAfterDecode = callbackAfterDecode + "&st=" + serviceTicket;
+                } else {
+                    callbackAfterDecode = callbackAfterDecode + "?st=" + serviceTicket;
+                }
+                Cookie cookie = new Cookie("TGT", ticketGrantingTicket);
                 cookie.setMaxAge(tgtExpiry);
                 response.addCookie(cookie);
-                return "redirect:"+callbackAfterDecode;
+                return "redirect:" + callbackAfterDecode;
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
 
         //默认跳转到refer
-        if(StringUtils.isNotBlank(referer)){
-            return "redirect:"+referer;
+        if (StringUtils.isNotBlank(referer)) {
+            return "redirect:" + referer;
         }
         return "afterLogin";
     }
