@@ -3,10 +3,14 @@ package com.lubanresearch.lubanmall.customerui.application.controller;
 import com.lubanmall.orderserviceapi.bean.CreateDealDTO;
 import com.lubanmall.orderserviceapi.bean.OrderDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
+import com.lubanresearch.lubanmall.common.exception.UIException;
 import com.lubanresearch.lubanmall.customerui.infrastructure.remote.OrderService;
+import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by hilbertcao on 2018/2/4.
@@ -21,10 +25,19 @@ public class OrderController {
 
     @RequestMapping(value = "/deals/", method = RequestMethod.POST)
     @ResponseBody
-    public boolean addDeal(@RequestBody CreateDealDTO createDealDTO) {
+    public boolean addDeal(@RequestBody CreateDealDTO createDealDTO,HttpSession session) {
 
-        createDealDTO.setCustomerId(1513709082550L);
+        createDealDTO.setCustomerId(getCustomerId(session));
         return orderService.createDeal(createDealDTO);
+    }
+
+    private Long getCustomerId(HttpSession session){
+        Authentication authentication = (Authentication) session.getAttribute("authentication");
+        if(authentication==null){
+
+            throw new UIException(500,"用户未登录");
+        }
+        return authentication.getUserId();
     }
 
     @RequestMapping("/orders/")
@@ -34,10 +47,11 @@ public class OrderController {
             @RequestParam(value = "shopId",required = false) Long shopId,
             @RequestParam(value = "status",required = false) Long status,
             @RequestParam(value = "page", defaultValue = "0",required = false) Integer page,
-            @RequestParam(value = "size", defaultValue = "10",required = false) Integer size
+            @RequestParam(value = "size", defaultValue = "10",required = false) Integer size,
+            HttpSession session
     ){
 
-        Pagination<OrderDTO> result = orderService.getOrders(id,shopId, 1513709082550L, status,page,size);
+        Pagination<OrderDTO> result = orderService.getOrders(id,shopId, getCustomerId(session), status,page,size);
         return result;
     }
 
