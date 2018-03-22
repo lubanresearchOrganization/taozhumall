@@ -37,7 +37,8 @@ var memberregister = (function ($){
                       contentType : "application/json; charset=utf-8",
                       dataType : "json",
                       error : function(result){
-                         alert(result.message);
+                         var response = JSON.parse(result.responseText);
+                         alert(response.message);
                       },
                       success : function(result){
                                  alert("注册成功!");
