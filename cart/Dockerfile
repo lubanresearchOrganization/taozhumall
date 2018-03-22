@@ -8,7 +8,7 @@ ENV JAVA_OPTS="\
  -Xmx128m\
  -XX:MaxMetaspaceSize=128m\
  -XX:CompressedClassSpaceSize=20m\
- -Xss128k\
+ -Xss256k\
  -Xmn8m\
  -XX:InitialCodeCacheSize=4m\
  -XX:ReservedCodeCacheSize=8m\
