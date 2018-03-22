@@ -33,13 +33,19 @@ var memberregister = (function ($){
                   "name":name,
                   "password":password
               };
-
-              $.post("/register", JSON.stringify(formData),
-                 function(result){
-                   alert("注册成功!");
-                   window.location.href = "http://www.taozhumall.com";
-                 }, "json");
-         });
+              $.ajax({
+                   type : "post",
+                   beforeSend: lajax.beforeSend,
+                   url : "/register",
+                   data : JSON.stringify(formData),
+                   contentType : "application/json; charset=utf-8",
+                   dataType : "json",
+                   success : function(result){
+                          alert("注册成功!");
+                          window.location.href = "http://www.taozhumall.com";
+                    }, "json");
+                    }
+                   });
 　　　　};
 
 　　　　return memberregister;
