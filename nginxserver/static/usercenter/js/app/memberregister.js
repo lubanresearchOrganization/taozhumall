@@ -34,7 +34,7 @@ var memberregister = (function ($){
                $.ajax({
                       type : "post",
                       url : "/register",
-                      data : JSON.stringify(ldata),
+                      data : JSON.stringify(formData),
                       contentType : "application/json; charset=utf-8",
                       dataType : "json",
                       success : function(result){
