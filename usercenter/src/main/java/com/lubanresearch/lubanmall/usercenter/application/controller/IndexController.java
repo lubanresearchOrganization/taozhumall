@@ -206,7 +206,7 @@ public class IndexController {
     }
 
 
-    @RequestMapping(path = {"/regitster"})
+    @RequestMapping(path = {"/register"})
     public
     @ResponseBody
     UserDTO regitster(
