@@ -12,7 +12,7 @@ ENV JAVA_OPTS="\
  -Xss256k\
  -Xmn8m\
  -XX:InitialCodeCacheSize=4m\
- -XX:ReservedCodeCacheSize=8m\
+ -XX:ReservedCodeCacheSize=16m\
  -XX:MaxDirectMemorySize=16m"
 
 ENTRYPOINT java ${JAVA_OPTS} -jar /app.jar --spring.profiles.active=prod
