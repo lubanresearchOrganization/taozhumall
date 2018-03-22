@@ -20,7 +20,7 @@ var memberregister = (function ($){
                 alert("请确认密码!");
                 return false;
               }
-              if(repassword != repassword){
+              if(password != repassword){
                 alert("两次密码不一致，请重新确认!");
                 return false;
               }
