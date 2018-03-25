@@ -21,6 +21,7 @@ var memberinfoedit = (function ($,config,lajaxComponent){
                                  data,
                                  function(result){
                                  alert("更新账户信息成功");
+                                 $('#accountInfoEditPanel').modal('hide');
                                  }
                                  );
 
@@ -68,6 +69,7 @@ var memberinfoedit = (function ($,config,lajaxComponent){
                                                         data,
                                                         function(result){
                                                         alert("更新密码成功");
+                                                        $('#changePasswordPanel').modal('hide');
                                                         }
                                                         );
                   });
