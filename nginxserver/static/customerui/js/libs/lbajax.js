@@ -25,12 +25,23 @@ var lbajax = (function ($){
                                          window.location.reload();
                                      }
                                      if (statusCode >= 500 && statusCode <= 600 ) {
-                                         alert("服务器异常，请联系管理员。状态编码：" + statusCode);
+                                         try
+                                          {
+                                            var response = JSON.parse(xhr.responseText);
+                                            alert(response.message);
+                                          }
+                                          catch(err)
+                                           {
+                                            console.log(err);
+                                           }
                                      }
                                      if (statusCode >= 400 && statusCode <500) {
                                          alert("请求参数错误，请联系管理员。状态编码：" + statusCode);
                                      }
                                      console.log("状态编码：" + statusCode);
+
+
+
                                  };
        lajax.wrapperSuccess = function(sf){
 
@@ -97,6 +108,20 @@ var lbajax = (function ($){
                                             lajax.disableNode(node);
                                             $.ajax({
                                                 type : "post",
+                                                beforeSend: lajax.beforeSend,
+                                                url : url,
+                                                data : JSON.stringify(ldata),
+                                                contentType : "application/json; charset=utf-8",
+                                                dataType : "json",
+                                                success : lajax.wrapperSuccess(sf),
+                                                error : lajax.errorCallBack,
+                                                complete : lajax.complete(node)
+                                            });
+                                        };
+         lajax.putJsonReturnJson = function(url, ldata, sf, node) {
+                                            lajax.disableNode(node);
+                                            $.ajax({
+                                                type : "put",
                                                 beforeSend: lajax.beforeSend,
                                                 url : url,
                                                 data : JSON.stringify(ldata),

@@ -1,11 +1,13 @@
 package com.lubanresearch.lubanmall.customerui.application.controller;
 
 import com.lubanmall.userserviceapi.bean.UserDTO;
+import com.lubanmall.userserviceapi.command.ChangepasswordCommandDTO;
+import com.lubanresearch.lubanmall.common.exception.UIException;
+import com.lubanresearch.lubanmall.customerui.infrastructure.remote.UserService;
 import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/v/0.1/users")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/authentication", method = RequestMethod.GET)
     @ResponseBody
@@ -39,4 +44,30 @@ public class UserController {
         session.invalidate();
         return true;
     }
+
+
+    private Long getCustomerId(HttpSession session){
+        Authentication authentication = (Authentication) session.getAttribute("authentication");
+        if(authentication==null){
+
+            throw new UIException(500,"用户未登录");
+        }
+        return authentication.getUserId();
+    }
+
+    @RequestMapping(value = "/",method = RequestMethod.PUT)
+    @ResponseBody
+    public UserDTO updateUser( @RequestBody UserDTO user,HttpSession session){
+        user.setId(getCustomerId(session));
+        return userService.update(user.getId(),user);
+    }
+
+    @RequestMapping(value = "/commands/changePassword",method = RequestMethod.POST)
+    @ResponseBody
+    public UserDTO changePassword(@RequestBody ChangepasswordCommandDTO command,HttpSession session){
+
+
+        return userService.changePassword(getCustomerId(session),command);
+    }
+
 }
