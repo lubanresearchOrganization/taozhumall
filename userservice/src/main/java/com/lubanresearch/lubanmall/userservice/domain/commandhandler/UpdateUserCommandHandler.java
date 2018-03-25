@@ -30,7 +30,7 @@ public class UpdateUserCommandHandler {
         if (command.getName() != null && !"".equals(command.getName().trim())) {
             //// 判断名字重复
             User existUser = userRepository.getByName(command.getName());
-            if (existUser != null && existUser.getId() != command.getId()) {
+            if (existUser != null && !existUser.getId() .equals(command.getId()) ) {
                 throw new ServiceException(500, "用户已经存在");
             }
             user.setName(command.getName());
