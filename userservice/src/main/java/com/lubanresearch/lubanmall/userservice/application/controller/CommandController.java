@@ -5,6 +5,7 @@ import com.lubanmall.userserviceapi.command.ChangepasswordCommandDTO;
 import com.lubanresearch.lubanmall.userservice.domain.User;
 import com.lubanresearch.lubanmall.userservice.domain.command.AddUserCommand;
 import com.lubanresearch.lubanmall.userservice.domain.command.ChangepasswordCommand;
+import com.lubanresearch.lubanmall.userservice.domain.command.UpdateUserCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +31,9 @@ public class CommandController {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     @ResponseBody
-    public void updateUser(@RequestBody UserDTO user){
+    public User updateUser(@PathVariable("id")Long id,@RequestBody UserDTO user){
 
+        return commandGateway.sendAndWait(new UpdateUserCommand(id,user.getName(),user.getMobile()));
     }
 
     @RequestMapping(value = "/{id}/commands/changePassword",method = RequestMethod.POST)
