@@ -19,25 +19,25 @@ public class UpdateUserCommandHandler {
     private UserRepository userRepository;
 
     @CommandHandler
-    public User handle(UpdateUserCommand command)throws ServiceException {
+    public User handle(UpdateUserCommand command) throws ServiceException {
 
 
         User user = userRepository.getById(command.getId());
-        if(user==null){
-            throw new ServiceException(500,"更新的实体不存在");
+        if (user == null) {
+            throw new ServiceException(500, "更新的实体不存在");
         }
 
-        if(command.getName()!=null && !"".equals(command.getName().trim())){
+        if (command.getName() != null && !"".equals(command.getName().trim())) {
             //// 判断名字重复
             User existUser = userRepository.getByName(command.getName());
-            if(existUser!=null){
-                throw new ServiceException(500,"用户已经存在");
+            if (existUser != null && existUser.getId() != command.getId()) {
+                throw new ServiceException(500, "用户已经存在");
             }
             user.setName(command.getName());
 
         }
 
-        if(command.getMobile()!=null && !"".equals(command.getMobile().trim())){
+        if (command.getMobile() != null && !"".equals(command.getMobile().trim())) {
             user.setMobile(command.getMobile());
         }
 
