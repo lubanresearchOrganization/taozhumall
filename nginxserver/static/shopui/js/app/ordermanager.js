@@ -1,75 +1,167 @@
-var ordermanager = (function ($, lajaxComponent) {
+var ordermanager = (function ($, urlutil, lajaxComponent, objectutil) {
 
-    var dttable;
 
     var index = {};
+    var currentorderid;
 
 
+    index.bind = function () {
+
+        $(document).on('click', '#searchOrdersBtn', function () {
+
+            $("#rows").html("");
+            $('#pageBar').html("");
+            urlparams = {};
+            page = 0;
+            var condition = {
+                "page": page,
+                "size": size
+            };
+            if ($("#statusInput").val()) {
+
+                urlparams.status = $("#statusInput").val();
+            }
+            if ($("#orderNOInput").val()) {
+
+                urlparams.id = $("#orderNOInput").val();
+            }
+            objectutil.simplecopy(urlparams, condition);
+
+
+            lajaxComponent.getTextReturnJson(config.baseUrl + "/v/0.1/orders/", condition, function (result) {
+
+
+                if (result.pageCount > 0) {
+
+
+                    $("#rows").html($("#resultTemplate").tmpl(result.items));
+                    var options = {
+                        currentPage: result.pageIndex + 1,
+                        totalPages: result.pageCount,
+                        bootstrapMajorVersion: 3,
+                        itemContainerClass: function (type, page, current) {
+                                return (page === current) ? "page-item active" : "page-item";
+                            },
+                            itemContentClass: "page-link",
+                        pageUrl: function (type, page, current) {
+
+                            var params = {
+                                "page": page,
+                                "size": size,
+                                "params": JSON.stringify(urlparams)
+                            };
+                            return "./ordermanager.html?" + urlutil.concatParam(params);
+
+                        }
+                    }
+
+                    $('#pageBar').bootstrapPaginator(options);
+                }
+            });
+        });
+
+        $(document).on('click', '.deliverBtn', function () {
+            var orderid = $(this).attr("orderid");
+            console.info(orderid);
+            lajaxComponent.postNoParamReturnJson(config.baseUrl + "/v/0.1/orders/" + orderid + "/commands/deliver", function (result) {
+                page = 0;
+                alert("发货成功!");
+                $("#searchOrdersBtn").click();
+
+            });
+        });
+
+        $(document).on('click', '.changeTotalBtn', function () {
+
+            currentorderid = $(this).attr("orderid");
+            $('#modifyTotalPanel').modal('show');
+        });
+
+        $(document).on('click', '#changeTotalSubmitBtn', function () {
+            console.info(currentorderid);
+            var total = $("#newTotal").val();
+            if (!total) {
+                alert("请输入新的价格");
+                $("#newTotal").focus();
+                return;
+            }
+            var orderid = currentorderid;
+            var data = {
+                "orderId": orderid,
+                "total": total
+            };
+
+            lajaxComponent.postJsonReturnJson(config.baseUrl + "/v/0.1/orders/" + orderid + "/commands/changeTotal",
+                data,
+                function (result) {
+                console.info(result);
+                    page = 0;
+                    alert("修改价格成功!");
+                    $("#searchOrdersBtn").click();
+                    $('#modifyTotalPanel').modal('hide');
+                });
+
+        });
+    };
 
     index.init = function () {
 
 
-        lajaxComponent.getNoParamReturnJson(config.baseUrl + "/v/0.1/orders/?dealId=13301967441401&shopId=1&customerId=1&status=1", function (data) {
+        page = urlutil.getParameter("page");
+        size = urlutil.getParameter("size");
+        urlparams = JSON.parse(urlutil.getParameter("params")) || {};
+        if (!page) {
+            page = 0;
+        } else {
+            page = page - 1;
+        }
+        if (!size) {
+            size = 6;
+        }
+        var condition = {
+            "page": page,
+            "size": size
+        };
+        if (urlparams.status) {
 
-            console.log(data);
-            dttable = $('#order').DataTable({
-                data: data.items,
+            $("#statusInput").val(urlparams.status);
+        }
+        if (urlparams.id) {
 
-                "paging": true,
-                "lengthChange": true,
-                "searching": false,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-                "bStateSave": true,
-                "bFilter": true,
-                "iDisplayLength": 10,
-                "iDisplayStart": 0,
+            $("#orderNOInput").val(urlparams.id);
+        }
 
-                "oLanguage": {
-                    "sProcessing": "正在加载中......",
-                    "sLengthMenu": "每页显示 _MENU_ 条记录",
-                    "sZeroRecords": "正在加载中......",
-                    "sEmptyTable": "表中无数据存在！",
-                    "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
-                    "sInfoEmpty": "显示0到0条记录",
-                    "sInfoFiltered": "数据表中共为 _MAX_ 条记录",
-                    "sSearch": "搜索",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "末页"
-                    }
-                },
-
-                columns: [
-                    {data: 'id'},
-                    {data: 'totalAmount'},
-                    {data: 'customerName'},
-                    {data: 'createTime'},
-                    {data: 'status'},
-                    {data: 'id'}
-                ]
-                , "columnDefs": [
+        objectutil.simplecopy(urlparams, condition);
 
 
-                    {
-                        "render": function (data, type,
-                                            row) {
-                            var str = "<a href='./shopdetail.html?id=" + data + "' class='btn btn-info'>明细</a><a class='btn btn-danger' onclick='shopmanager.del(" + data + ")'>发货</a>";
-                            return str;
-                            //此处return可自己定义，博主此处举例为超链接，传参须注意，若传字符串需加上转义字符，否则会报错ReferenceError: XXX is not defined at HTMLAnchorElement.onclick
+        //初始化订单
+        lajaxComponent.getTextReturnJson(config.baseUrl + "/v/0.1/orders/", condition, function (result) {
+
+            console.info(result);
+            $("#rows").html($("#resultTemplate").tmpl(result.items));
+            if (result.pageCount > 0) {
+                var options = {
+                    currentPage: result.pageIndex + 1,
+                    totalPages: result.pageCount,
+                    bootstrapMajorVersion: 3,
+                    itemContainerClass: function (type, page, current) {
+                            return (page === current) ? "page-item active" : "page-item";
                         },
-                        //此处target负数表示从右向左的顺序
-                        //-1为右侧第一列
-                        "targets": -1
+                        itemContentClass: "page-link",
+                    pageUrl: function (type, page, current) {
+
+                        var params = {
+                            "page": page,
+                            "size": size,
+                            "params": JSON.stringify(urlparams)
+                        };
+                        return "./ordermanager.html?" + urlutil.concatParam(params);
+
                     }
-                ]
+                }
 
-
-            })
-
+                $('#pageBar').bootstrapPaginator(options);
+            }
         });
 
 
@@ -77,8 +169,9 @@ var ordermanager = (function ($, lajaxComponent) {
 
     return index;
 
-})(jQuery, lbajax);
+})(jQuery, urlutil, lbajax, objectutil);
 
 $(document).ready(function () {
+    ordermanager.bind();
     ordermanager.init();
 });

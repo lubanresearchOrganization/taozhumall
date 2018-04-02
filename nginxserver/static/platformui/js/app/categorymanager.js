@@ -42,8 +42,7 @@ var categorymanager = (function ($, lajaxComponent) {
 
     categorymanager.ztreeClick = function (event, treeId, treeNode) {
 
-        alert(treeNode.id);
-
+        console.info(treeNode.id);
     }
 
     categorymanager.addParentFlagToTreeData = function (result) {

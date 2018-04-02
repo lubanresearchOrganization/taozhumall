@@ -12,6 +12,7 @@ var orderlist = (function ($,urlutil,lajaxComponent,objectutil){
               $("#rows").html("");
               $('#pageBar').html("");
               urlparams = {};
+              page=0;
               var condition = {
                                "page":page,
                                "size":size
