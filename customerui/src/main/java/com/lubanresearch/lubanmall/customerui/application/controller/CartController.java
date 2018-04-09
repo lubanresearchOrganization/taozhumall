@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Created by hilbertcao on 2018/2/3.
@@ -22,62 +24,76 @@ public class CartController {
     private CartService cartService;
 
     @RequestMapping("/")
-    public @ResponseBody
-    List<CartItemDTO> getCustomerCart(@RequestParam(value = "productIds",required = false) List<Long> productIds
-    ,HttpSession session
-    ){
+    public
+    @ResponseBody
+    List<CartItemDTO> getCustomerCart(
+            @RequestParam(value = "productIds", required = false) List<Long> productIds
+            , HttpSession session
+    ) {
 
-        return cartService.getCustomerCart(getCustomerId(session),productIds);
+        return cartService.getCustomerCart(getCustomerId(session), productIds);
     }
 
-    private Long getCustomerId(HttpSession session){
-        Authentication authentication = (Authentication) session.getAttribute("authentication");
-        if(authentication==null){
+    private Long getCustomerId(HttpSession session) {
 
-            throw new UIException(500,"用户未登录");
-        }
-        return authentication.getUserId();
+        return Optional.ofNullable((Authentication) session.getAttribute("authentication"))
+                .orElseThrow(() -> {
+                    return new UIException(500, "用户未登录");
+                })
+                .getUserId();
     }
 
-    @RequestMapping(value="/commands/addCartItem",method = RequestMethod.POST)
-    public @ResponseBody boolean addCartItem(@RequestBody AddCartItemDTO addCartItemDTO,HttpSession session){
+    @RequestMapping(value = "/commands/addCartItem", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    boolean addCartItem(@RequestBody AddCartItemDTO addCartItemDTO, HttpSession session) {
 
-        return cartService.addCartItem(getCustomerId(session),addCartItemDTO);
+        return cartService.addCartItem(getCustomerId(session), addCartItemDTO);
     }
 
-    @RequestMapping(value="/commands/removeCartItem",method = RequestMethod.POST)
-    public @ResponseBody boolean removeCartItem(@RequestParam("productId") Long productId,HttpSession session){
+    @RequestMapping(value = "/commands/removeCartItem", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    boolean removeCartItem(@RequestParam("productId") Long productId, HttpSession session) {
 
-        return cartService.removeCartItem(getCustomerId(session),productId);
+        return cartService.removeCartItem(getCustomerId(session), productId);
     }
 
     /**
      * 结算
      * 将相关的购物车项状态改成待确认状态
+     *
      * @param settleDTO
      */
-    @RequestMapping(value="/commands/settle",method = RequestMethod.POST)
-    public @ResponseBody boolean settle(@RequestBody SettleDTO settleDTO,HttpSession session){
+    @RequestMapping(value = "/commands/settle", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    boolean settle(@RequestBody SettleDTO settleDTO, HttpSession session) {
 
-        return cartService.settle(getCustomerId(session),settleDTO);
+        return cartService.settle(getCustomerId(session), settleDTO);
     }
 
     /**
      * 修改购物车项的数量
+     *
      * @param changeNumDTO
      */
-    @RequestMapping(value="/commands/changeNum",method = RequestMethod.POST)
-    public @ResponseBody boolean changeNum(@RequestBody ChangeNumDTO changeNumDTO,HttpSession session){
+    @RequestMapping(value = "/commands/changeNum", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    boolean changeNum(@RequestBody ChangeNumDTO changeNumDTO, HttpSession session) {
 
-        return cartService.changeNum(getCustomerId(session),changeNumDTO);
+        return cartService.changeNum(getCustomerId(session), changeNumDTO);
     }
 
     /**
      * 确认购物车，创建订单，将相关的购物车项状态设置为已确认
      */
-    @RequestMapping(value="/commands/confirm",method = RequestMethod.POST)
-    public @ResponseBody boolean confirm(@RequestBody ConfirmDTO confirmDTO,HttpSession session){
+    @RequestMapping(value = "/commands/confirm", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    boolean confirm(@RequestBody ConfirmDTO confirmDTO, HttpSession session) {
 
-        return cartService.confirm(getCustomerId(session),confirmDTO);
+        return cartService.confirm(getCustomerId(session), confirmDTO);
     }
 }

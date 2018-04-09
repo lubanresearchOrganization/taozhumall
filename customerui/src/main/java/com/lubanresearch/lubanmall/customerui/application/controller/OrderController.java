@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 /**
  * Created by hilbertcao on 2018/2/4.
@@ -32,12 +33,11 @@ public class OrderController {
     }
 
     private Long getCustomerId(HttpSession session){
-        Authentication authentication = (Authentication) session.getAttribute("authentication");
-        if(authentication==null){
-
-            throw new UIException(500,"用户未登录");
-        }
-        return authentication.getUserId();
+        return Optional.ofNullable((Authentication) session.getAttribute("authentication"))
+                .orElseThrow(() -> {
+                    return new UIException(500, "用户未登录");
+                })
+                .getUserId();
     }
 
     @RequestMapping("/orders/")
@@ -51,8 +51,7 @@ public class OrderController {
             HttpSession session
     ){
 
-        Pagination<OrderDTO> result = orderService.getOrders(id,shopId, getCustomerId(session), status,page,size);
-        return result;
+        return orderService.getOrders(id,shopId, getCustomerId(session), status,page,size);
     }
 
     @RequestMapping("/orders/{orderId}")

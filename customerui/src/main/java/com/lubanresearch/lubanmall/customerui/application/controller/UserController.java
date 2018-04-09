@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 /**
  * Created by hilbertcao on 2018/3/12.
@@ -47,12 +48,11 @@ public class UserController {
 
 
     private Long getCustomerId(HttpSession session){
-        Authentication authentication = (Authentication) session.getAttribute("authentication");
-        if(authentication==null){
-
-            throw new UIException(500,"用户未登录");
-        }
-        return authentication.getUserId();
+        return Optional.ofNullable((Authentication) session.getAttribute("authentication"))
+                .orElseThrow(() -> {
+                    return new UIException(500, "用户未登录");
+                })
+                .getUserId();
     }
 
     @RequestMapping(value = "/",method = RequestMethod.PUT)
