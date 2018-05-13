@@ -13,13 +13,13 @@ node{
                 stage('maven') {
 
                         sh 'echo $PWD'
-                        sh 'docker run --rm --name taozhumall  -v "/opt/data/jenkins_home/workspace/${JOB_NAME}":/usr/src/mymaven -v /opt/data/maven/.m2/:/root/.m2/ -w /usr/src/mymaven maven:3.5.2-jdk-8-alpine mvn clean install -f baseservice/pom.xml'
+                        sh 'docker run --rm --name taozhumall  -v "/opt/data/jenkins_home/workspace/${JOB_NAME}":/usr/src/mymaven -v /opt/data/maven/.m2/:/root/.m2/ -w /usr/src/mymaven maven:3.5.2-jdk-8-alpine mvn clean install'
 
                 }
 
                 stage('dockerbuild') {
 
-                    customImage = docker.build("register:${env.BUILD_ID}", "/opt/data/jenkins_home/workspace/${JOB_NAME}")
+                    customImage = docker.build("baeservice:latest", "/opt/data/jenkins_home/workspace/${JOB_NAME}/baseservice")
                 }
 
                 stage('dockerpush') {
