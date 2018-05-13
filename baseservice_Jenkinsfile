@@ -13,7 +13,7 @@ node{
                 stage('maven') {
 
                         sh 'echo $PWD'
-                        sh 'docker run --rm --name taozhumall -v "/opt/data/jenkins_home/repository":/usr/src/mymaven -w /usr/src/mymaven maven:3.5.2-jdk-8-alpine mvn clean install -f baseservice/pom.xml'
+                        sh 'docker run --rm --name taozhumall -v "/opt/data/maven/repository":/usr/src/mymaven -w /usr/src/mymaven maven:3.5.2-jdk-8-alpine mvn clean install -f baseservice/pom.xml'
 
                 }
 
