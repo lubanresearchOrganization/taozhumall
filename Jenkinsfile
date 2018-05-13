@@ -10,11 +10,8 @@ node{
 
                 }
 
-                stage('mvn') {
-                    docker.image('maven:3-alpine').withRun('-v "$PWD":/usr/src/mymaven -w /usr/src/mymaven'){c ->
-                       sh 'mvn -B clean install  -f register/pom.xml'
-                    }
-
+                stage('maven') {
+                    docker.image('maven:3.5.2-jdk-8-alpine').withRun('-it --rm --name lubanmall -v "$PWD":/usr/src/mymaven -w /usr/src/mymaven mvn clean install register/pom.xml')
                 }
 
                 stage('dockerbuild') {
