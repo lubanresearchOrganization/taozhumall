@@ -25,14 +25,14 @@ pipeline {
 
         stage('dockerbuild') {
 
-            def customImage = docker.build("register:${env.BUILD_ID}")
+            customImage = docker.build("register:${env.BUILD_ID}")
         }
 
         stage('dockerpush') {
 
             docker.withRegistry('registry.cn-hangzhou.aliyuncs.com/hilbertcao/hilbertcao') {
 
-                        customImage.push()
+                 customImage.push()
             }
         }
 
