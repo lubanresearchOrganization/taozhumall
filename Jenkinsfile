@@ -11,7 +11,7 @@ node{
                 }
 
                 stage('mvn') {
-                    docker.image('maven:3-alpine').withRun('-v $HOME/.m2:/root/.m2'){
+                    docker.image('maven:3-alpine').withRun('-v "$PWD":/usr/src/mymaven -w /usr/src/mymaven'){
                        sh 'mvn -B clean install  -f register/pom.xml'
                     }
 
