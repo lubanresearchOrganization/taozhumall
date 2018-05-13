@@ -1,14 +1,7 @@
 
 
-pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v $HOME/.m2:/root/.m2'
-        }
-    }
 
-    node{
+node{
         def customImage
 
             stages {
@@ -19,10 +12,10 @@ pipeline {
                 }
 
                 stage('mvn') {
-
-                    steps {
-                        sh 'mvn -B clean install  -f register/pom.xml'
+                    docker.image('maven:3-alpine').withRun('-v $HOME/.m2:/root/.m2'){
+                       sh 'mvn -B clean install  -f register/pom.xml'
                     }
+
                 }
 
                 stage('dockerbuild') {
@@ -41,5 +34,4 @@ pipeline {
 
 
 
-    }
 }
