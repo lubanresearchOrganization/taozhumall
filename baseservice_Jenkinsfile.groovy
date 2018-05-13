@@ -11,7 +11,7 @@ node {
 
     stage('dockerbuild') {
 
-        customImage = docker.build(moduleName+':0.1', '${WORKSPACE}/'+moduleName)
+        customImage = docker.build(moduleName+':0.1', moduleName)
     }
 
     stage('dockerpush') {
