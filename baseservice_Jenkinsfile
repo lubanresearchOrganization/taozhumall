@@ -24,7 +24,7 @@ node{
 
                 stage('dockerpush') {
 
-                    docker.withRegistry('registry.cn-hangzhou.aliyuncs.com/hilbertcao/hilbertcao'，"597895798@qq.com") {
+                    docker.withRegistry('registry.cn-hangzhou.aliyuncs.com/hilbertcao/hilbertcao','597895798@qq.com') {
 
                          customImage.push()
                     }
