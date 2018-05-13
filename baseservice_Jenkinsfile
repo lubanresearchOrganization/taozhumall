@@ -19,7 +19,7 @@ node{
 
                 stage('dockerbuild') {
 
-                    customImage = docker.build("baeservice:0.1", "/opt/data/jenkins_home/workspace/${JOB_NAME}/baseservice")
+                    customImage = docker.build("baeservice:0.1", "/var/jenkins_home/workspace/${JOB_NAME}/baseservice")
                 }
 
                 stage('dockerpush') {
