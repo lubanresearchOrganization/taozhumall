@@ -12,6 +12,7 @@ pipeline {
 node{
         def customImage
 
+stages{
                 stage('checkout') {
 
                 checkout scm
@@ -21,10 +22,7 @@ node{
                 stage('maven') {
 
 
-
-                    steps {
                         sh 'mvn clean install -f register/pom.xml'
-                    }
 
                 }
 
@@ -42,7 +40,7 @@ node{
                 }
 
 
-
+}
 }
 
 }
