@@ -13,7 +13,7 @@ node{
                 stage('maven') {
 
                         sh 'echo $PWD'
-                        sh 'docker run --rm --name taozhumall -v "${WORKSPACE}":/usr/src/mymaven /opt/data/maven:~/.m2 -w /usr/src/mymaven maven:3.5.2-jdk-8-alpine mvn clean install'
+                        sh 'docker run --rm --name taozhumall -v "${WORKSPACE}":/usr/src/mymaven -v /opt/data/maven:~/.m2 -w /usr/src/mymaven maven:3.5.2-jdk-8-alpine mvn clean install'
 
                 }
 
