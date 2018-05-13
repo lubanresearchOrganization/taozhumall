@@ -1,31 +1,27 @@
 node {
-    def customImage
-
-    stage('checkout') {
-
-        checkout scm
-        sh 'echo address $PWD'
-    }
+    def dockerImage
+    def moduleName = 'baseui'
+    def pomName = 'pom_image.xml'
+    def registryUrl = 'http://registry.lubanresearch.com:5000'
+    def dockerVersion = '0.1'
 
     stage('maven') {
 
-        sh 'echo $PWD'
-        sh 'docker run --rm --name taozhumall  -v "/opt/data/jenkins_home/workspace/${JOB_NAME}":/usr/src/mymaven -v /opt/data/maven/.m2/:/root/.m2/ -w /usr/src/mymaven maven:3.5.2-jdk-8-alpine mvn clean install -f baseui/pom_image.xml'
+        sh 'docker run --rm --name maven  -v "/opt/data/jenkins_home/workspace/${JOB_NAME}":/usr/src/mymaven -v /opt/data/maven/.m2/:/root/.m2/ -w /usr/src/mymaven maven:3.5.2-jdk-8-alpine mvn clean install -f '+moduleName+'/'+pomName
 
     }
 
     stage('dockerbuild') {
 
-        customImage = docker.build("baseui:0.1", "${workdir}/baseui")
+        dockerImage = docker.build(moduleName+':'+dockerVersion, moduleName)
     }
 
     stage('dockerpush') {
 
-        docker.withRegistry('http://registry.lubanresearch.com:5000') {
+        docker.withRegistry(registryUrl) {
 
-            customImage.push()
+            dockerImage.push()
         }
     }
-
 
 }

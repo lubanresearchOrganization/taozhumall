@@ -1,7 +1,9 @@
 node {
-    def customImage
+    def dockerImage
     def moduleName = 'baseservice'
     def pomName = 'pom_image.xml'
+    def registryUrl = 'http://registry.lubanresearch.com:5000'
+    def dockerVersion = '0.1'
 
     stage('maven') {
 
@@ -11,16 +13,15 @@ node {
 
     stage('dockerbuild') {
 
-        customImage = docker.build(moduleName+':0.1', moduleName)
+        dockerImage = docker.build(moduleName+':'+dockerVersion, moduleName)
     }
 
     stage('dockerpush') {
 
-        docker.withRegistry('http://registry.lubanresearch.com:5000') {
+        docker.withRegistry(registryUrl) {
 
-            customImage.push()
+            dockerImage.push()
         }
     }
-
 
 }
