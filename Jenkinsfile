@@ -33,8 +33,9 @@ pipeline {
             docker.withRegistry('registry.cn-hangzhou.aliyuncs.com/hilbertcao/hilbertcao') {
 
                         customImage.push()
-                    }
             }
         }
+
+
     }
 }
