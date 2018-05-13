@@ -11,10 +11,6 @@ node{
                 }
 
                 stage('maven') {
-                        docker {
-                            image 'maven:3-alpine'
-                            args '-v /root/.m2:/root/.m2'
-                        }
 
                         sh 'mvn clean install -f register/pom.xml'
 
