@@ -11,7 +11,15 @@ node{
                 }
 
                 stage('maven') {
-                    docker.image('maven:3.5.2-jdk-8-alpine'){
+
+                   agent {
+                        docker {
+                            image 'maven:3-alpine'
+                            args '-v /root/.m2:/root/.m2'
+                        }
+                    }
+
+                    steps {
                         sh 'mvn clean install -f register/pom.xml'
                     }
 
