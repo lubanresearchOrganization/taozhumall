@@ -19,7 +19,7 @@ node{
 
                 stage('dockerbuild') {
 
-                    customImage = docker.build("baseservice:latest")
+                    customImage = docker.build("register:${env.BUILD_ID}", "/opt/data/jenkins_home/workspace/${JOB_NAME}")
                 }
 
                 stage('dockerpush') {
