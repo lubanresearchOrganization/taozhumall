@@ -1,6 +1,6 @@
 
 
-pipeline {
+node {
 
     def customImage
     agent {
