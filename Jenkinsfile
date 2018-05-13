@@ -12,7 +12,9 @@ node{
 
                 stage('maven') {
 
-                        sh 'mvn clean install -f register/pom.xml'
+                        sh '
+                         docker run -it --rm --name lubanmall -v "$PWD":/usr/src/mymaven -w /usr/src/mymaven maven:3.5.2-jdk-8-alpine mvn clean install
+                         -f register/pom.xml'
 
                 }
 
