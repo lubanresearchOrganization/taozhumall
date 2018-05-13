@@ -4,7 +4,7 @@ node {
     def pomName = 'pom_image.xml'
     def registryUrl = 'http://registry.lubanresearch.com:5000'
     def dockerVersion = '0.1'
-    def mountBuildDir = "/opt/data/jenkins_home/workspace/"+${JOB_NAME}
+    def mountBuildDir = "/opt/data/jenkins_home/workspace/${JOB_NAME}"
     def mountMvnDir = "/opt/data/maven/.m2/"
 
     stage('maven') {
