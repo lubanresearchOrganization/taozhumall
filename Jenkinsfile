@@ -4,7 +4,6 @@
 node{
         def customImage
 
-            stages {
                 stage('checkout') {
 
                 checkout scm
@@ -30,7 +29,6 @@ node{
                          customImage.push()
                     }
                 }
-    }
 
 
 
