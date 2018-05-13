@@ -1,40 +1,44 @@
 
 
 pipeline {
-
-    def customImage
     agent {
         docker {
             image 'maven:3-alpine'
             args '-v $HOME/.m2:/root/.m2'
         }
     }
-    stages {
-        stage('checkout') {
 
-        checkout scm
+    node{
+        def customImage
 
-        }
+            stages {
+                stage('checkout') {
 
-        stage('mvn') {
+                checkout scm
 
-            steps {
-                sh 'mvn -B clean install  -f register/pom.xml'
-            }
-        }
+                }
 
-        stage('dockerbuild') {
+                stage('mvn') {
 
-            customImage = docker.build("register:${env.BUILD_ID}")
-        }
+                    steps {
+                        sh 'mvn -B clean install  -f register/pom.xml'
+                    }
+                }
 
-        stage('dockerpush') {
+                stage('dockerbuild') {
 
-            docker.withRegistry('registry.cn-hangzhou.aliyuncs.com/hilbertcao/hilbertcao') {
+                    customImage = docker.build("register:${env.BUILD_ID}")
+                }
 
-                 customImage.push()
-            }
-        }
+                stage('dockerpush') {
+
+                    docker.withRegistry('registry.cn-hangzhou.aliyuncs.com/hilbertcao/hilbertcao') {
+
+                         customImage.push()
+                    }
+                }
+    }
+
 
 
     }
