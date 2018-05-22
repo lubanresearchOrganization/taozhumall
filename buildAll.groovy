@@ -1,17 +1,27 @@
-node {
+pipeline {
+    agent
+            {
+                node {
+                    label 'master'
+                    customWorkspace "${env.JobPath}"
+                }
+            }
 
-    stage('checkout') {
+    stages
+            {
 
-        checkout scm
-    }
+                stage ('baseservice') {
+                    steps {
+                        build job: 'baseservice', parameters: [
+                        ]
+                    }
+                }
 
-    stage('excuting baseservice_Jenkinsfile.groovy') {
-        baseserviceJenkinsfile = load "baseservice_Jenkinsfile.groovy"
-        baseserviceJenkinsfile.start()
-    }
-    stage('excuting baseui_Jenkinsfile.groovy') {
-        baseuiJenkinsfile = load "baseui_Jenkinsfile.groovy"
-        baseuiJenkinsfile.start();
-    }
-
+                stage ('baseui') {
+                    steps {
+                        build job: 'baseservice', parameters: [
+                        ]
+                    }
+                }
+            }
 }
