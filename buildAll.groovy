@@ -17,6 +17,13 @@ pipeline {
                     }
                 }
 
+                stage ('baseui') {
+                    steps {
+                        build job: 'baseui', parameters: [
+                        ]
+                    }
+                }
+
                 stage ('register') {
                     steps {
                         build job: 'register', parameters: [
