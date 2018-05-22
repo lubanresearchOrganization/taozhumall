@@ -42,7 +42,7 @@ var memberregister = (function ($){
                       },
                       success : function(result){
                                  alert("注册成功!");
-                                 window.location.href = "http://www.taozhumall.com";
+                                 window.location.href = "http://www.taozhumall.com:7070";
                                 }
                      });
 
