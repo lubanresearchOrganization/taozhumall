@@ -1,4 +1,4 @@
 var config = {
-baseUrl:"http://www.taozhumall.com",
-indexUrl:"http://www.taozhumall.com/index.html"
+baseUrl:"http://www.taozhumall.com:4001",
+indexUrl:"http://www.taozhumall.com:7070/index.html"
 }
