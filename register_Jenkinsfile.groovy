@@ -14,7 +14,7 @@ node {
 
     stage('maven') {
 
-        sh 'docker run --rm --name maven  -v ' + mountBuildDir + ':/mvn_build -v ' + mountMvnDir + ':/root/.m2/ -w /mvn_build maven:3.5.2-jdk-8-alpine mvn clean install -f ' + moduleName + '/' + pomName
+        sh 'docker run --rm --name maven  -v ' + mountBuildDir + ':/mvn_build -v ' + mountMvnDir + ':/root/.m2/ -w /mvn_build maven:3.5.2-jdk-8-alpine mvn clean package -f ' + moduleName + '/' + pomName
 
     }
 
