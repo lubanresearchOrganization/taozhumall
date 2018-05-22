@@ -1,3 +1,3 @@
 var config = {
-    baseUrl:"http://platformui.taozhumall.com:4003"
+    baseUrl:"http://platformui.taozhumall.com:7070"
 }

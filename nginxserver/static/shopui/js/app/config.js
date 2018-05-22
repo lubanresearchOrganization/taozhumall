@@ -1,3 +1,3 @@
 var config = {
-    baseUrl:"http://shopui.taozhumall.com:4002"
+    baseUrl:"http://shopui.taozhumall.com:7070"
 }
