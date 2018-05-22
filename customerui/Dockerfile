@@ -14,5 +14,5 @@ ENV JAVA_OPTS="\
  -XX:ReservedCodeCacheSize=8m\
  -XX:MaxDirectMemorySize=16m"
 ENTRYPOINT java ${JAVA_OPTS} -jar /app.jar --spring.profiles.active=prod
-HEALTHCHECK --interval=5s --timeout=3s \
+HEALTHCHECK --interval=5s --timeout=3s --retries=20 \
   CMD curl -fs http://localhost:8080/go || exit 1
