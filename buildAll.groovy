@@ -1,4 +1,10 @@
 node {
+
+    stage('checkout') {
+
+        checkout scm
+    }
+
     stage('excuting baseservice_Jenkinsfile.groovy') {
         baseserviceJenkinsfile = load "baseservice_Jenkinsfile.groovy"
         baseserviceJenkinsfile.start()
