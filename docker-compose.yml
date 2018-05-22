@@ -3,73 +3,73 @@ services:
   register:
     image: "registry.lubanresearch.com:5000/register:0.1"
     ports:
-     - "7000:7000"
+     - "7000:8080"
     networks:
       - taozhumall_network
   userservice:
     image: "registry.lubanresearch.com:5000/userservice:0.1"
     ports:
-     - "5006:5006"
+     - "5006:8080"
     networks:
       - taozhumall_network
   catagoryservice:
     image: "registry.lubanresearch.com:5000/catagoryservice:0.1"
     ports:
-     - "5001:5001"
+     - "5001:8080"
     networks:
       - taozhumall_network
   commentservice:
     image: "registry.lubanresearch.com:5000/commentservice:0.1"
     ports:
-     - "5002:5002"
+     - "5002:8080"
     networks:
       - taozhumall_network
   searchservice:
     image: "registry.lubanresearch.com:5000/searchservice:0.1"
     ports:
-     - "5005:5005"
+     - "5005:8080"
     networks:
       - taozhumall_network
   merchantservice:
     image: "registry.lubanresearch.com:5000/merchantservice:0.1"
     ports:
-     - "5004:5004"
+     - "5004:8080"
     networks:
       - taozhumall_network
   orderservice:
     image: "registry.lubanresearch.com:5000/orderservice:0.1"
     ports:
-     - "5007:5007"
+     - "5007:8080"
     networks:
       - taozhumall_network
   cart:
     image: "registry.lubanresearch.com:5000/cart:0.1"
     ports:
-     - "5008:5008"
+     - "5008:8080"
     networks:
       - taozhumall_network
   usercenter:
     image: "registry.lubanresearch.com:5000/usercenter:0.1"
     ports:
-     - "4000:4000"
+     - "4000:8080"
     networks:
       - taozhumall_network
   platformui:
     image: "registry.lubanresearch.com:5000/platformui:0.1"
     ports:
-     - "4003:4003"
+     - "4003:8080"
     networks:
       - taozhumall_network
   shopui:
     image: "registry.lubanresearch.com:5000/shopui:0.1"
     ports:
-     - "4002:4002"
+     - "4002:8080"
     networks:
       - taozhumall_network
   customerui:
     image: "registry.lubanresearch.com:5000/customerui:0.1"
     ports:
-     - "4001:4001"
+     - "4001:8080"
     networks:
       - taozhumall_network
   nginxserver:
