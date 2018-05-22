@@ -17,4 +17,4 @@ ENV JAVA_OPTS="\
 
 ENTRYPOINT java ${JAVA_OPTS} -jar /app.jar --spring.profiles.active=prod
 HEALTHCHECK --interval=5s --timeout=3s \
-  CMD curl -fs http://localhost:8080/go || exit 1
+  CMD curl -fs http://0.0.0.0:8080/go || exit 1
