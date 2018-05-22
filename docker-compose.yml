@@ -4,141 +4,78 @@ services:
     image: "registry.lubanresearch.com:5000/register:0.1"
     ports:
      - "7000:7000"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7000/go"]
     networks:
       - taozhumall_network
   userservice:
     image: "registry.lubanresearch.com:5000/userservice:0.1"
     ports:
      - "5006:5006"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5006/go"]
     networks:
       - taozhumall_network
-    depends_on:
-      - register
   catagoryservice:
     image: "registry.lubanresearch.com:5000/catagoryservice:0.1"
     ports:
      - "5001:5001"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5001/go"]
     networks:
       - taozhumall_network
-    depends_on:
-      - register
   commentservice:
     image: "registry.lubanresearch.com:5000/commentservice:0.1"
     ports:
      - "5002:5002"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5002/go"]
     networks:
       - taozhumall_network
-    depends_on:
-      - register
   searchservice:
     image: "registry.lubanresearch.com:5000/searchservice:0.1"
     ports:
      - "5005:5005"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5005/go"]
     networks:
       - taozhumall_network
-    depends_on:
-       - register
   merchantservice:
     image: "registry.lubanresearch.com:5000/merchantservice:0.1"
     ports:
      - "5004:5004"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5004/go"]
     networks:
       - taozhumall_network
-    depends_on:
-      - register
-      - userservice
-      - catagoryservice
   orderservice:
     image: "registry.lubanresearch.com:5000/orderservice:0.1"
     ports:
      - "5007:5007"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5007/go"]
     networks:
       - taozhumall_network
-    depends_on:
-      - register
-      - merchantservice
   cart:
     image: "registry.lubanresearch.com:5000/cart:0.1"
     ports:
      - "5008:5008"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5008/go"]
     networks:
       - taozhumall_network
-    depends_on:
-      - register
-      - merchantservice
-      - orderservice
   usercenter:
     image: "registry.lubanresearch.com:5000/usercenter:0.1"
     ports:
      - "4000:4000"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4000/go"]
     networks:
       - taozhumall_network
-    depends_on:
-      - register
-      - userservice
   platformui:
     image: "registry.lubanresearch.com:5000/platformui:0.1"
     ports:
      - "4003:4003"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4003/go"]
     networks:
-      taozhumall_network
-    depends_on:
-      - register
-      - userservice
+      - taozhumall_network
   shopui:
     image: "registry.lubanresearch.com:5000/shopui:0.1"
     ports:
      - "4002:4002"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4002/go"]
     networks:
       - taozhumall_network
-    depends_on:
-      - register
-      - merchantservice
-      - orderservice
-      - userservice
   customerui:
     image: "registry.lubanresearch.com:5000/customerui:0.1"
     ports:
      - "4001:4001"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4001/go"]
     networks:
       - taozhumall_network
-    depends_on:
-      - register
-      - userservice
-      - searchservice
-      - merchantservice
-      - orderservice
-      - cart
   nginxserver:
     image: "registry.lubanresearch.com:5000/nginxserver:0.1"
     ports:
      - "7070:7070"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7070/go.html"]
     networks:
       - taozhumall_network
 networks:
