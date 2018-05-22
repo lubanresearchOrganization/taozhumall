@@ -7,7 +7,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7000/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
   userservice:
     image: "registry.lubanresearch.com:5000/userservice:0.1"
     ports:
@@ -15,9 +15,9 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5006/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
-      register
+      - register
   catagoryservice:
     image: "registry.lubanresearch.com:5000/catagoryservice:0.1"
     ports:
@@ -25,9 +25,9 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5001/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
-      register
+      - register
   commentservice:
     image: "registry.lubanresearch.com:5000/commentservice:0.1"
     ports:
@@ -35,9 +35,9 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5002/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
-      register
+      - register
   searchservice:
     image: "registry.lubanresearch.com:5000/searchservice:0.1"
     ports:
@@ -45,9 +45,9 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5005/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
-      - register
+       - register
   merchantservice:
     image: "registry.lubanresearch.com:5000/merchantservice:0.1"
     ports:
@@ -55,7 +55,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5004/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
       - register
       - userservice
@@ -67,7 +67,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5007/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
       - register
       - merchantservice
@@ -78,7 +78,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5008/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
       - register
       - merchantservice
@@ -90,7 +90,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4000/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
       - register
       - userservice
@@ -112,7 +112,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4002/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
       - register
       - merchantservice
@@ -125,7 +125,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4001/go"]
     networks:
-      taozhumall_network
+      - taozhumall_network
     depends_on:
       - register
       - userservice
@@ -140,7 +140,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7070/go.html"]
     networks:
-      taozhumall_network
+      - taozhumall_network
 networks:
    taozhumall_network:
      driver: overlay
