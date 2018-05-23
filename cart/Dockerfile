@@ -15,4 +15,4 @@ ENV JAVA_OPTS="\
  -XX:MaxDirectMemorySize=16m"
 ENTRYPOINT java ${JAVA_OPTS} -jar /app.jar --spring.profiles.active=prod
 HEALTHCHECK --interval=15s  --timeout=3s --retries=20 \
-  CMD curl -fs http://localhost:8080/go || exit 1
+  CMD curl -fs http://0.0.0.0:8080/go || exit 1
