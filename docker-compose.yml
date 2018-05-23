@@ -3,82 +3,83 @@ services:
   register:
     image: "registry.lubanresearch.com:5000/register:0.1"
     ports:
-     - "7000:7000"
+     - 7000:7000
     networks:
       - taozhumall_network
   userservice:
     image: "registry.lubanresearch.com:5000/userservice:0.1"
     ports:
-     - "5006:5006"
+     - 5006:5006
     networks:
       - taozhumall_network
   catagoryservice:
     image: "registry.lubanresearch.com:5000/catagoryservice:0.1"
     ports:
-     - "5001:5001"
+     - 5001:5001
     networks:
       - taozhumall_network
   commentservice:
     image: "registry.lubanresearch.com:5000/commentservice:0.1"
     ports:
-     - "5002:5002"
+     - 5002:5002
     networks:
       - taozhumall_network
   searchservice:
     image: "registry.lubanresearch.com:5000/searchservice:0.1"
     ports:
-     - "5005:5005"
+     - 5005:5005
     networks:
       - taozhumall_network
   merchantservice:
     image: "registry.lubanresearch.com:5000/merchantservice:0.1"
     ports:
-     - "5004:5004"
+     - 5004:5004
     networks:
       - taozhumall_network
   orderservice:
     image: "registry.lubanresearch.com:5000/orderservice:0.1"
     ports:
-     - "5007:5007"
+     - 5007:5007
     networks:
       - taozhumall_network
   cart:
     image: "registry.lubanresearch.com:5000/cart:0.1"
     ports:
-     - "5008:8080"
+     - 5008:8080
     networks:
       - taozhumall_network
   usercenter:
     image: "registry.lubanresearch.com:5000/usercenter:0.1"
     ports:
-     - "4000:8080"
+     - 4000:8080
     networks:
       - taozhumall_network
   platformui:
     image: "registry.lubanresearch.com:5000/platformui:0.1"
     ports:
-     - "4003:8080"
+     - 4003:8080
     networks:
       - taozhumall_network
   shopui:
     image: "registry.lubanresearch.com:5000/shopui:0.1"
     ports:
-     - "4002:8080"
+     - 4002:8080
     networks:
       - taozhumall_network
   customerui:
     image: "registry.lubanresearch.com:5000/customerui:0.1"
     ports:
-     - "4001:8080"
+     - 4001:4001
     networks:
       - taozhumall_network
   nginxserver:
     image: "registry.lubanresearch.com:5000/nginxserver:0.1"
     ports:
-     - "7070:7070"
+     - 7070:7070
     networks:
       - taozhumall_network
 networks:
+   ingress:
    taozhumall_network:
      driver: overlay
      ipam:
