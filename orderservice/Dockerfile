@@ -16,3 +16,4 @@ ENV JAVA_OPTS="\
  -XX:MaxDirectMemorySize=16m"
 
 ENTRYPOINT java ${JAVA_OPTS} -jar /app.jar --spring.profiles.active=prod
+HEALTHCHECK CMD curl --fail http://127.0.0.1:5007/go || exit 1
