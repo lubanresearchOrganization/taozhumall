@@ -45,25 +45,25 @@ services:
   cart:
     image: "registry.lubanresearch.com:5000/cart:0.1"
     ports:
-     - 5008:8080
+     - 5008:5008
     networks:
       - taozhumall_network
   usercenter:
     image: "registry.lubanresearch.com:5000/usercenter:0.1"
     ports:
-     - 4000:8080
+     - 4000:4000
     networks:
       - taozhumall_network
   platformui:
     image: "registry.lubanresearch.com:5000/platformui:0.1"
     ports:
-     - 4003:8080
+     - 4003:4003
     networks:
       - taozhumall_network
   shopui:
     image: "registry.lubanresearch.com:5000/shopui:0.1"
     ports:
-     - 4002:8080
+     - 4002:4002
     networks:
       - taozhumall_network
   customerui:
