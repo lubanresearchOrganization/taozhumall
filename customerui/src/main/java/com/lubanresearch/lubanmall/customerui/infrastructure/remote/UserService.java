@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by hilbertcao on 2018/3/25.
  */
-@FeignClient(name = "userservice",url = "http://userservice.taozhumall.com")
+@FeignClient(name = "userservice")
 public interface UserService {
 
     @RequestMapping(value = "/v/0.1/users/{id}/commands/changePassword",method = RequestMethod.POST)

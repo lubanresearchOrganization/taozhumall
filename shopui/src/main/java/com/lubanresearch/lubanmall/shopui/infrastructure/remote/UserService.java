@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "userService",url="userService.taozhumall.com")
+@FeignClient(name = "userService")
 public interface UserService {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
