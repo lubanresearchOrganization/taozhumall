@@ -30,4 +30,8 @@ node {
         }
     }
 
+    stage('update'){
+
+        sh 'docker service update --force --image=registry.lubanresearch.com:5000/'+moduleName+':'+dockerVersion+' taozhumall_'+moduleName+' '
+    }
 }
