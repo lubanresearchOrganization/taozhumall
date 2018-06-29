@@ -1,10 +1,55 @@
-var categorymanager = (function ($, lajaxComponent) {
+var categorymanager = (function ($, lajaxComponent, config,formComponent) {
 
     var categorymanager = {};
+    var zTreeObj;
+    var currentParentId;
+    var currentId;
+
+
+    categorymanager.bind = function(){
+
+    $(document).on('click','#addRoot',function(){
+       $('#addRootCategoryPanel').modal('show');
+       $("#addRootForm").clearForm();
+    });
+
+    $(document).on('click','#addSubCategoryBtn',function(){
+
+           var formArray = $("#addForm").serializeArray();
+           var data = formComponent.formtoarray(formArray);
+           data.parentId = currentParentId;
+           lajaxComponent.postJsonReturnJson(config.baseUrl + "/v/0.1/categorys/", data,function (result) {
+
+                 categorymanager.init();
+                 $('#addCategoryPanel').modal('hide');
+            });
+    });
+
+    $(document).on('click','#editCategoryBtn',function(){
+           var formArray = $("#editForm").serializeArray();
+           var data = formComponent.formtoarray(formArray);
+           console.info(JSON.stringify(data));
+    });
+
+    $(document).on('click','#addRootCategoryBtn',function(){
+           var formArray = $("#addRootForm").serializeArray();
+           var data = formComponent.formtoarray(formArray);
+           data.parentId = 0;
+
+           lajaxComponent.postJsonReturnJson(config.baseUrl + "/v/0.1/categorys/", data,function (result) {
+
+                 categorymanager.init();
+                 $('#addRootCategoryPanel').modal('hide');
+            });
+
+    });
+
+
+    };
     categorymanager.init = function () {
 
 
-        var zTreeObj;
+
         var setting = {
 
             view: {
@@ -22,7 +67,8 @@ var categorymanager = (function ($, lajaxComponent) {
             }
 
             , callback: {
-                onClick: categorymanager.ztreeClick
+                onRightClick: categorymanager.rightClick
+
             }
 
         };
@@ -32,44 +78,58 @@ var categorymanager = (function ($, lajaxComponent) {
 
         lajaxComponent.getNoParamReturnJson(config.baseUrl + "/v/0.1/categorys/",function (result) {
 
-            zNodes = categorymanager.addParentFlagToTreeData(result);
-
-            zTreeObj = $.fn.zTree.init($("#tree"), setting, zNodes);
+            zTreeObj = $.fn.zTree.init($("#tree"), setting, result);
         });
 
 
     };
 
-    categorymanager.ztreeClick = function (event, treeId, treeNode) {
+    categorymanager.rightClick = function(event, treeId, treeNode){
+         zTreeObj.selectNode(treeNode);
+           if(treeNode) {
+       //弹出菜单
+               $("#menu").popupSmallMenu({
+                   event : event,
+                   onClickItem  : function(type) {
+                      currentId = treeNode.id;
+                      if(type == 'edit'){
+                         categorymanager.showEditPanel(treeNode);
+                      }
+                      if(type == 'addSubCategory'){
+                         currentParentId = treeNode.id;
+                         categorymanager.showAddPanel(treeNode.id);
+                      }
+                      if(type == 'delete'){
+                         categorymanager.delete(treeNode.id);
+                      }
+                   }
+           });
 
-        console.info(treeNode.id);
+           }
     }
 
-    categorymanager.addParentFlagToTreeData = function (result) {
+    categorymanager.delete = function(id){
 
-        for (var i = 0; i < result.length; i++) {
-
-            var category = result[i];
-
-
-            if (category.parentId == 0) {
-
-                category["isParent"] = true;
-
-            }
-
+        alert("删除"+id);
+    }
+    categorymanager.showEditPanel = function(treeNode){
+                console.info(treeNode.id);
+                $('#categoryName').val(treeNode.name);
+                $("#editForm").clearForm();
+                $('#editPanel').modal('show');
         }
-
-        return result;
-
+    categorymanager.showAddPanel = function(id){
+            console.info(id);
+            $("#addForm").clearForm();
+            $('#addCategoryPanel').modal('show');
     }
-
 
     return categorymanager;
 
-})(jQuery, lbajax, config);
+})(jQuery, lbajax, config,formutil);
 
 
 $(document).ready(function () {
     categorymanager.init();
+    categorymanager.bind();
 });

@@ -1,0 +1,38 @@
+.small-menu {  
+    position: absolute;  
+    width: 120px;  
+    z-index: 99999;  
+    border: solid 1px #CCC;  
+    background: #EEE;  
+    padding: 0px;  
+    margin: 0px;  
+    display: none;  
+}  
+  
+.small-menu li {  
+   list-style: none;  
+    padding: 0px;  
+    margin: 0px;  
+}  
+.small-menu li A {  
+    color: #333;  
+    text-decoration: none;  
+    display: block;  
+    line-height: 20px;  
+    height: 20px;  
+    background-position: 6px center;  
+    background-repeat: no-repeat;  
+    outline: none;  
+    padding: 1px 5px;  
+    padding-left: 28px;  
+}  
+  
+.small-menu li a:hover {  
+    color: #FFF;  
+    background-color: #3399FF;  
+}  
+  
+.small-menu-separator {  
+    padding-bottom:0;  
+    border-bottom: 1px solid #DDD;  
+}

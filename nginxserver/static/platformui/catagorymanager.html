@@ -8,13 +8,17 @@
             crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="http://cdn.cdnjs.net/zTree.v3/3.5.29/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <script src="http://cdn.cdnjs.net/zTree.v3/3.5.29/js/jquery.ztree.all.min.js" type="text/javascript"></script>
     <!-- TODC Bootstrap theme -->
@@ -25,11 +29,26 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="./js/contextMenu/jquery.contextMenu.min.css" type="text/css">
+    <script src="./js/contextMenu/jquery.contextMenu.min.js"></script>
+
     <script src="./js/libs/formutil.js"></script>
     <script src="./js/libs/lbajax.js"></script>
     <script src="./js/app/config.js"></script>
     <script src="./js/app/converter.js"></script>
-    <script src="./js/app/categorymanager.js?v=1"></script>
+    <script src="//oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
+    <script src="./js/app/categorymanager.js?v=5"></script>
+
+    <style type="text/css">
+    #rMenu {position:absolute; visibility:hidden; top:0; background-color: #555;text-align: left;padding: 2px;}
+    #rMenu a{
+        cursor: pointer;
+        list-style: none outside none;
+    }
+
+
+    </style>
+
     <title>类目管理</title>
 
 </head>
@@ -37,41 +56,132 @@
 <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="#">用户你好</a>
-        <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
+        <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"></div>
     </div>
 </nav>
 
-    <div class="container">
-        <div class="row">
-                    <div class="col-md-2">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a href="./catagorymanager.html" class="nav-link" >类目管理</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="./shopmanager.html" class="nav-link">店铺管理</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="row">
-                            <fieldset>
-                                <div class="form-group">
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a href="./catagorymanager.html" class="nav-link">类目管理</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./shopmanager.html" class="nav-link">店铺管理</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <fieldset>
+                    <div class="form-group">
 
-                                    <div class="col-sm-4">
-                                        <a class="btn btn-default" href="./addcategory.html">添加类目</a>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-
-
-                        <div>
-                            <ul id="tree" class="ztree"></ul>
+                        <div class="col-sm-4">
+                            <a class="btn btn-default" href='javascript:void(0);' id="addRoot">添加根类目</a>
                         </div>
                     </div>
+                </fieldset>
+            </div>
+
+
+            <div>
+                <ul id="tree" class="ztree"></ul>
+            </div>
         </div>
     </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="editPanel">
+    <form id="editForm" method="post" action="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">编辑类目</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="categoryName" class="col-sm-2 control-label">类目名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="categoryName" name ="name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                    <button type="button" class="btn btn-primary" id="editCategoryBtn">提交</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="addCategoryPanel">
+    <form id="addForm" method="post">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">添加子类目</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="subCategoryName" class="col-sm-2 control-label">子类目</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="subCategoryName" name="name" placeholder="请输入子类目名">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                    <button type="button" class="btn btn-primary" id="addSubCategoryBtn">添加</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="addRootCategoryPanel">
+    <form id="addRootForm" method="post">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">添加根类目</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="subCategoryName" class="col-sm-2 control-label">根类目</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="name" placeholder="请输入根类目名">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                    <button type="button" class="btn btn-primary" id="addRootCategoryBtn">添加</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<ul id="menu" class="small-menu">
+    <li class="edit"><a href='javascript:void(0);'>编辑</a></li>
+    <li class="addSubCategory"><a href='javascript:void(0);'>添加子类目</a></li>
+    <li class="delete"><a href='javascript:void(0);' class=".delete">删除</a></li>
+</ul>
 
 </body>
 </html>
