@@ -41,9 +41,9 @@ var addshop = (function ($, lajaxComponent, formComponent) {
 
 
             var formArray = $("#shopform").serializeArray();
-
-
-            lajaxComponent.postJsonReturnJson(config.baseUrl + "/v/0.1/shops/", formComponent.formtoarray(formArray), function (result) {
+            var data = formComponent.formtoarray(formArray);
+            data.imgUrl = "http://img.zcool.cn/community/01b5f75715286632f8758c9b40f665.jpg";
+            lajaxComponent.postJsonReturnJson(config.baseUrl + "/v/0.1/shops/", data, function (result) {
 
                 $(window).attr('location', 'shopmanager.html');
 
