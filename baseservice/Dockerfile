@@ -1,6 +1,5 @@
 FROM frolvlad/alpine-oraclejdk8
 VOLUME /tmp
-COPY ./target/lib/*.jar /lib/
 ENV JAVA_OPTS="\
  -server \
  -Djava.security.egd=file:/dev/./urandom\
@@ -13,3 +12,4 @@ ENV JAVA_OPTS="\
  -XX:InitialCodeCacheSize=4m\
  -XX:ReservedCodeCacheSize=8m\
  -XX:MaxDirectMemorySize=16m"
+ COPY ./target/lib/*.jar /lib/

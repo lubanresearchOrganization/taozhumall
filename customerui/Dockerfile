@@ -1,6 +1,5 @@
 FROM registry.lubanresearch.com:5000/baseui:0.1
 VOLUME /tmp
-ADD ./target/customerui.jar app.jar
 ENV JAVA_OPTS="\
  -server \
  -Djava.security.egd=file:/dev/./urandom\
@@ -14,3 +13,4 @@ ENV JAVA_OPTS="\
  -XX:ReservedCodeCacheSize=8m\
  -XX:MaxDirectMemorySize=16m"
 ENTRYPOINT java ${JAVA_OPTS} -jar /app.jar --spring.profiles.active=prod
+COPY ./target/customerui.jar app.jar
