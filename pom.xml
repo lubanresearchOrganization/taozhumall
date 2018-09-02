@@ -28,7 +28,6 @@
         <module>orderservice</module>
         <module>commentservice</module>
         <module>searchservice</module>
-        <module>register</module>
         <module>ssoclient</module>
         <module>cart</module>
     </modules>

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * @author hilbert.cao
  */
-@EnableDiscoveryClient
+
 @EnableFeignClients
 @SpringBootApplication
 @ComponentScan(basePackages={"com.lubanresearch.lubanmall.searchservice"})

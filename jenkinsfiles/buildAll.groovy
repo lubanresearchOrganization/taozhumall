@@ -24,13 +24,6 @@ pipeline {
                     }
                 }
 
-                stage ('register') {
-                    steps {
-                        build job: 'register', parameters: [
-                        ]
-                    }
-                }
-
                 stage ('userservice') {
                     steps {
                         build job: 'userservice', parameters: [
