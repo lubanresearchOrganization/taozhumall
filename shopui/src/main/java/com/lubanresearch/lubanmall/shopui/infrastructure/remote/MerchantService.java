@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by hilbertcao on 2018/1/4.
  */
-@FeignClient(name = "merchantService")
+@FeignClient(name = "merchantservice")
 public interface MerchantService {
 
     @RequestMapping(value = "/v/0.1/products/",method = RequestMethod.POST)

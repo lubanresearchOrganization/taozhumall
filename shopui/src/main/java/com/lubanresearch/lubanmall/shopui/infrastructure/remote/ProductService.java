@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "productService")
+@FeignClient(name = "productservice")
 public interface ProductService {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)

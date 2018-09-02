@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by hilbertcao on 2018/2/5.
  */
-@FeignClient(name = "orderService")
+@FeignClient(name = "orderservice")
 public interface OrderService {
 
     @RequestMapping("/v/0.1/orders/")
