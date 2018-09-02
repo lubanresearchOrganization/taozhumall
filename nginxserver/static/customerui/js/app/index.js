@@ -14,13 +14,13 @@ var index = (function ($,converter,config,lajaxComponent,searchbar){
             nameToKey:"text"
             });
 
-            $('#catagoryTree').treeview(
+            $('#categoryTree').treeview(
             {
              data:tree,
              levels:3
             });
 
-            $('#catagoryTree').on('nodeSelected', function(event, node) {
+            $('#categoryTree').on('nodeSelected', function(event, node) {
                window.location.href = "./productlist.html?recursive=true&category="+node.id;
             });
 

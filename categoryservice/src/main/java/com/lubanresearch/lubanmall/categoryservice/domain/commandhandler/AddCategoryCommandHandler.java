@@ -30,6 +30,6 @@ public class AddCategoryCommandHandler {
         category.setName(command.getName());
         category.setParentId(command.getParentId());
 
-        return categoryRepository.addCatagory(category);
+        return categoryRepository.addCategory(category);
     }
 }

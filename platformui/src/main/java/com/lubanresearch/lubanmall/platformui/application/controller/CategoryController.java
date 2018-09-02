@@ -1,6 +1,6 @@
 package com.lubanresearch.lubanmall.platformui.application.controller;
 
-import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
+import com.lubanmall.categoryserviceapi.bean.CategoryDTO;
 import com.lubanresearch.lubanmall.platformui.remote.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

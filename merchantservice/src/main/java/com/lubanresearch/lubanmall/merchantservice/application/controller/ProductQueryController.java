@@ -1,11 +1,11 @@
 package com.lubanresearch.lubanmall.merchantservice.application.controller;
 
-import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
+import com.lubanmall.categoryserviceapi.bean.CategoryDTO;
 import com.lubanresearch.lubanmall.common.bean.Pagination;
 import com.lubanresearch.lubanmall.merchantservice.domain.Product;
 import com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db.mapper.ProductMapper;
 import com.lubanresearch.lubanmall.merchantservice.infrastructure.persistence.db.query.condition.ProductQueryCondition;
-import com.lubanresearch.lubanmall.merchantservice.infrastructure.remote.CatagoryService;
+import com.lubanresearch.lubanmall.merchantservice.infrastructure.remote.CategoryService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class ProductQueryController {
     private ProductMapper productMapper;
 
     @Autowired
-    private CatagoryService catagoryService;
+    private CategoryService categoryService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -67,12 +67,12 @@ public class ProductQueryController {
         });
 
         if(recursive){
-            List<Long> catagoryIds = catagoryService.getCategorys(categoryId,true).stream().map(CategoryDTO::getId).collect(Collectors.toList());
-            catagoryIds.add(categoryId);
-            criteria.andIf(catagoryIds.size()>0, new ProductQueryCondition.Criteria.ICriteriaAdd() {
+            List<Long> categoryIds = categoryService.getCategorys(categoryId,true).stream().map(CategoryDTO::getId).collect(Collectors.toList());
+            categoryIds.add(categoryId);
+            criteria.andIf(categoryIds.size()>0, new ProductQueryCondition.Criteria.ICriteriaAdd() {
                 @Override
                 public ProductQueryCondition.Criteria add(ProductQueryCondition.Criteria add) {
-                    return add.andCategoryIdIn(catagoryIds);
+                    return add.andCategoryIdIn(categoryIds);
                 }
             });
         }

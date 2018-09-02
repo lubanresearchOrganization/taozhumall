@@ -1,6 +1,6 @@
 package com.lubanresearch.lubanmall.customerui.application.controller;
 
-import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
+import com.lubanmall.categoryserviceapi.bean.CategoryDTO;
 import com.lubanresearch.lubanmall.customerui.infrastructure.remote.CategoryService;
 import com.lubanresearch.lubanmall.customerui.infrastructure.remote.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.lubanresearch.lubanmall.customerui.infrastructure.remote;
 
-import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
+import com.lubanmall.categoryserviceapi.bean.CategoryDTO;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by hilbertcao on 2018/1/22.
  */
-@FeignClient(name = "catagoryservice")
+@FeignClient(name = "categoryservice")
 public interface CategoryService {
 
 

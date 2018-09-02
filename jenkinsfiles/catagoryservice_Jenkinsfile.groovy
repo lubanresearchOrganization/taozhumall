@@ -1,6 +1,6 @@
 node {
     def dockerImage
-    def moduleName = 'catagoryservice'
+    def moduleName = 'categoryservice'
     def pomName = 'pom.xml'
     def registryUrl = 'http://registry.lubanresearch.com:5000'
     def dockerVersion = '0.1'

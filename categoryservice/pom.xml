@@ -10,10 +10,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>catagory-service</artifactId>
+    <artifactId>category-service</artifactId>
 
     <build>
-        <finalName>catagoryservice</finalName>
+        <finalName>categoryservice</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

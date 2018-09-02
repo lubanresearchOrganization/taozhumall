@@ -1,4 +1,4 @@
-package com.lubanmall.catagoryserviceapi.bean;
+package com.lubanmall.categoryserviceapi.bean;
 
 public class CategoryDTO {
 

@@ -1,12 +1,12 @@
 package com.lubanresearch.lubanmall.platformui.remote;
 
-import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
+import com.lubanmall.categoryserviceapi.bean.CategoryDTO;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "catagoryservice")
+@FeignClient(name = "categoryservice")
 public interface CategoryService {
 
     @RequestMapping(value = "/v/0.1/categorys/", method = RequestMethod.GET)

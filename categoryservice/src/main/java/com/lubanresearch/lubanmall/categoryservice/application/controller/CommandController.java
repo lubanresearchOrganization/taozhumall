@@ -1,7 +1,7 @@
 package com.lubanresearch.lubanmall.categoryservice.application.controller;
 
 
-import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
+import com.lubanmall.categoryserviceapi.bean.CategoryDTO;
 import com.lubanresearch.lubanmall.categoryservice.domain.Category;
 import com.lubanresearch.lubanmall.categoryservice.domain.command.AddCategoryCommand;
 import com.lubanresearch.lubanmall.categoryservice.domain.command.UpdateCategoryCommand;

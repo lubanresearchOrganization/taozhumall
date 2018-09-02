@@ -20,7 +20,7 @@ public class CategoryRepository {
     CategoryMapper categoryMapper;
 
 
-    public Category addCatagory(Category category) {
+    public Category addCategory(Category category) {
 
         category.setCreateTime(new Date());
         category.setId(System.currentTimeMillis());
@@ -31,9 +31,9 @@ public class CategoryRepository {
 
 
     public Category getByName(String name) {
-        CategoryQueryCondition catagoryQueryCondition = new CategoryQueryCondition();
-        catagoryQueryCondition.createCriteria().andNameEqualTo(name);
-        List<Category> categoryList = categoryMapper.selectByExample(catagoryQueryCondition);
+        CategoryQueryCondition categoryQueryCondition = new CategoryQueryCondition();
+        categoryQueryCondition.createCriteria().andNameEqualTo(name);
+        List<Category> categoryList = categoryMapper.selectByExample(categoryQueryCondition);
         if(categoryList.isEmpty()){
             return null;
         }

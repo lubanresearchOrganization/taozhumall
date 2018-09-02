@@ -11,7 +11,7 @@
     <modules>
         <module>common</module>
         <module>userserviceapi</module>
-        <module>catagoryserviceapi</module>
+        <module>categoryserviceapi</module>
         <module>merchantserviceapi</module>
         <module>commentserviceapi</module>
         <module>orderserviceapi</module>
@@ -24,7 +24,7 @@
         <module>platformui</module>
         <module>merchantservice</module>
         <module>userservice</module>
-        <module>catagoryservice</module>
+        <module>categoryservice</module>
         <module>orderservice</module>
         <module>commentservice</module>
         <module>searchservice</module>

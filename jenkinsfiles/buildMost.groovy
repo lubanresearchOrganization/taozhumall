@@ -18,9 +18,9 @@ pipeline {
                     }
                 }
 
-                stage ('catagoryservice') {
+                stage ('categoryservice') {
                     steps {
-                        build job: 'catagoryservice', parameters: [
+                        build job: 'categoryservice', parameters: [
                         ]
                     }
                 }

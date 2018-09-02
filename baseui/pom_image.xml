@@ -191,7 +191,7 @@
         </dependency>
         <dependency>
             <groupId>lubanresearch.com</groupId>
-            <artifactId>catagory-service-api</artifactId>
+            <artifactId>category-service-api</artifactId>
             <version>0.1</version>
         </dependency>
         <dependency>
