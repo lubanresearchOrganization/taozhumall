@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.catagoryservice.infrastructure.config;
+package com.lubanresearch.lubanmall.categoryservice.infrastructure.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;

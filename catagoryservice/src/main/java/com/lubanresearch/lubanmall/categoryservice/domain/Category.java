@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.catagoryservice.domain;
+package com.lubanresearch.lubanmall.categoryservice.domain;
 
 import java.util.Date;
 import java.util.HashMap;

@@ -1,9 +1,9 @@
-package com.lubanresearch.lubanmall.catagoryservice.application.controller;
+package com.lubanresearch.lubanmall.categoryservice.application.controller;
 
 
-import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
-import com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.mapper.CategoryMapper;
-import com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition;
+import com.lubanresearch.lubanmall.categoryservice.domain.Category;
+import com.lubanresearch.lubanmall.categoryservice.infrastructure.persistence.db.mapper.CategoryMapper;
+import com.lubanresearch.lubanmall.categoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.catagoryservice.domain.command;
+package com.lubanresearch.lubanmall.categoryservice.domain.command;
 
 import javax.validation.constraints.NotNull;
 /**

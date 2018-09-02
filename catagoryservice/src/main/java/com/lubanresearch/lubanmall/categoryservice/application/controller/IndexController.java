@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.catagoryservice.application.controller;
+package com.lubanresearch.lubanmall.categoryservice.application.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

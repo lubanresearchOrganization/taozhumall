@@ -1,7 +1,7 @@
-package com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.mapper;
+package com.lubanresearch.lubanmall.categoryservice.infrastructure.persistence.db.mapper;
 
-import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
-import com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition;
+import com.lubanresearch.lubanmall.categoryservice.domain.Category;
+import com.lubanresearch.lubanmall.categoryservice.infrastructure.persistence.db.query.condition.CategoryQueryCondition;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.catagoryservice.infrastructure.persistence.db.query.condition;
+package com.lubanresearch.lubanmall.categoryservice.infrastructure.persistence.db.query.condition;
 
 import java.util.ArrayList;
 import java.util.Date;

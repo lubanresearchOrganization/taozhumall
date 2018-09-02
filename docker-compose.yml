@@ -6,8 +6,8 @@ services:
      - 5006:8080
     networks:
       - taozhumall_network
-  catagoryservice:
-    image: "registry.lubanresearch.com:5000/catagoryservice:0.1"
+  categoryservice:
+    image: "registry.lubanresearch.com:5000/categoryservice:0.1"
     ports:
      - 5001:8080
     networks:

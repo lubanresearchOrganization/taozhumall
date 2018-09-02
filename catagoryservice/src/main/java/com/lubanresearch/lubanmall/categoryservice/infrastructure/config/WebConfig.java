@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.catagoryservice.infrastructure.config;
+package com.lubanresearch.lubanmall.categoryservice.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

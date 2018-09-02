@@ -1,10 +1,10 @@
-package com.lubanresearch.lubanmall.catagoryservice.application.controller;
+package com.lubanresearch.lubanmall.categoryservice.application.controller;
 
 
 import com.lubanmall.catagoryserviceapi.bean.CategoryDTO;
-import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
-import com.lubanresearch.lubanmall.catagoryservice.domain.command.AddCategoryCommand;
-import com.lubanresearch.lubanmall.catagoryservice.domain.command.UpdateCategoryCommand;
+import com.lubanresearch.lubanmall.categoryservice.domain.Category;
+import com.lubanresearch.lubanmall.categoryservice.domain.command.AddCategoryCommand;
+import com.lubanresearch.lubanmall.categoryservice.domain.command.UpdateCategoryCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

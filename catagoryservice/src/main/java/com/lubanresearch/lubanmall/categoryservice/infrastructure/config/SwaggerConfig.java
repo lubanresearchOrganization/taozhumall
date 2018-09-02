@@ -1,4 +1,4 @@
-package com.lubanresearch.lubanmall.catagoryservice.infrastructure.config;
+package com.lubanresearch.lubanmall.categoryservice.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +27,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
                 .apiInfo(apiInfo())
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.taozhumall.catagoryservice.application.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.taozhumall.categoryservice.application.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -35,7 +35,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("类目服务")
-                .contact(new Contact("taozhumall", "http://catagoryservice.taozhumall.com", ""))
+                .contact(new Contact("taozhumall", "http://categoryservice.taozhumall.com", ""))
                 .version("0.1")
                 .build();
     }

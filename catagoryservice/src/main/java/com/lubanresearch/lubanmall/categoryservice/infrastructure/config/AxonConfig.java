@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.lubanresearch.lubanmall.catagoryservice.infrastructure.config;
+package com.lubanresearch.lubanmall.categoryservice.infrastructure.config;
 
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;

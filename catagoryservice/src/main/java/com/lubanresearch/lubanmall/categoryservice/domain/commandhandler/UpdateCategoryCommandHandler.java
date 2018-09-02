@@ -1,9 +1,9 @@
-package com.lubanresearch.lubanmall.catagoryservice.domain.commandhandler;
+package com.lubanresearch.lubanmall.categoryservice.domain.commandhandler;
 
 
-import com.lubanresearch.lubanmall.catagoryservice.domain.Category;
-import com.lubanresearch.lubanmall.catagoryservice.domain.CategoryRepository;
-import com.lubanresearch.lubanmall.catagoryservice.domain.command.UpdateCategoryCommand;
+import com.lubanresearch.lubanmall.categoryservice.domain.Category;
+import com.lubanresearch.lubanmall.categoryservice.domain.CategoryRepository;
+import com.lubanresearch.lubanmall.categoryservice.domain.command.UpdateCategoryCommand;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
 import org.apache.commons.lang.StringUtils;
 import org.axonframework.commandhandling.annotation.CommandHandler;
