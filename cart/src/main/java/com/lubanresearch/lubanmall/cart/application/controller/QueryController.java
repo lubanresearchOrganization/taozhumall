@@ -4,7 +4,6 @@ import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.entity.Car
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.mapper.CartItemEntityMapper;
 import com.lubanresearch.lubanmall.cart.infrastructure.persistence.db.query.condition.CartItemEntityQueryCondition;
 import com.lubanresearch.lubanmall.cart.infrastructure.remote.MerchantService;
-import com.lubanresearch.lubanmall.cartapi.CartItemDTO;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * Created by hilbertcao on 2018/2/4.
