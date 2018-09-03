@@ -4,6 +4,7 @@ import com.lubanmall.userserviceapi.bean.UserDTO;
 import com.lubanmall.userserviceapi.bean.UserType;
 import com.lubanresearch.lubanmall.common.bean.Response;
 import com.lubanresearch.lubanmall.common.exception.ServiceException;
+import com.lubanresearch.lubanmall.common.exception.UIException;
 import com.lubanresearch.lubanmall.ssoclient.bean.Authentication;
 import com.lubanresearch.lubanmall.usercenter.application.controller.request.RegisterRequest;
 import com.lubanresearch.lubanmall.usercenter.infrastructure.cache.Cache;
@@ -240,6 +241,11 @@ public class IndexController {
             result.setCode(500);
             result.setMessage("用户或密码错误");
             return result;
+        }
+
+        if(userDTO == null){
+
+            throw new RuntimeException("用户不存在");
         }
 
         Response<String> result = new Response<>();
