@@ -25,7 +25,7 @@ public class SwaggerConfig  {
                 .apiInfo(apiInfo())
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.taozhumall.customerui.application.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lubanresearch.lubanmall.customerui.application.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
